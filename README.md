@@ -155,6 +155,8 @@ python ai_concurrent_benchmark.py \
 
 Those labels are written into `report.md`, `report.html`, `results.json`, `metadata.json`, and the comparison page.
 
+On Windows, `Win32_VideoController.AdapterRAM` can under-report modern discrete GPU VRAM. The script tries a registry VRAM probe first and labels the source as `registry` when that value is available; otherwise it falls back to the Windows video controller value and records that source.
+
 ## Metrics For The Video
 
 - **Aggregate tok/s**: total server output throughput at that user count.
@@ -162,6 +164,12 @@ Those labels are written into `report.md`, `report.html`, `results.json`, `metad
 - **Avg latency**: total request time.
 - **Avg TTFT**: time to first token, important for chat responsiveness.
 - **Success count**: whether the server can actually handle every concurrent request.
+
+TTFT source is recorded per request:
+
+- `stream`: measured from the first streamed content chunk.
+- `end_fallback`: the server returned content, but the client only saw it at the end, so this is closer to full-response latency than true TTFT.
+- `missing`: the request succeeded but no generated content chunk was observed.
 
 `--max-tokens` can change the measured token/sec. Larger values often increase average tok/s because fixed costs like request setup, prompt processing, scheduling, cache allocation, and first-token latency are spread across more generated tokens. Very large values can eventually reduce tok/s if the context/cache grows, memory pressure increases, or the server starts queueing harder. For fair comparisons, keep `--max-tokens`, prompts, context size, and concurrency list the same across runs.
 

@@ -55,6 +55,7 @@ class RequestResult:
     started_at: float
     ended_at: float
     ttft_s: Optional[float]
+    ttft_source: str
     prompt_tokens: Optional[int]
     completion_tokens: Optional[int]
     total_tokens: Optional[int]
@@ -91,6 +92,7 @@ class GroupSummary:
     avg_per_request_tps: Optional[float]
     min_per_request_tps: Optional[float]
     max_per_request_tps: Optional[float]
+    ttft_sources: Dict[str, int] = field(default_factory=dict)
     errors: List[str] = field(default_factory=list)
 
 
@@ -174,6 +176,17 @@ def http_post_json_response(url: str, payload: Dict[str, Any], timeout: float = 
             return json.loads(resp.read().decode("utf-8", errors="replace"))
     except Exception:
         return None
+
+
+def extract_stream_text(choice: Dict[str, Any]) -> Optional[str]:
+    delta = choice.get("delta") if isinstance(choice.get("delta"), dict) else {}
+    message = choice.get("message") if isinstance(choice.get("message"), dict) else {}
+    for container in (delta, message, choice):
+        for key in ("content", "text", "reasoning_content"):
+            value = container.get(key) if isinstance(container, dict) else None
+            if isinstance(value, str) and value:
+                return value
+    return None
 
 
 def read_linux_mem_total() -> Optional[int]:
@@ -282,28 +295,68 @@ def collect_gpu_info() -> Dict[str, Any]:
                 "raw": sp[:3000],
             })
     elif platform.system() == "Windows":
+        registry_ps = run_probe([
+            "powershell",
+            "-NoProfile",
+            "-Command",
+            (
+                "Get-ChildItem 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Video' -ErrorAction SilentlyContinue | "
+                "ForEach-Object { Get-ChildItem $_.PsPath -ErrorAction SilentlyContinue } | "
+                "ForEach-Object { Get-ItemProperty $_.PsPath -ErrorAction SilentlyContinue } | "
+                "Where-Object { $_.'HardwareInformation.AdapterString' -or $_.'HardwareInformation.qwMemorySize' } | "
+                "Select-Object @{n='Name';e={[Text.Encoding]::Unicode.GetString($_.'HardwareInformation.AdapterString').Trim([char]0)}},"
+                "@{n='MemoryBytes';e={$_.'HardwareInformation.qwMemorySize'}} | ConvertTo-Json -Depth 4 -Compress"
+            ),
+        ], timeout=6.0)
+        registry_vram: Dict[str, int] = {}
+        if registry_ps:
+            try:
+                registry_data = json.loads(registry_ps)
+                registry_items = registry_data if isinstance(registry_data, list) else [registry_data]
+                for item in registry_items:
+                    if not isinstance(item, dict):
+                        continue
+                    name = str(item.get("Name") or "").strip()
+                    memory = parse_int_maybe(item.get("MemoryBytes"))
+                    if name and memory:
+                        registry_vram[name.lower()] = memory
+            except Exception:
+                pass
         ps = run_probe([
             "powershell",
             "-NoProfile",
             "-Command",
-            "Get-CimInstance Win32_VideoController | Select-Object Name,AdapterRAM,DriverVersion | ConvertTo-Json -Compress",
+            "Get-CimInstance Win32_VideoController | Select-Object Name,AdapterRAM,DriverVersion,PNPDeviceID | ConvertTo-Json -Depth 4 -Compress",
         ])
         if ps:
             try:
                 data = json.loads(ps)
                 items = data if isinstance(data, list) else [data]
                 for item in items:
-                    adapter_ram = parse_int_maybe(item.get("AdapterRAM")) if isinstance(item, dict) else None
+                    if not isinstance(item, dict):
+                        continue
+                    name = str(item.get("Name", "")).strip()
+                    adapter_ram = parse_int_maybe(item.get("AdapterRAM"))
+                    registry_memory = None
+                    for registry_name, memory in registry_vram.items():
+                        if name.lower() in registry_name or registry_name in name.lower():
+                            registry_memory = memory
+                            break
+                    best_memory = registry_memory or adapter_ram
                     gpus.append({
                         "vendor": "Windows",
-                        "name": item.get("Name", "") if isinstance(item, dict) else "",
-                        "vram_total_bytes": adapter_ram,
-                        "vram_total_human": fmt_bytes(adapter_ram),
-                        "driver": item.get("DriverVersion", "") if isinstance(item, dict) else "",
+                        "name": name,
+                        "vram_total_bytes": best_memory,
+                        "vram_total_human": fmt_bytes(best_memory),
+                        "vram_source": "registry" if registry_memory else "Win32_VideoController.AdapterRAM",
+                        "reported_adapter_ram_bytes": adapter_ram,
+                        "reported_adapter_ram_human": fmt_bytes(adapter_ram),
+                        "driver": item.get("DriverVersion", ""),
+                        "pnp_device_id": item.get("PNPDeviceID", ""),
                         "source": "Win32_VideoController",
                     })
             except Exception:
-                gpus.append({"vendor": "Windows", "source": "Win32_VideoController", "raw": ps[:3000]})
+                gpus.append({"vendor": "Windows", "source": "Win32_VideoController", "raw": ps})
     elif platform.system() == "Linux":
         lspci = run_probe(["lspci"])
         if lspci:
@@ -759,7 +812,7 @@ def request_openai_compatible(
     max_tokens: int,
     temperature: float,
     timeout: float,
-) -> Tuple[int, str, Optional[float], Optional[int], Optional[int], Optional[int], str]:
+) -> Tuple[int, str, Optional[float], str, Optional[int], Optional[int], Optional[int], str]:
     url = f"{normalize_base_url(base_url)}/v1/chat/completions"
     payload = {
         "model": model,
@@ -792,8 +845,7 @@ def request_openai_compatible(
             if obj.get("usage"):
                 usage = obj["usage"]
             for choice in obj.get("choices", []):
-                delta = choice.get("delta") or {}
-                text = delta.get("content")
+                text = extract_stream_text(choice) if isinstance(choice, dict) else None
                 if text:
                     if first_token_at is None:
                         first_token_at = time.perf_counter()
@@ -806,8 +858,10 @@ def request_openai_compatible(
         completion_tokens = estimate_tokens(output)
     if total_tokens is None and prompt_tokens is not None and completion_tokens is not None:
         total_tokens = prompt_tokens + completion_tokens
-    ttft = first_token_at - started if first_token_at else None
-    return status, output, ttft, prompt_tokens, completion_tokens, total_tokens, ""
+    ended = time.perf_counter()
+    ttft = first_token_at - started if first_token_at else (ended - started if output else None)
+    ttft_source = "stream" if first_token_at else ("end_fallback" if output else "missing")
+    return status, output, ttft, ttft_source, prompt_tokens, completion_tokens, total_tokens, ""
 
 
 def request_ollama_native(
@@ -817,7 +871,7 @@ def request_ollama_native(
     max_tokens: int,
     temperature: float,
     timeout: float,
-) -> Tuple[int, str, Optional[float], Optional[int], Optional[int], Optional[int], str]:
+) -> Tuple[int, str, Optional[float], str, Optional[int], Optional[int], Optional[int], str]:
     url = f"{normalize_base_url(base_url)}/api/generate"
     payload = {
         "model": model,
@@ -861,8 +915,10 @@ def request_ollama_native(
         completion_tokens = estimate_tokens(output)
     if prompt_tokens is not None and completion_tokens is not None:
         total_tokens = prompt_tokens + completion_tokens
-    ttft = first_token_at - started if first_token_at else None
-    return status, output, ttft, prompt_tokens, completion_tokens, total_tokens, ""
+    ended = time.perf_counter()
+    ttft = first_token_at - started if first_token_at else (ended - started if output else None)
+    ttft_source = "stream" if first_token_at else ("end_fallback" if output else "missing")
+    return status, output, ttft, ttft_source, prompt_tokens, completion_tokens, total_tokens, ""
 
 
 def estimate_tokens(text: str) -> int:
@@ -884,11 +940,11 @@ def run_one(
     started_at = time.perf_counter()
     try:
         if server == "ollama-native":
-            status, output, ttft, prompt_tokens, completion_tokens, total_tokens, err = request_ollama_native(
+            status, output, ttft, ttft_source, prompt_tokens, completion_tokens, total_tokens, err = request_ollama_native(
                 base_url, model, prompt, max_tokens, temperature, timeout
             )
         else:
-            status, output, ttft, prompt_tokens, completion_tokens, total_tokens, err = request_openai_compatible(
+            status, output, ttft, ttft_source, prompt_tokens, completion_tokens, total_tokens, err = request_openai_compatible(
                 base_url, model, prompt, max_tokens, temperature, timeout
             )
         ended_at = time.perf_counter()
@@ -901,6 +957,7 @@ def run_one(
             started_at=started_at,
             ended_at=ended_at,
             ttft_s=ttft,
+            ttft_source=ttft_source,
             prompt_tokens=prompt_tokens,
             completion_tokens=completion_tokens,
             total_tokens=total_tokens,
@@ -910,10 +967,10 @@ def run_one(
     except urllib.error.HTTPError as exc:
         ended_at = time.perf_counter()
         body = exc.read().decode("utf-8", errors="replace")[:500]
-        return RequestResult(concurrency, user_id, False, exc.code, body, started_at, ended_at, None, None, None, None, 0, "")
+        return RequestResult(concurrency, user_id, False, exc.code, body, started_at, ended_at, None, "error", None, None, None, 0, "")
     except Exception as exc:
         ended_at = time.perf_counter()
-        return RequestResult(concurrency, user_id, False, None, repr(exc), started_at, ended_at, None, None, None, None, 0, "")
+        return RequestResult(concurrency, user_id, False, None, repr(exc), started_at, ended_at, None, "error", None, None, None, 0, "")
 
 
 def summarize_group(concurrency: int, results: List[RequestResult], wall_time_s: float) -> GroupSummary:
@@ -924,6 +981,9 @@ def summarize_group(concurrency: int, results: List[RequestResult], wall_time_s:
     completion_tokens = sum(r.completion_tokens or 0 for r in successes)
     total_tokens = sum(r.total_tokens or 0 for r in successes)
     errors = sorted({r.error[:160] for r in results if not r.ok and r.error})
+    ttft_sources: Dict[str, int] = {}
+    for r in successes:
+        ttft_sources[r.ttft_source] = ttft_sources.get(r.ttft_source, 0) + 1
     aggregate_tps = completion_tokens / wall_time_s if wall_time_s > 0 and completion_tokens else None
     return GroupSummary(
         concurrency=concurrency,
@@ -943,6 +1003,7 @@ def summarize_group(concurrency: int, results: List[RequestResult], wall_time_s:
         avg_per_request_tps=avg([x for x in per_request_tps if x is not None]),
         min_per_request_tps=min(per_request_tps) if per_request_tps else None,
         max_per_request_tps=max(per_request_tps) if per_request_tps else None,
+        ttft_sources=ttft_sources,
         errors=errors,
     )
 
@@ -1018,11 +1079,11 @@ def run_warmup(args: argparse.Namespace, prompts: List[str]) -> List[RequestResu
 def write_csv(path: Path, results: List[RequestResult], summaries: List[GroupSummary]) -> None:
     with path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
-        writer.writerow(["type", "concurrency", "user_id", "ok", "status", "latency_s", "ttft_s", "completion_tokens", "total_tokens", "output_tps", "error"])
+        writer.writerow(["type", "concurrency", "user_id", "ok", "status", "latency_s", "ttft_s", "ttft_source", "completion_tokens", "total_tokens", "output_tps", "error"])
         for r in results:
-            writer.writerow(["request", r.concurrency, r.user_id, r.ok, r.status, f"{r.latency_s:.4f}", fmt(r.ttft_s, 4), r.completion_tokens, r.total_tokens, fmt(r.output_tokens_per_s, 4), r.error])
+            writer.writerow(["request", r.concurrency, r.user_id, r.ok, r.status, f"{r.latency_s:.4f}", fmt(r.ttft_s, 4), r.ttft_source, r.completion_tokens, r.total_tokens, fmt(r.output_tokens_per_s, 4), r.error])
         for s in summaries:
-            writer.writerow(["summary", s.concurrency, "", s.success == s.requests, "", f"{s.wall_time_s:.4f}", fmt(s.avg_ttft_s, 4), s.total_completion_tokens, s.total_tokens, fmt(s.aggregate_output_tps, 4), " | ".join(s.errors)])
+            writer.writerow(["summary", s.concurrency, "", s.success == s.requests, "", f"{s.wall_time_s:.4f}", fmt(s.avg_ttft_s, 4), json.dumps(s.ttft_sources), s.total_completion_tokens, s.total_tokens, fmt(s.aggregate_output_tps, 4), " | ".join(s.errors)])
 
 
 def write_markdown(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) -> None:
@@ -1052,13 +1113,13 @@ def write_markdown(path: Path, meta: Dict[str, Any], summaries: List[GroupSummar
         "",
         "## Benchmark Summary",
         "",
-        "| Users | Success | Wall time (s) | Aggregate tok/s | Avg latency (s) | P95 latency (s) | Avg TTFT (s) | Avg per-user tok/s |",
-        "|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "| Users | Success | Wall time (s) | Aggregate tok/s | Avg latency (s) | P95 latency (s) | Avg TTFT (s) | TTFT source | Avg per-user tok/s |",
+        "|---:|---:|---:|---:|---:|---:|---:|---|---:|",
     ])
     for s in summaries:
         lines.append(
             f"| {s.concurrency} | {s.success}/{s.requests} | {fmt(s.wall_time_s)} | {fmt(s.aggregate_output_tps)} | "
-            f"{fmt(s.avg_latency_s)} | {fmt(s.p95_latency_s)} | {fmt(s.avg_ttft_s)} | {fmt(s.avg_per_request_tps)} |"
+            f"{fmt(s.avg_latency_s)} | {fmt(s.p95_latency_s)} | {fmt(s.avg_ttft_s)} | {json.dumps(s.ttft_sources)} | {fmt(s.avg_per_request_tps)} |"
         )
     lines.extend([
         "",
@@ -1095,12 +1156,28 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
         f"<tr><td>{s.concurrency}</td><td>{s.success}/{s.requests}</td><td>{fmt(s.wall_time_s)}</td>"
         f"<td>{fmt(s.aggregate_output_tps)}</td><td>{fmt(s.avg_per_request_tps)}</td><td>{fmt(s.min_per_request_tps)}</td>"
         f"<td>{fmt(s.max_per_request_tps)}</td><td>{fmt(s.avg_latency_s)}</td><td>{fmt(s.p95_latency_s)}</td>"
-        f"<td>{fmt(s.avg_ttft_s)}</td></tr>"
+        f"<td>{fmt(s.avg_ttft_s)}</td><td>{html.escape(json.dumps(s.ttft_sources))}</td></tr>"
         for s in summaries
     )
+    metadata_rows = flatten_metadata(meta)
     meta_rows = "\n".join(
         f"<tr><th>{html.escape(key)}</th><td>{html.escape(value)}</td></tr>"
-        for key, value in flatten_metadata(meta)
+        for key, value in metadata_rows
+        if value
+    )
+    config = meta.get("benchmark_config", {})
+    metadata_lookup = dict(metadata_rows)
+    compact_items = [
+        ("Model", str(config.get("model", ""))),
+        ("Runtime", str(config.get("runtime_label") or config.get("server", ""))),
+        ("GPU", str(config.get("gpu_label") or metadata_lookup.get("Detected GPU", ""))),
+        ("Max tokens", str(config.get("max_tokens_per_request", ""))),
+        ("Context", str(config.get("context_size") or "")),
+        ("Concurrency", ", ".join(str(x) for x in config.get("concurrency", []))),
+    ]
+    compact_cards = "\n".join(
+        f"<div class=\"stat\"><span>{html.escape(label)}</span><strong>{html.escape(value)}</strong></div>"
+        for label, value in compact_items
         if value
     )
     raw_meta = html.escape(json.dumps({
@@ -1131,9 +1208,14 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
     .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 18px; margin-top: 20px; }}
     .panel {{ background: white; border: 1px solid #ddd; border-radius: 8px; padding: 16px; }}
     .panel h2 {{ font-size: 18px; margin: 0 0 12px; }}
+    .stats {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 18px; }}
+    .stat {{ background: white; border: 1px solid #ddd; border-radius: 8px; padding: 12px; }}
+    .stat span {{ display: block; color: #666; font-size: 12px; margin-bottom: 6px; }}
+    .stat strong {{ display: block; font-size: 15px; overflow-wrap: anywhere; }}
     .chart {{ height: 360px; }}
     .wide {{ grid-column: 1 / -1; }}
     details {{ margin-top: 20px; background: white; border: 1px solid #ddd; border-radius: 8px; padding: 16px; }}
+    summary {{ cursor: pointer; font-weight: bold; }}
     pre {{ white-space: pre-wrap; overflow-wrap: anywhere; }}
     @media (max-width: 620px) {{ body {{ margin: 12px; }} .grid {{ grid-template-columns: 1fr; }} .chart {{ height: 300px; }} }}
   </style>
@@ -1147,9 +1229,13 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
     Model: {html.escape(meta['benchmark_config']['model'])}<br>
     Host: {html.escape(meta['host'])}
   </p>
-  <table class="meta-table">
-    <tbody>{meta_rows}</tbody>
-  </table>
+  <div class="stats">{compact_cards}</div>
+  <details>
+    <summary>Full system and benchmark details</summary>
+    <table class="meta-table">
+      <tbody>{meta_rows}</tbody>
+    </table>
+  </details>
   <details>
     <summary>Raw detected hardware/software metadata</summary>
     <pre>{raw_meta}</pre>
@@ -1162,7 +1248,7 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
     <section class="panel"><h2>Latency Distribution</h2><div class="chart"><canvas id="latencyDistributionChart"></canvas></div></section>
   </div>
   <table>
-    <thead><tr><th>Users</th><th>Success</th><th>Wall time (s)</th><th>Aggregate tok/s</th><th>Avg per-user tok/s</th><th>Min per-user tok/s</th><th>Max per-user tok/s</th><th>Avg latency (s)</th><th>P95 latency (s)</th><th>Avg TTFT (s)</th></tr></thead>
+    <thead><tr><th>Users</th><th>Success</th><th>Wall time (s)</th><th>Aggregate tok/s</th><th>Avg per-user tok/s</th><th>Min per-user tok/s</th><th>Max per-user tok/s</th><th>Avg latency (s)</th><th>P95 latency (s)</th><th>Avg TTFT (s)</th><th>TTFT source</th></tr></thead>
     <tbody>{rows}</tbody>
   </table>
 </main>

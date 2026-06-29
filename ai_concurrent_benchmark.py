@@ -142,6 +142,30 @@ def run_probe(cmd: List[str], timeout: float = 3.0) -> Optional[str]:
     return output if output else None
 
 
+def http_get_json(url: str, timeout: float = 3.0) -> Optional[Any]:
+    try:
+        req = urllib.request.Request(url, headers={"Accept": "application/json"}, method="GET")
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode("utf-8", errors="replace"))
+    except Exception:
+        return None
+
+
+def http_post_json_response(url: str, payload: Dict[str, Any], timeout: float = 3.0) -> Optional[Any]:
+    try:
+        body = json.dumps(payload).encode("utf-8")
+        req = urllib.request.Request(
+            url,
+            data=body,
+            headers={"Content-Type": "application/json", "Accept": "application/json"},
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode("utf-8", errors="replace"))
+    except Exception:
+        return None
+
+
 def read_linux_mem_total() -> Optional[int]:
     try:
         for line in Path("/proc/meminfo").read_text(encoding="utf-8").splitlines():
@@ -230,18 +254,126 @@ def collect_gpu_info() -> Dict[str, Any]:
     return {"detected": gpus}
 
 
-def collect_runtime_probe(server: str, base_url: str) -> Dict[str, Any]:
+def extract_ollama_quantization(show_data: Any) -> Optional[str]:
+    if not isinstance(show_data, dict):
+        return None
+    details = show_data.get("details") if isinstance(show_data.get("details"), dict) else {}
+    model_info = show_data.get("model_info") if isinstance(show_data.get("model_info"), dict) else {}
+    for key in ("quantization_level", "general.quantization_version"):
+        value = details.get(key) or model_info.get(key)
+        if value:
+            return str(value)
+    for key, value in model_info.items():
+        if key.endswith(".quantization_level") and value:
+            return str(value)
+    return None
+
+
+def extract_ollama_context_size(show_data: Any) -> Optional[int]:
+    if not isinstance(show_data, dict):
+        return None
+    model_info = show_data.get("model_info") if isinstance(show_data.get("model_info"), dict) else {}
+    parameters = show_data.get("parameters")
+    for key, value in model_info.items():
+        if key.endswith(".context_length") or key.endswith(".block_count"):
+            try:
+                return int(value)
+            except (TypeError, ValueError):
+                pass
+    if isinstance(parameters, str):
+        for line in parameters.splitlines():
+            parts = line.split()
+            if len(parts) == 2 and parts[0] in {"num_ctx", "ctx_size", "context_length"}:
+                try:
+                    return int(parts[1])
+                except ValueError:
+                    pass
+    return None
+
+
+def iter_model_dicts(data: Any) -> Iterable[Dict[str, Any]]:
+    if isinstance(data, dict):
+        if isinstance(data.get("data"), list):
+            for item in data["data"]:
+                if isinstance(item, dict):
+                    yield item
+        elif isinstance(data.get("models"), list):
+            for item in data["models"]:
+                if isinstance(item, dict):
+                    yield item
+        else:
+            yield data
+    elif isinstance(data, list):
+        for item in data:
+            if isinstance(item, dict):
+                yield item
+
+
+def find_model_metadata(data: Any, model: str) -> Optional[Dict[str, Any]]:
+    model_lower = model.lower()
+    fallback: Optional[Dict[str, Any]] = None
+    for item in iter_model_dicts(data):
+        identifiers = [
+            str(item.get(key, ""))
+            for key in ("id", "model", "name", "path", "filename", "displayName")
+            if item.get(key)
+        ]
+        if fallback is None:
+            fallback = item
+        if any(model_lower in identifier.lower() or identifier.lower() in model_lower for identifier in identifiers):
+            return item
+    return fallback
+
+
+def find_nested_value(data: Any, wanted_keys: Iterable[str]) -> Optional[Any]:
+    wanted = {key.lower() for key in wanted_keys}
+    if isinstance(data, dict):
+        for key, value in data.items():
+            key_lower = str(key).lower()
+            if key_lower in wanted or any(token in key_lower for token in wanted):
+                if isinstance(value, (str, int, float)) and value != "":
+                    return value
+            nested = find_nested_value(value, wanted)
+            if nested is not None:
+                return nested
+    elif isinstance(data, list):
+        for item in data:
+            nested = find_nested_value(item, wanted)
+            if nested is not None:
+                return nested
+    return None
+
+
+def collect_runtime_probe(server: str, base_url: str, model: str) -> Dict[str, Any]:
     runtime: Dict[str, Any] = {"server_mode": server, "base_url": base_url}
+    normalized = normalize_base_url(base_url)
     if server.startswith("ollama"):
-        try:
-            with urllib.request.urlopen(f"{normalize_base_url(base_url)}/api/version", timeout=3) as resp:
-                runtime["ollama_version"] = json.loads(resp.read().decode("utf-8", errors="replace"))
-        except Exception as exc:
-            runtime["version_probe_error"] = repr(exc)
+        runtime["ollama_version"] = http_get_json(f"{normalized}/api/version")
+        runtime["ollama_show"] = http_post_json_response(f"{normalized}/api/show", {"model": model})
+        runtime["ollama_running_models"] = http_get_json(f"{normalized}/api/ps")
+        runtime["detected_quantization"] = extract_ollama_quantization(runtime.get("ollama_show"))
+        runtime["detected_context_size"] = extract_ollama_context_size(runtime.get("ollama_show"))
+    else:
+        runtime["openai_models"] = http_get_json(f"{normalized}/v1/models")
+        runtime["lmstudio_models"] = http_get_json(f"{normalized}/api/v0/models")
+        model_meta = find_model_metadata(runtime.get("lmstudio_models"), model)
+        runtime["lmstudio_selected_model"] = model_meta
+        quantization = find_nested_value(model_meta, ["quantization", "quant", "q_type"])
+        context_size = find_nested_value(model_meta, ["context_length", "context_size", "ctx", "n_ctx"])
+        if quantization:
+            runtime["detected_quantization"] = str(quantization)
+        if context_size:
+            try:
+                runtime["detected_context_size"] = int(context_size)
+            except (TypeError, ValueError):
+                runtime["detected_context_size"] = str(context_size)
     return runtime
 
 
 def collect_environment_info(args: argparse.Namespace, concurrencies: List[int], prompt_count: int) -> Dict[str, Any]:
+    runtime_probe = collect_runtime_probe(args.server, args.base_url, args.model)
+    detected_quantization = runtime_probe.get("detected_quantization")
+    detected_context_size = runtime_probe.get("detected_context_size")
     return {
         "date": dt.datetime.now().isoformat(timespec="seconds"),
         "host": f"{platform.system()} {platform.release()} ({platform.machine()})",
@@ -256,15 +388,17 @@ def collect_environment_info(args: argparse.Namespace, concurrencies: List[int],
         "cpu": collect_cpu_info(),
         "memory": collect_memory_info(),
         "gpu": collect_gpu_info(),
-        "runtime": collect_runtime_probe(args.server, args.base_url),
+        "runtime": runtime_probe,
         "benchmark_config": {
             "server": args.server,
             "base_url": args.base_url,
             "model": args.model,
             "runtime_label": args.runtime,
             "gpu_label": args.gpu,
-            "model_quantization": args.quantization,
-            "context_size": args.context_size,
+            "model_quantization": args.quantization or detected_quantization,
+            "model_quantization_source": "manual" if args.quantization else ("api" if detected_quantization else ""),
+            "context_size": args.context_size or detected_context_size,
+            "context_size_source": "manual" if args.context_size else ("api" if detected_context_size else ""),
             "max_tokens_per_request": args.max_tokens,
             "temperature": args.temperature,
             "timeout_seconds": args.timeout,
@@ -310,7 +444,9 @@ def flatten_metadata(meta: Dict[str, Any]) -> List[Tuple[str, str]]:
         ("Ollama version", json.dumps(runtime.get("ollama_version", ""), ensure_ascii=False) if runtime.get("ollama_version") else ""),
         ("Model", str(config.get("model", ""))),
         ("Quantization", str(config.get("model_quantization") or "")),
+        ("Quantization source", str(config.get("model_quantization_source") or "")),
         ("Context size", str(config.get("context_size") or "")),
+        ("Context size source", str(config.get("context_size_source") or "")),
         ("Max tokens/request", str(config.get("max_tokens_per_request", ""))),
         ("Temperature", str(config.get("temperature", ""))),
         ("Timeout", f"{config.get('timeout_seconds', '')} s"),

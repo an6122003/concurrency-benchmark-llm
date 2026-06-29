@@ -133,6 +133,14 @@ def fmt_bytes(num_bytes: Optional[int]) -> str:
         value /= 1024
 
 
+def parse_int_maybe(value: Any) -> Optional[int]:
+    if value is None:
+        return None
+    text = str(value).strip()
+    match = re.search(r"\d+", text.replace(",", ""))
+    return int(match.group(0)) if match else None
+
+
 def run_probe(cmd: List[str], timeout: float = 3.0) -> Optional[str]:
     if not cmd or shutil.which(cmd[0]) is None:
         return None
@@ -220,23 +228,59 @@ def collect_gpu_info() -> Dict[str, Any]:
     gpus: List[Dict[str, Any]] = []
     nvidia = run_probe([
         "nvidia-smi",
-        "--query-gpu=name,memory.total,driver_version",
+        "--query-gpu=name,memory.total,memory.used,memory.free,driver_version,pstate,temperature.gpu,power.draw",
         "--format=csv,noheader,nounits",
     ])
     if nvidia:
         for line in nvidia.splitlines():
             parts = [part.strip() for part in line.split(",")]
-            if len(parts) >= 3:
-                gpus.append({"vendor": "NVIDIA", "name": parts[0], "vram": f"{parts[1]} MiB", "driver": parts[2]})
+            if len(parts) >= 8:
+                total_mib = parse_int_maybe(parts[1])
+                used_mib = parse_int_maybe(parts[2])
+                free_mib = parse_int_maybe(parts[3])
+                gpus.append({
+                    "vendor": "NVIDIA",
+                    "name": parts[0],
+                    "vram_total_mib": total_mib,
+                    "vram_used_mib": used_mib,
+                    "vram_free_mib": free_mib,
+                    "vram_total_human": f"{total_mib} MiB" if total_mib is not None else "",
+                    "vram_used_human": f"{used_mib} MiB" if used_mib is not None else "",
+                    "vram_free_human": f"{free_mib} MiB" if free_mib is not None else "",
+                    "driver": parts[4],
+                    "performance_state": parts[5],
+                    "temperature_c": parse_int_maybe(parts[6]),
+                    "power_draw_w": parts[7],
+                })
 
     rocm = run_probe(["rocm-smi", "--showproductname", "--showmeminfo", "vram", "--showdriverversion"])
     if rocm:
-        gpus.append({"vendor": "AMD", "source": "rocm-smi", "raw": rocm[:2000]})
+        name_match = re.search(r"(?:Card series|Card model|Marketing Name|GPU ID).*?:\s*(.+)", rocm, flags=re.IGNORECASE)
+        total_match = re.search(r"(?:VRAM Total Memory|Total Memory).*?:\s*([0-9.]+)\s*([GMK]?i?B|bytes?)?", rocm, flags=re.IGNORECASE)
+        used_match = re.search(r"(?:VRAM Total Used Memory|Used Memory).*?:\s*([0-9.]+)\s*([GMK]?i?B|bytes?)?", rocm, flags=re.IGNORECASE)
+        gpus.append({
+            "vendor": "AMD",
+            "name": name_match.group(1).strip() if name_match else "",
+            "vram_total_human": total_match.group(0).split(":", 1)[1].strip() if total_match else "",
+            "vram_used_human": used_match.group(0).split(":", 1)[1].strip() if used_match else "",
+            "source": "rocm-smi",
+            "raw": rocm[:3000],
+        })
 
     if platform.system() == "Darwin":
         sp = run_probe(["system_profiler", "SPDisplaysDataType"], timeout=8.0)
         if sp:
-            gpus.append({"vendor": "Apple/Other", "source": "system_profiler SPDisplaysDataType", "raw": sp[:2000]})
+            chipset = re.search(r"Chipset Model:\s*(.+)", sp)
+            cores = re.search(r"Total Number of Cores:\s*(.+)", sp)
+            vram = re.search(r"VRAM.*?:\s*(.+)", sp)
+            gpus.append({
+                "vendor": "Apple/Other",
+                "name": chipset.group(1).strip() if chipset else "",
+                "gpu_cores": cores.group(1).strip() if cores else "",
+                "vram_total_human": vram.group(1).strip() if vram else "unified memory",
+                "source": "system_profiler SPDisplaysDataType",
+                "raw": sp[:3000],
+            })
     elif platform.system() == "Windows":
         ps = run_probe([
             "powershell",
@@ -245,7 +289,21 @@ def collect_gpu_info() -> Dict[str, Any]:
             "Get-CimInstance Win32_VideoController | Select-Object Name,AdapterRAM,DriverVersion | ConvertTo-Json -Compress",
         ])
         if ps:
-            gpus.append({"vendor": "Windows", "source": "Win32_VideoController", "raw": ps[:2000]})
+            try:
+                data = json.loads(ps)
+                items = data if isinstance(data, list) else [data]
+                for item in items:
+                    adapter_ram = parse_int_maybe(item.get("AdapterRAM")) if isinstance(item, dict) else None
+                    gpus.append({
+                        "vendor": "Windows",
+                        "name": item.get("Name", "") if isinstance(item, dict) else "",
+                        "vram_total_bytes": adapter_ram,
+                        "vram_total_human": fmt_bytes(adapter_ram),
+                        "driver": item.get("DriverVersion", "") if isinstance(item, dict) else "",
+                        "source": "Win32_VideoController",
+                    })
+            except Exception:
+                gpus.append({"vendor": "Windows", "source": "Win32_VideoController", "raw": ps[:3000]})
     elif platform.system() == "Linux":
         lspci = run_probe(["lspci"])
         if lspci:
@@ -579,6 +637,15 @@ def flatten_metadata(meta: Dict[str, Any]) -> List[Tuple[str, str]]:
         entry.get("name") or entry.get("raw", "").splitlines()[0][:120] or entry.get("source", "detected GPU")
         for entry in gpu_entries
     ) or "not detected"
+    gpu_vram_summary = "; ".join(
+        " ".join(part for part in [
+            entry.get("name") or entry.get("vendor") or "GPU",
+            f"total {entry.get('vram_total_human')}" if entry.get("vram_total_human") else "",
+            f"used {entry.get('vram_used_human')}" if entry.get("vram_used_human") else "",
+            f"free {entry.get('vram_free_human')}" if entry.get("vram_free_human") else "",
+        ] if part)
+        for entry in gpu_entries
+    ) or "not detected"
     rows = [
         ("Date", str(meta.get("date", ""))),
         ("Host", str(meta.get("host", ""))),
@@ -587,6 +654,7 @@ def flatten_metadata(meta: Dict[str, Any]) -> List[Tuple[str, str]]:
         ("CPU", f"{cpu.get('processor', 'unknown')} ({cpu.get('physical_or_logical_cores', 'unknown')} logical cores)"),
         ("System RAM", str(memory.get("total_human", "unknown"))),
         ("Detected GPU", gpu_summary),
+        ("GPU VRAM", gpu_vram_summary),
         ("Manual GPU label", str(config.get("gpu_label") or "")),
         ("Server mode", str(config.get("server", ""))),
         ("Base URL", str(config.get("base_url", ""))),
@@ -999,6 +1067,8 @@ def write_markdown(path: Path, meta: Dict[str, Any], summaries: List[GroupSummar
         "- Aggregate tok/s shows total generated throughput for the whole server at that user count.",
         "- Avg per-user tok/s is closer to what one person feels while all simulated users are active.",
         "- TTFT is time to first token. Lower feels more responsive in chat.",
+        "- Keep max tokens, prompts, context size, and concurrency groups the same when comparing runs.",
+        "- Larger max-token values can increase measured tok/s because fixed request and first-token costs are spread across more generated tokens.",
         "- A practical team limit is usually where per-user tok/s and latency still feel acceptable, not where the server first errors.",
     ])
     path.write_text("\n".join(lines), encoding="utf-8")

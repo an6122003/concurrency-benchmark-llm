@@ -124,7 +124,7 @@ The script automatically records best-effort environment and server details:
 - OS, platform, Python version, Python executable
 - CPU name and logical core count
 - System RAM
-- GPU information from common platform tools when available
+- GPU/card and VRAM information from common platform tools when available, including `nvidia-smi`, `rocm-smi`, macOS `system_profiler`, Windows video controller metadata, and Linux `lspci`
 - Ollama version, model details, quantization, context metadata, and running-model info when using Ollama endpoints that expose it
 - LM Studio model metadata from `/api/v0/models` when available, plus `/v1/models` as a basic OpenAI-compatible fallback
 - Local process/model-file hints when `--base-url` points to `localhost`, `127.0.0.1`, `::1`, or `0.0.0.0`
@@ -162,6 +162,8 @@ Those labels are written into `report.md`, `report.html`, `results.json`, `metad
 - **Avg latency**: total request time.
 - **Avg TTFT**: time to first token, important for chat responsiveness.
 - **Success count**: whether the server can actually handle every concurrent request.
+
+`--max-tokens` can change the measured token/sec. Larger values often increase average tok/s because fixed costs like request setup, prompt processing, scheduling, cache allocation, and first-token latency are spread across more generated tokens. Very large values can eventually reduce tok/s if the context/cache grows, memory pressure increases, or the server starts queueing harder. For fair comparisons, keep `--max-tokens`, prompts, context size, and concurrency list the same across runs.
 
 A practical team-size estimate is the highest concurrency where:
 

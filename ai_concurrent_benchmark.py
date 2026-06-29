@@ -17,7 +17,9 @@ import json
 import math
 import os
 import platform
+import shutil
 import statistics
+import subprocess
 import sys
 import time
 import urllib.error
@@ -116,6 +118,207 @@ def fmt(value: Optional[float], digits: int = 2) -> str:
     if value is None:
         return "-"
     return f"{value:.{digits}f}"
+
+
+def fmt_bytes(num_bytes: Optional[int]) -> str:
+    if num_bytes is None:
+        return "unknown"
+    units = ["B", "KB", "MB", "GB", "TB"]
+    value = float(num_bytes)
+    for unit in units:
+        if value < 1024 or unit == units[-1]:
+            return f"{value:.1f} {unit}"
+        value /= 1024
+
+
+def run_probe(cmd: List[str], timeout: float = 3.0) -> Optional[str]:
+    if not cmd or shutil.which(cmd[0]) is None:
+        return None
+    try:
+        completed = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, check=False)
+    except Exception:
+        return None
+    output = (completed.stdout or completed.stderr or "").strip()
+    return output if output else None
+
+
+def read_linux_mem_total() -> Optional[int]:
+    try:
+        for line in Path("/proc/meminfo").read_text(encoding="utf-8").splitlines():
+            if line.startswith("MemTotal:"):
+                return int(line.split()[1]) * 1024
+    except Exception:
+        return None
+    return None
+
+
+def collect_cpu_info() -> Dict[str, Any]:
+    cpu = {
+        "processor": platform.processor() or "unknown",
+        "machine": platform.machine() or "unknown",
+        "physical_or_logical_cores": os.cpu_count(),
+    }
+    if platform.system() == "Darwin":
+        brand = run_probe(["sysctl", "-n", "machdep.cpu.brand_string"])
+        if brand:
+            cpu["processor"] = brand
+    elif platform.system() == "Windows":
+        name = run_probe(["powershell", "-NoProfile", "-Command", "(Get-CimInstance Win32_Processor | Select-Object -First 1 -ExpandProperty Name)"])
+        if name:
+            cpu["processor"] = name
+    elif platform.system() == "Linux":
+        try:
+            for line in Path("/proc/cpuinfo").read_text(encoding="utf-8", errors="ignore").splitlines():
+                if line.lower().startswith("model name"):
+                    cpu["processor"] = line.split(":", 1)[1].strip()
+                    break
+        except Exception:
+            pass
+    return cpu
+
+
+def collect_memory_info() -> Dict[str, Any]:
+    total: Optional[int] = None
+    if platform.system() == "Linux":
+        total = read_linux_mem_total()
+    elif platform.system() == "Darwin":
+        raw = run_probe(["sysctl", "-n", "hw.memsize"])
+        total = int(raw) if raw and raw.isdigit() else None
+    elif platform.system() == "Windows":
+        raw = run_probe(["powershell", "-NoProfile", "-Command", "(Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory"])
+        total = int(raw) if raw and raw.strip().isdigit() else None
+    return {"total_bytes": total, "total_human": fmt_bytes(total)}
+
+
+def collect_gpu_info() -> Dict[str, Any]:
+    gpus: List[Dict[str, Any]] = []
+    nvidia = run_probe([
+        "nvidia-smi",
+        "--query-gpu=name,memory.total,driver_version",
+        "--format=csv,noheader,nounits",
+    ])
+    if nvidia:
+        for line in nvidia.splitlines():
+            parts = [part.strip() for part in line.split(",")]
+            if len(parts) >= 3:
+                gpus.append({"vendor": "NVIDIA", "name": parts[0], "vram": f"{parts[1]} MiB", "driver": parts[2]})
+
+    rocm = run_probe(["rocm-smi", "--showproductname", "--showmeminfo", "vram", "--showdriverversion"])
+    if rocm:
+        gpus.append({"vendor": "AMD", "source": "rocm-smi", "raw": rocm[:2000]})
+
+    if platform.system() == "Darwin":
+        sp = run_probe(["system_profiler", "SPDisplaysDataType"], timeout=8.0)
+        if sp:
+            gpus.append({"vendor": "Apple/Other", "source": "system_profiler SPDisplaysDataType", "raw": sp[:2000]})
+    elif platform.system() == "Windows":
+        ps = run_probe([
+            "powershell",
+            "-NoProfile",
+            "-Command",
+            "Get-CimInstance Win32_VideoController | Select-Object Name,AdapterRAM,DriverVersion | ConvertTo-Json -Compress",
+        ])
+        if ps:
+            gpus.append({"vendor": "Windows", "source": "Win32_VideoController", "raw": ps[:2000]})
+    elif platform.system() == "Linux":
+        lspci = run_probe(["lspci"])
+        if lspci:
+            display_lines = [line for line in lspci.splitlines() if "vga" in line.lower() or "3d controller" in line.lower() or "display" in line.lower()]
+            if display_lines:
+                gpus.append({"vendor": "Linux", "source": "lspci", "raw": "\n".join(display_lines)[:2000]})
+
+    return {"detected": gpus}
+
+
+def collect_runtime_probe(server: str, base_url: str) -> Dict[str, Any]:
+    runtime: Dict[str, Any] = {"server_mode": server, "base_url": base_url}
+    if server.startswith("ollama"):
+        try:
+            with urllib.request.urlopen(f"{normalize_base_url(base_url)}/api/version", timeout=3) as resp:
+                runtime["ollama_version"] = json.loads(resp.read().decode("utf-8", errors="replace"))
+        except Exception as exc:
+            runtime["version_probe_error"] = repr(exc)
+    return runtime
+
+
+def collect_environment_info(args: argparse.Namespace, concurrencies: List[int], prompt_count: int) -> Dict[str, Any]:
+    return {
+        "date": dt.datetime.now().isoformat(timespec="seconds"),
+        "host": f"{platform.system()} {platform.release()} ({platform.machine()})",
+        "os": {
+            "system": platform.system(),
+            "release": platform.release(),
+            "version": platform.version(),
+            "platform": platform.platform(),
+        },
+        "python": sys.version.split()[0],
+        "python_executable": sys.executable,
+        "cpu": collect_cpu_info(),
+        "memory": collect_memory_info(),
+        "gpu": collect_gpu_info(),
+        "runtime": collect_runtime_probe(args.server, args.base_url),
+        "benchmark_config": {
+            "server": args.server,
+            "base_url": args.base_url,
+            "model": args.model,
+            "runtime_label": args.runtime,
+            "gpu_label": args.gpu,
+            "model_quantization": args.quantization,
+            "context_size": args.context_size,
+            "max_tokens_per_request": args.max_tokens,
+            "temperature": args.temperature,
+            "timeout_seconds": args.timeout,
+            "concurrency": concurrencies,
+            "cooldown_seconds": args.cooldown,
+            "prompt_count": prompt_count,
+            "prompts_file": args.prompts_file,
+            "notes": args.notes,
+        },
+        "server": args.server,
+        "base_url": args.base_url,
+        "model": args.model,
+        "max_tokens": args.max_tokens,
+        "temperature": args.temperature,
+        "concurrency": concurrencies,
+    }
+
+
+def flatten_metadata(meta: Dict[str, Any]) -> List[Tuple[str, str]]:
+    config = meta.get("benchmark_config", {})
+    cpu = meta.get("cpu", {})
+    memory = meta.get("memory", {})
+    runtime = meta.get("runtime", {})
+    gpu_entries = meta.get("gpu", {}).get("detected", [])
+    gpu_summary = "; ".join(
+        entry.get("name") or entry.get("raw", "").splitlines()[0][:120] or entry.get("source", "detected GPU")
+        for entry in gpu_entries
+    ) or "not detected"
+    rows = [
+        ("Date", str(meta.get("date", ""))),
+        ("Host", str(meta.get("host", ""))),
+        ("OS", str(meta.get("os", {}).get("platform", ""))),
+        ("Python", f"{meta.get('python', '')} ({meta.get('python_executable', '')})"),
+        ("CPU", f"{cpu.get('processor', 'unknown')} ({cpu.get('physical_or_logical_cores', 'unknown')} logical cores)"),
+        ("System RAM", str(memory.get("total_human", "unknown"))),
+        ("Detected GPU", gpu_summary),
+        ("Manual GPU label", str(config.get("gpu_label") or "")),
+        ("Server mode", str(config.get("server", ""))),
+        ("Base URL", str(config.get("base_url", ""))),
+        ("Runtime label", str(config.get("runtime_label") or "")),
+        ("Ollama version", json.dumps(runtime.get("ollama_version", ""), ensure_ascii=False) if runtime.get("ollama_version") else ""),
+        ("Model", str(config.get("model", ""))),
+        ("Quantization", str(config.get("model_quantization") or "")),
+        ("Context size", str(config.get("context_size") or "")),
+        ("Max tokens/request", str(config.get("max_tokens_per_request", ""))),
+        ("Temperature", str(config.get("temperature", ""))),
+        ("Timeout", f"{config.get('timeout_seconds', '')} s"),
+        ("Concurrency", ", ".join(str(x) for x in config.get("concurrency", []))),
+        ("Cooldown", f"{config.get('cooldown_seconds', '')} s"),
+        ("Prompt count", str(config.get("prompt_count", ""))),
+        ("Prompts file", str(config.get("prompts_file") or "")),
+        ("Notes", str(config.get("notes") or "")),
+    ]
+    return rows
 
 
 def normalize_base_url(base_url: str) -> str:
@@ -437,17 +640,32 @@ def write_markdown(path: Path, meta: Dict[str, Any], summaries: List[GroupSummar
     lines = [
         "# AI Concurrent Benchmark Report",
         "",
-        f"- Date: {meta['date']}",
-        f"- Host: {meta['host']}",
-        f"- Python: {meta['python']}",
-        f"- Server mode: `{meta['server']}`",
-        f"- Base URL: `{meta['base_url']}`",
-        f"- Model: `{meta['model']}`",
-        f"- Max tokens/request: `{meta['max_tokens']}`",
+        "## Test Environment",
+        "",
+        "| Field | Value |",
+        "|---|---|",
+    ]
+    for key, value in flatten_metadata(meta):
+        if value:
+            lines.append(f"| {key} | {value.replace('|', '/')} |")
+    if meta.get("gpu", {}).get("detected"):
+        lines.extend(["", "## Raw GPU Probe", ""])
+        for idx, gpu in enumerate(meta["gpu"]["detected"], start=1):
+            lines.extend([
+                f"### GPU Probe {idx}",
+                "",
+                "```text",
+                json.dumps(gpu, indent=2, ensure_ascii=False),
+                "```",
+                "",
+            ])
+    lines.extend([
+        "",
+        "## Benchmark Summary",
         "",
         "| Users | Success | Wall time (s) | Aggregate tok/s | Avg latency (s) | P95 latency (s) | Avg TTFT (s) | Avg per-user tok/s |",
         "|---:|---:|---:|---:|---:|---:|---:|---:|",
-    ]
+    ])
     for s in summaries:
         lines.append(
             f"| {s.concurrency} | {s.success}/{s.requests} | {fmt(s.wall_time_s)} | {fmt(s.aggregate_output_tps)} | "
@@ -489,6 +707,19 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
         f"<td>{fmt(s.avg_ttft_s)}</td></tr>"
         for s in summaries
     )
+    meta_rows = "\n".join(
+        f"<tr><th>{html.escape(key)}</th><td>{html.escape(value)}</td></tr>"
+        for key, value in flatten_metadata(meta)
+        if value
+    )
+    raw_meta = html.escape(json.dumps({
+        "os": meta.get("os", {}),
+        "cpu": meta.get("cpu", {}),
+        "memory": meta.get("memory", {}),
+        "gpu": meta.get("gpu", {}),
+        "runtime": meta.get("runtime", {}),
+        "benchmark_config": meta.get("benchmark_config", {}),
+    }, indent=2, ensure_ascii=False))
     doc = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -503,12 +734,16 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
     th, td {{ border: 1px solid #ddd; padding: 8px; text-align: right; }}
     th {{ background: #f3f3f3; }}
     td:first-child, th:first-child {{ text-align: left; }}
+    .meta-table th {{ width: 220px; text-align: left; }}
+    .meta-table td {{ text-align: left; }}
     .meta {{ color: #444; line-height: 1.5; }}
     .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 18px; margin-top: 20px; }}
     .panel {{ background: white; border: 1px solid #ddd; border-radius: 8px; padding: 16px; }}
     .panel h2 {{ font-size: 18px; margin: 0 0 12px; }}
     .chart {{ height: 360px; }}
     .wide {{ grid-column: 1 / -1; }}
+    details {{ margin-top: 20px; background: white; border: 1px solid #ddd; border-radius: 8px; padding: 16px; }}
+    pre {{ white-space: pre-wrap; overflow-wrap: anywhere; }}
     @media (max-width: 620px) {{ body {{ margin: 12px; }} .grid {{ grid-template-columns: 1fr; }} .chart {{ height: 300px; }} }}
   </style>
 </head>
@@ -517,10 +752,17 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
   <h1>AI Concurrent Benchmark</h1>
   <p class="meta">
     Date: {html.escape(meta['date'])}<br>
-    Server: {html.escape(meta['server'])} at {html.escape(meta['base_url'])}<br>
-    Model: {html.escape(meta['model'])}<br>
+    Server: {html.escape(meta['benchmark_config']['server'])} at {html.escape(meta['benchmark_config']['base_url'])}<br>
+    Model: {html.escape(meta['benchmark_config']['model'])}<br>
     Host: {html.escape(meta['host'])}
   </p>
+  <table class="meta-table">
+    <tbody>{meta_rows}</tbody>
+  </table>
+  <details>
+    <summary>Raw detected hardware/software metadata</summary>
+    <pre>{raw_meta}</pre>
+  </details>
   <div class="grid">
     <section class="panel wide"><h2>Throughput vs Concurrent Users</h2><div class="chart"><canvas id="throughputChart"></canvas></div></section>
     <section class="panel"><h2>Per-user Speed Range</h2><div class="chart"><canvas id="perUserChart"></canvas></div></section>
@@ -697,10 +939,13 @@ const commonOptions = {
 
 function runLabel(result, fallback) {
   const meta = result.meta || {};
-  const model = meta.model || 'unknown-model';
-  const server = meta.server || 'server';
+  const config = meta.benchmark_config || {};
+  const model = config.model || meta.model || 'unknown-model';
+  const server = config.server || meta.server || 'server';
+  const runtime = config.runtime_label ? ` ${config.runtime_label}` : '';
+  const gpu = config.gpu_label ? ` ${config.gpu_label}` : '';
   const date = meta.date ? ' ' + meta.date.replace('T', ' ').slice(0, 16) : '';
-  return `${model} (${server})${date}` || fallback;
+  return `${model} (${server}${runtime}${gpu})${date}` || fallback;
 }
 
 function metric(summary, key) {
@@ -743,10 +988,11 @@ function renderTable(runs) {
     return;
   }
   const rows = [];
-  rows.push('<thead><tr><th>Run</th><th>Users</th><th>Success</th><th>Aggregate tok/s</th><th>Avg per-user tok/s</th><th>Avg latency</th><th>Avg TTFT</th></tr></thead><tbody>');
+  rows.push('<thead><tr><th>Run</th><th>Runtime</th><th>GPU</th><th>Max tokens</th><th>Context</th><th>Users</th><th>Success</th><th>Aggregate tok/s</th><th>Avg per-user tok/s</th><th>Avg latency</th><th>Avg TTFT</th></tr></thead><tbody>');
   for (const run of runs) {
+    const config = run.meta.benchmark_config || {};
     for (const s of run.summaries) {
-      rows.push(`<tr><td>${escapeHtml(run.label)}</td><td>${s.concurrency}</td><td>${s.success}/${s.requests}</td><td>${fmt(s.aggregate_output_tps)}</td><td>${fmt(s.avg_per_request_tps)}</td><td>${fmt(s.avg_latency_s)}</td><td>${fmt(s.avg_ttft_s)}</td></tr>`);
+      rows.push(`<tr><td>${escapeHtml(run.label)}</td><td>${escapeHtml(config.runtime_label || config.server || '')}</td><td>${escapeHtml(config.gpu_label || '')}</td><td>${escapeHtml(config.max_tokens_per_request ?? '')}</td><td>${escapeHtml(config.context_size ?? '')}</td><td>${s.concurrency}</td><td>${s.success}/${s.requests}</td><td>${fmt(s.aggregate_output_tps)}</td><td>${fmt(s.avg_per_request_tps)}</td><td>${fmt(s.avg_latency_s)}</td><td>${fmt(s.avg_ttft_s)}</td></tr>`);
     }
   }
   rows.push('</tbody>');
@@ -766,6 +1012,7 @@ async function readFile(file) {
   const result = JSON.parse(text);
   return {
     label: runLabel(result, file.name),
+    meta: result.meta || {},
     summaries: (result.summaries || []).slice().sort((a, b) => a.concurrency - b.concurrency)
   };
 }
@@ -803,6 +1050,11 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument("--max-tokens", type=int, default=256, help="Generated tokens per request.")
     parser.add_argument("--temperature", type=float, default=0.2)
     parser.add_argument("--timeout", type=float, default=600)
+    parser.add_argument("--runtime", help="Optional runtime label, e.g. Vulkan llama.cpp, CUDA, ROCm, Metal, CPU.")
+    parser.add_argument("--gpu", help="Optional GPU label, e.g. Radeon Pro R9700 32GB.")
+    parser.add_argument("--quantization", help="Optional quantization label, e.g. Q4_K_M.")
+    parser.add_argument("--context-size", type=int, help="Optional model/server context size used for this run.")
+    parser.add_argument("--notes", help="Optional notes stored in the report, e.g. driver version, power limit, server settings.")
     parser.add_argument("--prompts-file", help="Text file separated by lines or '\\n---\\n', or JSON list of strings.")
     parser.add_argument("--out-dir", default=f"benchmark-results-{now_stamp()}")
     parser.add_argument("--cooldown", type=float, default=2.0, help="Seconds to wait between concurrency groups.")
@@ -819,17 +1071,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    meta = {
-        "date": dt.datetime.now().isoformat(timespec="seconds"),
-        "host": f"{platform.system()} {platform.release()} ({platform.machine()})",
-        "python": sys.version.split()[0],
-        "server": args.server,
-        "base_url": args.base_url,
-        "model": args.model,
-        "max_tokens": args.max_tokens,
-        "temperature": args.temperature,
-        "concurrency": concurrencies,
-    }
+    meta = collect_environment_info(args, concurrencies, len(prompts))
 
     all_results: List[RequestResult] = []
     summaries: List[GroupSummary] = []
@@ -879,6 +1121,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         "requests": [r.__dict__ | {"latency_s": r.latency_s, "output_tokens_per_s": r.output_tokens_per_s} for r in all_results],
     }
     (out_dir / "results.json").write_text(json.dumps(raw, indent=2), encoding="utf-8")
+    (out_dir / "metadata.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
     write_csv(out_dir / "results.csv", all_results, summaries)
     write_markdown(out_dir / "report.md", meta, summaries)
     if not args.no_html:
@@ -890,6 +1133,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     print(f"- {out_dir / 'report.md'}")
     print(f"- {out_dir / 'results.csv'}")
     print(f"- {out_dir / 'results.json'}")
+    print(f"- {out_dir / 'metadata.json'}")
     if not args.no_html:
         print(f"- {out_dir / 'report.html'}")
         print(f"- {out_dir / 'compare.html'}")

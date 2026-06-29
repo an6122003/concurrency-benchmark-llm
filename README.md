@@ -47,6 +47,7 @@ Each run creates a folder like `benchmark-results-20260629-210000` with:
 - `report.md`: summary table and interpretation notes
 - `results.csv`: spreadsheet-friendly results
 - `results.json`: full raw data
+- `metadata.json`: hardware, software, runtime, and benchmark configuration metadata
 
 ## HTML Charts
 
@@ -73,7 +74,7 @@ Example comparison ideas:
 - Different GPUs
 - Different `--max-tokens` or context settings
 
-The comparison page draws separate lines for each result file across aggregate tok/s, per-user tok/s, latency, TTFT, and success rate.
+The comparison page draws separate lines for each result file across aggregate tok/s, per-user tok/s, latency, TTFT, and success rate. It also shows runtime, GPU, max-token, and context-size columns when that metadata exists.
 
 ## Useful Options
 
@@ -84,7 +85,12 @@ python ai_concurrent_benchmark.py \
   --model "gemma-3-27b-it-q4_k_m" \
   --concurrency 1,2,3,4,5,6,7,8,9,10 \
   --max-tokens 300 \
+  --context-size 8192 \
   --temperature 0.2 \
+  --runtime "Vulkan llama.cpp" \
+  --gpu "Radeon Pro R9700 32GB" \
+  --quantization "Q4_K_M" \
+  --notes "Driver version, power limit, server settings, or filming notes" \
   --timeout 900 \
   --out-dir r9700-32gb-gemma-benchmark
 ```
@@ -100,6 +106,34 @@ python ai_concurrent_benchmark.py \
 - A text file with one prompt per line
 - A text file with prompts separated by `---`
 - A JSON file containing a list of prompt strings
+
+## Metadata In Reports
+
+The script automatically records best-effort environment details:
+
+- OS, platform, Python version, Python executable
+- CPU name and logical core count
+- System RAM
+- GPU information from common platform tools when available
+- Ollama version when using an Ollama endpoint
+- Benchmark settings such as server mode, base URL, model, max tokens, temperature, timeout, cooldown, prompt count, and concurrency groups
+
+Some runtime details are not exposed consistently by LM Studio or Ollama, so you can label them manually:
+
+```bash
+python ai_concurrent_benchmark.py \
+  --server lmstudio \
+  --base-url http://localhost:1234 \
+  --model "gemma-3-27b-it-q4_k_m" \
+  --runtime "Vulkan llama.cpp" \
+  --gpu "Radeon Pro R9700 32GB" \
+  --quantization "Q4_K_M" \
+  --context-size 8192 \
+  --max-tokens 300 \
+  --concurrency 1-10
+```
+
+Those labels are written into `report.md`, `report.html`, `results.json`, `metadata.json`, and the comparison page.
 
 ## Metrics For The Video
 

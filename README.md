@@ -43,9 +43,37 @@ python ai_concurrent_benchmark.py --server ollama-native --base-url http://local
 Each run creates a folder like `benchmark-results-20260629-210000` with:
 
 - `report.html`: graph for the video
+- `compare.html`: browser page for comparing multiple `results.json` files
 - `report.md`: summary table and interpretation notes
 - `results.csv`: spreadsheet-friendly results
 - `results.json`: full raw data
+
+## HTML Charts
+
+`report.html` includes multiple chart views:
+
+- Aggregate throughput vs concurrent users
+- Average per-user throughput vs concurrent users
+- Min/average/max per-user speed bars
+- Average and P95 latency
+- Average and P95 time to first token
+- Success rate
+
+These are useful for deciding which number to show in the video. Aggregate tok/s is good for server capacity, while per-user tok/s and TTFT are better for the viewer-friendly "how usable does it feel?" story.
+
+## Comparing Runs
+
+Open `compare.html` in your browser and select multiple `results.json` files from different benchmark folders.
+
+Example comparison ideas:
+
+- Ollama vs LM Studio
+- Vulkan vs another runtime
+- 30B Q4 vs smaller model
+- Different GPUs
+- Different `--max-tokens` or context settings
+
+The comparison page draws separate lines for each result file across aggregate tok/s, per-user tok/s, latency, TTFT, and success rate.
 
 ## Useful Options
 
@@ -89,4 +117,3 @@ A practical team-size estimate is the highest concurrency where:
 - latency does not explode compared with lower user counts
 
 For a video conclusion, this is usually more honest than saying the GPU "supports" the first number where requests merely finish.
-

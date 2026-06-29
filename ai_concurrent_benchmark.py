@@ -465,14 +465,28 @@ def write_markdown(path: Path, meta: Dict[str, Any], summaries: List[GroupSummar
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
+def chart_value(value: Optional[float]) -> Optional[float]:
+    return round(value, 3) if value is not None else None
+
+
 def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) -> None:
-    labels = [s.concurrency for s in summaries]
-    aggregate = [round(s.aggregate_output_tps or 0, 3) for s in summaries]
-    per_user = [round(s.avg_per_request_tps or 0, 3) for s in summaries]
-    latency = [round(s.avg_latency_s or 0, 3) for s in summaries]
+    chart_data = {
+        "labels": [s.concurrency for s in summaries],
+        "aggregate": [chart_value(s.aggregate_output_tps) for s in summaries],
+        "perUser": [chart_value(s.avg_per_request_tps) for s in summaries],
+        "minPerUser": [chart_value(s.min_per_request_tps) for s in summaries],
+        "maxPerUser": [chart_value(s.max_per_request_tps) for s in summaries],
+        "avgLatency": [chart_value(s.avg_latency_s) for s in summaries],
+        "p95Latency": [chart_value(s.p95_latency_s) for s in summaries],
+        "avgTtft": [chart_value(s.avg_ttft_s) for s in summaries],
+        "p95Ttft": [chart_value(s.p95_ttft_s) for s in summaries],
+        "successRate": [chart_value((s.success / s.requests) * 100 if s.requests else None) for s in summaries],
+    }
     rows = "\n".join(
         f"<tr><td>{s.concurrency}</td><td>{s.success}/{s.requests}</td><td>{fmt(s.wall_time_s)}</td>"
-        f"<td>{fmt(s.aggregate_output_tps)}</td><td>{fmt(s.avg_per_request_tps)}</td><td>{fmt(s.avg_latency_s)}</td><td>{fmt(s.avg_ttft_s)}</td></tr>"
+        f"<td>{fmt(s.aggregate_output_tps)}</td><td>{fmt(s.avg_per_request_tps)}</td><td>{fmt(s.min_per_request_tps)}</td>"
+        f"<td>{fmt(s.max_per_request_tps)}</td><td>{fmt(s.avg_latency_s)}</td><td>{fmt(s.p95_latency_s)}</td>"
+        f"<td>{fmt(s.avg_ttft_s)}</td></tr>"
         for s in summaries
     )
     doc = f"""<!doctype html>
@@ -483,14 +497,19 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
   <title>AI Concurrent Benchmark</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body {{ font-family: Arial, sans-serif; margin: 24px; color: #161616; }}
-    main {{ max-width: 1100px; margin: 0 auto; }}
-    table {{ border-collapse: collapse; width: 100%; margin-top: 20px; }}
+    body {{ font-family: Arial, sans-serif; margin: 24px; color: #161616; background: #fafafa; }}
+    main {{ max-width: 1280px; margin: 0 auto; }}
+    table {{ border-collapse: collapse; width: 100%; margin-top: 20px; background: white; }}
     th, td {{ border: 1px solid #ddd; padding: 8px; text-align: right; }}
     th {{ background: #f3f3f3; }}
     td:first-child, th:first-child {{ text-align: left; }}
     .meta {{ color: #444; line-height: 1.5; }}
-    .chart {{ min-height: 420px; }}
+    .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 18px; margin-top: 20px; }}
+    .panel {{ background: white; border: 1px solid #ddd; border-radius: 8px; padding: 16px; }}
+    .panel h2 {{ font-size: 18px; margin: 0 0 12px; }}
+    .chart {{ height: 360px; }}
+    .wide {{ grid-column: 1 / -1; }}
+    @media (max-width: 620px) {{ body {{ margin: 12px; }} .grid {{ grid-template-columns: 1fr; }} .chart {{ height: 300px; }} }}
   </style>
 </head>
 <body>
@@ -502,35 +521,272 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
     Model: {html.escape(meta['model'])}<br>
     Host: {html.escape(meta['host'])}
   </p>
-  <div class="chart"><canvas id="chart"></canvas></div>
+  <div class="grid">
+    <section class="panel wide"><h2>Throughput vs Concurrent Users</h2><div class="chart"><canvas id="throughputChart"></canvas></div></section>
+    <section class="panel"><h2>Per-user Speed Range</h2><div class="chart"><canvas id="perUserChart"></canvas></div></section>
+    <section class="panel"><h2>Latency and TTFT</h2><div class="chart"><canvas id="latencyChart"></canvas></div></section>
+    <section class="panel"><h2>Success Rate</h2><div class="chart"><canvas id="successChart"></canvas></div></section>
+    <section class="panel"><h2>Latency Distribution</h2><div class="chart"><canvas id="latencyDistributionChart"></canvas></div></section>
+  </div>
   <table>
-    <thead><tr><th>Users</th><th>Success</th><th>Wall time (s)</th><th>Aggregate tok/s</th><th>Avg per-user tok/s</th><th>Avg latency (s)</th><th>Avg TTFT (s)</th></tr></thead>
+    <thead><tr><th>Users</th><th>Success</th><th>Wall time (s)</th><th>Aggregate tok/s</th><th>Avg per-user tok/s</th><th>Min per-user tok/s</th><th>Max per-user tok/s</th><th>Avg latency (s)</th><th>P95 latency (s)</th><th>Avg TTFT (s)</th></tr></thead>
     <tbody>{rows}</tbody>
   </table>
 </main>
 <script>
-const labels = {json.dumps(labels)};
-new Chart(document.getElementById('chart'), {{
+const data = {json.dumps(chart_data)};
+const commonOptions = {{
+  responsive: true,
+  maintainAspectRatio: false,
+  interaction: {{ mode: 'index', intersect: false }},
+  plugins: {{ legend: {{ position: 'bottom' }} }}
+}};
+
+new Chart(document.getElementById('throughputChart'), {{
   type: 'line',
   data: {{
-    labels,
+    labels: data.labels,
     datasets: [
-      {{ label: 'Aggregate output tok/s', data: {json.dumps(aggregate)}, borderColor: '#1f77b4', backgroundColor: '#1f77b4', yAxisID: 'y' }},
-      {{ label: 'Avg per-user tok/s', data: {json.dumps(per_user)}, borderColor: '#2ca02c', backgroundColor: '#2ca02c', yAxisID: 'y' }},
-      {{ label: 'Avg latency (s)', data: {json.dumps(latency)}, borderColor: '#d62728', backgroundColor: '#d62728', yAxisID: 'y1' }}
+      {{ label: 'Aggregate output tok/s', data: data.aggregate, borderColor: '#1f77b4', backgroundColor: '#1f77b4', tension: 0.25 }},
+      {{ label: 'Avg per-user tok/s', data: data.perUser, borderColor: '#2ca02c', backgroundColor: '#2ca02c', tension: 0.25 }}
     ]
   }},
   options: {{
-    responsive: true,
-    maintainAspectRatio: false,
-    interaction: {{ mode: 'index', intersect: false }},
+    ...commonOptions,
     scales: {{
       x: {{ title: {{ display: true, text: 'Concurrent users' }} }},
-      y: {{ type: 'linear', position: 'left', title: {{ display: true, text: 'Tokens/sec' }} }},
-      y1: {{ type: 'linear', position: 'right', grid: {{ drawOnChartArea: false }}, title: {{ display: true, text: 'Seconds' }} }}
+      y: {{ title: {{ display: true, text: 'Tokens/sec' }} }}
     }}
   }}
 }});
+
+new Chart(document.getElementById('perUserChart'), {{
+  type: 'bar',
+  data: {{
+    labels: data.labels,
+    datasets: [
+      {{ label: 'Min per-user tok/s', data: data.minPerUser, backgroundColor: '#9edae5' }},
+      {{ label: 'Avg per-user tok/s', data: data.perUser, backgroundColor: '#2ca02c' }},
+      {{ label: 'Max per-user tok/s', data: data.maxPerUser, backgroundColor: '#98df8a' }}
+    ]
+  }},
+  options: {{
+    ...commonOptions,
+    scales: {{
+      x: {{ title: {{ display: true, text: 'Concurrent users' }} }},
+      y: {{ title: {{ display: true, text: 'Tokens/sec' }} }}
+    }}
+  }}
+}});
+
+new Chart(document.getElementById('latencyChart'), {{
+  type: 'line',
+  data: {{
+    labels: data.labels,
+    datasets: [
+      {{ label: 'Avg latency', data: data.avgLatency, borderColor: '#d62728', backgroundColor: '#d62728', tension: 0.25 }},
+      {{ label: 'P95 latency', data: data.p95Latency, borderColor: '#ff7f0e', backgroundColor: '#ff7f0e', tension: 0.25 }},
+      {{ label: 'Avg TTFT', data: data.avgTtft, borderColor: '#9467bd', backgroundColor: '#9467bd', tension: 0.25 }},
+      {{ label: 'P95 TTFT', data: data.p95Ttft, borderColor: '#8c564b', backgroundColor: '#8c564b', tension: 0.25 }}
+    ]
+  }},
+  options: {{
+    ...commonOptions,
+    scales: {{
+      x: {{ title: {{ display: true, text: 'Concurrent users' }} }},
+      y: {{ title: {{ display: true, text: 'Seconds' }} }}
+    }}
+  }}
+}});
+
+new Chart(document.getElementById('successChart'), {{
+  type: 'bar',
+  data: {{
+    labels: data.labels,
+    datasets: [{{ label: 'Success rate %', data: data.successRate, backgroundColor: '#17becf' }}]
+  }},
+  options: {{
+    ...commonOptions,
+    scales: {{
+      x: {{ title: {{ display: true, text: 'Concurrent users' }} }},
+      y: {{ min: 0, max: 100, title: {{ display: true, text: 'Success %' }} }}
+    }}
+  }}
+}});
+
+new Chart(document.getElementById('latencyDistributionChart'), {{
+  type: 'bar',
+  data: {{
+    labels: data.labels,
+    datasets: [
+      {{ label: 'Avg latency', data: data.avgLatency, backgroundColor: '#ff9896' }},
+      {{ label: 'P95 latency', data: data.p95Latency, backgroundColor: '#d62728' }}
+    ]
+  }},
+  options: {{
+    ...commonOptions,
+    scales: {{
+      x: {{ title: {{ display: true, text: 'Concurrent users' }} }},
+      y: {{ title: {{ display: true, text: 'Seconds' }} }}
+    }}
+  }}
+}});
+</script>
+</body>
+</html>
+"""
+    path.write_text(doc, encoding="utf-8")
+
+
+def write_compare_html(path: Path) -> None:
+    doc = """<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Benchmark Comparison</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; color: #161616; background: #fafafa; }
+    main { max-width: 1280px; margin: 0 auto; }
+    .toolbar { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 16px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 18px; margin-top: 20px; }
+    .panel { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 16px; }
+    .panel h2 { font-size: 18px; margin: 0 0 12px; }
+    .chart { height: 360px; }
+    .wide { grid-column: 1 / -1; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; background: white; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: right; }
+    th { background: #f3f3f3; }
+    td:first-child, th:first-child { text-align: left; }
+    input { display: block; margin-top: 10px; }
+    .hint { color: #555; line-height: 1.5; }
+    @media (max-width: 620px) { body { margin: 12px; } .grid { grid-template-columns: 1fr; } .chart { height: 300px; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>AI Benchmark Comparison</h1>
+  <section class="toolbar">
+    <strong>Select multiple <code>results.json</code> files</strong>
+    <input id="files" type="file" accept=".json,application/json" multiple>
+    <p class="hint">Use this to compare different GPUs, models, runtimes, quantizations, or server settings. The files stay in your browser.</p>
+  </section>
+  <div class="grid">
+    <section class="panel wide"><h2>Aggregate Throughput</h2><div class="chart"><canvas id="aggregateChart"></canvas></div></section>
+    <section class="panel"><h2>Average Per-user Speed</h2><div class="chart"><canvas id="perUserChart"></canvas></div></section>
+    <section class="panel"><h2>Average Latency</h2><div class="chart"><canvas id="latencyChart"></canvas></div></section>
+    <section class="panel"><h2>Average TTFT</h2><div class="chart"><canvas id="ttftChart"></canvas></div></section>
+    <section class="panel"><h2>Success Rate</h2><div class="chart"><canvas id="successChart"></canvas></div></section>
+  </div>
+  <table id="summaryTable"></table>
+</main>
+<script>
+const palette = ['#1f77b4', '#2ca02c', '#d62728', '#9467bd', '#ff7f0e', '#17becf', '#8c564b', '#e377c2'];
+const charts = {};
+const commonOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  interaction: { mode: 'index', intersect: false },
+  plugins: { legend: { position: 'bottom' } },
+  scales: {
+    x: { title: { display: true, text: 'Concurrent users' } },
+    y: { beginAtZero: true }
+  }
+};
+
+function runLabel(result, fallback) {
+  const meta = result.meta || {};
+  const model = meta.model || 'unknown-model';
+  const server = meta.server || 'server';
+  const date = meta.date ? ' ' + meta.date.replace('T', ' ').slice(0, 16) : '';
+  return `${model} (${server})${date}` || fallback;
+}
+
+function metric(summary, key) {
+  if (key === 'success_rate') {
+    return summary.requests ? (summary.success / summary.requests) * 100 : null;
+  }
+  return summary[key] ?? null;
+}
+
+function buildDatasets(runs, key) {
+  return runs.map((run, index) => ({
+    label: run.label,
+    data: run.summaries.map(s => ({ x: s.concurrency, y: metric(s, key) })),
+    borderColor: palette[index % palette.length],
+    backgroundColor: palette[index % palette.length],
+    tension: 0.25
+  }));
+}
+
+function renderChart(id, runs, key, yTitle) {
+  if (charts[id]) charts[id].destroy();
+  charts[id] = new Chart(document.getElementById(id), {
+    type: 'line',
+    data: { datasets: buildDatasets(runs, key) },
+    options: {
+      ...commonOptions,
+      parsing: false,
+      scales: {
+        x: { type: 'linear', title: { display: true, text: 'Concurrent users' }, ticks: { precision: 0 } },
+        y: { beginAtZero: true, title: { display: true, text: yTitle } }
+      }
+    }
+  });
+}
+
+function renderTable(runs) {
+  const table = document.getElementById('summaryTable');
+  if (!runs.length) {
+    table.innerHTML = '';
+    return;
+  }
+  const rows = [];
+  rows.push('<thead><tr><th>Run</th><th>Users</th><th>Success</th><th>Aggregate tok/s</th><th>Avg per-user tok/s</th><th>Avg latency</th><th>Avg TTFT</th></tr></thead><tbody>');
+  for (const run of runs) {
+    for (const s of run.summaries) {
+      rows.push(`<tr><td>${escapeHtml(run.label)}</td><td>${s.concurrency}</td><td>${s.success}/${s.requests}</td><td>${fmt(s.aggregate_output_tps)}</td><td>${fmt(s.avg_per_request_tps)}</td><td>${fmt(s.avg_latency_s)}</td><td>${fmt(s.avg_ttft_s)}</td></tr>`);
+    }
+  }
+  rows.push('</tbody>');
+  table.innerHTML = rows.join('');
+}
+
+function fmt(value) {
+  return value === null || value === undefined ? '-' : Number(value).toFixed(2);
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+}
+
+async function readFile(file) {
+  const text = await file.text();
+  const result = JSON.parse(text);
+  return {
+    label: runLabel(result, file.name),
+    summaries: (result.summaries || []).slice().sort((a, b) => a.concurrency - b.concurrency)
+  };
+}
+
+document.getElementById('files').addEventListener('change', async event => {
+  const files = Array.from(event.target.files || []);
+  const runs = [];
+  for (const file of files) {
+    try {
+      runs.push(await readFile(file));
+    } catch (err) {
+      alert(`Could not read ${file.name}: ${err}`);
+    }
+  }
+  renderChart('aggregateChart', runs, 'aggregate_output_tps', 'Tokens/sec');
+  renderChart('perUserChart', runs, 'avg_per_request_tps', 'Tokens/sec');
+  renderChart('latencyChart', runs, 'avg_latency_s', 'Seconds');
+  renderChart('ttftChart', runs, 'avg_ttft_s', 'Seconds');
+  renderChart('successChart', runs, 'success_rate', 'Success %');
+  renderTable(runs);
+});
 </script>
 </body>
 </html>
@@ -627,6 +883,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     write_markdown(out_dir / "report.md", meta, summaries)
     if not args.no_html:
         write_html(out_dir / "report.html", meta, summaries)
+        write_compare_html(out_dir / "compare.html")
 
     print()
     print(f"Wrote: {out_dir.resolve()}")
@@ -635,6 +892,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     print(f"- {out_dir / 'results.json'}")
     if not args.no_html:
         print(f"- {out_dir / 'report.html'}")
+        print(f"- {out_dir / 'compare.html'}")
     return 0
 
 

@@ -92,6 +92,7 @@ python ai_concurrent_benchmark.py \
   --quantization "Q4_K_M" \
   --notes "Driver version, power limit, server settings, or filming notes" \
   --timeout 900 \
+  --warmup 1 \
   --out-dir r9700-32gb-gemma-benchmark
 ```
 
@@ -106,6 +107,15 @@ python ai_concurrent_benchmark.py \
 - A text file with one prompt per line
 - A text file with prompts separated by `---`
 - A JSON file containing a list of prompt strings
+
+By default, the script sends one single-user warmup request before recording measured results. This avoids making the `users=1` score look artificially bad because of model loading, shader/kernel compilation, cache setup, or first-request server overhead. Warmup requests are stored in `results.json` under `warmup_requests`, but they are not included in the summary charts.
+
+Warmup options:
+
+- `--warmup 0`: disable warmup
+- `--warmup 2`: send two warmup requests
+- `--warmup-tokens 128`: generate more tokens during warmup
+- `--warmup-pause 2`: wait two seconds after warmup before measuring
 
 ## Metadata In Reports
 

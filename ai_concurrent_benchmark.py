@@ -270,6 +270,8 @@ def collect_environment_info(args: argparse.Namespace, concurrencies: List[int],
             "timeout_seconds": args.timeout,
             "concurrency": concurrencies,
             "cooldown_seconds": args.cooldown,
+            "warmup_requests": args.warmup,
+            "warmup_max_tokens": args.warmup_tokens,
             "prompt_count": prompt_count,
             "prompts_file": args.prompts_file,
             "notes": args.notes,
@@ -314,6 +316,8 @@ def flatten_metadata(meta: Dict[str, Any]) -> List[Tuple[str, str]]:
         ("Timeout", f"{config.get('timeout_seconds', '')} s"),
         ("Concurrency", ", ".join(str(x) for x in config.get("concurrency", []))),
         ("Cooldown", f"{config.get('cooldown_seconds', '')} s"),
+        ("Warmup requests", str(config.get("warmup_requests", ""))),
+        ("Warmup tokens/request", str(config.get("warmup_max_tokens", ""))),
         ("Prompt count", str(config.get("prompt_count", ""))),
         ("Prompts file", str(config.get("prompts_file") or "")),
         ("Notes", str(config.get("notes") or "")),
@@ -624,6 +628,36 @@ def load_prompts(path: Optional[str]) -> List[str]:
     if not prompts:
         prompts = [line.strip() for line in text.splitlines() if line.strip()]
     return prompts
+
+
+def run_warmup(args: argparse.Namespace, prompts: List[str]) -> List[RequestResult]:
+    warmup_results: List[RequestResult] = []
+    if args.warmup <= 0:
+        return warmup_results
+    print(f"Warmup: {args.warmup} request(s), not included in scores")
+    for idx in range(args.warmup):
+        result = run_one(
+            args.server,
+            args.base_url,
+            args.model,
+            prompts[idx % len(prompts)],
+            0,
+            idx + 1,
+            args.warmup_tokens,
+            args.temperature,
+            args.timeout,
+        )
+        warmup_results.append(result)
+        status = "ok" if result.ok else "failed"
+        print(
+            f"  warmup {idx + 1}/{args.warmup}: {status} "
+            f"latency_s={fmt(result.latency_s)} ttft_s={fmt(result.ttft_s)} "
+            f"tok_s={fmt(result.output_tokens_per_s)}"
+        )
+    if args.warmup_pause > 0:
+        time.sleep(args.warmup_pause)
+    print()
+    return warmup_results
 
 
 def write_csv(path: Path, results: List[RequestResult], summaries: List[GroupSummary]) -> None:
@@ -1058,6 +1092,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument("--prompts-file", help="Text file separated by lines or '\\n---\\n', or JSON list of strings.")
     parser.add_argument("--out-dir", default=f"benchmark-results-{now_stamp()}")
     parser.add_argument("--cooldown", type=float, default=2.0, help="Seconds to wait between concurrency groups.")
+    parser.add_argument("--warmup", type=int, default=1, help="Number of single-user warmup requests to run before measured results.")
+    parser.add_argument("--warmup-tokens", type=int, default=64, help="Generated tokens per warmup request.")
+    parser.add_argument("--warmup-pause", type=float, default=1.0, help="Seconds to wait after warmup before measured results.")
     parser.add_argument("--no-html", action="store_true", help="Skip HTML chart output.")
     args = parser.parse_args(argv)
 
@@ -1071,13 +1108,13 @@ def main(argv: Optional[List[str]] = None) -> int:
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    meta = collect_environment_info(args, concurrencies, len(prompts))
-
     all_results: List[RequestResult] = []
+    warmup_results: List[RequestResult] = []
     summaries: List[GroupSummary] = []
     print(f"Benchmarking {args.model} on {args.server} at {args.base_url}")
     print(f"Concurrency groups: {concurrencies}")
     print()
+    warmup_results = run_warmup(args, prompts)
 
     for concurrency in concurrencies:
         group_started = time.perf_counter()
@@ -1115,10 +1152,12 @@ def main(argv: Optional[List[str]] = None) -> int:
         if concurrency != concurrencies[-1] and args.cooldown > 0:
             time.sleep(args.cooldown)
 
+    meta = collect_environment_info(args, concurrencies, len(prompts))
     raw = {
         "meta": meta,
         "summaries": [s.__dict__ for s in summaries],
         "requests": [r.__dict__ | {"latency_s": r.latency_s, "output_tokens_per_s": r.output_tokens_per_s} for r in all_results],
+        "warmup_requests": [r.__dict__ | {"latency_s": r.latency_s, "output_tokens_per_s": r.output_tokens_per_s} for r in warmup_results],
     }
     (out_dir / "results.json").write_text(json.dumps(raw, indent=2), encoding="utf-8")
     (out_dir / "metadata.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")

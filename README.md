@@ -64,7 +64,7 @@ These are useful for deciding which number to show in the video. Aggregate tok/s
 
 ## Comparing Runs
 
-Open `compare.html` in your browser and select multiple `results.json` files from different benchmark folders.
+Open `compare.html` in your browser and add `results.json` files from different benchmark folders. You can add them one by one, remove individual runs, or clear the comparison.
 
 Example comparison ideas:
 

@@ -1379,7 +1379,13 @@ def write_compare_html(path: Path) -> None:
     th { background: #f3f3f3; }
     td:first-child, th:first-child { text-align: left; }
     input { display: block; margin-top: 10px; }
+    button { border: 1px solid #bbb; background: white; border-radius: 6px; padding: 6px 10px; cursor: pointer; }
+    button:hover { background: #f2f2f2; }
     .hint { color: #555; line-height: 1.5; }
+    .actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
+    .loaded { display: grid; gap: 8px; margin-top: 14px; }
+    .run-item { display: flex; justify-content: space-between; gap: 12px; align-items: center; border: 1px solid #e0e0e0; border-radius: 8px; padding: 8px 10px; }
+    .run-item span { overflow-wrap: anywhere; }
     @media (max-width: 620px) { body { margin: 12px; } .grid { grid-template-columns: 1fr; } .chart { height: 300px; } }
   </style>
 </head>
@@ -1387,9 +1393,14 @@ def write_compare_html(path: Path) -> None:
 <main>
   <h1>AI Benchmark Comparison</h1>
   <section class="toolbar">
-    <strong>Select multiple <code>results.json</code> files</strong>
-    <input id="files" type="file" accept=".json,application/json" multiple>
-    <p class="hint">Use this to compare different GPUs, models, runtimes, quantizations, or server settings. The files stay in your browser.</p>
+    <strong>Add <code>results.json</code> files</strong>
+    <input id="files" type="file" accept=".json,application/json">
+    <div class="actions">
+      <button id="clearRuns" type="button">Clear all</button>
+      <span id="runCount" class="hint">No runs loaded.</span>
+    </div>
+    <div id="loadedRuns" class="loaded"></div>
+    <p class="hint">Add files one by one from different folders, or select several if your browser allows it. The files stay in your browser.</p>
   </section>
   <div class="grid">
     <section class="panel wide"><h2>Aggregate Throughput</h2><div class="chart"><canvas id="aggregateChart"></canvas></div></section>
@@ -1403,6 +1414,7 @@ def write_compare_html(path: Path) -> None:
 <script>
 const palette = ['#1f77b4', '#2ca02c', '#d62728', '#9467bd', '#ff7f0e', '#17becf', '#8c564b', '#e377c2'];
 const charts = {};
+const runs = [];
 const commonOptions = {
   responsive: true,
   maintainAspectRatio: false,
@@ -1476,6 +1488,28 @@ function renderTable(runs) {
   table.innerHTML = rows.join('');
 }
 
+function renderLoadedRuns() {
+  const list = document.getElementById('loadedRuns');
+  const count = document.getElementById('runCount');
+  count.textContent = runs.length ? `${runs.length} run${runs.length === 1 ? '' : 's'} loaded.` : 'No runs loaded.';
+  list.innerHTML = runs.map((run, index) => `
+    <div class="run-item">
+      <span><strong>${index + 1}.</strong> ${escapeHtml(run.label)} <small>${escapeHtml(run.fileName || '')}</small></span>
+      <button type="button" data-remove="${index}">Remove</button>
+    </div>
+  `).join('');
+}
+
+function renderAll() {
+  renderChart('aggregateChart', runs, 'aggregate_output_tps', 'Tokens/sec');
+  renderChart('perUserChart', runs, 'avg_per_request_tps', 'Tokens/sec');
+  renderChart('latencyChart', runs, 'avg_latency_s', 'Seconds');
+  renderChart('ttftChart', runs, 'avg_ttft_s', 'Seconds');
+  renderChart('successChart', runs, 'success_rate', 'Success %');
+  renderTable(runs);
+  renderLoadedRuns();
+}
+
 function fmt(value) {
   return value === null || value === undefined ? '-' : Number(value).toFixed(2);
 }
@@ -1489,6 +1523,7 @@ async function readFile(file) {
   const result = JSON.parse(text);
   return {
     label: runLabel(result, file.name),
+    fileName: file.name,
     meta: result.meta || {},
     summaries: (result.summaries || []).slice().sort((a, b) => a.concurrency - b.concurrency)
   };
@@ -1496,7 +1531,6 @@ async function readFile(file) {
 
 document.getElementById('files').addEventListener('change', async event => {
   const files = Array.from(event.target.files || []);
-  const runs = [];
   for (const file of files) {
     try {
       runs.push(await readFile(file));
@@ -1504,13 +1538,23 @@ document.getElementById('files').addEventListener('change', async event => {
       alert(`Could not read ${file.name}: ${err}`);
     }
   }
-  renderChart('aggregateChart', runs, 'aggregate_output_tps', 'Tokens/sec');
-  renderChart('perUserChart', runs, 'avg_per_request_tps', 'Tokens/sec');
-  renderChart('latencyChart', runs, 'avg_latency_s', 'Seconds');
-  renderChart('ttftChart', runs, 'avg_ttft_s', 'Seconds');
-  renderChart('successChart', runs, 'success_rate', 'Success %');
-  renderTable(runs);
+  event.target.value = '';
+  renderAll();
 });
+
+document.getElementById('loadedRuns').addEventListener('click', event => {
+  const button = event.target.closest('button[data-remove]');
+  if (!button) return;
+  runs.splice(Number(button.dataset.remove), 1);
+  renderAll();
+});
+
+document.getElementById('clearRuns').addEventListener('click', () => {
+  runs.splice(0, runs.length);
+  renderAll();
+});
+
+renderAll();
 </script>
 </body>
 </html>

@@ -127,9 +127,18 @@ The script automatically records best-effort environment and server details:
 - GPU information from common platform tools when available
 - Ollama version, model details, quantization, context metadata, and running-model info when using Ollama endpoints that expose it
 - LM Studio model metadata from `/api/v0/models` when available, plus `/v1/models` as a basic OpenAI-compatible fallback
+- Local process/model-file hints when `--base-url` points to `localhost`, `127.0.0.1`, `::1`, or `0.0.0.0`
 - Benchmark settings such as server mode, base URL, model, max tokens, temperature, timeout, cooldown, prompt count, and concurrency groups
 
-Some runtime details are not exposed consistently by every server or every endpoint. Manual flags are optional overrides/fallback labels for cases where the API does not provide the detail, or where you want cleaner labels in the video:
+Metadata priority is:
+
+1. API-provided metadata
+2. Local environment scan for localhost servers
+3. Manual flags as explicit overrides or cleaner labels
+
+The local scan looks at running process command lines, common Ollama/LM Studio model folders, model filenames, and relevant environment variables. This can infer details such as `Q4_K_M`, context flags like `--ctx-size`, and runtime hints like Vulkan/CUDA/ROCm/Metal/llama.cpp when those strings are visible locally.
+
+Some runtime details are still not exposed consistently by every server or every endpoint. Manual flags remain useful as explicit overrides/fallback labels for cases where neither the API nor local scan can provide the detail, or where you want cleaner labels in the video:
 
 ```bash
 python ai_concurrent_benchmark.py \

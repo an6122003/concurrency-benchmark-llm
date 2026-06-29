@@ -17,12 +17,14 @@ import json
 import math
 import os
 import platform
+import re
 import shutil
 import statistics
 import subprocess
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -344,6 +346,148 @@ def find_nested_value(data: Any, wanted_keys: Iterable[str]) -> Optional[Any]:
     return None
 
 
+def is_local_base_url(base_url: str) -> bool:
+    try:
+        host = urllib.parse.urlparse(base_url).hostname
+    except Exception:
+        return False
+    return host in {None, "", "localhost", "127.0.0.1", "::1", "0.0.0.0"}
+
+
+def collect_process_lines() -> List[str]:
+    system = platform.system()
+    if system == "Windows":
+        output = run_probe([
+            "powershell",
+            "-NoProfile",
+            "-Command",
+            "Get-CimInstance Win32_Process | Select-Object ProcessId,Name,CommandLine | ConvertTo-Json -Compress",
+        ], timeout=6.0)
+        if not output:
+            return []
+        try:
+            data = json.loads(output)
+        except json.JSONDecodeError:
+            return [output]
+        if isinstance(data, dict):
+            data = [data]
+        return [
+            f"{item.get('ProcessId', '')} {item.get('Name', '')} {item.get('CommandLine', '')}".strip()
+            for item in data
+            if isinstance(item, dict)
+        ]
+    output = run_probe(["ps", "axo", "pid=,comm=,args="], timeout=4.0)
+    return output.splitlines() if output else []
+
+
+def collect_relevant_processes(server: str) -> List[Dict[str, str]]:
+    keywords = ["ollama", "lm studio", "lmstudio", "llama", "vulkan", "cuda", "rocm", "metal"]
+    if server.startswith("ollama"):
+        keywords.extend(["ollama runner", "ollama_llama_server"])
+    else:
+        keywords.extend(["lm studio", "lmstudio", "lms"])
+    processes = []
+    for line in collect_process_lines():
+        lower = line.lower()
+        if any(keyword in lower for keyword in keywords):
+            processes.append({"command": line[:2000]})
+    return processes[:30]
+
+
+def detect_quantization_from_text(text: str) -> Optional[str]:
+    patterns = [
+        r"\bQ[2-8]_[A-Z0-9_]+(?:_[A-Z0-9]+)?\b",
+        r"\bIQ[1-4]_[A-Z0-9_]+\b",
+        r"\bF(?:16|32)\b",
+        r"\bBF16\b",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, text, flags=re.IGNORECASE)
+        if match:
+            return match.group(0).upper()
+    return None
+
+
+def detect_context_from_text(text: str) -> Optional[int]:
+    patterns = [
+        r"(?:--ctx-size|--context-size|--n_ctx|--num_ctx|num_ctx)\s+(\d+)",
+        r"(?:ctx(?:-size)?|context(?:_length|_size)?)[:=](\d+)",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, text, flags=re.IGNORECASE)
+        if match:
+            try:
+                return int(match.group(1))
+            except ValueError:
+                pass
+    return None
+
+
+def detect_runtime_from_text(text: str) -> Optional[str]:
+    lower = text.lower()
+    runtime_bits = []
+    if "vulkan" in lower:
+        runtime_bits.append("Vulkan")
+    if "cuda" in lower or "cublas" in lower:
+        runtime_bits.append("CUDA")
+    if "rocm" in lower or "hipblas" in lower:
+        runtime_bits.append("ROCm")
+    if "metal" in lower:
+        runtime_bits.append("Metal")
+    if "llama" in lower or "gguf" in lower:
+        runtime_bits.append("llama.cpp")
+    return " ".join(dict.fromkeys(runtime_bits)) if runtime_bits else None
+
+
+def collect_local_model_files(model: str) -> List[str]:
+    candidates: List[Path] = []
+    home = Path.home()
+    roots = [
+        home / ".ollama" / "models",
+        home / ".lmstudio" / "models",
+        home / "Library" / "Application Support" / "LM Studio" / "models",
+        Path(os.environ.get("OLLAMA_MODELS", "")) if os.environ.get("OLLAMA_MODELS") else None,
+        Path(os.environ.get("LMSTUDIO_MODELS", "")) if os.environ.get("LMSTUDIO_MODELS") else None,
+    ]
+    model_tokens = [token.lower() for token in re.split(r"[^a-zA-Z0-9]+", model) if len(token) >= 3]
+    for root in [r for r in roots if r]:
+        if not root.exists():
+            continue
+        try:
+            for path in root.rglob("*"):
+                if not path.is_file():
+                    continue
+                name = str(path).lower()
+                if path.suffix.lower() in {".gguf", ".bin", ".safetensors"} or any(token in name for token in model_tokens):
+                    candidates.append(path)
+                    if len(candidates) >= 25:
+                        return [str(p) for p in candidates]
+        except Exception:
+            continue
+    return [str(p) for p in candidates]
+
+
+def collect_local_runtime_probe(server: str, base_url: str, model: str) -> Dict[str, Any]:
+    if not is_local_base_url(base_url):
+        return {"enabled": False, "reason": "base_url is not localhost"}
+    processes = collect_relevant_processes(server)
+    model_files = collect_local_model_files(model)
+    combined = "\n".join([model, *[p["command"] for p in processes], *model_files])
+    return {
+        "enabled": True,
+        "processes": processes,
+        "model_files": model_files,
+        "detected_runtime": detect_runtime_from_text(combined),
+        "detected_quantization": detect_quantization_from_text(combined),
+        "detected_context_size": detect_context_from_text(combined),
+        "env": {
+            key: value
+            for key, value in os.environ.items()
+            if key.startswith(("OLLAMA", "LMSTUDIO", "LLAMA", "GGML", "CUDA", "HIP", "ROCR", "VULKAN"))
+        },
+    }
+
+
 def collect_runtime_probe(server: str, base_url: str, model: str) -> Dict[str, Any]:
     runtime: Dict[str, Any] = {"server_mode": server, "base_url": base_url}
     normalized = normalize_base_url(base_url)
@@ -367,13 +511,18 @@ def collect_runtime_probe(server: str, base_url: str, model: str) -> Dict[str, A
                 runtime["detected_context_size"] = int(context_size)
             except (TypeError, ValueError):
                 runtime["detected_context_size"] = str(context_size)
+    runtime["local_scan"] = collect_local_runtime_probe(server, base_url, model)
     return runtime
 
 
 def collect_environment_info(args: argparse.Namespace, concurrencies: List[int], prompt_count: int) -> Dict[str, Any]:
     runtime_probe = collect_runtime_probe(args.server, args.base_url, args.model)
-    detected_quantization = runtime_probe.get("detected_quantization")
-    detected_context_size = runtime_probe.get("detected_context_size")
+    local_scan = runtime_probe.get("local_scan", {}) if isinstance(runtime_probe.get("local_scan"), dict) else {}
+    detected_quantization = runtime_probe.get("detected_quantization") or local_scan.get("detected_quantization")
+    detected_quantization_source = "api" if runtime_probe.get("detected_quantization") else ("local" if local_scan.get("detected_quantization") else "")
+    detected_context_size = runtime_probe.get("detected_context_size") or local_scan.get("detected_context_size")
+    detected_context_size_source = "api" if runtime_probe.get("detected_context_size") else ("local" if local_scan.get("detected_context_size") else "")
+    detected_runtime = local_scan.get("detected_runtime")
     return {
         "date": dt.datetime.now().isoformat(timespec="seconds"),
         "host": f"{platform.system()} {platform.release()} ({platform.machine()})",
@@ -393,12 +542,13 @@ def collect_environment_info(args: argparse.Namespace, concurrencies: List[int],
             "server": args.server,
             "base_url": args.base_url,
             "model": args.model,
-            "runtime_label": args.runtime,
+            "runtime_label": args.runtime or detected_runtime,
+            "runtime_label_source": "manual" if args.runtime else ("local" if detected_runtime else ""),
             "gpu_label": args.gpu,
             "model_quantization": args.quantization or detected_quantization,
-            "model_quantization_source": "manual" if args.quantization else ("api" if detected_quantization else ""),
+            "model_quantization_source": "manual" if args.quantization else detected_quantization_source,
             "context_size": args.context_size or detected_context_size,
-            "context_size_source": "manual" if args.context_size else ("api" if detected_context_size else ""),
+            "context_size_source": "manual" if args.context_size else detected_context_size_source,
             "max_tokens_per_request": args.max_tokens,
             "temperature": args.temperature,
             "timeout_seconds": args.timeout,
@@ -441,6 +591,7 @@ def flatten_metadata(meta: Dict[str, Any]) -> List[Tuple[str, str]]:
         ("Server mode", str(config.get("server", ""))),
         ("Base URL", str(config.get("base_url", ""))),
         ("Runtime label", str(config.get("runtime_label") or "")),
+        ("Runtime label source", str(config.get("runtime_label_source") or "")),
         ("Ollama version", json.dumps(runtime.get("ollama_version", ""), ensure_ascii=False) if runtime.get("ollama_version") else ""),
         ("Model", str(config.get("model", ""))),
         ("Quantization", str(config.get("model_quantization") or "")),

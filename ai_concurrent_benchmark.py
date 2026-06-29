@@ -1139,6 +1139,18 @@ def chart_value(value: Optional[float]) -> Optional[float]:
     return round(value, 3) if value is not None else None
 
 
+def ensure_brand_assets(out_dir: Path) -> None:
+    source_dir = Path(__file__).resolve().parent / "assets" / "techieslab"
+    target_dir = out_dir / "assets" / "techieslab"
+    if not source_dir.exists():
+        return
+    target_dir.mkdir(parents=True, exist_ok=True)
+    for name in ("avatar.png", "background.png", "logo-techieslab.png"):
+        source = source_dir / name
+        if source.exists():
+            shutil.copyfile(source, target_dir / name)
+
+
 def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) -> None:
     chart_data = {
         "labels": [s.concurrency for s in summaries],
@@ -1194,27 +1206,40 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Concurrent Benchmark</title>
+  <link rel="icon" href="assets/techieslab/avatar.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body {{ font-family: Arial, sans-serif; margin: 24px; color: #161616; background: #fafafa; }}
-    main {{ max-width: 1280px; margin: 0 auto; }}
-    table {{ border-collapse: collapse; width: 100%; margin-top: 20px; background: white; }}
-    th, td {{ border: 1px solid #ddd; padding: 8px; text-align: right; }}
-    th {{ background: #f3f3f3; }}
+    :root {{ --bg:#0a0a14; --bg2:#0e0d1c; --surface:#15132a; --surface2:#1c1936; --violet:#8070f8; --violet-l:#a090f8; --cyan:#58c8f8; --mint:#60d8c0; --white:#fff; --dim:rgba(255,255,255,.68); --faint:rgba(255,255,255,.42); --line:rgba(255,255,255,.1); --sans:"Inter",-apple-system,system-ui,sans-serif; --serif:"EB Garamond",Georgia,serif; }}
+    * {{ box-sizing: border-box; }}
+    body {{ font-family: var(--sans); margin: 0; color: var(--white); background: linear-gradient(rgba(10,10,20,.88), rgba(10,10,20,.96)), url("assets/techieslab/background.png") top center / min(100vw, 1800px) auto no-repeat, var(--bg); }}
+    main {{ max-width: 1280px; margin: 0 auto; padding: 24px; }}
+    .brandbar {{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px; }}
+    .brand {{ display:flex; align-items:center; gap:12px; }}
+    .brand img {{ width:42px; height:42px; border-radius:8px; border:1px solid var(--line); }}
+    .brand-name {{ font-family:var(--serif); font-size:1.4rem; }}
+    .brand-name span {{ color:var(--violet-l); }}
+    h1 {{ font-family:var(--serif); font-size:clamp(2.2rem,5vw,4.2rem); line-height:1; font-weight:400; margin:0; }}
+    h1 em {{ color:var(--violet-l); }}
+    table {{ border-collapse: collapse; width: 100%; margin-top: 20px; background: rgba(21,19,42,.86); border:1px solid var(--line); border-radius:8px; overflow:hidden; }}
+    th, td {{ border-bottom: 1px solid var(--line); padding: 9px; text-align: right; }}
+    th {{ background: rgba(28,25,54,.92); color:var(--faint); }}
     td:first-child, th:first-child {{ text-align: left; }}
     .meta-table th {{ width: 220px; text-align: left; }}
     .meta-table td {{ text-align: left; }}
-    .meta {{ color: #444; line-height: 1.5; }}
+    .meta {{ color: var(--dim); line-height: 1.5; }}
     .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 18px; margin-top: 20px; }}
-    .panel {{ background: white; border: 1px solid #ddd; border-radius: 8px; padding: 16px; }}
+    .panel {{ background: linear-gradient(160deg,rgba(21,19,42,.92),rgba(14,13,28,.92)); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }}
     .panel h2 {{ font-size: 18px; margin: 0 0 12px; }}
     .stats {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 18px; }}
-    .stat {{ background: white; border: 1px solid #ddd; border-radius: 8px; padding: 12px; }}
-    .stat span {{ display: block; color: #666; font-size: 12px; margin-bottom: 6px; }}
+    .stat {{ background: rgba(21,19,42,.88); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }}
+    .stat span {{ display: block; color: var(--faint); font-size: 12px; margin-bottom: 6px; }}
     .stat strong {{ display: block; font-size: 15px; overflow-wrap: anywhere; }}
     .chart {{ height: 360px; }}
     .wide {{ grid-column: 1 / -1; }}
-    details {{ margin-top: 20px; background: white; border: 1px solid #ddd; border-radius: 8px; padding: 16px; }}
+    details {{ margin-top: 20px; background: rgba(21,19,42,.86); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }}
     summary {{ cursor: pointer; font-weight: bold; }}
     pre {{ white-space: pre-wrap; overflow-wrap: anywhere; }}
     @media (max-width: 620px) {{ body {{ margin: 12px; }} .grid {{ grid-template-columns: 1fr; }} .chart {{ height: 300px; }} }}
@@ -1222,7 +1247,8 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
 </head>
 <body>
 <main>
-  <h1>AI Concurrent Benchmark</h1>
+  <div class="brandbar"><div class="brand"><img src="assets/techieslab/avatar.png" alt=""><div class="brand-name">techies<span>.lab</span></div></div><div class="meta">AI hardware benchmark</div></div>
+  <h1>Concurrent <em>LLM</em> benchmark.</h1>
   <p class="meta">
     Date: {html.escape(meta['date'])}<br>
     Server: {html.escape(meta['benchmark_config']['server'])} at {html.escape(meta['benchmark_config']['base_url'])}<br>
@@ -1253,6 +1279,8 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
   </table>
 </main>
 <script>
+Chart.defaults.color = 'rgba(255,255,255,.72)';
+Chart.defaults.borderColor = 'rgba(255,255,255,.08)';
 const data = {json.dumps(chart_data)};
 const commonOptions = {{
   responsive: true,
@@ -1364,24 +1392,37 @@ def write_compare_html(path: Path) -> None:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Benchmark Comparison</title>
+  <link rel="icon" href="assets/techieslab/avatar.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; margin: 24px; color: #161616; background: #fafafa; }
-    main { max-width: 1280px; margin: 0 auto; }
-    .toolbar { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 16px; }
+    :root { --bg:#0a0a14; --surface:#15132a; --surface2:#1c1936; --violet:#8070f8; --violet-l:#a090f8; --cyan:#58c8f8; --mint:#60d8c0; --white:#fff; --dim:rgba(255,255,255,.68); --faint:rgba(255,255,255,.42); --line:rgba(255,255,255,.1); --sans:"Inter",-apple-system,system-ui,sans-serif; --serif:"EB Garamond",Georgia,serif; }
+    * { box-sizing: border-box; }
+    body { font-family: var(--sans); margin: 0; color: var(--white); background: linear-gradient(rgba(10,10,20,.88), rgba(10,10,20,.96)), url("assets/techieslab/background.png") top center / min(100vw, 1800px) auto no-repeat, var(--bg); }
+    main { max-width: 1280px; margin: 0 auto; padding: 24px; }
+    .brandbar { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px; }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .brand img { width:42px; height:42px; border-radius:8px; border:1px solid var(--line); }
+    .brand-name { font-family:var(--serif); font-size:1.4rem; }
+    .brand-name span { color:var(--violet-l); }
+    h1 { font-family:var(--serif); font-size:clamp(2.2rem,5vw,4.2rem); line-height:1; font-weight:400; margin:0 0 18px; }
+    h1 em { color:var(--violet-l); }
+    .toolbar { background: rgba(21,19,42,.86); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 18px; margin-top: 20px; }
-    .panel { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 16px; }
+    .panel { background: linear-gradient(160deg,rgba(21,19,42,.92),rgba(14,13,28,.92)); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
     .panel h2 { font-size: 18px; margin: 0 0 12px; }
     .chart { height: 360px; }
     .wide { grid-column: 1 / -1; }
-    table { border-collapse: collapse; width: 100%; margin-top: 20px; background: white; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: right; }
-    th { background: #f3f3f3; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; background: rgba(21,19,42,.86); border:1px solid var(--line); }
+    th, td { border-bottom: 1px solid var(--line); padding: 8px; text-align: right; }
+    th { background: rgba(28,25,54,.92); color:var(--faint); }
     td:first-child, th:first-child { text-align: left; }
     input { display: block; margin-top: 10px; }
-    button { border: 1px solid #bbb; background: white; border-radius: 6px; padding: 6px 10px; cursor: pointer; }
-    button:hover { background: #f2f2f2; }
-    .hint { color: #555; line-height: 1.5; }
+    button { border: 1px solid rgba(160,144,248,.42); background: rgba(255,255,255,.04); color:var(--white); border-radius: 6px; padding: 6px 10px; cursor: pointer; }
+    button:hover { background: rgba(128,112,248,.18); }
+    .hint { color: var(--dim); line-height: 1.5; }
     .actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
     .loaded { display: grid; gap: 8px; margin-top: 14px; }
     .run-item { display: flex; justify-content: space-between; gap: 12px; align-items: center; border: 1px solid #e0e0e0; border-radius: 8px; padding: 8px 10px; }
@@ -1391,7 +1432,8 @@ def write_compare_html(path: Path) -> None:
 </head>
 <body>
 <main>
-  <h1>AI Benchmark Comparison</h1>
+  <div class="brandbar"><div class="brand"><img src="assets/techieslab/avatar.png" alt=""><div class="brand-name">techies<span>.lab</span></div></div><div class="hint">AI hardware benchmark</div></div>
+  <h1>Compare <em>benchmark</em> runs.</h1>
   <section class="toolbar">
     <strong>Add <code>results.json</code> files</strong>
     <input id="files" type="file" accept=".json,application/json">
@@ -1412,6 +1454,8 @@ def write_compare_html(path: Path) -> None:
   <table id="summaryTable"></table>
 </main>
 <script>
+Chart.defaults.color = 'rgba(255,255,255,.72)';
+Chart.defaults.borderColor = 'rgba(255,255,255,.08)';
 const palette = ['#1f77b4', '#2ca02c', '#d62728', '#9467bd', '#ff7f0e', '#17becf', '#8c564b', '#e377c2'];
 const charts = {};
 const runs = [];
@@ -1651,6 +1695,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     write_csv(out_dir / "results.csv", all_results, summaries)
     write_markdown(out_dir / "report.md", meta, summaries)
     if not args.no_html:
+        ensure_brand_assets(out_dir)
         write_html(out_dir / "report.html", meta, summaries)
         write_compare_html(out_dir / "compare.html")
 

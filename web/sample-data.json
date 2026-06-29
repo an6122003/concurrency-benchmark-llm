@@ -1,0 +1,235 @@
+[
+  {
+    "id": "r9700-gemma31b-q4-vulkan",
+    "hardware": {
+      "brand": "AMD",
+      "model": "Radeon Pro R9700 AI Top",
+      "class": "GPU",
+      "vramGb": 32,
+      "memoryType": "GDDR6",
+      "busWidth": 256,
+      "boardPartner": "Gigabyte",
+      "priceUsd": 1199
+    },
+    "system": {
+      "os": "Windows 11",
+      "cpu": "Ryzen 9 class",
+      "ramGb": 64
+    },
+    "software": {
+      "runtime": "LM Studio",
+      "backend": "Vulkan llama.cpp",
+      "driver": "Adrenalin / Pro",
+      "endpoint": "OpenAI-compatible"
+    },
+    "model": {
+      "family": "Gemma",
+      "name": "Gemma 3 31B",
+      "sizeB": 31,
+      "quantization": "Q4_K_M",
+      "format": "GGUF",
+      "context": 8192
+    },
+    "benchmark": {
+      "maxTokens": 300,
+      "promptTokensAvg": 420,
+      "comfortableUsers": 5,
+      "peakAggregateTps": 46.8,
+      "bestConcurrency": 5,
+      "pricePerComfortableUser": 239.8,
+      "verified": "Verified",
+      "runPoints": [
+        {"users": 1, "aggregateTps": 22.4, "perUserTps": 22.4, "ttft": 0.62, "p95Latency": 13.5, "successRate": 100, "vramUsedGb": 26.2},
+        {"users": 2, "aggregateTps": 34.7, "perUserTps": 17.2, "ttft": 0.82, "p95Latency": 20.6, "successRate": 100, "vramUsedGb": 27.1},
+        {"users": 3, "aggregateTps": 41.1, "perUserTps": 13.5, "ttft": 1.1, "p95Latency": 28.4, "successRate": 100, "vramUsedGb": 28.3},
+        {"users": 5, "aggregateTps": 46.8, "perUserTps": 9.1, "ttft": 1.8, "p95Latency": 43.2, "successRate": 100, "vramUsedGb": 30.4},
+        {"users": 8, "aggregateTps": 45.6, "perUserTps": 5.6, "ttft": 3.4, "p95Latency": 76.2, "successRate": 100, "vramUsedGb": 31.6}
+      ]
+    }
+  },
+  {
+    "id": "rtx4090-qwen32b-q4-cuda",
+    "hardware": {
+      "brand": "NVIDIA",
+      "model": "GeForce RTX 4090",
+      "class": "GPU",
+      "vramGb": 24,
+      "memoryType": "GDDR6X",
+      "busWidth": 384,
+      "boardPartner": "Founders / AIB",
+      "priceUsd": 1699
+    },
+    "system": {
+      "os": "Windows 11",
+      "cpu": "Core i9 / Ryzen 9 class",
+      "ramGb": 64
+    },
+    "software": {
+      "runtime": "Ollama",
+      "backend": "CUDA llama.cpp",
+      "driver": "NVIDIA 555+",
+      "endpoint": "Ollama native"
+    },
+    "model": {
+      "family": "Qwen",
+      "name": "Qwen2.5 32B Instruct",
+      "sizeB": 32,
+      "quantization": "Q4_K_M",
+      "format": "GGUF",
+      "context": 8192
+    },
+    "benchmark": {
+      "maxTokens": 300,
+      "promptTokensAvg": 390,
+      "comfortableUsers": 6,
+      "peakAggregateTps": 71.5,
+      "bestConcurrency": 6,
+      "pricePerComfortableUser": 283.2,
+      "verified": "Community",
+      "runPoints": [
+        {"users": 1, "aggregateTps": 42.6, "perUserTps": 42.6, "ttft": 0.28, "p95Latency": 7.8, "successRate": 100, "vramUsedGb": 21.4},
+        {"users": 2, "aggregateTps": 58.9, "perUserTps": 29.1, "ttft": 0.43, "p95Latency": 11.4, "successRate": 100, "vramUsedGb": 22.2},
+        {"users": 4, "aggregateTps": 68.3, "perUserTps": 16.6, "ttft": 0.9, "p95Latency": 24.2, "successRate": 100, "vramUsedGb": 23.1},
+        {"users": 6, "aggregateTps": 71.5, "perUserTps": 11.4, "ttft": 1.5, "p95Latency": 39.7, "successRate": 100, "vramUsedGb": 23.8}
+      ]
+    }
+  },
+  {
+    "id": "rtx5090-llama70b-q4-cuda",
+    "hardware": {
+      "brand": "NVIDIA",
+      "model": "GeForce RTX 5090",
+      "class": "GPU",
+      "vramGb": 32,
+      "memoryType": "GDDR7",
+      "busWidth": 512,
+      "boardPartner": "AIB",
+      "priceUsd": 2499
+    },
+    "system": {
+      "os": "Windows 11",
+      "cpu": "Ryzen 9 class",
+      "ramGb": 128
+    },
+    "software": {
+      "runtime": "LM Studio",
+      "backend": "CUDA llama.cpp",
+      "driver": "NVIDIA 570+",
+      "endpoint": "OpenAI-compatible"
+    },
+    "model": {
+      "family": "Llama",
+      "name": "Llama 3.1 70B",
+      "sizeB": 70,
+      "quantization": "Q4_K_M",
+      "format": "GGUF",
+      "context": 8192
+    },
+    "benchmark": {
+      "maxTokens": 300,
+      "promptTokensAvg": 460,
+      "comfortableUsers": 4,
+      "peakAggregateTps": 43.9,
+      "bestConcurrency": 4,
+      "pricePerComfortableUser": 624.75,
+      "verified": "Estimated",
+      "runPoints": [
+        {"users": 1, "aggregateTps": 25.8, "perUserTps": 25.8, "ttft": 0.52, "p95Latency": 12.7, "successRate": 100, "vramUsedGb": 30.3},
+        {"users": 2, "aggregateTps": 36.2, "perUserTps": 18.0, "ttft": 0.81, "p95Latency": 20.1, "successRate": 100, "vramUsedGb": 31.1},
+        {"users": 4, "aggregateTps": 43.9, "perUserTps": 10.6, "ttft": 1.9, "p95Latency": 46.5, "successRate": 100, "vramUsedGb": 31.8}
+      ]
+    }
+  },
+  {
+    "id": "m4max-qwen14b-q6-metal",
+    "hardware": {
+      "brand": "Apple",
+      "model": "M4 Max 40-core GPU",
+      "class": "Integrated GPU",
+      "vramGb": 64,
+      "memoryType": "Unified",
+      "busWidth": null,
+      "boardPartner": "Apple",
+      "priceUsd": 3499
+    },
+    "system": {
+      "os": "macOS",
+      "cpu": "Apple M4 Max",
+      "ramGb": 64
+    },
+    "software": {
+      "runtime": "Ollama",
+      "backend": "Metal llama.cpp",
+      "driver": "Metal",
+      "endpoint": "Ollama native"
+    },
+    "model": {
+      "family": "Qwen",
+      "name": "Qwen2.5 14B Instruct",
+      "sizeB": 14,
+      "quantization": "Q6_K",
+      "format": "GGUF",
+      "context": 16384
+    },
+    "benchmark": {
+      "maxTokens": 300,
+      "promptTokensAvg": 360,
+      "comfortableUsers": 4,
+      "peakAggregateTps": 39.4,
+      "bestConcurrency": 4,
+      "pricePerComfortableUser": 874.75,
+      "verified": "Community",
+      "runPoints": [
+        {"users": 1, "aggregateTps": 27.7, "perUserTps": 27.7, "ttft": 0.36, "p95Latency": 10.8, "successRate": 100, "vramUsedGb": 16.3},
+        {"users": 2, "aggregateTps": 34.2, "perUserTps": 16.9, "ttft": 0.62, "p95Latency": 18.1, "successRate": 100, "vramUsedGb": 18.4},
+        {"users": 4, "aggregateTps": 39.4, "perUserTps": 9.6, "ttft": 1.2, "p95Latency": 37.4, "successRate": 100, "vramUsedGb": 22.9}
+      ]
+    }
+  },
+  {
+    "id": "arc-b580-llama8b-q4-vulkan",
+    "hardware": {
+      "brand": "Intel",
+      "model": "Arc B580",
+      "class": "GPU",
+      "vramGb": 12,
+      "memoryType": "GDDR6",
+      "busWidth": 192,
+      "boardPartner": "Intel / AIB",
+      "priceUsd": 249
+    },
+    "system": {
+      "os": "Linux",
+      "cpu": "Ryzen 7 class",
+      "ramGb": 32
+    },
+    "software": {
+      "runtime": "llama.cpp server",
+      "backend": "Vulkan",
+      "driver": "Mesa",
+      "endpoint": "OpenAI-compatible"
+    },
+    "model": {
+      "family": "Llama",
+      "name": "Llama 3.1 8B",
+      "sizeB": 8,
+      "quantization": "Q4_K_M",
+      "format": "GGUF",
+      "context": 8192
+    },
+    "benchmark": {
+      "maxTokens": 300,
+      "promptTokensAvg": 330,
+      "comfortableUsers": 5,
+      "peakAggregateTps": 63.8,
+      "bestConcurrency": 5,
+      "pricePerComfortableUser": 49.8,
+      "verified": "Estimated",
+      "runPoints": [
+        {"users": 1, "aggregateTps": 38.4, "perUserTps": 38.4, "ttft": 0.42, "p95Latency": 8.1, "successRate": 100, "vramUsedGb": 6.2},
+        {"users": 2, "aggregateTps": 52.1, "perUserTps": 25.8, "ttft": 0.68, "p95Latency": 13.2, "successRate": 100, "vramUsedGb": 7.4},
+        {"users": 5, "aggregateTps": 63.8, "perUserTps": 12.3, "ttft": 1.4, "p95Latency": 34.6, "successRate": 100, "vramUsedGb": 10.8}
+      ]
+    }
+  }
+]

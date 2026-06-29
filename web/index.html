@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Techies Lab AI Hardware Benchmarks</title>
+  <link rel="icon" href="../assets/techieslab/avatar.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <img src="../assets/techieslab/avatar.png" alt="">
+        <div>
+          <div class="brand-name">techies<span>.lab</span></div>
+          <div class="brand-sub">AI hardware benchmark database</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button id="importBtn" class="ghost-btn" type="button"><i data-lucide="upload"></i><span>Import JSON</span></button>
+        <input id="importFile" type="file" accept=".json,application/json" hidden>
+        <button id="resetBtn" class="ghost-btn" type="button"><i data-lucide="rotate-ccw"></i><span>Reset</span></button>
+      </div>
+    </header>
+
+    <aside class="filters" aria-label="Benchmark filters">
+      <div class="filter-head">
+        <div class="label">Filter System</div>
+        <h1>Find the right local AI hardware.</h1>
+      </div>
+
+      <label class="search">
+        <i data-lucide="search"></i>
+        <input id="searchInput" type="search" placeholder="Search hardware, model, runtime">
+      </label>
+
+      <div class="filter-grid">
+        <label>Hardware brand<select id="brandFilter"></select></label>
+        <label>Model family<select id="familyFilter"></select></label>
+        <label>Runtime<select id="runtimeFilter"></select></label>
+        <label>Backend<select id="backendFilter"></select></label>
+        <label>Quantization<select id="quantFilter"></select></label>
+        <label>OS<select id="osFilter"></select></label>
+      </div>
+
+      <div class="range-block">
+        <div class="range-title"><span>Minimum VRAM</span><strong id="vramValue">0 GB</strong></div>
+        <input id="vramFilter" type="range" min="0" max="80" step="4" value="0">
+      </div>
+
+      <div class="range-block">
+        <div class="range-title"><span>Target users</span><strong id="usersValue">1+</strong></div>
+        <input id="usersFilter" type="range" min="1" max="16" step="1" value="1">
+      </div>
+
+      <div class="smart">
+        <div class="label">Smart Filters</div>
+        <button data-preset="team" type="button">2-5 person team</button>
+        <button data-preset="thirtyB" type="button">Runs 30B+</button>
+        <button data-preset="budget" type="button">Best under $1K</button>
+        <button data-preset="nonCuda" type="button">No CUDA required</button>
+        <button data-preset="lowLatency" type="button">Low TTFT</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="metric-strip" aria-label="Summary metrics">
+        <div class="metric"><span>Visible runs</span><strong id="visibleRuns">0</strong></div>
+        <div class="metric"><span>Best users</span><strong id="bestUsers">-</strong></div>
+        <div class="metric"><span>Top throughput</span><strong id="topThroughput">-</strong></div>
+        <div class="metric"><span>Best value</span><strong id="bestValue">-</strong></div>
+      </section>
+
+      <section class="chart-row">
+        <div class="panel chart-panel">
+          <div class="panel-head">
+            <h2>Throughput by visible result</h2>
+            <select id="sortSelect">
+              <option value="comfortableUsers">Sort by users</option>
+              <option value="peakAggregateTps">Sort by tok/s</option>
+              <option value="pricePerComfortableUser">Sort by value</option>
+              <option value="vramGb">Sort by VRAM</option>
+            </select>
+          </div>
+          <canvas id="throughputChart"></canvas>
+        </div>
+        <div class="panel chart-panel compact-chart">
+          <div class="panel-head">
+            <h2>Brand mix</h2>
+          </div>
+          <canvas id="brandChart"></canvas>
+        </div>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="panel-head">
+          <h2>Benchmark runs</h2>
+          <div id="activeFilters" class="chips"></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Hardware</th>
+                <th>Model</th>
+                <th>Stack</th>
+                <th>VRAM</th>
+                <th>Users</th>
+                <th>Peak tok/s</th>
+                <th>TTFT</th>
+                <th>P95</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody id="resultsBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel detail-panel" id="detailPanel">
+        <div class="empty-detail">Select a run to inspect concurrency points, software, and hardware metadata.</div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

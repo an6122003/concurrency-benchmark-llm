@@ -4,6 +4,8 @@ This repo contains a cross-platform Python script for benchmarking concurrent ch
 
 It is designed for video production: each run outputs raw data plus a readable report and graph.
 
+It also includes a static Techies Lab styled benchmark database prototype in `web/`, plus a data-design plan in `BENCHMARK_DATABASE_PLAN.md`.
+
 ## Requirements
 
 - Python 3.9+
@@ -48,6 +50,36 @@ Each run creates a folder like `benchmark-results-20260629-210000` with:
 - `results.csv`: spreadsheet-friendly results
 - `results.json`: full raw data
 - `metadata.json`: hardware, software, runtime, and benchmark configuration metadata
+
+The HTML reports copy Techies Lab brand assets into the result folder automatically.
+
+## Benchmark Database Prototype
+
+Open the static browser at:
+
+```text
+web/index.html
+```
+
+For local browser testing with `fetch`, start a simple server from the repo root:
+
+```bash
+python -m http.server 8080
+```
+
+Then open:
+
+```text
+http://localhost:8080/web/
+```
+
+The database prototype supports hardware/model/runtime filters, smart presets, sorting, chart summaries, row details, and importing a benchmark `results.json`.
+
+The recommended database schema, benchmark categories, scoring ideas, and filter system are in:
+
+```text
+BENCHMARK_DATABASE_PLAN.md
+```
 
 ## HTML Charts
 

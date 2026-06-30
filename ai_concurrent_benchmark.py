@@ -1261,13 +1261,13 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
     .stat {{ background: rgba(21,19,42,.88); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }}
     .stat span {{ display: block; color: var(--faint); font-size: 12px; margin-bottom: 6px; }}
     .stat strong {{ display: block; font-size: 15px; overflow-wrap: anywhere; }}
-    .hardware-avatar {{ width:96px; height:96px; flex:0 0 auto; object-fit:cover; border-radius:12px; border:1px solid rgba(160,144,248,.45); background:rgba(21,19,42,.86); box-shadow:0 12px 34px rgba(128,112,248,.22); }}
+    .hardware-avatar {{ width:128px; height:128px; flex:0 0 auto; object-fit:cover; border-radius:12px; border:1px solid rgba(160,144,248,.45); background:rgba(21,19,42,.86); box-shadow:0 12px 34px rgba(128,112,248,.22); }}
     .chart {{ height: 360px; }}
     .wide {{ grid-column: 1 / -1; }}
     details {{ margin-top: 20px; background: rgba(21,19,42,.86); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }}
     summary {{ cursor: pointer; font-weight: bold; }}
     pre {{ white-space: pre-wrap; overflow-wrap: anywhere; }}
-    @media (max-width: 620px) {{ body {{ margin: 12px; }} .grid {{ grid-template-columns: 1fr; }} .chart {{ height: 300px; }} .title-row {{ align-items:flex-start; }} .hardware-avatar {{ width:72px; height:72px; }} }}
+    @media (max-width: 620px) {{ body {{ margin: 12px; }} .grid {{ grid-template-columns: 1fr; }} .chart {{ height: 300px; }} .title-row {{ align-items:flex-start; }} .hardware-avatar {{ width:92px; height:92px; }} }}
   </style>
 </head>
 <body>

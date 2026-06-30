@@ -1213,9 +1213,7 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
     hardware_image_html = ""
     if hardware_image:
         hardware_image_html = f"""
-  <section class="hardware-photo">
-    <img src="{html.escape(hardware_image)}" alt="Benchmark hardware">
-  </section>
+    <img class="hardware-avatar" src="{html.escape(hardware_image)}" alt="Benchmark hardware">
 """
     raw_meta = html.escape(json.dumps({
         "os": meta.get("os", {}),
@@ -1246,6 +1244,7 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
     .brand img {{ width:42px; height:42px; border-radius:8px; border:1px solid var(--line); }}
     .brand-name {{ font-family:var(--serif); font-size:1.4rem; }}
     .brand-name span {{ color:var(--violet-l); }}
+    .title-row {{ display:flex; align-items:center; justify-content:space-between; gap:18px; }}
     h1 {{ font-family:var(--serif); font-size:clamp(2.2rem,5vw,4.2rem); line-height:1; font-weight:400; margin:0; }}
     h1 em {{ color:var(--violet-l); }}
     table {{ border-collapse: collapse; width: 100%; margin-top: 20px; background: rgba(21,19,42,.86); border:1px solid var(--line); border-radius:8px; overflow:hidden; }}
@@ -1262,20 +1261,22 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
     .stat {{ background: rgba(21,19,42,.88); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }}
     .stat span {{ display: block; color: var(--faint); font-size: 12px; margin-bottom: 6px; }}
     .stat strong {{ display: block; font-size: 15px; overflow-wrap: anywhere; }}
-    .hardware-photo {{ margin-top:18px; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:rgba(21,19,42,.86); }}
-    .hardware-photo img {{ display:block; width:100%; max-height:420px; object-fit:cover; }}
+    .hardware-avatar {{ width:96px; height:96px; flex:0 0 auto; object-fit:cover; border-radius:12px; border:1px solid rgba(160,144,248,.45); background:rgba(21,19,42,.86); box-shadow:0 12px 34px rgba(128,112,248,.22); }}
     .chart {{ height: 360px; }}
     .wide {{ grid-column: 1 / -1; }}
     details {{ margin-top: 20px; background: rgba(21,19,42,.86); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }}
     summary {{ cursor: pointer; font-weight: bold; }}
     pre {{ white-space: pre-wrap; overflow-wrap: anywhere; }}
-    @media (max-width: 620px) {{ body {{ margin: 12px; }} .grid {{ grid-template-columns: 1fr; }} .chart {{ height: 300px; }} }}
+    @media (max-width: 620px) {{ body {{ margin: 12px; }} .grid {{ grid-template-columns: 1fr; }} .chart {{ height: 300px; }} .title-row {{ align-items:flex-start; }} .hardware-avatar {{ width:72px; height:72px; }} }}
   </style>
 </head>
 <body>
 <main>
   <div class="brandbar"><div class="brand"><img src="assets/techieslab/avatar.png" alt=""><div class="brand-name">techies<span>.lab</span></div></div><div class="meta">AI hardware benchmark</div></div>
-  <h1>Concurrent <em>LLM</em> benchmark.</h1>
+  <div class="title-row">
+    <h1>Concurrent <em>LLM</em> benchmark.</h1>
+    {hardware_image_html}
+  </div>
   <p class="meta">
     Date: {html.escape(meta['date'])}<br>
     Server: {html.escape(meta['benchmark_config']['server'])} at {html.escape(meta['benchmark_config']['base_url'])}<br>
@@ -1283,7 +1284,6 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
     Host: {html.escape(meta['host'])}
   </p>
   <div class="stats">{compact_cards}</div>
-  {hardware_image_html}
   <details>
     <summary>Full system and benchmark details</summary>
     <table class="meta-table">

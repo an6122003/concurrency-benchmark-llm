@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Techies Lab Benchmark Launcher</title>
+  <link rel="icon" href="../assets/techieslab/avatar.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../web/styles.css">
+  <style>
+    .launcher { max-width: 1180px; margin: 0 auto; padding: 24px; }
+    .hero-line { margin: 10px 0 22px; max-width: 760px; color: var(--dim); }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .field { display: grid; gap: 7px; color: var(--dim); font-size: .84rem; }
+    .field input, .field select, .field textarea {
+      width: 100%; border: 1px solid var(--line); border-radius: 8px; background: #111024;
+      color: var(--white); padding: 10px 11px; min-height: 40px;
+    }
+    .field textarea { min-height: 88px; resize: vertical; }
+    .scenario-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+    .scenario { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: 8px; padding: 12px; background: rgba(255,255,255,.03); }
+    .scenario input { margin-top: 4px; accent-color: var(--violet); }
+    .scenario strong { display: block; }
+    .scenario span { display: block; color: var(--faint); font-size: .78rem; margin-top: 3px; }
+    .output { width: 100%; min-height: 180px; border: 1px solid var(--line); border-radius: 8px; background: #080812; color: var(--mint); padding: 14px; overflow: auto; white-space: pre; }
+    .button-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .primary { border: 1px solid var(--violet-l); background: rgba(128,112,248,.18); color: var(--white); border-radius: 8px; padding: 8px 12px; cursor: pointer; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 800px) { .form-grid, .two-col { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="launcher">
+    <div class="brandbar">
+      <div class="brand"><img src="../assets/techieslab/avatar.png" alt=""><div class="brand-name">techies<span>.lab</span></div></div>
+      <div class="brand-sub">Benchmark Launcher</div>
+    </div>
+    <h1>Build a <em>benchmark</em> command.</h1>
+    <p class="hero-line">Fill the fields, choose a quick concurrent run or the full all-around suite, then copy the generated command into your terminal. The GUI is static, so it never sends your data anywhere.</p>
+
+    <section class="panel">
+      <div class="panel-head"><h2>Target</h2></div>
+      <div class="form-grid">
+        <label class="field">Mode<select id="mode"><option value="suite">Full suite</option><option value="single">Single concurrent run</option></select></label>
+        <label class="field">Server<select id="server"><option value="lmstudio">LM Studio</option><option value="ollama">Ollama OpenAI-compatible</option><option value="ollama-native">Ollama native</option></select></label>
+        <label class="field">Base URL<input id="baseUrl" value="http://localhost:1234"></label>
+        <label class="field">Model ID<input id="model" value="gemma-3-27b-it-q4_k_m"></label>
+        <label class="field">Runtime label<input id="runtime" value="Vulkan llama.cpp"></label>
+        <label class="field">GPU label<input id="gpu" value="Radeon Pro R9700 32GB"></label>
+        <label class="field">Quantization<input id="quantization" value="Q4_K_M"></label>
+        <label class="field">Context size<input id="contextSize" type="number" value="8192"></label>
+        <label class="field">Hardware image path or URL<input id="hardwareImage" placeholder="/path/to/gpu-photo.jpg"></label>
+        <label class="field">Output folder<input id="outDir" value="suite-results-r9700"></label>
+      </div>
+      <label class="field" style="margin-top:14px">Notes<textarea id="notes">Replace fields with the actual loaded model, driver, and power/cooling settings.</textarea></label>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><h2>Single-run Settings</h2></div>
+      <div class="form-grid">
+        <label class="field">Concurrency<input id="concurrency" value="1-10"></label>
+        <label class="field">Max tokens<input id="maxTokens" type="number" value="300"></label>
+        <label class="field">Temperature<input id="temperature" type="number" step="0.1" value="0.2"></label>
+        <label class="field">Warmup requests<input id="warmup" type="number" value="2"></label>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><h2>Suite Scenarios</h2></div>
+      <div id="scenarios" class="scenario-grid"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><h2>Generated Command</h2></div>
+      <div class="button-row">
+        <button id="copyCommand" class="primary" type="button">Copy command</button>
+        <button id="downloadConfig" class="ghost-btn" type="button">Download suite config</button>
+      </div>
+      <pre id="command" class="output"></pre>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

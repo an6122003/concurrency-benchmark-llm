@@ -77,6 +77,22 @@ http://localhost:8080/web/
 
 The database prototype supports hardware/model/runtime filters, smart presets, sorting, chart summaries, row details, and importing a benchmark `results.json`.
 
+## GUI Launcher
+
+Open the simple static launcher at:
+
+```text
+gui/index.html
+```
+
+Or through the local server:
+
+```text
+http://localhost:8080/gui/
+```
+
+The launcher helps you fill target/server/model/hardware fields, pick suite scenarios, generate a single-run command, or download a suite config and copy the suite command.
+
 The recommended database schema, benchmark categories, scoring ideas, and filter system are in:
 
 ```text
@@ -102,6 +118,10 @@ Full suite output includes:
 - Top-level `suite-comparison.html` for dense cross-scenario comparison
 - `suite-comparison.csv` for spreadsheets and database import
 - `suite-manifest.json` for commands and reproducibility
+
+Per-scenario `report.html` is the detailed microscope for one test scenario, such as team concurrency or long-context pressure. It contains that scenario's raw metadata, charts, request summaries, TTFT source, and hardware image.
+
+Top-level `suite-report.html` is the executive map across all scenarios and targets. It is for drawing the big conclusion: which hardware/model/runtime wins for responsiveness, team serving, sustained throughput, context pressure, and sales solution architecture.
 
 Preview the commands without running:
 

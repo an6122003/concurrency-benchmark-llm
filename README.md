@@ -6,6 +6,8 @@ It is designed for video production: each run outputs raw data plus a readable r
 
 It also includes a static Techies Lab styled benchmark database prototype in `web/`, plus a data-design plan in `BENCHMARK_DATABASE_PLAN.md`.
 
+For broader hardware comparisons, use `benchmark_suite.py` with `suite-config.example.json`. The suite design and scoring rationale are documented in `ALL_AROUND_BENCHMARK_SUITE.md`.
+
 ## Requirements
 
 - Python 3.9+
@@ -81,6 +83,24 @@ The recommended database schema, benchmark categories, scoring ideas, and filter
 BENCHMARK_DATABASE_PLAN.md
 ```
 
+The all-around benchmark suite plan is in:
+
+```text
+ALL_AROUND_BENCHMARK_SUITE.md
+```
+
+Run a full suite:
+
+```bash
+python benchmark_suite.py --config suite-config.example.json --out-dir suite-results-r9700
+```
+
+Preview the commands without running:
+
+```bash
+python benchmark_suite.py --config suite-config.example.json --dry-run
+```
+
 ## HTML Charts
 
 `report.html` includes multiple chart views:
@@ -122,6 +142,7 @@ python ai_concurrent_benchmark.py \
   --runtime "Vulkan llama.cpp" \
   --gpu "Radeon Pro R9700 32GB" \
   --quantization "Q4_K_M" \
+  --hardware-image "/path/to/gpu-photo.jpg" \
   --notes "Driver version, power limit, server settings, or filming notes" \
   --timeout 900 \
   --warmup 1 \

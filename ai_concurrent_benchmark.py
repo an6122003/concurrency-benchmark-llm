@@ -626,7 +626,7 @@ def collect_runtime_probe(server: str, base_url: str, model: str) -> Dict[str, A
     return runtime
 
 
-def collect_environment_info(args: argparse.Namespace, concurrencies: List[int], prompt_count: int) -> Dict[str, Any]:
+def collect_environment_info(args: argparse.Namespace, concurrencies: List[int], prompt_count: int, hardware_image: Optional[str] = None) -> Dict[str, Any]:
     runtime_probe = collect_runtime_probe(args.server, args.base_url, args.model)
     local_scan = runtime_probe.get("local_scan", {}) if isinstance(runtime_probe.get("local_scan"), dict) else {}
     detected_quantization = runtime_probe.get("detected_quantization") or local_scan.get("detected_quantization")
@@ -670,6 +670,7 @@ def collect_environment_info(args: argparse.Namespace, concurrencies: List[int],
             "prompt_count": prompt_count,
             "prompts_file": args.prompts_file,
             "notes": args.notes,
+            "hardware_image": hardware_image,
         },
         "server": args.server,
         "base_url": args.base_url,
@@ -709,6 +710,7 @@ def flatten_metadata(meta: Dict[str, Any]) -> List[Tuple[str, str]]:
         ("Detected GPU", gpu_summary),
         ("GPU VRAM", gpu_vram_summary),
         ("Manual GPU label", str(config.get("gpu_label") or "")),
+        ("Hardware image", str(config.get("hardware_image") or "")),
         ("Server mode", str(config.get("server", ""))),
         ("Base URL", str(config.get("base_url", ""))),
         ("Runtime label", str(config.get("runtime_label") or "")),
@@ -1151,6 +1153,21 @@ def ensure_brand_assets(out_dir: Path) -> None:
             shutil.copyfile(source, target_dir / name)
 
 
+def prepare_hardware_image(image: Optional[str], out_dir: Path) -> Optional[str]:
+    if not image:
+        return None
+    if image.startswith(("http://", "https://")):
+        return image
+    source = Path(image).expanduser()
+    if not source.exists() or not source.is_file():
+        return image
+    target_dir = out_dir / "assets" / "hardware"
+    target_dir.mkdir(parents=True, exist_ok=True)
+    target = target_dir / source.name
+    shutil.copyfile(source, target)
+    return str(Path("assets") / "hardware" / source.name).replace(os.sep, "/")
+
+
 def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) -> None:
     chart_data = {
         "labels": [s.concurrency for s in summaries],
@@ -1192,6 +1209,14 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
         for label, value in compact_items
         if value
     )
+    hardware_image = meta.get("benchmark_config", {}).get("hardware_image")
+    hardware_image_html = ""
+    if hardware_image:
+        hardware_image_html = f"""
+  <section class="hardware-photo">
+    <img src="{html.escape(hardware_image)}" alt="Benchmark hardware">
+  </section>
+"""
     raw_meta = html.escape(json.dumps({
         "os": meta.get("os", {}),
         "cpu": meta.get("cpu", {}),
@@ -1237,6 +1262,8 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
     .stat {{ background: rgba(21,19,42,.88); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }}
     .stat span {{ display: block; color: var(--faint); font-size: 12px; margin-bottom: 6px; }}
     .stat strong {{ display: block; font-size: 15px; overflow-wrap: anywhere; }}
+    .hardware-photo {{ margin-top:18px; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:rgba(21,19,42,.86); }}
+    .hardware-photo img {{ display:block; width:100%; max-height:420px; object-fit:cover; }}
     .chart {{ height: 360px; }}
     .wide {{ grid-column: 1 / -1; }}
     details {{ margin-top: 20px; background: rgba(21,19,42,.86); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }}
@@ -1256,6 +1283,7 @@ def write_html(path: Path, meta: Dict[str, Any], summaries: List[GroupSummary]) 
     Host: {html.escape(meta['host'])}
   </p>
   <div class="stats">{compact_cards}</div>
+  {hardware_image_html}
   <details>
     <summary>Full system and benchmark details</summary>
     <table class="meta-table">
@@ -1620,6 +1648,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument("--quantization", help="Optional quantization label, e.g. Q4_K_M.")
     parser.add_argument("--context-size", type=int, help="Optional model/server context size used for this run.")
     parser.add_argument("--notes", help="Optional notes stored in the report, e.g. driver version, power limit, server settings.")
+    parser.add_argument("--hardware-image", help="Optional local image path or URL for the tested hardware, shown in report.html.")
     parser.add_argument("--prompts-file", help="Text file separated by lines or '\\n---\\n', or JSON list of strings.")
     parser.add_argument("--out-dir", default=f"benchmark-results-{now_stamp()}")
     parser.add_argument("--cooldown", type=float, default=2.0, help="Seconds to wait between concurrency groups.")
@@ -1683,7 +1712,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         if concurrency != concurrencies[-1] and args.cooldown > 0:
             time.sleep(args.cooldown)
 
-    meta = collect_environment_info(args, concurrencies, len(prompts))
+    hardware_image = prepare_hardware_image(args.hardware_image, out_dir)
+    meta = collect_environment_info(args, concurrencies, len(prompts), hardware_image)
     raw = {
         "meta": meta,
         "summaries": [s.__dict__ for s in summaries],

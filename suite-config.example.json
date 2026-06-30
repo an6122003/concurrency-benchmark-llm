@@ -1,0 +1,93 @@
+{
+  "suite_name": "techieslab-local-llm-all-around-v1",
+  "targets": [
+    {
+      "name": "R9700 Gemma 31B Q4 Vulkan",
+      "server": "lmstudio",
+      "base_url": "http://localhost:1234",
+      "model": "gemma-3-27b-it-q4_k_m",
+      "runtime": "Vulkan llama.cpp",
+      "gpu": "Radeon Pro R9700 32GB",
+      "quantization": "Q4_K_M",
+      "context_size": 8192,
+      "hardware_image": "",
+      "notes": "Replace this target with the actual model id loaded in LM Studio."
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "01_latency_single_user",
+      "description": "Short chat responsiveness and TTFT.",
+      "prompt_set": "short_chat",
+      "concurrency": "1",
+      "max_tokens": 96,
+      "warmup": 2,
+      "warmup_tokens": 96
+    },
+    {
+      "name": "02_team_concurrency",
+      "description": "Shared team chat serving from 1 to 10 users.",
+      "prompt_set": "short_chat",
+      "concurrency": "1-10",
+      "max_tokens": 300,
+      "warmup": 2,
+      "warmup_tokens": 128
+    },
+    {
+      "name": "03_peak_decode_long_output",
+      "description": "Longer generation to reduce fixed request overhead and expose decode throughput.",
+      "prompt_set": "short_chat",
+      "concurrency": "1,2,4",
+      "max_tokens": 1024,
+      "warmup": 1,
+      "warmup_tokens": 128
+    },
+    {
+      "name": "04_context_4k",
+      "description": "Approximate 4K-word long-prompt context pressure test.",
+      "prompt_set": "context",
+      "approx_prompt_words": 4000,
+      "concurrency": "1,2",
+      "max_tokens": 160,
+      "warmup": 1,
+      "warmup_tokens": 64
+    },
+    {
+      "name": "05_context_8k",
+      "description": "Approximate 8K-word long-prompt context pressure test.",
+      "prompt_set": "context",
+      "approx_prompt_words": 8000,
+      "concurrency": "1",
+      "max_tokens": 160,
+      "warmup": 1,
+      "warmup_tokens": 64
+    },
+    {
+      "name": "06_coding_smoke",
+      "description": "Coding-oriented prompt set for qualitative review plus performance.",
+      "prompt_set": "coding",
+      "concurrency": "1,2",
+      "max_tokens": 384,
+      "warmup": 1,
+      "warmup_tokens": 96
+    },
+    {
+      "name": "07_vietnamese_smoke",
+      "description": "Vietnamese content and explanation prompts.",
+      "prompt_set": "vietnamese",
+      "concurrency": "1,2",
+      "max_tokens": 384,
+      "warmup": 1,
+      "warmup_tokens": 96
+    },
+    {
+      "name": "08_extraction_classification",
+      "description": "Structured extraction and classification tasks.",
+      "prompt_set": "classification",
+      "concurrency": "1,4",
+      "max_tokens": 256,
+      "warmup": 1,
+      "warmup_tokens": 64
+    }
+  ]
+}

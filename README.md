@@ -95,6 +95,14 @@ Run a full suite:
 python benchmark_suite.py --config suite-config.example.json --out-dir suite-results-r9700
 ```
 
+Full suite output includes:
+
+- Per-scenario `report.html`, `compare.html`, `results.json`, `metadata.json`
+- Top-level `suite-report.html` for conclusions and charts
+- Top-level `suite-comparison.html` for dense cross-scenario comparison
+- `suite-comparison.csv` for spreadsheets and database import
+- `suite-manifest.json` for commands and reproducibility
+
 Preview the commands without running:
 
 ```bash

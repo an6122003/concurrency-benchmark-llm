@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" role="img" aria-label="Pixel spark cluster">
+  <defs>
+    <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="360" height="240" fill="none"/>
+  <g fill="#8A70FF" filter="url(#glow)">
+    <rect x="62" y="82" width="18" height="18" rx="3"/>
+    <rect x="128" y="44" width="12" height="12" rx="2"/>
+    <rect x="188" y="96" width="20" height="20" rx="3"/>
+    <rect x="270" y="50" width="16" height="16" rx="3"/>
+    <rect x="296" y="142" width="10" height="10" rx="2"/>
+    <rect x="96" y="166" width="12" height="12" rx="2"/>
+    <rect x="216" y="178" width="14" height="14" rx="3"/>
+  </g>
+  <g stroke="#8A70FF" stroke-opacity=".45" stroke-width="1">
+    <path d="M71 91L134 50L198 106L278 58M198 106L224 185M71 91L102 172" fill="none"/>
+  </g>
+</svg>

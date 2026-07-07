@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-label="Techies Lab Benchmark">
+  <defs>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.54 0 0 0 0 0.44 0 0 0 0 1 0 0 0 .9 0"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="purple" x1="0" x2="1">
+      <stop offset="0" stop-color="#8A70FF"/>
+      <stop offset="1" stop-color="#62D6FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="320" rx="28" fill="#050505"/>
+  <rect x="2" y="2" width="1196" height="316" rx="26" fill="none" stroke="#ffffff" stroke-opacity=".12"/>
+  <g filter="url(#glow)">
+    <rect x="92" y="93" width="178" height="34" rx="5" fill="#F5F5F5"/>
+    <rect x="236" y="127" width="34" height="110" rx="5" fill="#F5F5F5"/>
+    <rect x="322" y="93" width="34" height="34" rx="5" fill="#8A70FF"/>
+  </g>
+  <text x="410" y="142" fill="#F5F5F5" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="700">techies<tspan fill="#8A70FF">.lab</tspan></text>
+  <text x="414" y="204" fill="url(#purple)" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="600" letter-spacing="4">AI HARDWARE BENCHMARKS</text>
+  <g fill="#8A70FF" filter="url(#glow)">
+    <rect x="1018" y="78" width="16" height="16" rx="2"/>
+    <rect x="1064" y="112" width="12" height="12" rx="2"/>
+    <rect x="998" y="160" width="10" height="10" rx="2"/>
+    <rect x="1108" y="188" width="18" height="18" rx="2"/>
+    <rect x="1040" y="232" width="8" height="8" rx="1"/>
+  </g>
+</svg>

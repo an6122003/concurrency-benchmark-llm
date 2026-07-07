@@ -1,0 +1,87 @@
+{
+  "brand": "Techies Lab / Pixel Pet Benchmark",
+  "palette": {
+    "deepSpace": "#050505",
+    "softWhite": "#F5F5F5",
+    "techiesPurple": "#8A70FF",
+    "electricBlue": "#62D6FF",
+    "mint": "#65E7C8"
+  },
+  "assets": [
+    {
+      "id": "pet-gpu-trophy",
+      "path": "assets/brand-pack/pixel-pet/pet-gpu-trophy.png",
+      "type": "raster",
+      "usage": ["winner-card", "hardware-profile", "gpu-highlight"],
+      "alt": "Pixel Pet holding a glowing GPU like a trophy"
+    },
+    {
+      "id": "pet-analytics-dashboard",
+      "path": "assets/brand-pack/pixel-pet/pet-analytics-dashboard.png",
+      "type": "raster",
+      "usage": ["charts", "suite-report", "comparison-dashboard"],
+      "alt": "Pixel Pet pointing at a benchmark analytics dashboard"
+    },
+    {
+      "id": "pet-server-rack",
+      "path": "assets/brand-pack/pixel-pet/pet-server-rack.png",
+      "type": "raster",
+      "usage": ["local-server", "runtime", "deployment"],
+      "alt": "Pixel Pet sitting on a glowing AI server rack"
+    },
+    {
+      "id": "pet-token-courier",
+      "path": "assets/brand-pack/pixel-pet/pet-token-courier.png",
+      "type": "raster",
+      "usage": ["throughput", "tokens-per-second", "concurrency"],
+      "alt": "Pixel Pet carrying glowing token cubes"
+    },
+    {
+      "id": "pet-solution-architect",
+      "path": "assets/brand-pack/pixel-pet/pet-solution-architect.png",
+      "type": "raster",
+      "usage": ["solution-architecture", "buyer-guide", "checklist"],
+      "alt": "Pixel Pet with a headset and benchmark checklist"
+    },
+    {
+      "id": "benchmark-wordmark",
+      "path": "assets/brand-pack/svg/techies-benchmark-wordmark.svg",
+      "type": "svg",
+      "usage": ["header", "presentation", "social-preview"]
+    },
+    {
+      "id": "benchmark-hero-banner",
+      "path": "assets/brand-pack/banners/benchmark-hero-banner.svg",
+      "type": "svg",
+      "usage": ["hero", "open-graph", "presentation"]
+    },
+    {
+      "id": "pixel-spark-cluster",
+      "path": "assets/brand-pack/svg/pixel-spark-cluster.svg",
+      "type": "svg",
+      "usage": ["background-decoration", "empty-state", "section-divider"]
+    },
+    {
+      "id": "benchmark-metric-icons",
+      "path": "assets/brand-pack/svg/benchmark-metric-icons.svg",
+      "type": "svg",
+      "usage": ["metric-cards", "legend", "documentation"]
+    }
+  ],
+  "copy": {
+    "taglines": [
+      "Small. Curious. Limitless.",
+      "Benchmark the local AI stack.",
+      "Find the hardware your team can actually use.",
+      "Tokens, latency, context, confidence.",
+      "From GPU specs to team-ready answers."
+    ],
+    "ctas": [
+      "Run a benchmark",
+      "Compare results",
+      "Import result JSON",
+      "Open suite report",
+      "Explore hardware"
+    ]
+  }
+}

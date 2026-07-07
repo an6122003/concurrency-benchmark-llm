@@ -8,6 +8,8 @@ It also includes a static Techies Lab styled benchmark database prototype in `we
 
 For broader hardware comparisons, use `benchmark_suite.py` with `suite-config.example.json`. The suite design and scoring rationale are documented in `ALL_AROUND_BENCHMARK_SUITE.md`.
 
+Decorative Techies Lab / Pixel Pet benchmark assets live in `assets/brand-pack/`, including mascot poses, banners, SVG marks, copy lines, and a preview gallery.
+
 ## Requirements
 
 - Python 3.9+

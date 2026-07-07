@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="720" viewBox="0 0 2400 720" role="img" aria-label="Techies Lab benchmark hero banner">
+  <defs>
+    <radialGradient id="g1" cx="70%" cy="50%" r="45%">
+      <stop offset="0" stop-color="#8A70FF" stop-opacity=".42"/>
+      <stop offset=".48" stop-color="#6250FF" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="line" x1="0" x2="1">
+      <stop offset="0" stop-color="#8A70FF" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#62D6FF" stop-opacity=".55"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="2400" height="720" fill="#050505"/>
+  <rect width="2400" height="720" fill="url(#g1)"/>
+  <g opacity=".22" stroke="#ffffff" stroke-width="1">
+    <path d="M0 560H2400M0 480H2400M0 400H2400M0 320H2400M0 240H2400M0 160H2400"/>
+    <path d="M240 0V720M480 0V720M720 0V720M960 0V720M1200 0V720M1440 0V720M1680 0V720M1920 0V720M2160 0V720"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="120" y="160" fill="#8A70FF" font-size="24" font-weight="700" letter-spacing="8">TECHIES.LAB</text>
+    <text x="120" y="280" fill="#F5F5F5" font-size="92" font-weight="800">Local AI hardware</text>
+    <text x="120" y="378" fill="#8A70FF" font-size="92" font-weight="800">benchmark database</text>
+    <text x="124" y="452" fill="#F5F5F5" fill-opacity=".72" font-size="34">Compare GPUs, runtimes, models, context pressure, and team-serving capacity.</text>
+  </g>
+  <g transform="translate(1500 150)" filter="url(#glow)">
+    <rect x="0" y="120" width="620" height="250" rx="24" fill="#15132A" stroke="#8A70FF" stroke-opacity=".38"/>
+    <polyline points="60,290 170,230 280,250 390,160 540,190" fill="none" stroke="url(#line)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="#F5F5F5">
+      <rect x="54" y="284" width="20" height="20" rx="4"/>
+      <rect x="164" y="224" width="20" height="20" rx="4"/>
+      <rect x="274" y="244" width="20" height="20" rx="4"/>
+      <rect x="384" y="154" width="20" height="20" rx="4"/>
+      <rect x="534" y="184" width="20" height="20" rx="4"/>
+    </g>
+    <g fill="#8A70FF">
+      <rect x="660" y="28" width="24" height="24" rx="4"/>
+      <rect x="720" y="96" width="18" height="18" rx="3"/>
+      <rect x="680" y="420" width="14" height="14" rx="3"/>
+    </g>
+  </g>
+</svg>

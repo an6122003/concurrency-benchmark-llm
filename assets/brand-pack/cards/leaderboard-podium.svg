@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" role="img" aria-label="Benchmark leaderboard podium">
+  <defs>
+    <filter id="glow"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="900" height="520" rx="28" fill="#050505"/>
+  <rect x="1" y="1" width="898" height="518" rx="27" fill="none" stroke="#FFFFFF" stroke-opacity=".12"/>
+  <g opacity=".18" stroke="#FFFFFF"><path d="M80 420H820M80 340H820M80 260H820M80 180H820"/><path d="M180 100V450M300 100V450M420 100V450M540 100V450M660 100V450M780 100V450"/></g>
+  <text x="48" y="66" fill="#8A70FF" font-family="Inter, Arial" font-size="18" font-weight="700" letter-spacing="5">LEADERBOARD</text>
+  <g filter="url(#glow)">
+    <rect x="360" y="170" width="180" height="260" rx="18" fill="#8A70FF"/>
+    <rect x="160" y="250" width="180" height="180" rx="18" fill="#62D6FF"/>
+    <rect x="560" y="300" width="180" height="130" rx="18" fill="#65E7C8"/>
+    <text x="430" y="238" fill="#F5F5F5" font-family="Inter, Arial" font-size="52" font-weight="800">1</text>
+    <text x="230" y="312" fill="#050505" font-family="Inter, Arial" font-size="46" font-weight="800">2</text>
+    <text x="632" y="358" fill="#050505" font-family="Inter, Arial" font-size="42" font-weight="800">3</text>
+  </g>
+  <g fill="#8A70FF"><rect x="780" y="76" width="18" height="18" rx="3"/><rect x="812" y="116" width="10" height="10" rx="2"/><rect x="736" y="132" width="12" height="12" rx="2"/></g>
+</svg>

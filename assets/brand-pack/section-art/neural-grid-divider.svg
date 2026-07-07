@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="220" viewBox="0 0 1600 220" role="img" aria-label="Neural grid divider">
+  <defs>
+    <linearGradient id="fade" x1="0" x2="1">
+      <stop offset="0" stop-color="#8A70FF" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#8A70FF" stop-opacity=".65"/>
+      <stop offset="1" stop-color="#62D6FF" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1600" height="220" fill="none"/>
+  <g stroke="#FFFFFF" stroke-opacity=".08"><path d="M0 40H1600M0 90H1600M0 140H1600M0 190H1600"/><path d="M100 0V220M220 0V220M340 0V220M460 0V220M580 0V220M700 0V220M820 0V220M940 0V220M1060 0V220M1180 0V220M1300 0V220M1420 0V220"/></g>
+  <path d="M120 150C280 40 420 180 560 92S840 42 980 120S1240 190 1480 70" fill="none" stroke="url(#fade)" stroke-width="4" filter="url(#glow)"/>
+  <g fill="#8A70FF" filter="url(#glow)"><rect x="116" y="146" width="10" height="10"/><rect x="554" y="86" width="12" height="12"/><rect x="974" y="114" width="12" height="12"/><rect x="1474" y="64" width="12" height="12"/></g>
+  <g fill="#62D6FF"><rect x="338" y="106" width="8" height="8"/><rect x="778" y="64" width="8" height="8"/><rect x="1218" y="164" width="8" height="8"/></g>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" role="img" aria-label="Hardware result card background">
+  <defs>
+    <linearGradient id="card" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#15132A"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" x2="1">
+      <stop offset="0" stop-color="#8A70FF"/>
+      <stop offset="1" stop-color="#62D6FF"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="900" height="520" rx="28" fill="url(#card)"/>
+  <rect x="1" y="1" width="898" height="518" rx="27" fill="none" stroke="#FFFFFF" stroke-opacity=".12"/>
+  <text x="42" y="62" fill="#8A70FF" font-family="Inter, Arial" font-size="18" font-weight="700" letter-spacing="5">HARDWARE RESULT</text>
+  <rect x="42" y="92" width="360" height="32" rx="8" fill="#F5F5F5" fill-opacity=".9"/>
+  <rect x="42" y="142" width="260" height="18" rx="6" fill="#8A70FF"/>
+  <rect x="42" y="184" width="190" height="120" rx="16" fill="#0A0A14" stroke="#FFFFFF" stroke-opacity=".12"/>
+  <rect x="258" y="184" width="190" height="120" rx="16" fill="#0A0A14" stroke="#FFFFFF" stroke-opacity=".12"/>
+  <rect x="474" y="184" width="190" height="120" rx="16" fill="#0A0A14" stroke="#FFFFFF" stroke-opacity=".12"/>
+  <g transform="translate(690 84)" filter="url(#glow)">
+    <rect x="0" y="0" width="150" height="230" rx="18" fill="#111024" stroke="#8A70FF" stroke-opacity=".5"/>
+    <rect x="22" y="34" width="106" height="18" rx="5" fill="#8A70FF"/>
+    <rect x="22" y="76" width="78" height="18" rx="5" fill="#62D6FF"/>
+    <rect x="22" y="118" width="96" height="18" rx="5" fill="#65E7C8"/>
+    <rect x="22" y="160" width="60" height="18" rx="5" fill="#F5F5F5"/>
+  </g>
+  <polyline points="42,410 180,348 318,376 456,302 594,330 760,246" fill="none" stroke="url(#line)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#F5F5F5"><rect x="34" y="402" width="18" height="18" rx="4"/><rect x="172" y="340" width="18" height="18" rx="4"/><rect x="310" y="368" width="18" height="18" rx="4"/><rect x="448" y="294" width="18" height="18" rx="4"/><rect x="586" y="322" width="18" height="18" rx="4"/><rect x="752" y="238" width="18" height="18" rx="4"/></g>
+</svg>

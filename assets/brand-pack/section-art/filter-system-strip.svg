@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="360" viewBox="0 0 1600 360" role="img" aria-label="Smart filter system strip">
+  <rect width="1600" height="360" rx="28" fill="#050505"/>
+  <rect x="1" y="1" width="1598" height="358" rx="27" fill="none" stroke="#FFFFFF" stroke-opacity=".12"/>
+  <text x="64" y="76" fill="#8A70FF" font-family="Inter,Arial" font-size="20" font-weight="800" letter-spacing="6">SMART FILTERS</text>
+  <g font-family="Inter,Arial" font-size="28" font-weight="700">
+    <g transform="translate(64 120)"><rect width="260" height="68" rx="34" fill="#15132A" stroke="#8A70FF" stroke-opacity=".55"/><text x="34" y="44" fill="#F5F5F5">2-5 person team</text></g>
+    <g transform="translate(352 120)"><rect width="230" height="68" rx="34" fill="#15132A" stroke="#62D6FF" stroke-opacity=".55"/><text x="34" y="44" fill="#F5F5F5">Runs 30B+</text></g>
+    <g transform="translate(610 120)"><rect width="240" height="68" rx="34" fill="#15132A" stroke="#65E7C8" stroke-opacity=".55"/><text x="34" y="44" fill="#F5F5F5">Under $1K</text></g>
+    <g transform="translate(878 120)"><rect width="270" height="68" rx="34" fill="#15132A" stroke="#8A70FF" stroke-opacity=".55"/><text x="34" y="44" fill="#F5F5F5">No CUDA</text></g>
+    <g transform="translate(1176 120)"><rect width="250" height="68" rx="34" fill="#15132A" stroke="#62D6FF" stroke-opacity=".55"/><text x="34" y="44" fill="#F5F5F5">Low TTFT</text></g>
+  </g>
+  <path d="M84 276H1470" stroke="#8A70FF" stroke-opacity=".45" stroke-width="3"/>
+  <g fill="#8A70FF"><rect x="300" y="268" width="18" height="18"/><rect x="760" y="268" width="18" height="18"/><rect x="1220" y="268" width="18" height="18"/></g>
+</svg>

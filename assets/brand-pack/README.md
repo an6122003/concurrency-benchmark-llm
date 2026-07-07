@@ -16,6 +16,17 @@ This folder contains decorative assets for the AI hardware benchmark website and
 - `svg/pixel-spark-cluster.svg`: small spark/constellation decoration.
 - `svg/benchmark-metric-icons.svg`: tok/s, TTFT, context, VRAM icon strip.
 - `banners/benchmark-hero-banner.svg`: wide benchmark database hero/banner.
+- `cards/hardware-result-card.svg`: large decorative result card background.
+- `cards/leaderboard-podium.svg`: leaderboard/winner section artwork.
+- `cards/model-comparison-card.svg`: model-versus-model comparison artwork.
+- `empty-states/no-results-empty-state.svg`: filter/search empty state.
+- `empty-states/import-json-empty-state.svg`: import/onboarding empty state.
+- `badges/verification-badges.svg`: verified/community/estimated badge strip.
+- `section-art/neural-grid-divider.svg`: section divider with grid and curve.
+- `section-art/filter-system-strip.svg`: smart filter system visual.
+- `overlays/chart-glow-overlay.svg`: chart panel background overlay.
+- `social/og-benchmark-database.svg`: Open Graph/social preview card.
+- `textures/deep-space-grid.svg`: repeatable dark grid texture.
 
 ## Brand Copy
 
@@ -57,4 +68,3 @@ Usage guidance:
 - Use the GPU trophy pose sparingly for winners or highlighted hardware.
 - Use analytics/dashboard pose near charts and reports.
 - Use solution architect pose near buyer guidance or deployment recommendations.
-

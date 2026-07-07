@@ -12,60 +12,204 @@
       "id": "pet-gpu-trophy",
       "path": "assets/brand-pack/pixel-pet/pet-gpu-trophy.png",
       "type": "raster",
-      "usage": ["winner-card", "hardware-profile", "gpu-highlight"],
+      "usage": [
+        "winner-card",
+        "hardware-profile",
+        "gpu-highlight"
+      ],
       "alt": "Pixel Pet holding a glowing GPU like a trophy"
     },
     {
       "id": "pet-analytics-dashboard",
       "path": "assets/brand-pack/pixel-pet/pet-analytics-dashboard.png",
       "type": "raster",
-      "usage": ["charts", "suite-report", "comparison-dashboard"],
+      "usage": [
+        "charts",
+        "suite-report",
+        "comparison-dashboard"
+      ],
       "alt": "Pixel Pet pointing at a benchmark analytics dashboard"
     },
     {
       "id": "pet-server-rack",
       "path": "assets/brand-pack/pixel-pet/pet-server-rack.png",
       "type": "raster",
-      "usage": ["local-server", "runtime", "deployment"],
+      "usage": [
+        "local-server",
+        "runtime",
+        "deployment"
+      ],
       "alt": "Pixel Pet sitting on a glowing AI server rack"
     },
     {
       "id": "pet-token-courier",
       "path": "assets/brand-pack/pixel-pet/pet-token-courier.png",
       "type": "raster",
-      "usage": ["throughput", "tokens-per-second", "concurrency"],
+      "usage": [
+        "throughput",
+        "tokens-per-second",
+        "concurrency"
+      ],
       "alt": "Pixel Pet carrying glowing token cubes"
     },
     {
       "id": "pet-solution-architect",
       "path": "assets/brand-pack/pixel-pet/pet-solution-architect.png",
       "type": "raster",
-      "usage": ["solution-architecture", "buyer-guide", "checklist"],
+      "usage": [
+        "solution-architecture",
+        "buyer-guide",
+        "checklist"
+      ],
       "alt": "Pixel Pet with a headset and benchmark checklist"
     },
     {
       "id": "benchmark-wordmark",
       "path": "assets/brand-pack/svg/techies-benchmark-wordmark.svg",
       "type": "svg",
-      "usage": ["header", "presentation", "social-preview"]
+      "usage": [
+        "header",
+        "presentation",
+        "social-preview"
+      ]
     },
     {
       "id": "benchmark-hero-banner",
       "path": "assets/brand-pack/banners/benchmark-hero-banner.svg",
       "type": "svg",
-      "usage": ["hero", "open-graph", "presentation"]
+      "usage": [
+        "hero",
+        "open-graph",
+        "presentation"
+      ]
     },
     {
       "id": "pixel-spark-cluster",
       "path": "assets/brand-pack/svg/pixel-spark-cluster.svg",
       "type": "svg",
-      "usage": ["background-decoration", "empty-state", "section-divider"]
+      "usage": [
+        "background-decoration",
+        "empty-state",
+        "section-divider"
+      ]
     },
     {
       "id": "benchmark-metric-icons",
       "path": "assets/brand-pack/svg/benchmark-metric-icons.svg",
       "type": "svg",
-      "usage": ["metric-cards", "legend", "documentation"]
+      "usage": [
+        "metric-cards",
+        "legend",
+        "documentation"
+      ]
+    },
+    {
+      "id": "hardware-result-card",
+      "path": "assets/brand-pack/cards/hardware-result-card.svg",
+      "type": "svg",
+      "usage": [
+        "hardware-card",
+        "result-row",
+        "feature-card"
+      ]
+    },
+    {
+      "id": "leaderboard-podium",
+      "path": "assets/brand-pack/cards/leaderboard-podium.svg",
+      "type": "svg",
+      "usage": [
+        "leaderboard",
+        "winner-section",
+        "ranking"
+      ]
+    },
+    {
+      "id": "model-comparison-card",
+      "path": "assets/brand-pack/cards/model-comparison-card.svg",
+      "type": "svg",
+      "usage": [
+        "model-comparison",
+        "versus-card",
+        "comparison-page"
+      ]
+    },
+    {
+      "id": "no-results-empty-state",
+      "path": "assets/brand-pack/empty-states/no-results-empty-state.svg",
+      "type": "svg",
+      "usage": [
+        "empty-state",
+        "filters",
+        "no-results"
+      ]
+    },
+    {
+      "id": "import-json-empty-state",
+      "path": "assets/brand-pack/empty-states/import-json-empty-state.svg",
+      "type": "svg",
+      "usage": [
+        "empty-state",
+        "import",
+        "onboarding"
+      ]
+    },
+    {
+      "id": "neural-grid-divider",
+      "path": "assets/brand-pack/section-art/neural-grid-divider.svg",
+      "type": "svg",
+      "usage": [
+        "section-divider",
+        "background"
+      ]
+    },
+    {
+      "id": "verification-badges",
+      "path": "assets/brand-pack/badges/verification-badges.svg",
+      "type": "svg",
+      "usage": [
+        "verified",
+        "community",
+        "estimated",
+        "trust"
+      ]
+    },
+    {
+      "id": "chart-glow-overlay",
+      "path": "assets/brand-pack/overlays/chart-glow-overlay.svg",
+      "type": "svg",
+      "usage": [
+        "chart-background",
+        "panel-overlay"
+      ]
+    },
+    {
+      "id": "og-benchmark-database",
+      "path": "assets/brand-pack/social/og-benchmark-database.svg",
+      "type": "svg",
+      "usage": [
+        "social-card",
+        "open-graph",
+        "share-image"
+      ]
+    },
+    {
+      "id": "deep-space-grid",
+      "path": "assets/brand-pack/textures/deep-space-grid.svg",
+      "type": "svg",
+      "usage": [
+        "background-texture",
+        "css-background"
+      ]
+    },
+    {
+      "id": "filter-system-strip",
+      "path": "assets/brand-pack/section-art/filter-system-strip.svg",
+      "type": "svg",
+      "usage": [
+        "filter-section",
+        "smart-filters",
+        "documentation"
+      ]
     }
   ],
   "copy": {

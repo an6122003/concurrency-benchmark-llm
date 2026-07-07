@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" role="img" aria-label="Model comparison card">
+  <defs>
+    <linearGradient id="a" x1="0" x2="1"><stop offset="0" stop-color="#8A70FF"/><stop offset="1" stop-color="#62D6FF"/></linearGradient>
+    <linearGradient id="b" x1="0" x2="1"><stop offset="0" stop-color="#65E7C8"/><stop offset="1" stop-color="#8A70FF"/></linearGradient>
+  </defs>
+  <rect width="900" height="520" rx="28" fill="#050505"/>
+  <rect x="1" y="1" width="898" height="518" rx="27" fill="none" stroke="#FFFFFF" stroke-opacity=".12"/>
+  <text x="48" y="66" fill="#8A70FF" font-family="Inter, Arial" font-size="18" font-weight="700" letter-spacing="5">MODEL COMPARISON</text>
+  <g transform="translate(56 116)">
+    <rect width="360" height="310" rx="22" fill="#15132A" stroke="#FFFFFF" stroke-opacity=".12"/>
+    <rect x="28" y="34" width="220" height="28" rx="7" fill="#F5F5F5"/>
+    <rect x="28" y="82" width="130" height="20" rx="6" fill="#8A70FF"/>
+    <rect x="28" y="150" width="290" height="24" rx="7" fill="url(#a)"/>
+    <rect x="28" y="198" width="238" height="24" rx="7" fill="url(#a)" opacity=".72"/>
+    <rect x="28" y="246" width="178" height="24" rx="7" fill="url(#a)" opacity=".48"/>
+  </g>
+  <g transform="translate(484 116)">
+    <rect width="360" height="310" rx="22" fill="#15132A" stroke="#FFFFFF" stroke-opacity=".12"/>
+    <rect x="28" y="34" width="220" height="28" rx="7" fill="#F5F5F5"/>
+    <rect x="28" y="82" width="130" height="20" rx="6" fill="#65E7C8"/>
+    <rect x="28" y="150" width="250" height="24" rx="7" fill="url(#b)"/>
+    <rect x="28" y="198" width="310" height="24" rx="7" fill="url(#b)" opacity=".72"/>
+    <rect x="28" y="246" width="210" height="24" rx="7" fill="url(#b)" opacity=".48"/>
+  </g>
+  <circle cx="450" cy="270" r="34" fill="#0A0A14" stroke="#8A70FF" stroke-opacity=".6"/>
+  <text x="429" y="281" fill="#F5F5F5" font-family="Inter, Arial" font-size="24" font-weight="800">VS</text>
+</svg>

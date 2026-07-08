@@ -42,6 +42,31 @@ class TestValidation(unittest.TestCase):
         self.assertIn("warmup", warns.lower())
 
 
+class TestBuiltinRuntimeMode(unittest.TestCase):
+    def test_builtin_requires_model_file(self):
+        config = BenchmarkConfig(use_builtin_runtime=True)
+        self.assertTrue(any("Download a model" in e for e in config.validate()))
+
+    def test_builtin_missing_file_is_error(self):
+        config = BenchmarkConfig(use_builtin_runtime=True, model_file="/nope/x.gguf")
+        self.assertTrue(any("missing" in e for e in config.validate()))
+
+    def test_builtin_skips_server_checks(self):
+        config = BenchmarkConfig(use_builtin_runtime=True, model_file=__file__,
+                                 base_url="not-a-url", model="")
+        self.assertEqual(config.validate(), [])
+
+    def test_model_file_never_reaches_engine_dict(self):
+        data = BenchmarkConfig(model="m", model_file="/private/x.gguf").to_dict(
+            include_app_fields=False)
+        self.assertNotIn("model_file", data)
+
+    def test_cli_args_base_url_override(self):
+        config = BenchmarkConfig(model="m", base_url="http://localhost:1234")
+        args = config.to_cli_args(Path("/tmp/out"), base_url="http://127.0.0.1:9999")
+        self.assertEqual(args[args.index("--base-url") + 1], "http://127.0.0.1:9999")
+
+
 class TestPresetsAndArgs(unittest.TestCase):
     def test_all_presets_valid_once_model_set(self):
         for name, preset in BenchmarkConfig.presets().items():

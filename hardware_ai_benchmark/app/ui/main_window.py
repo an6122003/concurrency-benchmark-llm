@@ -78,4 +78,5 @@ class MainWindow(QMainWindow):
 
     def closeEvent(self, event) -> None:
         self.run_screen.request_shutdown()
+        self.config_screen.request_shutdown()
         super().closeEvent(event)

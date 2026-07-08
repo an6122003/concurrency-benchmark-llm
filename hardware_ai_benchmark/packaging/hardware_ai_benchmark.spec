@@ -15,6 +15,10 @@ a = Analysis(
     datas=[
         (str(repo / "ai_concurrent_benchmark.py"), "."),
         (str(repo / "hardware_ai_benchmark" / "assets"), "hardware_ai_benchmark/assets"),
+        # Optional: pre-bundle the built-in llama.cpp runtime so users skip the
+        # one-time download. Put llama-server (+ its libs) in <repo>/runtime/
+        # before building; otherwise the app offers the download in-UI.
+        *([(str(repo / "runtime"), "runtime")] if (repo / "runtime").is_dir() else []),
     ],
     hiddenimports=[],
     excludes=["tkinter", "PySide6.QtWebEngineCore", "PySide6.QtWebEngineWidgets",

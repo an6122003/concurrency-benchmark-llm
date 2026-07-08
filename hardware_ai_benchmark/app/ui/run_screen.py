@@ -98,8 +98,10 @@ class RunScreen(QWidget):
     def prepare(self, config: BenchmarkConfig, system_info: dict) -> None:
         self.config = config
         self.system_info = system_info
+        where = ("built-in runtime" if config.use_builtin_runtime
+                 else f"{config.server} at {config.base_url}")
         self.summary.setText(
-            f"Model {config.model}  ·  {config.server} at {config.base_url}  ·  "
+            f"Model {config.model}  ·  {where}  ·  "
             f"users {config.concurrency}  ·  {config.max_tokens} tokens/request  ·  preset: {config.preset}")
         self.stage_label.setText("Ready. Press Run Benchmark to start.")
         self.progress.setValue(0)

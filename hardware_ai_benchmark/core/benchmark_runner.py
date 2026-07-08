@@ -16,6 +16,7 @@ from typing import Callable, List, Optional
 
 from . import engine
 from .config import BenchmarkConfig
+from .runtime_manager import ManagedServer
 
 USERS_LINE = re.compile(r"^users=\s*(\d+)\s+success=(\d+)/(\d+)")
 WARMUP_LINE = re.compile(r"^\s*warmup (\d+)/(\d+)")
@@ -43,10 +44,13 @@ class BenchmarkRunner:
         self.config = config
         self.out_dir = config.resolved_out_dir()
         self._process: Optional[subprocess.Popen] = None
+        self._managed: Optional[ManagedServer] = None
         self._cancelled = threading.Event()
 
     def cancel(self) -> None:
         self._cancelled.set()
+        if self._managed:
+            self._managed.stop()
         process = self._process
         if process and process.poll() is None:
             process.terminate()
@@ -67,8 +71,33 @@ class BenchmarkRunner:
         done_groups = 0
 
         self.out_dir.mkdir(parents=True, exist_ok=True)
-        command = engine.engine_command(self.config.to_cli_args(self.out_dir))
-        on_stage("Starting benchmark process…", 0.0)
+        outcome.out_dir = self.out_dir
+
+        def log(line: str) -> None:
+            outcome.log_lines.append(line)
+            on_line(line)
+
+        base_url = None
+        if self.config.use_builtin_runtime:
+            on_stage("Starting built-in AI runtime…", 0.01)
+            self._managed = ManagedServer(
+                Path(self.config.model_file),
+                context_per_slot=self.config.context_size or 4096,
+                parallel=min(8, max(groups, default=1)),
+            )
+            try:
+                self._managed.start(on_line=log)
+            except OSError as exc:
+                outcome.error = str(exc)
+                outcome.status = "cancelled" if self._cancelled.is_set() else "failed"
+                outcome.finished_at = time.time()
+                self._write_raw_logs(outcome)
+                return outcome
+            base_url = self._managed.base_url
+            on_stage("Runtime ready — model loaded", 0.02)
+
+        command = engine.engine_command(self.config.to_cli_args(self.out_dir, base_url=base_url))
+        on_stage("Starting benchmark process…", 0.02 if base_url else 0.0)
         on_line("$ " + " ".join(command))
 
         try:
@@ -82,6 +111,9 @@ class BenchmarkRunner:
         except OSError as exc:
             outcome.error = f"Could not start benchmark process: {exc}"
             outcome.finished_at = time.time()
+            if self._managed:
+                self._managed.stop()
+            self._write_raw_logs(outcome)
             return outcome
 
         for raw in self._process.stdout:
@@ -107,9 +139,10 @@ class BenchmarkRunner:
                 on_stage("Writing reports…", 0.99)
 
         exit_code = self._process.wait()
+        if self._managed:
+            self._managed.stop()
         outcome.exit_code = exit_code
         outcome.finished_at = time.time()
-        outcome.out_dir = self.out_dir
 
         if self._cancelled.is_set():
             outcome.status = "cancelled"
@@ -122,10 +155,13 @@ class BenchmarkRunner:
             tail = "\n".join(outcome.log_lines[-5:])
             outcome.error = f"Benchmark exited with code {exit_code}.\n{tail}"
 
-        # Always keep the raw log, even for crashes/cancels.
+        self._write_raw_logs(outcome)
+        return outcome
+
+    def _write_raw_logs(self, outcome: RunOutcome) -> None:
+        """Always keep the raw log, even for crashes/cancels."""
         try:
             (self.out_dir / "raw_logs.txt").write_text(
                 "\n".join(outcome.log_lines) + "\n", encoding="utf-8")
         except OSError:
             pass
-        return outcome

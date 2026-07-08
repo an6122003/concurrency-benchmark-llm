@@ -43,6 +43,20 @@ def log_dir() -> Path:
     return path
 
 
+def runtime_dir() -> Path:
+    """Managed llama.cpp runtime downloaded by the app (built-in server mode)."""
+    path = app_data_dir() / "runtime"
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def models_dir() -> Path:
+    """GGUF models downloaded through the in-app catalog."""
+    path = app_data_dir() / "models"
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
 def anonymous_machine_id() -> str:
     """Stable random id, generated once and stored locally. Not derived from
     hardware or hostname, so it cannot be reversed into anything personal."""

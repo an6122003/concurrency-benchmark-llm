@@ -29,6 +29,7 @@ DEFAULT_ENDPOINT = "/api/benchmark-results"
 PRIVATE_KEYS = {
     "python_executable", "prompts_file", "hardware_image", "pnp_device_id",
     "local_scan", "processes", "model_files", "env", "base_url", "out_dir",
+    "model_file",
 }
 _HOME_RE = re.compile(r"(/Users/[^/\s\"]+|/home/[^/\s\"]+|[A-Z]:\\+Users\\+[^\\\s\"]+)")
 

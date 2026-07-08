@@ -12,20 +12,30 @@ logs → automatic reports → review-and-consent upload.
 
 ## For end users
 
-1. Start your local AI server (LM Studio or Ollama) and load a model.
-2. Open **Hardware AI Benchmark**.
-3. **System** — check the detected hardware; press *Refresh detection* if you
+1. Open **Hardware AI Benchmark** — no other software needed.
+2. **System** — check the detected hardware; press *Refresh detection* if you
    changed anything.
-4. **Configure** — pick a test size:
+3. **Configure** — pick where the model runs:
+   - **Built-in runtime (recommended)** — the app downloads the official
+     llama.cpp server once (~10–30 MB) and offers a catalog of models from
+     a 101 MB sanity check up to a 14B heavyweight, each with a RAM fit
+     hint. Click *Download* on a model, and you're ready. GPU acceleration
+     is automatic (Metal on macOS, Vulkan on Windows/Linux). You can also
+     point it at any `.gguf` file you already have.
+   - **My own server** — benchmark a model already loaded in LM Studio or
+     Ollama; press *Find models* to pick from what the server reports.
+
+   Then pick a test size:
    - **Quick Test** ~3–5 min: fast sanity check
    - **Standard Test** ~10–20 min: the recommended community test
    - **Full Test** ~30–60 min: full concurrency sweep
    - **Stress Test** 1h+: pushes queueing and memory limits
-   Press *Find models* to pick from what your server has loaded. Advanced
-   settings are hidden unless you open them.
-5. **Run** — press *Run Benchmark*. You can watch stage, progress, elapsed
-   time and live logs, or press *Stop* at any time (partial logs are kept).
-6. **Results** — see your scores, open the visual HTML report, or press
+   Advanced settings are hidden unless you open them.
+4. **Run** — press *Run Benchmark*. In built-in mode the app starts its own
+   model server first (you'll see `[runtime]` lines in the log) and always
+   shuts it down afterwards. You can watch stage, progress, elapsed time and
+   live logs, or press *Stop* at any time (partial logs are kept).
+5. **Results** — see your scores, open the visual HTML report, or press
    *Upload to community database*. Uploading always shows you exactly what
    will be sent and requires a consent checkbox. Anonymous by default.
 
@@ -48,6 +58,13 @@ Results are saved to `Documents/HardwareAIBenchmark/run-<date>/` with:
 - You can withhold hardware metadata entirely with one checkbox.
 - The anonymous machine id is a random token, not derived from your hardware.
 - Failed uploads are kept in a local outbox and can be retried.
+- Local model file paths (built-in runtime mode) stay on your machine; only
+  the model's display name and quantization are shared.
+
+Downloaded models and the built-in runtime live in the app data folder
+(`~/Library/Application Support/HardwareAIBenchmark` on macOS, `%APPDATA%` on
+Windows, `~/.local/share` on Linux) under `models/` and `runtime/` — delete
+them there to free disk space.
 
 ---
 
@@ -78,6 +95,8 @@ hardware_ai_benchmark/
     engine.py         locates/imports ai_concurrent_benchmark.py
     config.py         BenchmarkConfig: presets, validation, warnings, CLI args
     system_detect.py  platform/arch/backends + engine's hardware collectors
+    runtime_manager.py  built-in llama.cpp: per-OS asset pick, install, ManagedServer
+    model_catalog.py  curated GGUF downloads with resume + RAM fit hints
     benchmark_runner.py  subprocess runner, stdout→progress, cancel, crash logs
     result_schema.py  schema v1: build, validate, checksum, derived scores
     report_generator.py  result.json + app_metadata.json next to engine files
@@ -93,6 +112,14 @@ Key decisions:
   its stdout (`warmup i/N`, `users=N success=...`) for stage/progress. In a
   frozen build the app re-invokes itself with `--engine` since there is no
   system Python.
+- **Built-in runtime = managed llama-server.** `llama-server` speaks the same
+  OpenAI-compatible streaming API the engine already targets, so built-in mode
+  just starts it on a free localhost port, points the engine at it (still
+  "lmstudio" server mode), and stops it afterwards. The binary comes from the
+  official llama.cpp GitHub releases — Metal build on macOS, Vulkan on
+  Windows/Linux with CPU fallback — resolved to the latest tag with a pinned
+  fallback. It runs with one context slot per simulated user (capped at 8;
+  beyond that requests queue, like a real single-node server).
 - **Core is stdlib-only** (dataclasses + explicit validation instead of
   pydantic) so tests run anywhere and the packaged app stays small. The
   schema module is the single swap-in point if pydantic is wanted later.
@@ -127,6 +154,11 @@ All three use the same PyInstaller spec
 (`packaging/hardware_ai_benchmark.spec`), which bundles the engine script and
 assets. Users need no Python install.
 
+The built-in llama.cpp runtime is downloaded on first use by default (keeps
+installers small). To ship it pre-bundled instead, place `llama-server` and
+its libraries in `<repo>/runtime/` before building — the spec picks the folder
+up automatically and `runtime_manager` prefers the bundled copy.
+
 ### Platform compatibility matrix
 
 | Platform | Status | Package type | Notes |
@@ -141,10 +173,14 @@ assets. Users need no Python install.
 ### Troubleshooting
 
 **All platforms**
-- "Model is required" — press *Find models*; your server must be running with
-  a model loaded.
-- Benchmark fails instantly — verify the URL on the Configure screen
-  (LM Studio `http://localhost:1234`, Ollama `http://localhost:11434`).
+- Built-in mode: "runtime exited during startup" usually means the model is
+  too large for this machine — pick a smaller one from the catalog.
+- Built-in mode: model/runtime downloads need internet access; failed model
+  downloads resume where they stopped.
+- Server mode: "Model is required" — press *Find models*; your server must be
+  running with a model loaded.
+- Server mode: benchmark fails instantly — verify the URL on the Configure
+  screen (LM Studio `http://localhost:1234`, Ollama `http://localhost:11434`).
 - App logs live in the platform data dir (`logs/app.log`), results in
   `Documents/HardwareAIBenchmark/`.
 

@@ -11,6 +11,7 @@ from PySide6.QtWidgets import (
 
 from ...core.config import BenchmarkConfig
 from ...core import system_detect
+from .builtin_runtime_panel import BuiltinRuntimePanel
 
 PRESET_LABELS = {
     "quick": "Quick Test",
@@ -25,6 +26,7 @@ class ConfigScreen(QWidget):
 
     def __init__(self):
         super().__init__()
+        self._preset_name = "standard"
         outer = QVBoxLayout(self)
         outer.setContentsMargins(28, 24, 28, 24)
         outer.setSpacing(12)
@@ -62,8 +64,33 @@ class ConfigScreen(QWidget):
         preset_layout.addWidget(self.preset_hint)
         layout.addWidget(preset_card)
 
+        # ---- where the model runs ----
+        mode_card = QFrame(); mode_card.setProperty("card", True)
+        mode_layout = QVBoxLayout(mode_card)
+        mode_layout.addWidget(self._section_label("Where should the model run?"))
+        mode_row = QHBoxLayout()
+        self.mode_builtin = QRadioButton("Built-in runtime (recommended)")
+        self.mode_builtin.setToolTip(
+            "The app downloads a model and runs it itself with llama.cpp — nothing else to install.")
+        self.mode_server = QRadioButton("My own server (LM Studio / Ollama)")
+        self.mode_server.setToolTip("Benchmark a model already loaded in LM Studio or Ollama.")
+        mode_group = QButtonGroup(self)
+        mode_group.addButton(self.mode_builtin)
+        mode_group.addButton(self.mode_server)
+        mode_row.addWidget(self.mode_builtin)
+        mode_row.addWidget(self.mode_server)
+        mode_row.addStretch(1)
+        mode_layout.addLayout(mode_row)
+        layout.addWidget(mode_card)
+
+        # ---- built-in runtime ----
+        self.builtin_panel = BuiltinRuntimePanel()
+        self.builtin_panel.changed.connect(self._refresh_warnings)
+        layout.addWidget(self.builtin_panel)
+
         # ---- connection ----
         conn_card = QFrame(); conn_card.setProperty("card", True)
+        self.conn_card = conn_card
         conn_layout = QFormLayout(conn_card)
         self.server = QComboBox()
         self.server.addItems(["lmstudio", "ollama", "ollama-native"])
@@ -148,7 +175,10 @@ class ConfigScreen(QWidget):
         self.max_tokens.valueChanged.connect(self._refresh_warnings)
         self.context_size.valueChanged.connect(self._refresh_warnings)
         self.warmup.valueChanged.connect(self._refresh_warnings)
-        # All widgets exist now; checking the default preset applies it.
+        # All widgets exist now; checking the defaults applies them.
+        self.mode_builtin.toggled.connect(self._apply_mode)
+        self.mode_builtin.setChecked(True)
+        self._apply_mode()
         self._preset_buttons["standard"].setChecked(True)
 
     # ---------- helpers ----------
@@ -161,6 +191,15 @@ class ConfigScreen(QWidget):
 
     def _default_url(self, server: str) -> None:
         self.base_url.setText("http://localhost:11434" if server.startswith("ollama") else "http://localhost:1234")
+
+    def _apply_mode(self, *_args) -> None:
+        builtin = self.mode_builtin.isChecked()
+        self.builtin_panel.setVisible(builtin)
+        self.conn_card.setVisible(not builtin)
+        self._refresh_warnings()
+
+    def request_shutdown(self) -> None:
+        self.builtin_panel.request_shutdown()
 
     def _apply_preset(self, name: str) -> None:
         preset = BenchmarkConfig.presets()[name]
@@ -190,19 +229,23 @@ class ConfigScreen(QWidget):
             self.problems.style().polish(self.problems)
 
     def collect(self) -> BenchmarkConfig:
+        builtin = self.mode_builtin.isChecked()
+        selection = self.builtin_panel.selection() if builtin else None
         return BenchmarkConfig(
-            server=self.server.currentText(),
+            server="lmstudio" if builtin else self.server.currentText(),
             base_url=self.base_url.text().strip(),
-            model=self.model.currentText().strip(),
+            use_builtin_runtime=builtin,
+            model_file=(selection or {}).get("file", ""),
+            model=(selection or {}).get("name", "") if builtin else self.model.currentText().strip(),
             concurrency=self.concurrency.text().strip(),
             max_tokens=self.max_tokens.value(),
             temperature=self.temperature.value(),
             timeout_s=float(self.timeout.value()),
             warmup=self.warmup.value(),
-            quantization=self.quantization.text().strip(),
+            quantization=self.quantization.text().strip() or (selection or {}).get("quantization", ""),
             context_size=self.context_size.value() or None,
             gpu_label=self.gpu_label.text().strip(),
-            runtime_label=self.runtime_label.text().strip(),
+            runtime_label=self.runtime_label.text().strip() or ("llama.cpp (built-in)" if builtin else ""),
             notes=self.notes.text().strip(),
             out_dir=self.out_dir.text().strip(),
             preset=self._preset_name,
@@ -224,6 +267,14 @@ class ConfigScreen(QWidget):
         self.problems.style().polish(self.problems)
 
     def _submit(self) -> None:
+        if self.mode_builtin.isChecked():
+            ready, reason = self.builtin_panel.is_ready()
+            if not ready:
+                self.problems.setProperty("warning", False)
+                self.problems.setProperty("error", True)
+                self.problems.setText("✗  " + reason)
+                self.problems.style().polish(self.problems)
+                return
         config = self.collect()
         errors = config.validate()
         if errors:

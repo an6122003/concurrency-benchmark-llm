@@ -26,10 +26,14 @@ def _parse_concurrency(text: str) -> List[int]:
 
 @dataclass
 class BenchmarkConfig:
-    # Connection
+    # Connection. With use_builtin_runtime the app starts its own llama-server
+    # (OpenAI-compatible, so the engine still runs in "lmstudio" mode) and
+    # base_url is replaced by the managed server's port at run time.
     server: str = "lmstudio"                     # lmstudio | ollama | ollama-native
     base_url: str = "http://localhost:1234"
     model: str = ""
+    use_builtin_runtime: bool = False
+    model_file: str = ""                         # local GGUF path (never uploaded)
 
     # Workload
     concurrency: str = "1-8"
@@ -56,7 +60,8 @@ class BenchmarkConfig:
     user_alias: str = ""
 
     APP_ONLY_FIELDS = ("out_dir", "preset", "preset_hint", "collect_extended_info",
-                       "include_metadata_in_upload", "auto_upload", "user_alias")
+                       "include_metadata_in_upload", "auto_upload", "user_alias",
+                       "model_file")
 
     # ---------- presets ----------
 
@@ -83,12 +88,18 @@ class BenchmarkConfig:
     def validate(self) -> List[str]:
         """Hard errors that must be fixed before running."""
         errors: List[str] = []
-        if not self.model.strip():
-            errors.append("Model is required. Pick the model loaded in your server.")
+        if self.use_builtin_runtime:
+            if not self.model_file:
+                errors.append("Download a model (or choose a GGUF file) to use the built-in runtime.")
+            elif not Path(self.model_file).exists():
+                errors.append(f"Model file is missing: {Path(self.model_file).name}")
+        else:
+            if not self.model.strip():
+                errors.append("Model is required. Pick the model loaded in your server.")
+            if not self.base_url.startswith(("http://", "https://")):
+                errors.append("Server URL must start with http:// or https://")
         if self.server not in ("lmstudio", "ollama", "ollama-native"):
             errors.append(f"Unknown server type: {self.server}")
-        if not self.base_url.startswith(("http://", "https://")):
-            errors.append("Server URL must start with http:// or https://")
         try:
             if not _parse_concurrency(self.concurrency):
                 errors.append("Concurrency must contain at least one user count.")
@@ -132,10 +143,10 @@ class BenchmarkConfig:
         stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
         return results_dir() / f"run-{stamp}"
 
-    def to_cli_args(self, out_dir: Path) -> List[str]:
+    def to_cli_args(self, out_dir: Path, base_url: Optional[str] = None) -> List[str]:
         args = [
             "--server", self.server,
-            "--base-url", self.base_url,
+            "--base-url", base_url or self.base_url,
             "--model", self.model,
             "--concurrency", self.concurrency,
             "--max-tokens", str(self.max_tokens),

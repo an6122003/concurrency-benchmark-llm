@@ -4,10 +4,20 @@
 # The benchmark engine (ai_concurrent_benchmark.py) is bundled as DATA so the
 # frozen app can re-invoke itself with `--engine` and import it at runtime.
 
+import re
 from pathlib import Path
 
 # SPECPATH is the directory containing this spec (…/hardware_ai_benchmark/packaging)
 repo = Path(SPECPATH).resolve().parents[1]
+
+# The engine ships as DATA, so PyInstaller never analyzes its imports.
+# Collect them here or the frozen `--engine` child dies on ModuleNotFoundError.
+engine_source = (repo / "ai_concurrent_benchmark.py").read_text(encoding="utf-8")
+engine_imports = sorted(set(
+    match.group(1)
+    for match in re.finditer(r"^(?:import|from)\s+([A-Za-z_][A-Za-z0-9_.]*)",
+                             engine_source, re.MULTILINE)
+) - {"__future__"})
 
 a = Analysis(
     [str(repo / "hardware_ai_benchmark" / "packaging" / "entry.py")],
@@ -20,7 +30,7 @@ a = Analysis(
         # before building; otherwise the app offers the download in-UI.
         *([(str(repo / "runtime"), "runtime")] if (repo / "runtime").is_dir() else []),
     ],
-    hiddenimports=[],
+    hiddenimports=engine_imports,
     excludes=["tkinter", "PySide6.QtWebEngineCore", "PySide6.QtWebEngineWidgets",
               "PySide6.Qt3DCore", "PySide6.QtCharts", "PySide6.QtQuick",
               "PySide6.QtQml", "PySide6.QtMultimedia"],

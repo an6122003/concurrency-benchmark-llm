@@ -153,6 +153,52 @@ Important for buyers and teams.
 - Comfortable users per dollar
 - Tokens/sec per watt
 
+### Single-Stream Responsiveness
+
+The "how does it feel for one person" benchmark, separate from concurrency.
+
+- 1-user decode tok/s
+- 1-user TTFT (streamed)
+- Cold-start time: model load to first token after server restart
+- Warm TTFT vs cold TTFT
+
+Derived scores:
+
+- Snappiness score: TTFT under 0.5s and decode above reading speed (~12 tok/s)
+
+### Batch / Offline Throughput
+
+For data-processing workloads (summarize a folder, embeddings, agents) where
+latency does not matter but total throughput does.
+
+- Max aggregate tok/s at high concurrency (8-32 requests)
+- Requests per minute at fixed prompt/output sizes
+- Tokens per hour sustained over 10+ minutes
+
+### Sustained Load And Stability
+
+Peak numbers can hide thermal throttling and memory leaks.
+
+- Aggregate tok/s in minute 1 vs minute 10 of continuous load
+- Throttle ratio: sustained tok/s divided by peak tok/s
+- Temperature and clock behavior if available
+- VRAM growth over a long session (leak detection)
+- Error rate over 100+ consecutive requests
+
+### Prefill vs Decode Split
+
+Prompt processing and generation stress hardware differently; both matter.
+
+- Prefill tok/s at 1K/8K/32K prompt
+- Decode tok/s at the same context depths
+- Useful for RAG-heavy vs chat-heavy buying decisions
+
+### Energy And Noise
+
+- Wall power at idle, single-stream, and saturated load
+- Tokens per joule (tok/s per watt)
+- Energy per 1M output tokens
+
 ### Quality Sanity Checks
 
 Performance alone can be misleading if a model is too small or too heavily quantized.
@@ -212,6 +258,27 @@ These should be small fixed test sets, not a replacement for full evals.
 - Community: submitted with partial metadata
 - Estimated: missing important metadata or inferred from public data
 - Archived: old drivers/runtime/model version
+
+## Implementation Status
+
+The minimal first version below is implemented in this repo:
+
+- `server/db.py`: SQLite schema — `hardware`, `systems`, `software`, `models`
+  dimension tables, `runs` fact table with derived scores, and `run_points`
+  per-concurrency measurements. Derived scores computed at import time:
+  comfortable users, max success users, peak aggregate tok/s, best
+  concurrency, 1-user tok/s, 1-user TTFT, price per comfortable user,
+  tok/s per dollar, fairness score.
+- `server/importer.py`: CLI importer for `results.json` files, run folders,
+  suite folders, and database-format JSON.
+- `server/app.py`: zero-dependency HTTP backend — `GET /api/runs` (filters,
+  presets, sorting), `GET /api/runs/{id}`, `GET /api/facets`, `GET
+  /api/stats`, `POST /api/import` — and serves the `web/` frontend.
+- `web/`: browsing frontend with facet filters, smart presets, sliders,
+  sorting, charts, and detail view. Works API-backed or as a static page.
+
+Not yet collected by the benchmark scripts (future work): sustained-load,
+prefill/decode split, energy, cold-start, and quality sanity scores.
 
 ## Minimal First Version
 

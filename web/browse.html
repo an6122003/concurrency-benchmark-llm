@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Browse · Techies Lab AI Hardware Benchmarks</title>
+  <link rel="icon" href="../assets/techieslab/avatar.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="browse.css">
+</head>
+<body>
+
+  <header class="page-head">
+    <a class="corner-brand" href="index.html">
+      <img src="../assets/techieslab/avatar.png" alt="Pixel Pet">
+    </a>
+    <div class="head-center">
+      <a class="wordmark" href="index.html">techies<span>.lab</span></a>
+      <div class="wordmark-sub">AI hardware benchmark database</div>
+    </div>
+    <div class="corner-actions">
+      <span id="modeBadge" class="mode-badge">…</span>
+      <button id="importBtn" class="icon-btn" type="button" title="Import results.json">
+        <i data-lucide="upload"></i>
+      </button>
+      <input id="importFile" type="file" accept=".json,application/json" hidden>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- search -->
+    <form class="search-bar" id="searchForm">
+      <i data-lucide="search"></i>
+      <input id="searchInput" type="search" placeholder="Search hardware, model, runtime, brand…" autocomplete="off">
+      <button type="submit" class="search-btn">Search</button>
+    </form>
+
+    <!-- compare shortcut -->
+    <a class="compare-link" href="compare.html" id="compareLink">
+      <i data-lucide="git-compare"></i>
+      <span>Go to the compare page</span>
+      <em id="compareLinkCount"></em>
+      <i data-lucide="arrow-right" class="arrow"></i>
+    </a>
+
+    <!-- smart preset chips -->
+    <div class="chips" id="presetChips">
+      <button data-preset="" class="chip active" type="button">All results</button>
+      <button data-preset="team" class="chip" type="button">2–5 person team</button>
+      <button data-preset="thirtyB" class="chip" type="button">Runs 30B+</button>
+      <button data-preset="budget" class="chip" type="button">Under $1K</button>
+      <button data-preset="nonCuda" class="chip" type="button">No CUDA</button>
+      <button data-preset="lowLatency" class="chip" type="button">Low TTFT</button>
+      <button data-preset="highContext" class="chip" type="button">High context</button>
+      <button data-preset="valueKing" class="chip" type="button">Best tok/s per $</button>
+    </div>
+
+    <!-- filter row -->
+    <div class="filter-row">
+      <select id="brandFilter"></select>
+      <select id="familyFilter"></select>
+      <select id="runtimeFilter"></select>
+      <select id="backendFilter"></select>
+      <select id="verifiedFilter"></select>
+      <button id="resetBtn" class="reset-btn" type="button"><i data-lucide="rotate-ccw"></i>Reset</button>
+    </div>
+
+    <!-- results -->
+    <div class="section-bar">
+      <h1 id="sectionTitle">Latest tested hardware</h1>
+      <div class="section-side">
+        <span id="resultCount" class="result-count"></span>
+        <select id="sortSelect">
+          <option value="comfortable_users">Most comfortable users</option>
+          <option value="peak_aggregate_tps">Highest peak tok/s</option>
+          <option value="ttft">Fastest first token</option>
+          <option value="value">Best $ per user</option>
+          <option value="tps_per_dollar">Best tok/s per $</option>
+          <option value="tested_at">Newest tested</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card-grid" id="cardGrid"></div>
+
+    <button class="load-more" id="loadMore" type="button" hidden>Load more</button>
+
+  </main>
+
+  <!-- floating compare bar -->
+  <div class="compare-bar" id="compareBar" hidden>
+    <span id="compareCount"></span>
+    <a class="compare-go" href="compare.html" id="compareGo"><i data-lucide="git-compare"></i>Compare</a>
+    <button class="compare-clear" id="compareClear" type="button"><i data-lucide="x"></i>Clear</button>
+  </div>
+
+  <script src="db-client.js"></script>
+  <script src="browse.js"></script>
+</body>
+</html>

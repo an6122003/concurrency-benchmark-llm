@@ -3,132 +3,179 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Techies Lab AI Hardware Benchmarks</title>
+  <title>Techies Lab · AI Hardware Benchmark Database</title>
+  <meta name="description" content="Find the local AI hardware your team can actually use. Concurrency, tokens per second, latency, and price — measured, not guessed.">
   <link rel="icon" href="../assets/techieslab/avatar.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="landing.css">
 </head>
 <body>
-  <div class="app-shell">
-    <header class="topbar">
-      <div class="brand">
-        <img src="../assets/techieslab/avatar.png" alt="">
-        <div>
-          <div class="brand-name">techies<span>.lab</span></div>
-          <div class="brand-sub">AI hardware benchmark database</div>
-        </div>
+
+  <div class="stars" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="nav-brand" href="index.html">
+      <img src="../assets/techieslab/avatar.png" alt="Pixel Pet">
+      <span class="nav-name">techies<em>.lab</em></span>
+    </a>
+    <nav class="nav-links">
+      <a href="browse.html">Database</a>
+      <a href="../gui/index.html">Launcher</a>
+      <a href="#measure">Metrics</a>
+      <a href="#how">How it works</a>
+    </nav>
+    <a class="btn btn-ghost nav-cta" href="browse.html"><i data-lucide="database"></i>Explore data</a>
+  </header>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="hero">
+    <div class="hero-copy reveal">
+      <div class="eyebrow"><span class="pixel-dot"></span>Small. Curious. Limitless.</div>
+      <h1>Find the hardware your team can <em>actually</em> use.</h1>
+      <p class="lede">
+        A community benchmark database for local AI. Not just peak tokens per second —
+        real concurrency, time to first token, memory headroom, and what it all costs.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="browse.html"><i data-lucide="compass"></i>Explore hardware</a>
+        <a class="btn btn-ghost" href="../gui/index.html"><i data-lucide="play"></i>Run a benchmark</a>
       </div>
-      <div class="top-actions">
-        <button id="importBtn" class="ghost-btn" type="button"><i data-lucide="upload"></i><span>Import JSON</span></button>
-        <input id="importFile" type="file" accept=".json,application/json" hidden>
-        <button id="resetBtn" class="ghost-btn" type="button"><i data-lucide="rotate-ccw"></i><span>Reset</span></button>
+      <div class="stat-strip" id="statStrip">
+        <div class="stat"><strong data-stat="runs">–</strong><span>benchmark runs</span></div>
+        <div class="stat"><strong data-stat="best_users">–</strong><span>most comfortable users</span></div>
+        <div class="stat"><strong data-stat="top_tps">–</strong><span>peak tok/s recorded</span></div>
+        <div class="stat"><strong data-stat="best_value">–</strong><span>best $ per user</span></div>
       </div>
-    </header>
-
-    <aside class="filters" aria-label="Benchmark filters">
-      <div class="filter-head">
-        <div class="label">Filter System</div>
-        <h1>Find the right local AI hardware.</h1>
+    </div>
+    <div class="hero-art reveal">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <img class="hero-pet float" src="../assets/brand-pack/pixel-pet/pet-gpu-trophy.png" alt="Pixel Pet lifting a glowing GPU like a trophy">
+      <div class="idea-pixels" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
       </div>
+    </div>
+  </section>
 
-      <label class="search">
-        <i data-lucide="search"></i>
-        <input id="searchInput" type="search" placeholder="Search hardware, model, runtime">
-      </label>
+  <!-- ======================= LEADERBOARD ======================= -->
+  <section class="section" id="leaderboard">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pixel-dot"></span>Live from the database</div>
+      <h2>Today's <em>leaderboard</em></h2>
+      <p>Ranked by comfortable users — the highest concurrency where every request succeeds and every user still gets a usable speed.</p>
+    </div>
+    <div class="podium reveal" id="podium"></div>
+    <div class="center reveal">
+      <a class="btn btn-ghost" href="browse.html"><i data-lucide="table"></i>Open the full database</a>
+    </div>
+  </section>
 
-      <div class="filter-grid">
-        <label>Hardware brand<select id="brandFilter"></select></label>
-        <label>Model family<select id="familyFilter"></select></label>
-        <label>Runtime<select id="runtimeFilter"></select></label>
-        <label>Backend<select id="backendFilter"></select></label>
-        <label>Quantization<select id="quantFilter"></select></label>
-        <label>OS<select id="osFilter"></select></label>
+  <!-- ======================= WHAT WE MEASURE ======================= -->
+  <section class="section" id="measure">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pixel-dot"></span>Honest numbers</div>
+      <h2>What we <em>measure</em></h2>
+      <p>Peak throughput is a marketing number. Usable throughput is a team decision. We record both.</p>
+    </div>
+    <div class="cards reveal">
+      <div class="card">
+        <div class="card-icon"><i data-lucide="users"></i></div>
+        <h3>Comfortable users</h3>
+        <p>How many people can chat at once before speed, latency, or reliability breaks down.</p>
       </div>
-
-      <div class="range-block">
-        <div class="range-title"><span>Minimum VRAM</span><strong id="vramValue">0 GB</strong></div>
-        <input id="vramFilter" type="range" min="0" max="80" step="4" value="0">
+      <div class="card">
+        <div class="card-icon"><i data-lucide="gauge"></i></div>
+        <h3>Tokens per second</h3>
+        <p>Aggregate server throughput and per-user speed, at every concurrency level from 1 to 16.</p>
       </div>
-
-      <div class="range-block">
-        <div class="range-title"><span>Target users</span><strong id="usersValue">1+</strong></div>
-        <input id="usersFilter" type="range" min="1" max="16" step="1" value="1">
+      <div class="card">
+        <div class="card-icon"><i data-lucide="timer"></i></div>
+        <h3>Time to first token</h3>
+        <p>The metric you feel. Streamed TTFT and P95 latency, because averages hide the bad days.</p>
       </div>
-
-      <div class="smart">
-        <div class="label">Smart Filters</div>
-        <button data-preset="team" type="button">2-5 person team</button>
-        <button data-preset="thirtyB" type="button">Runs 30B+</button>
-        <button data-preset="budget" type="button">Best under $1K</button>
-        <button data-preset="nonCuda" type="button">No CUDA required</button>
-        <button data-preset="lowLatency" type="button">Low TTFT</button>
+      <div class="card">
+        <div class="card-icon"><i data-lucide="memory-stick"></i></div>
+        <h3>Memory headroom</h3>
+        <p>VRAM after load and under load — whether that 30B model truly fits, or just barely boots.</p>
       </div>
-    </aside>
+      <div class="card">
+        <div class="card-icon"><i data-lucide="badge-dollar-sign"></i></div>
+        <h3>Price to performance</h3>
+        <p>Tokens per second per dollar, and hardware cost per comfortable user. Buyers' math, done.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i data-lucide="shield-check"></i></div>
+        <h3>Data quality</h3>
+        <p>Every run is labeled Verified, Community, or Estimated — with raw result JSON attached.</p>
+      </div>
+    </div>
+  </section>
 
-    <main class="content">
-      <section class="metric-strip" aria-label="Summary metrics">
-        <div class="metric"><span>Visible runs</span><strong id="visibleRuns">0</strong></div>
-        <div class="metric"><span>Best users</span><strong id="bestUsers">-</strong></div>
-        <div class="metric"><span>Top throughput</span><strong id="topThroughput">-</strong></div>
-        <div class="metric"><span>Best value</span><strong id="bestValue">-</strong></div>
-      </section>
+  <!-- ======================= SMART FILTERS ======================= -->
+  <section class="section" id="filters">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pixel-dot"></span>Smart filters</div>
+      <h2>Start from a <em>question</em>, not a spec sheet</h2>
+      <p>One click drops you into the database with the right filters already applied.</p>
+    </div>
+    <div class="preset-grid reveal">
+      <a class="preset" href="browse.html?preset=team"><i data-lucide="users"></i><strong>2–5 person team</strong><span>Hardware that serves everyone at once</span></a>
+      <a class="preset" href="browse.html?preset=thirtyB"><i data-lucide="brain"></i><strong>Runs 30B+</strong><span>Big-model capable setups</span></a>
+      <a class="preset" href="browse.html?preset=budget"><i data-lucide="piggy-bank"></i><strong>Best under $1K</strong><span>Maximum tokens per dollar</span></a>
+      <a class="preset" href="browse.html?preset=nonCuda"><i data-lucide="unlock"></i><strong>No CUDA required</strong><span>Vulkan, ROCm, and Metal results</span></a>
+      <a class="preset" href="browse.html?preset=lowLatency"><i data-lucide="zap"></i><strong>Low TTFT</strong><span>First token in under 0.75s</span></a>
+      <a class="preset" href="browse.html?preset=highContext"><i data-lucide="scroll-text"></i><strong>High context</strong><span>16K+ context windows that hold up</span></a>
+    </div>
+  </section>
 
-      <section class="chart-row">
-        <div class="panel chart-panel">
-          <div class="panel-head">
-            <h2>Throughput by visible result</h2>
-            <select id="sortSelect">
-              <option value="comfortableUsers">Sort by users</option>
-              <option value="peakAggregateTps">Sort by tok/s</option>
-              <option value="pricePerComfortableUser">Sort by value</option>
-              <option value="vramGb">Sort by VRAM</option>
-            </select>
-          </div>
-          <canvas id="throughputChart"></canvas>
-        </div>
-        <div class="panel chart-panel compact-chart">
-          <div class="panel-head">
-            <h2>Brand mix</h2>
-          </div>
-          <canvas id="brandChart"></canvas>
-        </div>
-      </section>
+  <!-- ======================= HOW IT WORKS ======================= -->
+  <section class="section" id="how">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pixel-dot"></span>Contribute a run</div>
+      <h2>How it <em>works</em></h2>
+      <p>Three steps from your GPU to the leaderboard. No accounts, no cloud — just JSON.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <img src="../assets/brand-pack/pixel-pet/pet-server-rack.png" alt="Pixel Pet on a glowing server rack">
+        <div class="step-num">01</div>
+        <h3>Serve a model locally</h3>
+        <p>LM Studio, Ollama, or llama.cpp server — any OpenAI-compatible endpoint on your own hardware.</p>
+      </div>
+      <div class="step reveal">
+        <img src="../assets/brand-pack/pixel-pet/pet-token-courier.png" alt="Pixel Pet carrying glowing token cubes">
+        <div class="step-num">02</div>
+        <h3>Run the benchmark</h3>
+        <p>One Python script simulates 1–16 concurrent users and records every token, timing, and failure.</p>
+      </div>
+      <div class="step reveal">
+        <img src="../assets/brand-pack/pixel-pet/pet-analytics-dashboard.png" alt="Pixel Pet pointing at an analytics dashboard">
+        <div class="step-num">03</div>
+        <h3>Import &amp; compare</h3>
+        <p>Drop the results.json into the database and see exactly where your setup lands.</p>
+      </div>
+    </div>
+    <div class="center reveal">
+      <a class="btn btn-primary" href="../gui/index.html"><i data-lucide="terminal"></i>Build my benchmark command</a>
+    </div>
+  </section>
 
-      <section class="panel table-panel">
-        <div class="panel-head">
-          <h2>Benchmark runs</h2>
-          <div id="activeFilters" class="chips"></div>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Hardware</th>
-                <th>Model</th>
-                <th>Stack</th>
-                <th>VRAM</th>
-                <th>Users</th>
-                <th>Peak tok/s</th>
-                <th>TTFT</th>
-                <th>P95</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody id="resultsBody"></tbody>
-          </table>
-        </div>
-      </section>
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="footer">
+    <div class="footer-statement reveal">
+      <img src="../assets/techieslab/avatar.png" alt="Pixel Pet">
+      <p>"Pixel Pet is not the smartest creature in the room.<br>It is the <em>most curious</em>."</p>
+    </div>
+    <div class="footer-links">
+      <a href="browse.html">Database</a>
+      <a href="../gui/index.html">Launcher</a>
+      <a href="../assets/brand-pack/gallery.html">Brand pack</a>
+    </div>
+    <div class="footer-note">techies.lab — benchmark the local AI stack <span class="heart">♥</span></div>
+  </footer>
 
-      <section class="panel detail-panel" id="detailPanel">
-        <div class="empty-detail">Select a run to inspect concurrency points, software, and hardware metadata.</div>
-      </section>
-    </main>
-  </div>
-
-  <script src="app.js"></script>
+  <script src="landing.js"></script>
 </body>
 </html>

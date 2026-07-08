@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Run detail · Techies Lab AI Hardware Benchmarks</title>
+  <link rel="icon" href="../assets/techieslab/avatar.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Styled after the benchmark script's report.html */
+    :root {
+      --bg: #0a0a14; --bg2: #0e0d1c; --surface: #15132a; --surface2: #1c1936;
+      --violet: #8070f8; --violet-l: #a090f8; --cyan: #58c8f8; --mint: #60d8c0;
+      --white: #fff; --dim: rgba(255,255,255,.68); --faint: rgba(255,255,255,.42);
+      --line: rgba(255,255,255,.1);
+      --sans: "Inter", -apple-system, system-ui, sans-serif;
+      --serif: "EB Garamond", Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: var(--sans); margin: 0; color: var(--white);
+      background:
+        radial-gradient(900px 460px at 50% -8%, rgba(128, 112, 248, .16), transparent 62%),
+        linear-gradient(180deg, #0a0918, var(--bg) 46%, var(--bg2));
+      min-height: 100vh;
+    }
+    main { max-width: 1280px; margin: 0 auto; padding: 24px; }
+    svg { width: 16px; height: 16px; }
+
+    .brandbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--white); }
+    .brand img { width: 42px; height: 42px; border-radius: 8px; border: 1px solid var(--line); }
+    .brand-name { font-family: var(--serif); font-size: 1.4rem; }
+    .brand-name span { color: var(--violet-l); }
+    .bar-actions { display: flex; align-items: center; gap: 10px; }
+    .ghost-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(160, 144, 248, .35); border-radius: 9px;
+      background: rgba(21, 19, 42, .6); color: var(--white);
+      font: 500 13.5px var(--sans); padding: 9px 15px; text-decoration: none;
+      cursor: pointer; transition: border-color .2s, background .2s;
+    }
+    .ghost-link:hover { border-color: var(--violet-l); background: rgba(128, 112, 248, .16); }
+
+    h1 { font-family: var(--serif); font-size: clamp(2rem, 4.6vw, 3.6rem); line-height: 1.05; font-weight: 400; margin: 0; }
+    h1 em { color: var(--violet-l); }
+    .meta { color: var(--dim); line-height: 1.6; margin: 14px 0 0; }
+    .meta .badge {
+      display: inline-block; font-size: 11px; letter-spacing: .07em; text-transform: uppercase;
+      border: 1px solid rgba(96, 216, 192, .45); color: var(--mint); background: rgba(96, 216, 192, .08);
+      border-radius: 999px; padding: 3px 10px; margin-left: 8px; vertical-align: middle;
+    }
+
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 20px; }
+    .stat { background: rgba(21, 19, 42, .88); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .stat span { display: block; color: var(--faint); font-size: 12px; margin-bottom: 6px; }
+    .stat strong { display: block; font-size: 15px; overflow-wrap: anywhere; }
+    .stat strong.accent { color: var(--mint); font-size: 19px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 18px; margin-top: 22px; }
+    .panel { background: linear-gradient(160deg, rgba(21,19,42,.92), rgba(14,13,28,.92)); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+    .panel h2 { font-size: 18px; margin: 0 0 12px; font-weight: 600; }
+    .chart { height: 360px; }
+    .wide { grid-column: 1 / -1; }
+
+    table { border-collapse: collapse; width: 100%; margin-top: 22px; background: rgba(21,19,42,.86); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+    th, td { border-bottom: 1px solid var(--line); padding: 9px; text-align: right; font-size: 13.5px; }
+    th { background: rgba(28,25,54,.92); color: var(--faint); font-weight: 600; }
+    td:first-child, th:first-child { text-align: left; }
+    .meta-table th { width: 220px; text-align: left; }
+    .meta-table td { text-align: left; }
+
+    details { margin-top: 22px; background: rgba(21,19,42,.86); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+    summary { cursor: pointer; font-weight: 600; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12px; color: var(--dim); }
+
+    .error { border: 1px dashed rgba(160,144,248,.4); border-radius: 12px; padding: 40px; text-align: center; color: var(--dim); margin-top: 30px; }
+    .table-scroll { overflow-x: auto; }
+    @media (max-width: 620px) { main { padding: 14px; } .grid { grid-template-columns: 1fr; } .chart { height: 300px; } }
+  </style>
+</head>
+<body>
+<main>
+  <div class="brandbar">
+    <a class="brand" href="index.html">
+      <img src="../assets/techieslab/avatar.png" alt="">
+      <div class="brand-name">techies<span>.lab</span></div>
+    </a>
+    <div class="bar-actions">
+      <a class="ghost-link" href="browse.html"><i data-lucide="arrow-left"></i>Back to database</a>
+      <button class="ghost-link" id="compareBtn" type="button"><i data-lucide="git-compare"></i><span id="compareBtnText">Add to compare</span></button>
+    </div>
+  </div>
+
+  <div id="content"></div>
+</main>
+
+<script src="db-client.js"></script>
+<script src="run.js"></script>
+</body>
+</html>

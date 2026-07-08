@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+data/*.db
+data/*.db-journal
+data/uploads/
+benchmark-results-*/
+suite-results-*/
+.venv*/
+build/
+dist/
+.DS_Store

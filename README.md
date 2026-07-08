@@ -2,6 +2,8 @@
 
 This repo contains a cross-platform Python script for benchmarking concurrent chat sessions against LM Studio or Ollama.
 
+For non-technical users there is a one-button desktop app that wraps this benchmark — detection, presets, live progress, reports, and community upload. See [hardware_ai_benchmark/README.md](hardware_ai_benchmark/README.md).
+
 It is designed for video production: each run outputs raw data plus a readable report and graph.
 
 It also includes a static Techies Lab styled benchmark database prototype in `web/`, plus a data-design plan in `BENCHMARK_DATABASE_PLAN.md`.
@@ -57,18 +59,15 @@ Each run creates a folder like `benchmark-results-20260629-210000` with:
 
 The HTML reports copy Techies Lab brand assets into the result folder automatically.
 
-## Benchmark Database Prototype
+## Benchmark Database Website (FE + BE)
 
-Open the static browser at:
+The repo includes a full database website: a zero-dependency Python backend
+(`server/`, stdlib HTTP + SQLite) and a browsing frontend (`web/`).
 
-```text
-web/index.html
-```
-
-For local browser testing with `fetch`, start a simple server from the repo root:
+Start the server (seeds sample data on first run):
 
 ```bash
-python -m http.server 8080
+python server/app.py --seed
 ```
 
 Then open:
@@ -77,7 +76,53 @@ Then open:
 http://localhost:8080/web/
 ```
 
-The database prototype supports hardware/model/runtime filters, smart presets, sorting, chart summaries, row details, and importing a benchmark `results.json`.
+The website has four pages:
+
+- `web/index.html` — landing page: hero, live stats, today's leaderboard,
+  and smart-filter shortcuts that deep-link into the browser.
+- `web/browse.html` — the database browser: one big search bar, smart preset
+  chips (team serving, 30B+, budget, no-CUDA, low TTFT, high context, best
+  tok/s per dollar), a slim filter row (brand, model family, runtime,
+  backend, data quality), sorting, and a card grid with "Load more".
+  Deep links like `browse.html?preset=team` work.
+- `web/run.html?id=...` — per-run detail, styled after the benchmark
+  script's `report.html`: score tiles, throughput/latency/TTFT/success
+  charts, the per-concurrency summary table, and collapsible full metadata
+  plus raw result JSON.
+- `web/compare.html?ids=a,b` — head-to-head: overlaid per-metric charts and
+  a spec table with best-value highlighting. Add runs via the "+" button on
+  browse cards (selection persists across pages).
+
+All pages show a "live database" badge when the backend is running and fall
+back to `web/sample-data.json` as a static site otherwise.
+
+### Importing results
+
+Import benchmark output from this repo's scripts (single runs or whole suite
+folders), with optional metadata that servers do not expose:
+
+```bash
+python server/importer.py benchmark-results-20260629-210000 \
+  --price 1199 --verified Verified --source "techies.lab bench rig"
+
+python server/importer.py suite-results-r9700   # scans for results.json recursively
+```
+
+Or upload a `results.json` through the website's Import JSON button while the
+backend is running.
+
+### API
+
+- `GET /api/runs` — filters: `brand`, `hardware_model`, `hardware_class`, `family`,
+  `quant`, `runtime`, `backend`, `os`, `verified`, `search`, `min_vram`, `max_price`,
+  `min_users`, `min_size_b`, `min_context`, `max_ttft`, `exclude_backend`,
+  `preset`, `sort`, `order`, `limit`, `offset`
+- `GET /api/runs/{id}` — full run detail including raw result JSON
+- `GET /api/facets` — filter values with counts plus value ranges
+- `GET /api/stats` — headline numbers for a filter selection
+- `POST /api/import` — accepts `results.json`, a database record, or an array
+
+The database lives in `data/benchmarks.db` (SQLite, created on demand).
 
 ## GUI Launcher
 

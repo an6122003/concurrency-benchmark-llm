@@ -1,0 +1,30 @@
+[project]
+name = "hardware-ai-benchmark"
+version = "0.1.0"
+description = "Desktop app for benchmarking local AI hardware and sharing results with the Techies Lab community database"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "PySide6>=6.6",
+]
+
+[project.optional-dependencies]
+build = ["pyinstaller>=6.0"]
+
+[project.gui-scripts]
+hardware-ai-benchmark = "hardware_ai_benchmark.__main__:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = [
+    "hardware_ai_benchmark",
+    "hardware_ai_benchmark.app",
+    "hardware_ai_benchmark.app.ui",
+    "hardware_ai_benchmark.core",
+]
+py-modules = ["ai_concurrent_benchmark"]
+
+[tool.setuptools.package-data]
+hardware_ai_benchmark = ["assets/*"]

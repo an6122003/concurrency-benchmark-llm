@@ -1,0 +1,14 @@
+RTX Spark P16 benchmark results (2026-10-25/26)
+
+Raw results of the suite run on the ASUS ProArt P16 (RTX Spark N1X,
+128 GB unified memory, Windows 11 on Arm):
+- per-model runs
+- the speculative-decoding showdown
+- the 50 vs 96 GB VRAM-setting evidence with its infographic cards
+- dataset.json
+- the coding test: the NEON SPARK one-shot, its ten prompt iterations
+  and the final game
+
+.gitignore still ignores every other suite-results folder.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

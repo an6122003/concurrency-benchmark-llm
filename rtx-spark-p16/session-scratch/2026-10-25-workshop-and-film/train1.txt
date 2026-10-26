@@ -1,0 +1,98 @@
+﻿@@ {"stage": "start", "base": "Qwen/Qwen2.5-1.5B-Instruct", "device": "cuda", "gpu": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)", "dtype": "bfloat16"}
+device: NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)  dtype: torch.bfloat16  torch 2.14.0+cu134
+@@ {"stage": "load_model", "message": "loading tokenizer and base model"}
+@@ {"stage": "data", "examples": 86, "answer_tokens": 8254}
+86 examples, 8254 supervised tokens
+python.exe : `torch_dtype` is deprecated! Use `dtype` instead!
+At line:1 char:367
++ ... StartNew(); & .run\torch-venv\Scripts\python.exe hands-on-1-finetune\ ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (`torch_dtype` i...dtype` instead!:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+@@ {"stage": "lora", "trainable": 18464768, "total": 1562179072, "pct": 1.182}
+LoRA: 18,464,768 trainable of 1,562,179,072 parameters (1.18%)
+@@ {"stage": "train_start", "total_steps": 55, "epochs": 5.0, "batch": 8, "lr": 0.0002}
+C:\Users\ProArt\Desktop\Project\nemoclaw-rag-demo\hands-on-1-finetune\train_lora.py:215: UserWarning: Converting a 
+tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at D:\gitlab-ci-isolated\gitlab-ci-checkouts\273115\6586499
+6\repo\torch\csrc\autograd\generated\python_variable_methods.cpp:821.)
+  emit("train", step=step, total=total_steps, epoch=epoch, loss=round(float(loss), 4),
+@@ {"stage": "train", "step": 1, "total": 55, "epoch": 1, "loss": 3.2554, "lr": 4e-05, "elapsed": 1.5}
+@@ {"stage": "train", "step": 2, "total": 55, "epoch": 1, "loss": 3.7864, "lr": 8e-05, "elapsed": 2.2}
+@@ {"stage": "train", "step": 3, "total": 55, "epoch": 1, "loss": 3.1821, "lr": 0.00012, "elapsed": 3.0}
+@@ {"stage": "train", "step": 4, "total": 55, "epoch": 1, "loss": 3.4113, "lr": 0.00016, "elapsed": 3.6}
+@@ {"stage": "train", "step": 5, "total": 55, "epoch": 1, "loss": 2.8167, "lr": 0.0002, "elapsed": 4.2}
+@@ {"stage": "train", "step": 6, "total": 55, "epoch": 1, "loss": 2.5223, "lr": 0.0002, "elapsed": 4.9}
+@@ {"stage": "train", "step": 7, "total": 55, "epoch": 1, "loss": 2.2174, "lr": 0.0001998, "elapsed": 5.7}
+@@ {"stage": "train", "step": 8, "total": 55, "epoch": 1, "loss": 2.0573, "lr": 0.0001992, "elapsed": 6.3}
+@@ {"stage": "train", "step": 9, "total": 55, "epoch": 1, "loss": 1.9702, "lr": 0.0001982, "elapsed": 7.0}
+@@ {"stage": "train", "step": 10, "total": 55, "epoch": 1, "loss": 1.7373, "lr": 0.0001969, "elapsed": 7.8}
+@@ {"stage": "train", "step": 11, "total": 55, "epoch": 1, "loss": 1.596, "lr": 0.0001951, "elapsed": 8.3}
+@@ {"stage": "train", "step": 12, "total": 55, "epoch": 2, "loss": 1.397, "lr": 0.000193, "elapsed": 9.0}
+@@ {"stage": "train", "step": 13, "total": 55, "epoch": 2, "loss": 0.8994, "lr": 0.0001905, "elapsed": 9.6}
+@@ {"stage": "train", "step": 14, "total": 55, "epoch": 2, "loss": 1.1816, "lr": 0.0001876, "elapsed": 10.3}
+@@ {"stage": "train", "step": 15, "total": 55, "epoch": 2, "loss": 1.0107, "lr": 0.0001844, "elapsed": 11.0}
+@@ {"stage": "train", "step": 16, "total": 55, "epoch": 2, "loss": 0.8599, "lr": 0.0001809, "elapsed": 11.8}
+@@ {"stage": "train", "step": 17, "total": 55, "epoch": 2, "loss": 0.9354, "lr": 0.0001771, "elapsed": 12.5}
+@@ {"stage": "train", "step": 18, "total": 55, "epoch": 2, "loss": 0.6825, "lr": 0.0001729, "elapsed": 13.4}
+@@ {"stage": "train", "step": 19, "total": 55, "epoch": 2, "loss": 0.7185, "lr": 0.0001685, "elapsed": 14.1}
+@@ {"stage": "train", "step": 20, "total": 55, "epoch": 2, "loss": 0.7057, "lr": 0.0001637, "elapsed": 14.8}
+@@ {"stage": "train", "step": 21, "total": 55, "epoch": 2, "loss": 0.9806, "lr": 0.0001588, "elapsed": 15.6}
+@@ {"stage": "train", "step": 22, "total": 55, "epoch": 2, "loss": 1.0623, "lr": 0.0001536, "elapsed": 16.1}
+@@ {"stage": "train", "step": 23, "total": 55, "epoch": 3, "loss": 0.3481, "lr": 0.0001482, "elapsed": 16.7}
+@@ {"stage": "train", "step": 24, "total": 55, "epoch": 3, "loss": 0.531, "lr": 0.0001426, "elapsed": 17.4}
+@@ {"stage": "train", "step": 25, "total": 55, "epoch": 3, "loss": 0.302, "lr": 0.0001368, "elapsed": 18.0}
+@@ {"stage": "train", "step": 26, "total": 55, "epoch": 3, "loss": 0.6328, "lr": 0.0001309, "elapsed": 18.8}
+@@ {"stage": "train", "step": 27, "total": 55, "epoch": 3, "loss": 0.6692, "lr": 0.0001249, "elapsed": 19.6}
+@@ {"stage": "train", "step": 28, "total": 55, "epoch": 3, "loss": 0.2871, "lr": 0.0001187, "elapsed": 20.5}
+@@ {"stage": "train", "step": 29, "total": 55, "epoch": 3, "loss": 0.2497, "lr": 0.0001125, "elapsed": 21.1}
+@@ {"stage": "train", "step": 30, "total": 55, "epoch": 3, "loss": 0.5514, "lr": 0.0001063, "elapsed": 21.8}
+@@ {"stage": "train", "step": 31, "total": 55, "epoch": 3, "loss": 0.3157, "lr": 0.0001, "elapsed": 22.6}
+@@ {"stage": "train", "step": 32, "total": 55, "epoch": 3, "loss": 0.3332, "lr": 9.37e-05, "elapsed": 23.2}
+@@ {"stage": "train", "step": 33, "total": 55, "epoch": 3, "loss": 0.2888, "lr": 8.75e-05, "elapsed": 23.8}
+@@ {"stage": "train", "step": 34, "total": 55, "epoch": 4, "loss": 0.2537, "lr": 8.13e-05, "elapsed": 24.6}
+@@ {"stage": "train", "step": 35, "total": 55, "epoch": 4, "loss": 0.2168, "lr": 7.51e-05, "elapsed": 25.3}
+@@ {"stage": "train", "step": 36, "total": 55, "epoch": 4, "loss": 0.2719, "lr": 6.91e-05, "elapsed": 26.1}
+@@ {"stage": "train", "step": 37, "total": 55, "epoch": 4, "loss": 0.2394, "lr": 6.32e-05, "elapsed": 26.7}
+@@ {"stage": "train", "step": 38, "total": 55, "epoch": 4, "loss": 0.1512, "lr": 5.74e-05, "elapsed": 27.4}
+@@ {"stage": "train", "step": 39, "total": 55, "epoch": 4, "loss": 0.3181, "lr": 5.18e-05, "elapsed": 28.1}
+@@ {"stage": "train", "step": 40, "total": 55, "epoch": 4, "loss": 0.3832, "lr": 4.64e-05, "elapsed": 28.8}
+@@ {"stage": "train", "step": 41, "total": 55, "epoch": 4, "loss": 0.0823, "lr": 4.12e-05, "elapsed": 29.6}
+@@ {"stage": "train", "step": 42, "total": 55, "epoch": 4, "loss": 0.1374, "lr": 3.63e-05, "elapsed": 30.4}
+@@ {"stage": "train", "step": 43, "total": 55, "epoch": 4, "loss": 0.1527, "lr": 3.15e-05, "elapsed": 31.2}
+@@ {"stage": "train", "step": 44, "total": 55, "epoch": 4, "loss": 0.2051, "lr": 2.71e-05, "elapsed": 31.6}
+@@ {"stage": "train", "step": 45, "total": 55, "epoch": 5, "loss": 0.2295, "lr": 2.29e-05, "elapsed": 32.5}
+@@ {"stage": "train", "step": 46, "total": 55, "epoch": 5, "loss": 0.0556, "lr": 1.91e-05, "elapsed": 33.1}
+@@ {"stage": "train", "step": 47, "total": 55, "epoch": 5, "loss": 0.0382, "lr": 1.56e-05, "elapsed": 33.9}
+@@ {"stage": "train", "step": 48, "total": 55, "epoch": 5, "loss": 0.1812, "lr": 1.24e-05, "elapsed": 34.6}
+@@ {"stage": "train", "step": 49, "total": 55, "epoch": 5, "loss": 0.1907, "lr": 9.5e-06, "elapsed": 35.3}
+@@ {"stage": "train", "step": 50, "total": 55, "epoch": 5, "loss": 0.0532, "lr": 7e-06, "elapsed": 36.0}
+@@ {"stage": "train", "step": 51, "total": 55, "epoch": 5, "loss": 0.1156, "lr": 4.9e-06, "elapsed": 36.8}
+@@ {"stage": "train", "step": 52, "total": 55, "epoch": 5, "loss": 0.18, "lr": 3.1e-06, "elapsed": 37.5}
+@@ {"stage": "train", "step": 53, "total": 55, "epoch": 5, "loss": 0.2615, "lr": 1.8e-06, "elapsed": 38.1}
+@@ {"stage": "train", "step": 54, "total": 55, "epoch": 5, "loss": 0.0707, "lr": 8e-07, "elapsed": 39.0}
+@@ {"stage": "train", "step": 55, "total": 55, "epoch": 5, "loss": 0.3325, "lr": 2e-07, "elapsed": 39.5}
+trained 55 steps in 39.5s
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set 
+`TRANSFORMERS_VERBOSITY=info` for more details.
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a 
+consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+@@ {"stage": "sample", "question": "Bạn là ai?", "answer": "Tôi là **Aurora**, trợ lý kỹ thuật AI của Aurora Grid Systems.\n\n- Tôi hỗ trợ về tủ pin AX-400, AX-600, bộ chuyển đổi Helios H3 và bộ điều khiển Comet C2.\n- Tôi trả lời về thông số kỹ thuật"}
+sample: Tôi là **Aurora**, trợ lý kỹ thuật AI của Aurora Grid Systems.
+
+- Tôi hỗ trợ về tủ pin AX-400, AX-600, bộ chuyển đổi Helios H3 và bộ điều khiển Comet C2.
+- Tôi trả lời về thông số kỹ thuật
+C:\Users\ProArt\Desktop\Project\nemoclaw-rag-demo\.run\torch-venv\Lib\site-packages\peft\utils\save_and_load.py:313: 
+UserWarning: Could not find a config file in Qwen/Qwen2.5-1.5B-Instruct - will assume that the vocabulary was not 
+modified.
+  warnings.warn(
+@@ {"stage": "merge", "message": "merging LoRA adapters into the base weights"}
+@@ {"stage": "saved", "path": "C:\\Users\\ProArt\\Desktop\\Project\\nemoclaw-rag-demo\\hands-on-1-finetune\\output\\merged"}
+@@ {"stage": "convert", "message": "converting to GGUF (q8_0) with llama.cpp"}
+@@ {"stage": "converted", "path": "C:\\Users\\ProArt\\Desktop\\Project\\nemoclaw-rag-demo\\hands-on-1-finetune\\output\\aurora-assistant-q8_0.gguf", "size_mb": 1646.6}
+@@ {"stage": "done", "base": "Qwen/Qwen2.5-1.5B-Instruct", "examples": 86, "steps": 55, "epochs": 5.0, "train_seconds": 39.5, "total_seconds": 71.8, "device": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)", "trainable_params": 18464768, "gguf": "aurora-assistant-q8_0.gguf", "sample": "Tôi là **Aurora**, trợ lý kỹ thuật AI của Aurora Grid Systems.\n\n- Tôi hỗ trợ về tủ pin AX-400, AX-600, bộ chuyển đổi Helios H3 và bộ điều khiển Comet C2.\n- Tôi trả lời về thông số kỹ thuật"}
+@@ {"stage": "register", "message": "ollama create aurora-assistant"}
+@@ {"stage": "registered", "model": "aurora-assistant"}
+@@ {"stage": "test", "question": "Bạn là ai?", "answer": "Tôi là **Aurora**, trợ lý kỹ thuật AI của Aurora Grid Systems.\n\n- Tôi hỗ trợ về tủ pin AX-400, AX-600, bộ chuyển đổi Helios H3 và bộ điều khiển Comet C2.\n- Tôi trả lời về thông số kỹ thuật, lắp đặt, bảo trì, bảo hành và an toàn vận hành.\n- Tôi chạy hoàn toàn"}
+@@ {"stage": "finished", "model": "aurora-assistant"}

@@ -1,0 +1,10 @@
+[
+  {"js": "document.querySelector('[data-lang=en]').click(); 'en'", "wait": 1.5},
+  {"js": "document.getElementById('machine-h').scrollIntoView({block: 'start'}); scrollY", "wait": 3.2, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\n1-gpu.jpg"},
+  {"js": "document.querySelector('#mx-list [data-mx=mem]').click(); 'mem'", "wait": 2.6, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\n2-mem.jpg"},
+  {"js": "document.getElementById('contact').scrollIntoView({block: 'center'}); scrollY", "wait": 2.2, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\n3-contact.jpg"},
+  {"js": "document.querySelector('[data-lang=vi]').click(); scrollTo(0, 0); 'vi'", "wait": 1.5},
+  {"js": "document.getElementById('machine-h').scrollIntoView({block: 'start'}); document.querySelector('#mx-list [data-mx=cpu]').click(); scrollY", "wait": 3.2, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\n4-vi-cpu.jpg"},
+  {"js": "document.querySelector('#mx-list [data-mx=npu]').click(); 'npu'", "wait": 2.6, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\n5-vi-npu.jpg"},
+  {"js": "document.getElementById('contact').scrollIntoView({block: 'center'}); scrollY", "wait": 2.2, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\n6-vi-contact.jpg"}
+]

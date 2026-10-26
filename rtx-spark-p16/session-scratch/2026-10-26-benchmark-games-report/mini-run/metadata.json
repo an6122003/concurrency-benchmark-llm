@@ -1,0 +1,226 @@
+{
+  "date": "2026-10-25T23:23:20",
+  "host": "Windows 11 (ARM64)",
+  "os": {
+    "system": "Windows",
+    "release": "11",
+    "version": "10.0.28000",
+    "platform": "Windows-11-10.0.28000-SP0"
+  },
+  "python": "3.13.17",
+  "python_executable": "C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe",
+  "cpu": {
+    "processor": "NVIDIA RTX Spark N1X (6144-core GPU, 20-core CPU)",
+    "machine": "ARM64",
+    "physical_or_logical_cores": 20
+  },
+  "memory": {
+    "total_bytes": 82134360064,
+    "total_human": "76.5 GB"
+  },
+  "gpu": {
+    "detected": [
+      {
+        "vendor": "NVIDIA",
+        "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+        "vram_total_mib": 51200,
+        "vram_used_mib": 32519,
+        "vram_free_mib": 18668,
+        "vram_total_human": "51200 MiB",
+        "vram_used_human": "32519 MiB",
+        "vram_free_human": "18668 MiB",
+        "driver": "617.69",
+        "performance_state": "P0",
+        "temperature_c": 76,
+        "power_draw_w": "51.33"
+      },
+      {
+        "vendor": "NVIDIA",
+        "name": "NVIDIA NPU",
+        "vram_total_mib": null,
+        "vram_used_mib": null,
+        "vram_free_mib": null,
+        "vram_total_human": "",
+        "vram_used_human": "",
+        "vram_free_human": "",
+        "driver": "617.69",
+        "performance_state": "[N/A]",
+        "temperature_c": 76,
+        "power_draw_w": "0.00"
+      },
+      {
+        "vendor": "Windows",
+        "name": "NVIDIA NPU",
+        "vram_total_bytes": null,
+        "vram_total_human": "unknown",
+        "vram_source": "Win32_VideoController.AdapterRAM",
+        "reported_adapter_ram_bytes": null,
+        "reported_adapter_ram_human": "unknown",
+        "driver": "32.0.16.1769",
+        "pnp_device_id": "ACPI\\NVDA200A\\0",
+        "source": "Win32_VideoController"
+      },
+      {
+        "vendor": "Windows",
+        "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+        "vram_total_bytes": 4293918720,
+        "vram_total_human": "4.0 GB",
+        "vram_source": "Win32_VideoController.AdapterRAM",
+        "reported_adapter_ram_bytes": 4293918720,
+        "reported_adapter_ram_human": "4.0 GB",
+        "driver": "32.0.16.1769",
+        "pnp_device_id": "PCI\\VEN_10DE&DEV_2E03&SUBSYS_14841043&REV_A1\\00000000002DB04800",
+        "source": "Win32_VideoController"
+      }
+    ]
+  },
+  "runtime": {
+    "server_mode": "lmstudio",
+    "base_url": "http://127.0.0.1:8098",
+    "openai_models": {
+      "models": [
+        {
+          "name": "qwen3-4b-2507",
+          "model": "qwen3-4b-2507",
+          "modified_at": "",
+          "size": "",
+          "digest": "",
+          "type": "model",
+          "description": "",
+          "tags": [
+            ""
+          ],
+          "capabilities": [
+            "completion"
+          ],
+          "parameters": "",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "",
+            "families": [
+              ""
+            ],
+            "parameter_size": "",
+            "quantization_level": ""
+          }
+        }
+      ],
+      "object": "list",
+      "data": [
+        {
+          "id": "qwen3-4b-2507",
+          "aliases": [
+            "qwen3-4b-2507"
+          ],
+          "tags": [],
+          "object": "model",
+          "architecture": {
+            "input_modalities": [
+              "text"
+            ],
+            "output_modalities": [
+              "text"
+            ]
+          },
+          "created": 1792945400,
+          "owned_by": "llamacpp",
+          "meta": {
+            "vocab_type": 2,
+            "n_vocab": 151936,
+            "n_ctx": 16384,
+            "n_ctx_train": 262144,
+            "n_embd": 2560,
+            "n_params": 4022468096,
+            "size": 2491323904,
+            "ftype": "Q4_K - Medium"
+          }
+        }
+      ]
+    },
+    "lmstudio_models": null,
+    "lmstudio_selected_model": null,
+    "local_scan": {
+      "enabled": true,
+      "processes": [
+        {
+          "command": "27912 llama-server.exe \"C:\\Program Files\\WindowsApps\\NousResearchInc.HermesAgent_2026.7048.3580.0_arm64__sznbd6dv1j3v4\\app\\resources\\agent-payload\\tools\\llamacpp-cuda-11671-win32-arm64\\llama-server.exe\" --host 127.0.0.1 --port 18434 --api-key Q4KbVS0A3QaWetdv2RC96sqPJeYcdkJT --models-max 1 --models-autoload --metrics --slots --no-ui --jinja --load-mode dio --models-preset C:\\Users\\ProArt\\AppData\\Local\\hermes\\runtimes\\llamacpp\\presets.ini"
+        },
+        {
+          "command": "34632 ollama.exe \"C:\\Users\\ProArt\\ai-workshop\\.run\\ollama\\ollama.exe\" serve"
+        },
+        {
+          "command": "10088 nvidia-smi.exe nvidia-smi --query-gpu=utilization.gpu,power.draw,temperature.gpu,memory.used,clocks.sm --format=csv,noheader,nounits -lms 500"
+        },
+        {
+          "command": "26916 nvidia-smi.exe nvidia-smi --query-gpu=utilization.gpu,power.draw,temperature.gpu,memory.used,clocks.sm --format=csv,noheader,nounits -lms 500"
+        },
+        {
+          "command": "34860 nvidia-smi.exe nvidia-smi --query-gpu=utilization.gpu,power.draw,temperature.gpu,memory.used,clocks.sm --format=csv,noheader,nounits -lms 500"
+        },
+        {
+          "command": "27992 nvidia-smi.exe nvidia-smi -i 0 --query-gpu=timestamp,power.draw,temperature.gpu,clocks.gr,clocks.mem,memory.used,utilization.gpu,pstate --format=csv,noheader,nounits -lms 1000"
+        },
+        {
+          "command": "10128 llama-server.exe C:\\Users\\ProArt\\Desktop\\Project\\bench-tools\\llamacpp-cuda-b11671\\llama-server.exe -m C:\\Users\\ProArt\\AppData\\Local\\hermes\\models\\Qwen3.6-35B-A3B-UD-Q4_K_M.gguf --host 127.0.0.1 --port 8099 --alias qwen3.6-35b-a3b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off"
+        },
+        {
+          "command": "27340 llama-server.exe \"C:\\Users\\ProArt\\Desktop\\Project\\bench-tools\\llamacpp-cuda-b11671\\llama-server.exe\" -m C:\\Users\\ProArt\\models\\qwen3-4b-instruct-2507\\Qwen3-4B-Instruct-2507-Q4_K_M.gguf --host 127.0.0.1 --port 8098 --alias qwen3-4b-2507 -ngl 999 -fa on -c 16384 -np 4 --kv-unified --no-cache-prompt --jinja --no-webui"
+        },
+        {
+          "command": "36748 python.exe \"C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe\" -X utf8 ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8098 --model qwen3-4b-2507 --concurrency 1,2 --max-tokens 32 --warmup 1 --out-dir C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\fdfe6e46-c8e9-45da-99d2-9cefc9fce872\\scratchpad\\mini-run"
+        },
+        {
+          "command": "16304 python.exe C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model qwen3.6-35b-a3b --concurrency 1 --max-tokens 96 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 2 --warmup-tokens 96 --warmup-pause 1 --prompts-file C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\qwen3.6-35b-a3b\\suite\\prompts\\01_latency_single_user.txt --out-dir C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\qwen3.6-35b-a3b\\suite\\qwen3.6-35b-a3b\\01_latency_single_user --runtime \"llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server\" --gpu \"NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16\" --quantization UD-Q4_K_M --context-size 65536 --notes \"server: --host 127.0.0.1 --port 8099 --alias qwen3.6-35b-a3b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off\""
+        }
+      ],
+      "model_files": [
+        "C:\\Users\\ProArt\\.ollama\\models\\manifests-v2\\ollama.com\\library\\qwen3-embedding\\4b",
+        "C:\\Users\\ProArt\\.ollama\\models\\manifests\\registry.ollama.ai\\library\\qwen3-embedding\\4b",
+        "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\gemma-4-E2B-it-Q4_K_M.gguf",
+        "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\mmproj-gemma-4-E2B-it-BF16.gguf",
+        "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\mmproj-Qwen3.8-27B-BF16.gguf",
+        "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\Qwen3.8-27B-Q4_K_M.gguf"
+      ],
+      "detected_runtime": "CUDA llama.cpp",
+      "detected_quantization": "Q4_K_M",
+      "detected_context_size": 65536,
+      "env": {}
+    }
+  },
+  "benchmark_config": {
+    "server": "lmstudio",
+    "base_url": "http://127.0.0.1:8098",
+    "model": "qwen3-4b-2507",
+    "runtime_label": "CUDA llama.cpp",
+    "runtime_label_source": "local",
+    "gpu_label": null,
+    "model_quantization": "Q4_K_M",
+    "model_quantization_source": "local",
+    "context_size": 65536,
+    "context_size_source": "local",
+    "max_tokens_per_request": 32,
+    "temperature": 0.2,
+    "timeout_seconds": 600,
+    "concurrency": [
+      1,
+      2
+    ],
+    "cooldown_seconds": 2.0,
+    "warmup_requests": 1,
+    "warmup_max_tokens": 64,
+    "prompt_count": 10,
+    "prompts_file": null,
+    "notes": null,
+    "hardware_image": null
+  },
+  "server": "lmstudio",
+  "base_url": "http://127.0.0.1:8098",
+  "model": "qwen3-4b-2507",
+  "max_tokens": 32,
+  "temperature": 0.2,
+  "concurrency": [
+    1,
+    2
+  ]
+}

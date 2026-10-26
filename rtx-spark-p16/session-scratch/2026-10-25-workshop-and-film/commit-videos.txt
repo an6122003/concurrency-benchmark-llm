@@ -1,0 +1,6 @@
+README: the video thumbnails open the files themselves
+
+GitHub's file page can't show an 18 MB video, so a click there landed on
+"View raw". The links now go straight to the raw file.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

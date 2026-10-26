@@ -1,0 +1,21 @@
+0.00.227.257 I srv  llama_server: initializing ...
+0.00.227.265 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.227.379 I srv  init_listene: The UI is disabled
+0.00.227.380 I srv  init_listene: Use --ui/--no-ui (or deprecated --webui/--no-webui) to enable/disable
+0.00.227.461 W srv  llama_server: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.230.970 I srv    load_model: loading model 'C:\Users\ProArt\models\qwen3-4b-instruct-2507\Qwen3-4B-Instruct-2507-Q4_K_M.gguf'
+0.00.356.013 W load: control-looking token: 128247 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.01.593.859 W llama_context: n_ctx_seq (400128) > n_ctx_train (262144) -- possible training context overflow
+0.28.352.888 I cmn          init: llama threadpool init, n_threads = 20
+0.29.829.077 W srv    load_model: the slot context (400128) exceeds the training context of the model (262144) - capping
+0.30.627.631 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 262144, kv_unified = 'false'
+0.30.634.291 I srv  llama_server: model loaded
+0.30.634.296 I srv  llama_server: listening on http://127.0.0.1:8098
+0.30.939.306 I slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+0.30.939.824 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.31.039.395 I slot print_timing: id  0 | task 0 | prompt eval time =      52.92 ms /    11 tokens (    4.81 ms per token,   207.87 tokens per second)
+0.31.039.400 I slot print_timing: id  0 | task 0 |        eval time =      46.58 ms /     3 tokens (   23.29 ms per token,    42.94 tokens per second)
+0.31.039.400 I slot print_timing: id  0 | task 0 |       total time =      99.50 ms /    14 tokens
+0.31.039.402 I slot print_timing: id  0 | task 0 |    graphs reused =          2
+0.31.039.402 I slot print_timing: id  0 | task 0 |   graph reallocs =          0    /     0        (same size) / (changed size)
+0.31.039.440 I slot      release: id  0 | task 0 | stop processing: n_tokens = 13, truncated = 0

@@ -1,0 +1,4 @@
+[
+  {"js": "document.getElementById('contact').scrollIntoView({block: 'center'}); document.querySelector('[data-copy]').click(); 'copy'", "wait": 1.0},
+  {"js": "JSON.stringify({toast: document.getElementById('toast').textContent, on: document.getElementById('toast').classList.contains('on'), selected: String(getSelection())})", "wait": 0.1, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\s1-copyfail.jpg"}
+]

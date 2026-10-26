@@ -1,0 +1,18 @@
+Studio: the RTX Spark up close, and a way to work with An
+
+The home page gets a section on the machine itself: NVIDIA's specifications
+for the RTX Spark (6,144 CUDA cores, 20-core Grace CPU, 128 GB of unified
+LPDDR5X, 1 petaflop of AI, the NPU, 45-80 W), each tied to a block of the
+chip behind the page. Picking one flies the chip onto that block and shows
+what it is doing right now: GPU load, temperature and top clock, the
+computer's maker and model, a one-cell-per-GB map of the models in memory,
+the NPU, driver and CUDA version, power draw. The section tours itself while
+nobody touches it; the hero's spec tiles and a new RTX Spark link in the
+navigation jump to it. The chip's labels follow the page's language.
+
+/api/telemetry adds a platform block (maker, model, driver, CUDA version,
+compute capability, top clock, NPU), read once.
+
+The creator card links LinkedIn, and a "Work with me" card gives
+annnguyen612@gmail.com with write, copy and LinkedIn actions; the footer
+lists both. The Windows CI checks that the new section renders.

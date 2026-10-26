@@ -10,6 +10,8 @@ moved off the demo laptop before it went back; on that laptop they lived in `C:\
 | [`rtx-spark-report/`](rtx-spark-report/) | The final report. Open `index.html` in a browser: charts, infographics, conclusions and the playable games. It works offline. |
 | [`bench-tools/`](bench-tools/) | The pipeline and benchmark scripts, the report's sources and builders (`report/`, rebuilt with `build_local_report.py --suite --game`), the coding prompts and the run logs. |
 | [`rtx-spark-video/`](rtx-spark-video/) | The films and their sources. See the list below. |
+| [`bench-score/`](bench-score/) | Cinebench 2026 screenshots from 2026-10-22: 6,654 multi-thread and 514 single-thread, with the rankings. |
+| [`session-scratch/`](session-scratch/) | The working files from the sessions that made all this: a mini benchmark run (`report.html`, `results.csv`), the speculative-decoding logs, UI and README screenshots, preview sheets, helper scripts (including `cdp-shot.ps1`, which `rtx-spark-video/preview.ps1` uses) and commit messages. |
 
 The finished films in `rtx-spark-video/out/`:
 

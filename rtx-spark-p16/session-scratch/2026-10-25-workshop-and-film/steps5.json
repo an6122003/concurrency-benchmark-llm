@@ -1,0 +1,11 @@
+[
+  {"js": "document.querySelector('[data-lang=en]').click(); 'en'", "wait": 1.5},
+  {"js": "document.querySelector('#home-specs .spec[data-mx=mem]').click(); 'clicked hero memory spec'", "wait": 2.8},
+  {"js": "JSON.stringify({y: Math.round(scrollY), machineTop: Math.round(document.getElementById('machine-h').getBoundingClientRect().top), on: document.querySelector('#mx-list .mx-row.on').dataset.mx, touring: document.getElementById('mx-list').classList.contains('touring')})", "wait": 0.2, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\r1-herospec.jpg"},
+  {"js": "document.querySelector('[data-copy]').click(); 'copy'", "wait": 0.9},
+  {"js": "JSON.stringify({toast: (document.getElementById('toast') || {}).textContent})", "wait": 0.1, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\r2-copy.jpg"},
+  {"js": "document.querySelector('.chapters [data-go=lab1]').click(); 'lab1'", "wait": 1.6},
+  {"js": "document.querySelector('.chapters [data-scroll=machine-h]').click(); 'nav rtx spark'", "wait": 2.8},
+  {"js": "JSON.stringify({hash: location.hash, y: Math.round(scrollY), machineTop: Math.round(document.getElementById('machine-h').getBoundingClientRect().top), scene: document.body.dataset.scene})", "wait": 0.1, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\r3-nav.jpg"},
+  {"js": "var b = document.querySelector('#mx-list [data-mx=ai]'); b.focus(); b.dispatchEvent(new KeyboardEvent('keydown', {key: 'ArrowDown', bubbles: true})); JSON.stringify({on: document.querySelector('#mx-list .mx-row.on').dataset.mx, focused: document.activeElement.dataset.mx})", "wait": 1}
+]

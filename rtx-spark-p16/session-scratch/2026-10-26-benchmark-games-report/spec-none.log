@@ -1,0 +1,59 @@
+0.00.236.784 I srv  llama_server: initializing ...
+0.00.236.794 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.236.925 I srv  init_listene: The UI is disabled
+0.00.236.928 I srv  init_listene: Use --ui/--no-ui (or deprecated --webui/--no-webui) to enable/disable
+0.00.237.007 W srv  llama_server: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.247.640 I srv    load_model: loading model 'C:\Users\ProArt\AppData\Local\hermes\models\Qwen3.8-27B-UD-Q4_K_M.gguf'
+0.00.606.995 W model has unused tensor blk.64.attn_norm.weight (size = 20480 bytes) -- ignoring
+0.00.607.006 W model has unused tensor blk.64.post_attention_norm.weight (size = 20480 bytes) -- ignoring
+0.00.607.018 W model has unused tensor blk.64.attn_q.weight (size = 51609600 bytes) -- ignoring
+0.00.607.023 W model has unused tensor blk.64.attn_k.weight (size = 5570560 bytes) -- ignoring
+0.00.607.028 W model has unused tensor blk.64.attn_v.weight (size = 5570560 bytes) -- ignoring
+0.00.607.044 W model has unused tensor blk.64.attn_output.weight (size = 25804800 bytes) -- ignoring
+0.00.607.049 W model has unused tensor blk.64.attn_q_norm.weight (size = 1024 bytes) -- ignoring
+0.00.607.054 W model has unused tensor blk.64.attn_k_norm.weight (size = 1024 bytes) -- ignoring
+0.00.607.059 W model has unused tensor blk.64.ffn_gate.weight (size = 73113600 bytes) -- ignoring
+0.00.607.063 W model has unused tensor blk.64.ffn_down.weight (size = 73113600 bytes) -- ignoring
+0.00.607.068 W model has unused tensor blk.64.ffn_up.weight (size = 73113600 bytes) -- ignoring
+0.00.607.074 W model has unused tensor blk.64.nextn.eh_proj.weight (size = 43008000 bytes) -- ignoring
+0.00.607.079 W model has unused tensor blk.64.nextn.enorm.weight (size = 20480 bytes) -- ignoring
+0.00.607.084 W model has unused tensor blk.64.nextn.hnorm.weight (size = 20480 bytes) -- ignoring
+0.00.607.103 W model has unused tensor blk.64.nextn.shared_head_norm.weight (size = 20480 bytes) -- ignoring
+0.09.414.832 I cmn          init: llama threadpool init, n_threads = 20
+0.09.734.050 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 16384, kv_unified = 'false'
+0.09.774.234 W srv          init: chat template supports preserving reasoning, it is enabled by default (may use more tokens, disable via --no-reasoning-preserve)
+0.09.774.261 I srv  llama_server: model loaded
+0.09.774.265 I srv  llama_server: listening on http://127.0.0.1:8098
+0.10.631.107 I slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+0.10.661.315 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.17.214.940 I slot print_timing: id  0 | task 0 | n_gen =    100, tg =  15.81 t/s, tg_3s =  15.97 t/s
+0.20.276.025 I slot print_timing: id  0 | task 0 | n_gen =    147, tg =  15.66 t/s, tg_3s =  15.35 t/s
+0.23.278.192 I slot print_timing: id  0 | task 0 | n_gen =    194, tg =  15.66 t/s, tg_3s =  15.66 t/s
+0.26.325.932 I slot print_timing: id  0 | task 0 | n_gen =    241, tg =  15.61 t/s, tg_3s =  15.42 t/s
+0.29.376.947 I slot print_timing: id  0 | task 0 | n_gen =    289, tg =  15.63 t/s, tg_3s =  15.73 t/s
+0.32.423.278 I slot print_timing: id  0 | task 0 | n_gen =    330, tg =  15.32 t/s, tg_3s =  13.46 t/s
+0.35.454.504 I slot print_timing: id  0 | task 0 | n_gen =    377, tg =  15.35 t/s, tg_3s =  15.51 t/s
+0.36.996.144 I slot print_timing: id  0 | task 0 | prompt eval time =     292.51 ms /    50 tokens (    5.85 ms per token,   170.94 tokens per second)
+0.36.996.151 I slot print_timing: id  0 | task 0 |        eval time =   26042.28 ms /   400 tokens (   65.27 ms per token,    15.32 tokens per second)
+0.36.996.152 I slot print_timing: id  0 | task 0 |       total time =   26334.79 ms /   450 tokens
+0.36.996.153 I slot print_timing: id  0 | task 0 |    graphs reused =        398
+0.36.996.154 I slot print_timing: id  0 | task 0 |   graph reallocs =          0    /     0        (same size) / (changed size)
+0.36.996.187 I slot      release: id  0 | task 0 | stop processing: n_tokens = 449, truncated = 0
+0.37.000.351 I slot get_availabl: id  0 | task -1 | selected slot by LCP similarity, f_sim_best = 1.000 (> 0.100 thold), f_keep = 0.111
+0.37.077.604 I slot launch_slot_: id  0 | task 402 | processing task, is_child = 0
+0.43.874.397 I slot print_timing: id  0 | task 402 | n_gen =    100, tg =  14.86 t/s, tg_3s =  15.02 t/s
+0.46.902.685 I slot print_timing: id  0 | task 402 | n_gen =    148, tg =  15.17 t/s, tg_3s =  15.85 t/s
+0.49.955.476 I slot print_timing: id  0 | task 402 | n_gen =    196, tg =  15.30 t/s, tg_3s =  15.72 t/s
+0.53.012.434 I slot print_timing: id  0 | task 402 | n_gen =    243, tg =  15.32 t/s, tg_3s =  15.37 t/s
+0.56.053.005 I slot print_timing: id  0 | task 402 | n_gen =    290, tg =  15.34 t/s, tg_3s =  15.46 t/s
+0.59.151.188 I slot print_timing: id  0 | task 402 | n_gen =    316, tg =  14.36 t/s, tg_3s =   8.39 t/s
+1.02.265.303 I slot print_timing: id  0 | task 402 | n_gen =    341, tg =  13.57 t/s, tg_3s =   8.03 t/s
+1.05.311.566 I slot print_timing: id  0 | task 402 | n_gen =    368, tg =  13.06 t/s, tg_3s =   8.86 t/s
+1.08.376.785 I slot print_timing: id  0 | task 402 | n_gen =    382, tg =  12.23 t/s, tg_3s =   4.57 t/s
+1.11.430.615 I slot print_timing: id  0 | task 402 | n_gen =    397, tg =  11.57 t/s, tg_3s =   4.91 t/s
+1.12.088.432 I slot print_timing: id  0 | task 402 | prompt eval time =     136.79 ms /     4 tokens (   34.20 ms per token,    29.24 tokens per second)
+1.12.088.441 I slot print_timing: id  0 | task 402 |        eval time =   34873.99 ms /   400 tokens (   87.40 ms per token,    11.44 tokens per second)
+1.12.088.443 I slot print_timing: id  0 | task 402 |       total time =   35010.78 ms /   404 tokens
+1.12.088.445 I slot print_timing: id  0 | task 402 |    graphs reused =        795
+1.12.088.446 I slot print_timing: id  0 | task 402 |   graph reallocs =          0    /     0        (same size) / (changed size)
+1.12.088.511 I slot      release: id  0 | task 402 | stop processing: n_tokens = 449, truncated = 0

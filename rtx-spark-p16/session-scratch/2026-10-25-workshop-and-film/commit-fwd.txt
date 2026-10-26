@@ -1,0 +1,7 @@
+Windows edition: moved to an6122003/rtx-spark-ai-workshop
+
+The RTX Spark (Windows) edition now lives in its own repository. This
+branch stays so links to it keep working: install.ps1 runs the new
+installer, which also updates an existing ~\ai-workshop in place, and the
+README says where the edition went. The Windows CI runs in the new
+repository, so its workflow leaves this branch.

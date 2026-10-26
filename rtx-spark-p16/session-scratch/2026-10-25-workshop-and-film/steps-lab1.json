@@ -1,0 +1,6 @@
+[
+  {"js": "document.querySelector('[data-lang=en]').click(); 'en'", "wait": 3},
+  {"js": "document.querySelector('.chapters [data-go=lab1]').click(); 'lab1'", "wait": 2.5},
+  {"js": "var q = document.querySelectorAll('#l1-chips .qrow')[0]; q.click(); q.dataset.q", "wait": 15},
+  {"js": "document.getElementById('l1-chips').scrollIntoView({block: 'start'}); scrollBy(0, -110); document.getElementById('l1-a-tuned').innerText.slice(0, 300)", "wait": 1.5, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\readme\\lab1-identity.jpg"}
+]

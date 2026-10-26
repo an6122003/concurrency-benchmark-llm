@@ -1,0 +1,3 @@
+fact,value,unit,note
+cuda_addressable_gb,109.7,GB,"GPU memory CUDA reports at the 50 GB setting, dedicated plus shared (evidence/vram-50gb-nemotron-3.5-super.txt)"
+flash_next_embd_gb,26.8,GB,"Qwen3.8-Flash-Next per-layer embedding table, which llama.cpp keeps in system RAM (GGUF headers)"

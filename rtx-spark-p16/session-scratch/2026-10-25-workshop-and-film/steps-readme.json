@@ -1,0 +1,17 @@
+[
+  {"js": "document.querySelector('[data-lang=en]').click(); 'en'", "wait": 4},
+  {"js": "scrollTo(0, 0); 'top'", "wait": 2.5, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\readme\\home.jpg"},
+  {"js": "document.getElementById('machine-h').scrollIntoView({block: 'start'}); 'machine'", "wait": 3.5, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\readme\\machine-gpu.jpg"},
+  {"js": "document.querySelector('#mx-list [data-mx=mem]').click(); 'mem'", "wait": 3, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\readme\\machine-mem.jpg"},
+  {"js": "document.querySelector('.chapters [data-go=lab1]').click(); 'lab1'", "wait": 2.5},
+  {"js": "document.querySelector('#l1-chips .qrow').click(); document.querySelector('#l1-chips .qrow').dataset.q", "wait": 14},
+  {"js": "document.querySelector('#l1-compare .duo').scrollIntoView({block: 'center'}); 'duo'", "wait": 1.5, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\readme\\lab1.jpg"},
+  {"js": "document.querySelector('.chapters [data-go=lab2]').click(); 'lab2'", "wait": 2.5},
+  {"js": "var b = document.querySelector('#l2-examples .qrow .key'); (b ? b.closest('.qrow') : document.querySelector('#l2-examples .qrow')).click(); document.getElementById('l2-q').value", "wait": 14},
+  {"js": "document.getElementById('l2-answer').scrollIntoView({block: 'center'}); 'answer'", "wait": 1.5, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\readme\\lab2.jpg"},
+  {"js": "document.querySelector('.chapters [data-go=lab3]').click(); 'lab3'", "wait": 2.5},
+  {"js": "document.querySelector('#l3-examples .qrow').click(); document.getElementById('l3-q').value", "wait": 30},
+  {"js": "document.getElementById('l3-answer').scrollIntoView({block: 'start'}); scrollBy(0, -90); 'answer'", "wait": 1.5, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\readme\\lab3.jpg"},
+  {"js": "document.querySelector('.chapters [data-go=ent]').click(); 'ent'", "wait": 4, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\readme\\ent.jpg"},
+  {"js": "document.getElementById('ent-jobs').scrollIntoView({block: 'start'}); scrollBy(0, -100); 'jobs'", "wait": 2, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\readme\\ent-jobs.jpg"}
+]

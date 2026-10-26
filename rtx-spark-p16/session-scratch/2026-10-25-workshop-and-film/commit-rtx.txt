@@ -1,0 +1,15 @@
+RTX Spark AI Workshop: its own repository
+
+The Windows edition for NVIDIA RTX Spark laptops moves out of the DGX Spark
+edition's repository (an6122003/nemoclaw-rag-demo, branch windows), with its
+history, into an6122003/rtx-spark-ai-workshop, where it is the main branch.
+
+- install.ps1 installs from this repository's main branch; WORKSHOP_REPO
+  points it at a fork, and the Windows CI passes its own repository.
+- The one-line command, setup's header, the operator guide and both pages'
+  source links point here. CI runs on main.
+- A README written for RTX Spark laptops, with screenshots of the studio page
+  and each lab taken on an RTX Spark (docs/images/rtx/).
+
+The DGX Spark edition's Linux files stay, so fixes to the shared labs can
+move between the two repositories.

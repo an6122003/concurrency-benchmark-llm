@@ -1,0 +1,12 @@
+RTX Spark P16 report, films and tools
+
+Moved off the demo laptop:
+- the offline HTML report (charts, infographics, playable games)
+- the pipeline and report scripts
+- the films and their sources: the 72 s film, the TikTok quick test,
+  and the NEON SPARK evolution and arcade cuts
+
+rtx-spark-p16/README.md maps the folders. It also lists what was left
+out: rendered frames, browser profiles and the llama.cpp CUDA build.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>

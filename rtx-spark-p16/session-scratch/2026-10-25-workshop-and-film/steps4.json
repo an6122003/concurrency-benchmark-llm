@@ -1,0 +1,6 @@
+[
+  {"js": "document.querySelector('[data-lang=en]').click(); 'en'", "wait": 1.5},
+  {"js": "document.getElementById('machine-h').scrollIntoView({block: 'start'}); scrollY", "wait": 3.2, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\q1.jpg"},
+  {"js": "document.querySelector('#mx-list [data-mx=mem]').click(); document.getElementById('mx-stage').scrollIntoView({block: 'end'}); scrollY", "wait": 2.6, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\q2.jpg"},
+  {"js": "document.getElementById('contact').scrollIntoView({block: 'center'}); scrollY", "wait": 2.2, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\q3.jpg"}
+]

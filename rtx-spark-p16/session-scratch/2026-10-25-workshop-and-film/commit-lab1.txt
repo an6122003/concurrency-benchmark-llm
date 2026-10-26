@@ -1,0 +1,11 @@
+Lab 1: Aurora says it runs on the RTX Spark
+
+The fine-tuning examples came from the DGX Spark edition, so the tuned model
+told an RTX Spark audience "I run entirely on this NVIDIA DGX Spark". The
+dataset now names the RTX Spark (28 examples; regenerated with
+data/build_dataset.py, nothing else changes), and so does the lab's README.
+
+setup.ps1 records which training examples the model was trained on and
+trains it again when an update brings different ones, so laptops that are
+already installed get the corrected Aurora on their next update (about a
+minute and a half on the GPU).

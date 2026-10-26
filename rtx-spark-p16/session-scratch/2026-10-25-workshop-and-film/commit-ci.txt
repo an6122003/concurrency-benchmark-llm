@@ -1,0 +1,6 @@
+Windows CI: the studio checks allow the style attribute GSAP leaves
+
+GSAP leaves an empty style attribute on the elements it animated
+(<dl ... id="home-specs" style="">), so the check for the machine
+specs never matched in Edge's DOM. Allow attributes after the id, as
+the classic page's eyebrow check already does.

@@ -1,0 +1,5 @@
+config,config_label,gen_tps,acceptance_pct,html_tps,python_tps,prose_tps,best
+none,No speculation,14.3,,14.1,14.5,14.3,False
+mtp-n2,"MTP, 2 drafts",25.9,76,28.3,27.7,21.8,False
+mtp-n3,"MTP, 3 drafts",29.6,69,33.8,32.8,22.3,False
+dflash2,DFlash2 draft model,33.1,68,37.7,36.6,24.8,True

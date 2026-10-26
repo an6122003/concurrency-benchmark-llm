@@ -1,0 +1,97 @@
+model,label,set,test,depth,tps,sd
+qwen3.8-27b,Qwen3.8-27B,classic,pp512,0,846,22
+qwen3.8-27b,Qwen3.8-27B,classic,tg128,0,14.3,0.0
+qwen3.8-27b,Qwen3.8-27B,sweep,pp2048,0,833,24
+qwen3.8-27b,Qwen3.8-27B,sweep,tg32,0,14.1,0.1
+qwen3.8-27b,Qwen3.8-27B,sweep,pp2048,4096,776,38
+qwen3.8-27b,Qwen3.8-27B,sweep,tg32,4096,14.0,0.1
+qwen3.8-27b,Qwen3.8-27B,sweep,pp2048,8192,792,11
+qwen3.8-27b,Qwen3.8-27B,sweep,tg32,8192,14.0,0.1
+qwen3.8-27b,Qwen3.8-27B,sweep,pp2048,16384,746,23
+qwen3.8-27b,Qwen3.8-27B,sweep,tg32,16384,13.7,0.0
+qwen3.8-27b,Qwen3.8-27B,sweep,pp2048,32768,632,58
+qwen3.8-27b,Qwen3.8-27B,sweep,tg32,32768,13.0,0.1
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,classic,pp512,0,2505,65
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,classic,tg128,0,67.4,0.8
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,sweep,pp2048,0,3191,21
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,sweep,tg32,0,61.9,1.3
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,sweep,pp2048,4096,3007,63
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,sweep,tg32,4096,64.8,1.7
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,sweep,pp2048,8192,2615,348
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,sweep,tg32,8192,58.8,5.1
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,sweep,pp2048,16384,2597,105
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,sweep,tg32,16384,61.2,1.5
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,sweep,pp2048,32768,2385,71
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,sweep,tg32,32768,56.3,1.9
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,classic,pp512,0,677,7
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,classic,tg128,0,14.5,0.3
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,sweep,pp2048,0,740,10
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,sweep,tg32,0,13.7,0.1
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,sweep,pp2048,4096,743,9
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,sweep,tg32,4096,13.5,0.4
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,sweep,pp2048,8192,725,20
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,sweep,tg32,8192,13.8,0.2
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,sweep,pp2048,16384,701,26
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,sweep,tg32,16384,13.5,0.3
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,sweep,pp2048,32768,689,12
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,sweep,tg32,32768,13.8,0.0
+gemma-4-26b-a4b,Gemma 4 26B-A4B,classic,pp512,0,2151,88
+gemma-4-26b-a4b,Gemma 4 26B-A4B,classic,tg128,0,44.9,0.2
+gemma-4-26b-a4b,Gemma 4 26B-A4B,sweep,pp2048,0,2960,26
+gemma-4-26b-a4b,Gemma 4 26B-A4B,sweep,tg32,0,44.9,0.3
+gemma-4-26b-a4b,Gemma 4 26B-A4B,sweep,pp2048,4096,2699,21
+gemma-4-26b-a4b,Gemma 4 26B-A4B,sweep,tg32,4096,41.8,0.9
+gemma-4-26b-a4b,Gemma 4 26B-A4B,sweep,pp2048,8192,2386,13
+gemma-4-26b-a4b,Gemma 4 26B-A4B,sweep,tg32,8192,41.3,0.3
+gemma-4-26b-a4b,Gemma 4 26B-A4B,sweep,pp2048,16384,2244,67
+gemma-4-26b-a4b,Gemma 4 26B-A4B,sweep,tg32,16384,39.4,0.1
+gemma-4-26b-a4b,Gemma 4 26B-A4B,sweep,pp2048,32768,1879,5
+gemma-4-26b-a4b,Gemma 4 26B-A4B,sweep,tg32,32768,37.7,0.5
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,classic,pp512,0,1931,34
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,classic,tg128,0,75.4,3.6
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,sweep,pp2048,0,3262,152
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,sweep,tg32,0,74.8,1.2
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,sweep,pp2048,4096,3167,75
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,sweep,tg32,4096,78.4,1.5
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,sweep,pp2048,8192,2977,98
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,sweep,tg32,8192,77.5,3.0
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,sweep,pp2048,16384,2742,80
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,sweep,tg32,16384,76.6,3.9
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,sweep,pp2048,32768,2641,151
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,sweep,tg32,32768,67.3,6.7
+gpt-oss-20b,gpt-oss-20b (reference),classic,pp512,0,4648,308
+gpt-oss-20b,gpt-oss-20b (reference),classic,tg128,0,78.5,0.5
+gpt-oss-20b,gpt-oss-20b (reference),sweep,pp2048,0,4861,228
+gpt-oss-20b,gpt-oss-20b (reference),sweep,tg32,0,78.2,1.8
+gpt-oss-20b,gpt-oss-20b (reference),sweep,pp2048,4096,4526,56
+gpt-oss-20b,gpt-oss-20b (reference),sweep,tg32,4096,75.6,0.2
+gpt-oss-20b,gpt-oss-20b (reference),sweep,pp2048,8192,4326,55
+gpt-oss-20b,gpt-oss-20b (reference),sweep,tg32,8192,70.3,5.8
+gpt-oss-20b,gpt-oss-20b (reference),sweep,pp2048,16384,3871,10
+gpt-oss-20b,gpt-oss-20b (reference),sweep,tg32,16384,67.7,1.4
+gpt-oss-20b,gpt-oss-20b (reference),sweep,pp2048,32768,3232,98
+gpt-oss-20b,gpt-oss-20b (reference),sweep,tg32,32768,57.6,6.6
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),classic,pp512,0,4162,200
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),classic,tg128,0,78.3,0.7
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),sweep,pp2048,0,4680,25
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),sweep,tg32,0,77.9,2.0
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),sweep,pp2048,4096,3743,141
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),sweep,tg32,4096,67.7,1.1
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),sweep,pp2048,8192,3383,101
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),sweep,tg32,8192,55.9,0.5
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),sweep,pp2048,16384,2411,215
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),sweep,tg32,16384,35.8,1.5
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),sweep,pp2048,32768,1616,22
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),sweep,tg32,32768,27.6,0.6
+gemma-4-e4b,Gemma 4 E4B,classic,pp512,0,3580,178
+gemma-4-e4b,Gemma 4 E4B,classic,tg128,0,39.5,0.9
+gemma-4-e4b,Gemma 4 E4B,sweep,pp2048,0,3678,96
+gemma-4-e4b,Gemma 4 E4B,sweep,tg32,0,39.9,0.5
+gemma-4-e4b,Gemma 4 E4B,sweep,pp2048,4096,3456,55
+gemma-4-e4b,Gemma 4 E4B,sweep,tg32,4096,38.3,0.3
+gemma-4-e4b,Gemma 4 E4B,sweep,pp2048,8192,3463,67
+gemma-4-e4b,Gemma 4 E4B,sweep,tg32,8192,37.1,0.9
+gemma-4-e4b,Gemma 4 E4B,sweep,pp2048,16384,3057,113
+gemma-4-e4b,Gemma 4 E4B,sweep,tg32,16384,35.9,0.6
+gemma-4-e4b,Gemma 4 E4B,sweep,pp2048,32768,2449,123
+gemma-4-e4b,Gemma 4 E4B,sweep,tg32,32768,32.4,0.6

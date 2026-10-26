@@ -1,0 +1,25 @@
+model,label,scenario,scenario_label,prompt_tokens,ttft_s,prefill_tps,decode_tps
+qwen3.8-27b,Qwen3.8-27B,04_context_4k,4K-word document,5792,8.1,715,14.5
+qwen3.8-27b,Qwen3.8-27B,05_context_8k,8K-word document,11555,14.52,796,14.4
+qwen3.8-27b,Qwen3.8-27B,09_context_16k,16K-word document,23086,31.6,731,13.3
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,04_context_4k,4K-word document,5792,1.83,3172,68.5
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,05_context_8k,8K-word document,11555,3.85,3002,62.7
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,09_context_16k,16K-word document,23086,8.33,2773,56.5
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,04_context_4k,4K-word document,5791,6.64,872,16.5
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,05_context_8k,8K-word document,11554,12.52,923,16.4
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,09_context_16k,16K-word document,23085,25.04,922,16.1
+gemma-4-26b-a4b,Gemma 4 26B-A4B,04_context_4k,4K-word document,5794,2.06,2818,36.3
+gemma-4-26b-a4b,Gemma 4 26B-A4B,05_context_8k,8K-word document,11557,5.7,2026,23.0
+gemma-4-26b-a4b,Gemma 4 26B-A4B,09_context_16k,16K-word document,23089,11.71,1972,21.8
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,04_context_4k,4K-word document,5791,1.82,3184,75.9
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,05_context_8k,8K-word document,11554,3.69,3135,73.4
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,09_context_16k,16K-word document,23085,7.75,2978,69.4
+gpt-oss-20b,gpt-oss-20b (reference),04_context_4k,4K-word document,5847,1.42,4112,71.5
+gpt-oss-20b,gpt-oss-20b (reference),05_context_8k,8K-word document,11610,3.04,3818,64.6
+gpt-oss-20b,gpt-oss-20b (reference),09_context_16k,16K-word document,23140,7.06,3280,56.8
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),04_context_4k,4K-word document,5788,1.45,3997,56.1
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),05_context_8k,8K-word document,11551,4.42,2614,35.2
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),09_context_16k,16K-word document,23082,13.12,1760,23.3
+gemma-4-e4b,Gemma 4 E4B,04_context_4k,4K-word document,5790,1.61,3590,36.4
+gemma-4-e4b,Gemma 4 E4B,05_context_8k,8K-word document,11553,3.88,2977,24.8
+gemma-4-e4b,Gemma 4 E4B,09_context_16k,16K-word document,23085,8.32,2775,30.6

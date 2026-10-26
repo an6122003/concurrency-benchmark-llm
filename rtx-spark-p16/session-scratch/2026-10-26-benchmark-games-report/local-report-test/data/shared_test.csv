@@ -1,0 +1,7 @@
+model,run,placement,pp512,tg128,dedicated_gb,shared_gb
+qwen3.8-27b,A,dedicated,826,13.87,15.2,0.8
+qwen3.6-35b-a3b,A,dedicated,2123,58.48,20.9,0.6
+qwen3.8-27b,B-spill,shared,798,12.39,0.2,15.8
+qwen3.6-35b-a3b,B-spill,shared,2246,53.04,0.3,21.2
+qwen3.8-27b,A2,dedicated,841,14.36,15.2,0.8
+qwen3.6-35b-a3b,A2,dedicated,2475,66.62,20.5,0.6

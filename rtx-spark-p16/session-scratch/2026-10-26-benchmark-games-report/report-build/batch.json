@@ -1,0 +1,86 @@
+[
+ {
+  "op": "set",
+  "collection": "dash",
+  "doc_id": "meta",
+  "file_path": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\fdfe6e46-c8e9-45da-99d2-9cefc9fce872\\scratchpad\\report-build\\dash__meta.json"
+ },
+ {
+  "op": "set",
+  "collection": "datasets",
+  "doc_id": "models",
+  "file_path": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\fdfe6e46-c8e9-45da-99d2-9cefc9fce872\\scratchpad\\report-build\\datasets__models.json"
+ },
+ {
+  "op": "set",
+  "collection": "datasets",
+  "doc_id": "bench",
+  "file_path": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\fdfe6e46-c8e9-45da-99d2-9cefc9fce872\\scratchpad\\report-build\\datasets__bench.json"
+ },
+ {
+  "op": "set",
+  "collection": "datasets",
+  "doc_id": "spec",
+  "file_path": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\fdfe6e46-c8e9-45da-99d2-9cefc9fce872\\scratchpad\\report-build\\datasets__spec.json"
+ },
+ {
+  "op": "set",
+  "collection": "datasets",
+  "doc_id": "coding",
+  "file_path": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\fdfe6e46-c8e9-45da-99d2-9cefc9fce872\\scratchpad\\report-build\\datasets__coding.json"
+ },
+ {
+  "op": "set",
+  "collection": "datasets",
+  "doc_id": "vram",
+  "file_path": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\fdfe6e46-c8e9-45da-99d2-9cefc9fce872\\scratchpad\\report-build\\datasets__vram.json"
+ },
+ {
+  "op": "set",
+  "collection": "datasets",
+  "doc_id": "shared",
+  "file_path": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\fdfe6e46-c8e9-45da-99d2-9cefc9fce872\\scratchpad\\report-build\\datasets__shared.json"
+ },
+ {
+  "op": "set",
+  "collection": "datasets",
+  "doc_id": "dgx",
+  "file_path": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\fdfe6e46-c8e9-45da-99d2-9cefc9fce872\\scratchpad\\report-build\\datasets__dgx.json"
+ },
+ {
+  "op": "set",
+  "collection": "datasets",
+  "doc_id": "battery",
+  "file_path": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\fdfe6e46-c8e9-45da-99d2-9cefc9fce872\\scratchpad\\report-build\\datasets__battery.json"
+ },
+ {
+  "op": "set",
+  "collection": "datasets",
+  "doc_id": "power",
+  "file_path": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\fdfe6e46-c8e9-45da-99d2-9cefc9fce872\\scratchpad\\report-build\\datasets__power.json"
+ },
+ {
+  "op": "set",
+  "collection": "datasets",
+  "doc_id": "facts",
+  "file_path": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\fdfe6e46-c8e9-45da-99d2-9cefc9fce872\\scratchpad\\report-build\\datasets__facts.json"
+ },
+ {
+  "op": "set",
+  "collection": "files",
+  "doc_id": "index.html",
+  "file_path": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\fdfe6e46-c8e9-45da-99d2-9cefc9fce872\\scratchpad\\report-build\\files__index.html.json"
+ },
+ {
+  "op": "set",
+  "collection": "files",
+  "doc_id": "charts.js",
+  "file_path": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\fdfe6e46-c8e9-45da-99d2-9cefc9fce872\\scratchpad\\report-build\\files__charts.js.json"
+ },
+ {
+  "op": "set",
+  "collection": "files",
+  "doc_id": "shots.js",
+  "file_path": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\fdfe6e46-c8e9-45da-99d2-9cefc9fce872\\scratchpad\\report-build\\files__shots.js.json"
+ }
+]

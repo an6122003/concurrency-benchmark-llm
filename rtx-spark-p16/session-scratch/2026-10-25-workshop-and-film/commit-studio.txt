@@ -1,0 +1,17 @@
+Studio: a light, brand-neutral page for RTX Spark laptops
+
+A second page over the same API as the event page, made for demos on any
+RTX Spark laptop: no event, no maker branding, the hardware named from
+the machine itself. Light and quiet in the ProArt manner (porcelain,
+graphite type, a champagne-gold accent); NVIDIA green marks what is live.
+
+- "/" serves it on the Windows edition (WEB_UI setting); /studio always
+  does, and the event page stays at /classic.
+- Behind the page, a chip on a circuit breakout that lights up with real
+  work: tokens as they stream, training steps, retrieval, tool calls and
+  batch items, and the GPU load from the new /api/telemetry endpoint
+  (nvidia-smi and the CPU and memory the machine reports).
+- Every lab and the enterprise demos, with a document map for RAG that
+  draws the passages an answer used, and a "Created by" section.
+- Type: Plus Jakarta Sans and JetBrains Mono, served locally (OFL).
+- Windows CI checks that both pages render in Edge.

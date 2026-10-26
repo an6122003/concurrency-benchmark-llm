@@ -1,0 +1,15 @@
+[
+  {"js": "document.querySelector('[data-lang=en]').click(); 'en'", "wait": 3},
+  {"js": "document.querySelector('.chapters [data-go=lab1]').click(); 'lab1'", "wait": 2.5},
+  {"js": "var q = document.querySelectorAll('#l1-chips .qrow')[3]; q.click(); q.dataset.q", "wait": 14},
+  {"js": "document.querySelector('#l1-compare .duo').scrollIntoView({block: 'center'}); 'duo'", "wait": 1.5, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\readme\\lab1.jpg"},
+  {"js": "document.querySelector('.chapters [data-go=lab2]').click(); 'lab2'", "wait": 2.5},
+  {"js": "var b = document.querySelector('#l2-examples .qrow .key'); (b ? b.closest('.qrow') : document.querySelector('#l2-examples .qrow')).click(); document.getElementById('l2-q').value", "wait": 14},
+  {"js": "document.querySelector('.grid.rag').scrollIntoView({block: 'start'}); scrollBy(0, -90); 'map'", "wait": 1.5, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\readme\\lab2-map.jpg"},
+  {"js": "document.getElementById('l2-answer').scrollIntoView({block: 'start'}); scrollBy(0, -90); 'answer'", "wait": 1.5, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\readme\\lab2.jpg"},
+  {"js": "document.querySelector('.chapters [data-go=ent]').click(); 'ent'", "wait": 4},
+  {"js": "var r = document.querySelector('#ent-ctl .act.primary'); r.disabled ? 'run button disabled' : (r.click(), 'started inbox 300')", "wait": 110},
+  {"js": "document.getElementById('ent-panel').scrollIntoView({block: 'start'}); scrollBy(0, -90); document.getElementById('ent-panel').innerText.slice(0, 160)", "wait": 1.5, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\readme\\ent-run.jpg"},
+  {"js": "scrollBy(0, 640); 'down'", "wait": 1.5, "out": "C:\\Users\\ProArt\\AppData\\Local\\Temp\\claude\\C--Users-ProArt-Desktop-Project\\7798a40b-a3ff-4606-ac88-bbf988d29d19\\scratchpad\\readme\\ent-run2.jpg"},
+  {"js": "(async () => { const p = (u, b) => fetch(u, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(b)}).then(r => r.json()); const s = await p('/api/ent/stop', {demo: 'inbox'}); await new Promise(r => setTimeout(r, 4000)); const z = await p('/api/ent/reset', {demo: 'inbox'}); return JSON.stringify({stop: s.ok, reset: z.ok}); })()", "wait": 1}
+]

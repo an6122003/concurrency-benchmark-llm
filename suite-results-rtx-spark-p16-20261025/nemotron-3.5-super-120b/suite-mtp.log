@@ -1,0 +1,67 @@
+Benchmarking nemotron-3.5-super-120b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2, 4, 8]
+
+Warmup: 2 request(s), not included in scores
+  warmup 1/2: ok latency_s=5.94 ttft_s=1.15 tok_s=21.56
+  warmup 2/2: ok latency_s=4.09 ttft_s=0.57 tok_s=25.65
+
+users= 1 success=1/1 aggregate_tok_s=26.63 avg_user_tok_s=26.70 avg_latency_s=11.24 avg_ttft_s=0.57
+users= 2 success=2/2 aggregate_tok_s=28.61 avg_user_tok_s=18.26 avg_latency_s=10.73 avg_ttft_s=1.19
+users= 4 success=4/4 aggregate_tok_s=40.70 avg_user_tok_s=12.71 avg_latency_s=15.18 avg_ttft_s=2.00
+users= 8 success=8/8 aggregate_tok_s=52.35 avg_user_tok_s=8.49 avg_latency_s=21.30 avg_ttft_s=3.37
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\02_team_concurrency
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\02_team_concurrency\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\02_team_concurrency\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\02_team_concurrency\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\02_team_concurrency\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\02_team_concurrency\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\02_team_concurrency\compare.html
+Benchmarking nemotron-3.5-super-120b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2, 4]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=5.18 ttft_s=0.56 tok_s=24.73
+
+users= 1 success=1/1 aggregate_tok_s=26.96 avg_user_tok_s=26.97 avg_latency_s=18.58 avg_ttft_s=0.56
+users= 2 success=2/2 aggregate_tok_s=28.09 avg_user_tok_s=19.20 avg_latency_s=15.28 avg_ttft_s=1.14
+users= 4 success=4/4 aggregate_tok_s=38.75 avg_user_tok_s=13.90 avg_latency_s=20.64 avg_ttft_s=1.74
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\03_peak_decode_long_output
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\03_peak_decode_long_output\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\03_peak_decode_long_output\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\03_peak_decode_long_output\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\03_peak_decode_long_output\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\03_peak_decode_long_output\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\03_peak_decode_long_output\compare.html
+Benchmarking nemotron-3.5-super-120b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=3.68 ttft_s=0.58 tok_s=26.12
+
+users= 1 success=1/1 aggregate_tok_s=29.86 avg_user_tok_s=29.89 avg_latency_s=10.04 avg_ttft_s=0.54
+users= 2 success=2/2 aggregate_tok_s=34.61 avg_user_tok_s=19.15 avg_latency_s=18.70 avg_ttft_s=1.12
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\06_coding_smoke
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\06_coding_smoke\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\06_coding_smoke\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\06_coding_smoke\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\06_coding_smoke\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\06_coding_smoke\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\06_coding_smoke\compare.html
+
+=== nemotron-3.5-super-120b / 02_team_concurrency ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model nemotron-3.5-super-120b --concurrency 1,2,4,8 --max-tokens 300 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 2 --warmup-tokens 128 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\prompts\02_team_concurrency.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\02_team_concurrency --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization NVFP4 --context-size 65536 --notes MTP speculative decoding. server: --host 127.0.0.1 --port 8099 --alias nemotron-3.5-super-120b -ngl 999 --fit off -fa on -c 65536 -np 16 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --load-mode dio --spec-type draft-mtp --spec-draft-n-max 2 -md C:\Users\ProArt\models\nemotron-3.5-super-120b\mtp-NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Q8_0.gguf
+
+=== nemotron-3.5-super-120b / 03_peak_decode_long_output ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model nemotron-3.5-super-120b --concurrency 1,2,4 --max-tokens 1024 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 128 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\prompts\03_peak_decode_long_output.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\03_peak_decode_long_output --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization NVFP4 --context-size 65536 --notes MTP speculative decoding. server: --host 127.0.0.1 --port 8099 --alias nemotron-3.5-super-120b -ngl 999 --fit off -fa on -c 65536 -np 16 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --load-mode dio --spec-type draft-mtp --spec-draft-n-max 2 -md C:\Users\ProArt\models\nemotron-3.5-super-120b\mtp-NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Q8_0.gguf
+
+=== nemotron-3.5-super-120b / 06_coding_smoke ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model nemotron-3.5-super-120b --concurrency 1,2 --max-tokens 384 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 96 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\prompts\06_coding_smoke.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\06_coding_smoke --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization NVFP4 --context-size 65536 --notes MTP speculative decoding. server: --host 127.0.0.1 --port 8099 --alias nemotron-3.5-super-120b -ngl 999 --fit off -fa on -c 65536 -np 16 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --load-mode dio --spec-type draft-mtp --spec-draft-n-max 2 -md C:\Users\ProArt\models\nemotron-3.5-super-120b\mtp-NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Q8_0.gguf
+
+Wrote suite output: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\suite-manifest.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\suite-comparison.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\suite-report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\suite-comparison.html

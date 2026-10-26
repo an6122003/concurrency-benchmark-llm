@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Suite Comparison · rtx-spark-p16-gemma-4-e4b-suite</title>
+  <link rel="icon" href="assets/techieslab/avatar.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root { --bg:#0a0a14; --surface:#15132a; --surface2:#1c1936; --violet:#8070f8; --violet-l:#a090f8; --cyan:#58c8f8; --mint:#60d8c0; --white:#fff; --dim:rgba(255,255,255,.68); --faint:rgba(255,255,255,.42); --line:rgba(255,255,255,.1); --sans:"Inter",-apple-system,system-ui,sans-serif; --serif:"EB Garamond",Georgia,serif; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:var(--sans); color:var(--white); background:linear-gradient(rgba(10,10,20,.88),rgba(10,10,20,.96)),url("assets/techieslab/background.png") top center / min(100vw,1800px) auto no-repeat,var(--bg); }
+    main { max-width:1320px; margin:0 auto; padding:24px; }
+    .brandbar { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px; }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .brand img { width:42px; height:42px; border-radius:8px; border:1px solid var(--line); }
+    .brand-name { font-family:var(--serif); font-size:1.4rem; }
+    .brand-name span { color:var(--violet-l); }
+    h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.4rem,5vw,4.5rem); line-height:1; margin:0 0 12px; }
+    h1 em { color:var(--violet-l); }
+    p { color:var(--dim); }
+    .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; margin:20px 0; }
+    .stat,.panel { background:linear-gradient(160deg,rgba(21,19,42,.92),rgba(14,13,28,.92)); border:1px solid var(--line); border-radius:8px; }
+    .stat { padding:14px; }
+    .stat span { display:block; color:var(--faint); font-size:.76rem; margin-bottom:6px; }
+    .stat strong { font-size:1.15rem; }
+    .grid { display:grid; grid-template-columns:1.25fr .9fr; gap:16px; }
+    .panel { padding:16px; margin-top:16px; }
+    .chart { height:340px; }
+    table { width:100%; border-collapse:collapse; min-width:1120px; }
+    .table-wrap { overflow:auto; }
+    th,td { border-bottom:1px solid var(--line); padding:9px; text-align:right; font-size:.84rem; }
+    th { color:var(--faint); background:rgba(28,25,54,.92); }
+    td:first-child,th:first-child,td:nth-child(2),th:nth-child(2),td:nth-child(3),th:nth-child(3),td:nth-child(4),th:nth-child(4) { text-align:left; }
+    a { color:var(--violet-l); }
+    .note { border:1px solid rgba(160,144,248,.38); border-radius:8px; padding:14px; background:rgba(128,112,248,.10); }
+    @media(max-width:900px) { .grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <div class="brandbar"><div class="brand"><img src="assets/techieslab/avatar.png" alt=""><div class="brand-name">techies<span>.lab</span></div></div><div>Suite Comparison</div></div>
+  <h1>Detailed <em>comparison</em> table.</h1>
+  <p>rtx-spark-p16-gemma-4-e4b-suite · 28 measured rows · 1 target(s) · 10 scenario(s)</p>
+  <section class="stats"><div class="stat"><span>Targets</span><strong>1</strong></div>
+<div class="stat"><span>Scenarios</span><strong>10</strong></div>
+<div class="stat"><span>Best throughput</span><strong>489.32 tok/s</strong></div>
+<div class="stat"><span>Comfortable users</span><strong>32 users</strong></div>
+<div class="stat"><span>Lowest TTFT</span><strong>0.12 s</strong></div>
+<div class="stat"><span>Lowest P95</span><strong>1.27 s</strong></div></section>
+  <section class="note">
+    This report is intended for hardware/model conclusions and sales solution architecture. Use the per-scenario reports for raw evidence, and use the suite comparison table for buyer-facing tradeoffs: responsiveness, team serving capacity, sustained throughput, context pressure, and software stack compatibility.
+  </section>
+  <section class="grid">
+    <div class="panel"><h2>Throughput / per-user speed</h2><div class="chart"><canvas id="throughput"></canvas></div></div>
+    <div class="panel"><h2>Latency / TTFT</h2><div class="chart"><canvas id="latency"></canvas></div></div>
+  </section>
+  <section class="panel">
+    <h2>Scenario comparison</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Target</th><th>Scenario</th><th>Model</th><th>Hardware</th><th>Runtime</th><th>Quant</th><th>Users</th><th>Success</th><th>Aggregate tok/s</th><th>Per-user tok/s</th><th>TTFT</th><th>P95 latency</th><th>Report</th></tr></thead>
+        <tbody><tr><td>gemma-4-e4b</td><td>01_latency_single_user</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>1</td><td>1/1</td><td>43.74</td><td>43.90</td><td>0.14</td><td>2.19</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\01_latency_single_user\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>02_team_concurrency</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>1</td><td>1/1</td><td>45.69</td><td>45.77</td><td>0.12</td><td>6.55</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\02_team_concurrency\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>02_team_concurrency</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>2</td><td>2/2</td><td>66.75</td><td>42.55</td><td>0.17</td><td>6.83</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\02_team_concurrency\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>02_team_concurrency</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>3</td><td>3/3</td><td>99.33</td><td>40.36</td><td>0.21</td><td>7.14</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\02_team_concurrency\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>02_team_concurrency</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>4</td><td>4/4</td><td>132.05</td><td>39.63</td><td>0.22</td><td>7.50</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\02_team_concurrency\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>02_team_concurrency</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>5</td><td>5/5</td><td>147.01</td><td>37.05</td><td>0.22</td><td>7.90</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\02_team_concurrency\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>02_team_concurrency</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>6</td><td>6/6</td><td>171.78</td><td>35.63</td><td>0.23</td><td>8.17</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\02_team_concurrency\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>02_team_concurrency</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>7</td><td>7/7</td><td>202.53</td><td>34.91</td><td>0.23</td><td>8.39</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\02_team_concurrency\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>02_team_concurrency</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>8</td><td>8/8</td><td>219.88</td><td>33.27</td><td>0.26</td><td>8.76</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\02_team_concurrency\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>02_team_concurrency</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>9</td><td>9/9</td><td>229.64</td><td>31.40</td><td>0.29</td><td>9.18</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\02_team_concurrency\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>02_team_concurrency</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>10</td><td>10/10</td><td>253.54</td><td>30.36</td><td>0.30</td><td>9.42</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\02_team_concurrency\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>03_peak_decode_long_output</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>1</td><td>1/1</td><td>40.89</td><td>40.91</td><td>0.14</td><td>13.57</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\03_peak_decode_long_output\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>03_peak_decode_long_output</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>2</td><td>2/2</td><td>58.30</td><td>41.14</td><td>0.17</td><td>10.75</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\03_peak_decode_long_output\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>03_peak_decode_long_output</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>4</td><td>4/4</td><td>106.26</td><td>38.79</td><td>0.20</td><td>12.76</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\03_peak_decode_long_output\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>04_context_4k</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>1</td><td>1/1</td><td>26.70</td><td>26.72</td><td>1.61</td><td>5.99</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\04_context_4k\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>04_context_4k</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>2</td><td>2/2</td><td>26.84</td><td>13.48</td><td>4.45</td><td>11.92</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\04_context_4k\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>05_context_8k</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>1</td><td>1/1</td><td>15.52</td><td>15.54</td><td>3.88</td><td>10.30</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\05_context_8k\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>06_coding_smoke</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>1</td><td>1/1</td><td>34.00</td><td>34.04</td><td>0.16</td><td>11.28</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\06_coding_smoke\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>06_coding_smoke</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>2</td><td>2/2</td><td>64.21</td><td>32.16</td><td>0.18</td><td>11.96</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\06_coding_smoke\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>07_vietnamese_smoke</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>1</td><td>1/1</td><td>32.39</td><td>32.42</td><td>0.23</td><td>11.85</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\07_vietnamese_smoke\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>07_vietnamese_smoke</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>2</td><td>2/2</td><td>55.67</td><td>27.88</td><td>0.19</td><td>13.79</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\07_vietnamese_smoke\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>08_extraction_classification</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>1</td><td>1/1</td><td>26.53</td><td>26.67</td><td>0.18</td><td>1.27</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\08_extraction_classification\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>08_extraction_classification</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>4</td><td>4/4</td><td>84.89</td><td>22.73</td><td>0.35</td><td>1.74</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\08_extraction_classification\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>09_context_16k</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>1</td><td>1/1</td><td>11.83</td><td>11.83</td><td>8.32</td><td>13.52</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\09_context_16k\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>10_team_stress</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>12</td><td>12/12</td><td>191.71</td><td>19.97</td><td>0.62</td><td>14.43</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\10_team_stress\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>10_team_stress</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>16</td><td>16/16</td><td>291.35</td><td>22.58</td><td>0.48</td><td>12.81</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\10_team_stress\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>10_team_stress</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>24</td><td>24/24</td><td>401.23</td><td>20.38</td><td>0.59</td><td>13.79</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\10_team_stress\report.html">report</a></td></tr>
+<tr><td>gemma-4-e4b</td><td>10_team_stress</td><td>gemma-4-e4b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>Q8_0</td><td>32</td><td>32/32</td><td>489.32</td><td>18.55</td><td>0.71</td><td>15.37</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-e4b\suite\gemma-4-e4b\10_team_stress\report.html">report</a></td></tr></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<script>
+Chart.defaults.color = 'rgba(255,255,255,.72)';
+Chart.defaults.borderColor = 'rgba(255,255,255,.08)';
+const data = {"labels": ["gemma-4-e4b \u00b7 12u", "gemma-4-e4b \u00b7 16u", "gemma-4-e4b \u00b7 24u", "gemma-4-e4b \u00b7 32u"], "aggregate": [191.71468708481126, 291.3515509830074, 401.2259522397901, 489.3236272750914], "perUser": [19.965560508524096, 22.58218246022062, 20.37518510378721, 18.551768234333107], "ttft": [0.6154245750003611, 0.47856825000053504, 0.5916474916660567, 0.7134716562500216], "p95": [14.425525709999784, 12.808449749998545, 13.788750454997352, 15.373843379997925]};
+new Chart(document.getElementById('throughput'), {
+  type:'bar',
+  data:{labels:data.labels,datasets:[
+    {label:'Aggregate tok/s',data:data.aggregate,backgroundColor:'#8070f8'},
+    {label:'Per-user tok/s',data:data.perUser,backgroundColor:'#60d8c0'}
+  ]},
+  options:{maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{x:{ticks:{maxRotation:45,minRotation:0}},y:{beginAtZero:true}}}
+});
+new Chart(document.getElementById('latency'), {
+  type:'line',
+  data:{labels:data.labels,datasets:[
+    {label:'TTFT (s)',data:data.ttft,borderColor:'#58c8f8',backgroundColor:'#58c8f8',tension:.25},
+    {label:'P95 latency (s)',data:data.p95,borderColor:'#a090f8',backgroundColor:'#a090f8',tension:.25}
+  ]},
+  options:{maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}}
+});
+</script>
+</body>
+</html>

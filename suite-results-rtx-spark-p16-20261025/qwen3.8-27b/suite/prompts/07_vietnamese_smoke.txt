@@ -1,0 +1,3 @@
+Viết một đoạn giải thích dễ hiểu về TTFT, latency và tokens/second cho người mới dùng AI local.
+---
+Tóm tắt ưu nhược điểm của việc dùng một máy local AI server cho team 5 người.

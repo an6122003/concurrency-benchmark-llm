@@ -1,0 +1,619 @@
+{
+  "meta": {
+    "date": "2026-10-26T11:26:38",
+    "host": "Windows 11 (ARM64)",
+    "os": {
+      "system": "Windows",
+      "release": "11",
+      "version": "10.0.28000",
+      "platform": "Windows-11-10.0.28000-SP0"
+    },
+    "python": "3.13.17",
+    "python_executable": "C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe",
+    "cpu": {
+      "processor": "NVIDIA RTX Spark N1X (6144-core GPU, 20-core CPU)",
+      "machine": "ARM64",
+      "physical_or_logical_cores": 20
+    },
+    "memory": {
+      "total_bytes": 32742236160,
+      "total_human": "30.5 GB"
+    },
+    "gpu": {
+      "detected": [
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_mib": 98304,
+          "vram_used_mib": 32903,
+          "vram_free_mib": 65388,
+          "vram_total_human": "98304 MiB",
+          "vram_used_human": "32903 MiB",
+          "vram_free_human": "65388 MiB",
+          "driver": "617.69",
+          "performance_state": "P8",
+          "temperature_c": 62,
+          "power_draw_w": "1.91"
+        },
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA NPU",
+          "vram_total_mib": null,
+          "vram_used_mib": null,
+          "vram_free_mib": null,
+          "vram_total_human": "",
+          "vram_used_human": "",
+          "vram_free_human": "",
+          "driver": "617.69",
+          "performance_state": "[N/A]",
+          "temperature_c": 66,
+          "power_draw_w": "0.00"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA NPU",
+          "vram_total_bytes": null,
+          "vram_total_human": "unknown",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": null,
+          "reported_adapter_ram_human": "unknown",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "ACPI\\NVDA200A\\0",
+          "source": "Win32_VideoController"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_bytes": 4293918720,
+          "vram_total_human": "4.0 GB",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": 4293918720,
+          "reported_adapter_ram_human": "4.0 GB",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "PCI\\VEN_10DE&DEV_2E03&SUBSYS_14841043&REV_A1\\00000000002DB04800",
+          "source": "Win32_VideoController"
+        }
+      ]
+    },
+    "runtime": {
+      "server_mode": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "openai_models": {
+        "models": [
+          {
+            "name": "qwen3.6-35b-a3b",
+            "model": "qwen3.6-35b-a3b",
+            "modified_at": "",
+            "size": "",
+            "digest": "",
+            "type": "model",
+            "description": "",
+            "tags": [
+              ""
+            ],
+            "capabilities": [
+              "completion"
+            ],
+            "parameters": "",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "",
+              "families": [
+                ""
+              ],
+              "parameter_size": "",
+              "quantization_level": ""
+            }
+          }
+        ],
+        "object": "list",
+        "data": [
+          {
+            "id": "qwen3.6-35b-a3b",
+            "aliases": [
+              "qwen3.6-35b-a3b"
+            ],
+            "tags": [],
+            "object": "model",
+            "architecture": {
+              "input_modalities": [
+                "text"
+              ],
+              "output_modalities": [
+                "text"
+              ]
+            },
+            "created": 1792988798,
+            "owned_by": "llamacpp",
+            "meta": {
+              "vocab_type": 2,
+              "n_vocab": 248320,
+              "n_ctx": 65536,
+              "n_ctx_train": 262144,
+              "n_embd": 2048,
+              "n_params": 35505251456,
+              "size": 22652396032,
+              "ftype": "Q4_K - Medium"
+            }
+          }
+        ]
+      },
+      "lmstudio_models": null,
+      "lmstudio_selected_model": null,
+      "local_scan": {
+        "enabled": true,
+        "processes": [
+          {
+            "command": "14464 llama-server.exe \"C:\\Program Files\\WindowsApps\\NousResearchInc.HermesAgent_2026.7082.1520.0_arm64__sznbd6dv1j3v4\\app\\resources\\agent-payload\\tools\\llamacpp-cuda-11671-win32-arm64\\llama-server.exe\" --host 127.0.0.1 --port 18434 --api-key Q4KbVS0A3QaWetdv2RC96sqPJeYcdkJT --models-max 1 --models-autoload --metrics --slots --no-ui --jinja --load-mode dio --models-preset C:\\Users\\ProArt\\AppData\\Local\\hermes\\runtimes\\llamacpp\\presets.ini"
+          },
+          {
+            "command": "17576 nvidia-smi.exe nvidia-smi -i 0 --query-gpu=timestamp,power.draw,temperature.gpu,clocks.gr,clocks.mem,memory.used,utilization.gpu,pstate --format=csv,noheader,nounits -lms 1000"
+          },
+          {
+            "command": "4564 llama-server.exe C:\\Users\\ProArt\\Desktop\\Project\\bench-tools\\llamacpp-cuda-b11671\\llama-server.exe -m C:\\Users\\ProArt\\AppData\\Local\\hermes\\models\\Qwen3.6-35B-A3B-UD-Q4_K_M.gguf --host 127.0.0.1 --port 8099 --alias qwen3.6-35b-a3b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --spec-type draft-mtp --spec-draft-n-max 2"
+          },
+          {
+            "command": "18284 python.exe C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model qwen3.6-35b-a3b --concurrency 1,2,4,8 --max-tokens 300 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 2 --warmup-tokens 128 --warmup-pause 1 --prompts-file C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\qwen3.6-35b-a3b\\suite-mtp\\prompts\\02_team_concurrency.txt --out-dir C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\qwen3.6-35b-a3b\\suite-mtp\\qwen3.6-35b-a3b\\02_team_concurrency --runtime \"llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server\" --gpu \"NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16\" --quantization UD-Q4_K_M --context-size 65536 --notes \"MTP speculative decoding. server: --host 127.0.0.1 --port 8099 --alias qwen3.6-35b-a3b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --spec-type draft-mtp --spec-draft-n-max 2\""
+          }
+        ],
+        "model_files": [
+          "C:\\Users\\ProArt\\.ollama\\models\\manifests-v2\\ollama.com\\library\\nemotron-3.5-lightning\\30b-a3b",
+          "C:\\Users\\ProArt\\.ollama\\models\\manifests-v2\\ollama.com\\library\\qwen3-embedding\\4b",
+          "C:\\Users\\ProArt\\.ollama\\models\\manifests\\registry.ollama.ai\\library\\qwen3-embedding\\4b",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\gemma-4-E2B-it-Q4_K_M.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\mmproj-gemma-4-E2B-it-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\mmproj-Qwen3.8-27B-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\Qwen3.8-27B-Q4_K_M.gguf"
+        ],
+        "detected_runtime": "CUDA llama.cpp",
+        "detected_quantization": "Q4_K_M",
+        "detected_context_size": 65536,
+        "env": {}
+      }
+    },
+    "benchmark_config": {
+      "server": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "model": "qwen3.6-35b-a3b",
+      "runtime_label": "llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server",
+      "runtime_label_source": "manual",
+      "gpu_label": "NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16",
+      "model_quantization": "UD-Q4_K_M",
+      "model_quantization_source": "manual",
+      "context_size": 65536,
+      "context_size_source": "manual",
+      "max_tokens_per_request": 300,
+      "temperature": 0.2,
+      "timeout_seconds": 900.0,
+      "concurrency": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "cooldown_seconds": 1.0,
+      "warmup_requests": 2,
+      "warmup_max_tokens": 128,
+      "prompt_count": 3,
+      "prompts_file": "C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\qwen3.6-35b-a3b\\suite-mtp\\prompts\\02_team_concurrency.txt",
+      "notes": "MTP speculative decoding. server: --host 127.0.0.1 --port 8099 --alias qwen3.6-35b-a3b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --spec-type draft-mtp --spec-draft-n-max 2",
+      "hardware_image": null
+    },
+    "server": "lmstudio",
+    "base_url": "http://127.0.0.1:8099",
+    "model": "qwen3.6-35b-a3b",
+    "max_tokens": 300,
+    "temperature": 0.2,
+    "concurrency": [
+      1,
+      2,
+      4,
+      8
+    ]
+  },
+  "summaries": [
+    {
+      "concurrency": 1,
+      "requests": 1,
+      "success": 1,
+      "failures": 0,
+      "wall_time_s": 3.6441034999952535,
+      "total_completion_tokens": 300,
+      "total_tokens": 347,
+      "aggregate_output_tps": 82.32477480411595,
+      "avg_latency_s": 3.6115350000036415,
+      "p50_latency_s": 3.6115350000036415,
+      "p95_latency_s": 3.6115350000036415,
+      "avg_ttft_s": 0.19251019999501295,
+      "p50_ttft_s": 0.19251019999501295,
+      "p95_ttft_s": 0.19251019999501295,
+      "avg_per_request_tps": 83.06717226877146,
+      "min_per_request_tps": 83.06717226877146,
+      "max_per_request_tps": 83.06717226877146,
+      "ttft_sources": {
+        "stream": 1
+      },
+      "errors": []
+    },
+    {
+      "concurrency": 2,
+      "requests": 2,
+      "success": 2,
+      "failures": 0,
+      "wall_time_s": 4.73958169999969,
+      "total_completion_tokens": 529,
+      "total_tokens": 617,
+      "aggregate_output_tps": 111.61322527682869,
+      "avg_latency_s": 4.395290299999033,
+      "p50_latency_s": 4.395290299999033,
+      "p95_latency_s": 4.702716169999258,
+      "avg_ttft_s": 0.3879742000026454,
+      "p50_ttft_s": 0.3879742000026454,
+      "p95_ttft_s": 0.4390123000030144,
+      "avg_per_request_tps": 59.91220776067495,
+      "min_per_request_tps": 56.491516651693225,
+      "max_per_request_tps": 63.33289886965668,
+      "ttft_sources": {
+        "stream": 2
+      },
+      "errors": []
+    },
+    {
+      "concurrency": 4,
+      "requests": 4,
+      "success": 4,
+      "failures": 0,
+      "wall_time_s": 7.78124630000093,
+      "total_completion_tokens": 1114,
+      "total_tokens": 1292,
+      "aggregate_output_tps": 143.16472670963606,
+      "avg_latency_s": 7.255184525000004,
+      "p50_latency_s": 7.530055499999435,
+      "p95_latency_s": 7.739464259999295,
+      "avg_ttft_s": 0.6217287500021484,
+      "p50_ttft_s": 0.6630769000003056,
+      "p95_ttft_s": 0.6650950050057872,
+      "avg_per_request_tps": 38.446877886668915,
+      "min_per_request_tps": 35.59326907376906,
+      "max_per_request_tps": 39.83747637554116,
+      "ttft_sources": {
+        "stream": 4
+      },
+      "errors": []
+    },
+    {
+      "concurrency": 8,
+      "requests": 8,
+      "success": 8,
+      "failures": 0,
+      "wall_time_s": 11.306745200003206,
+      "total_completion_tokens": 2214,
+      "total_tokens": 2564,
+      "aggregate_output_tps": 195.8123191808879,
+      "avg_latency_s": 10.325391200000013,
+      "p50_latency_s": 10.752761249998002,
+      "p95_latency_s": 11.254395974999351,
+      "avg_ttft_s": 1.0556589249981698,
+      "p50_ttft_s": 1.0818802499998128,
+      "p95_ttft_s": 1.0860091749967977,
+      "avg_per_request_tps": 26.77961991951552,
+      "min_per_request_tps": 25.664869234934812,
+      "max_per_request_tps": 28.417833429497982,
+      "ttft_sources": {
+        "stream": 8
+      },
+      "errors": []
+    }
+  ],
+  "requests": [
+    {
+      "concurrency": 1,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36867.3102,
+      "ended_at": 36870.921735,
+      "ttft_s": 0.19251019999501295,
+      "ttft_source": "stream",
+      "prompt_tokens": 47,
+      "completion_tokens": 300,
+      "total_tokens": 347,
+      "chars": 842,
+      "response_preview": "Vi\u1ec7c m\u1ed9t GPU 32GB c\u00f3 \u0111\u1ee7 s\u1ee9c ph\u1ee5c v\u1ee5 m\u1ed9t nh\u00f3m AI nh\u1ecf hay kh\u00f4ng ph\u1ee5 thu\u1ed9c ho\u00e0n to\u00e0n v\u00e0o **lo\u1ea1i m\u00f4 h\u00ecnh** v\u00e0 **m\u1ee5c \u0111\u00edch c\u00f4ng vi\u1ec7c** c\u1ee7a nh\u00f3m. D\u01b0\u1edbi \u0111\u00e2y l\u00e0 ph\u00e2n t\u00edch th\u1ef1c t\u1ebf:  ### 1. Khi n\u00e0o th\u00ec \u0110\u1ee6? (Kh\u1ea3 thi) GPU 32GB (nh\u01b0 RTX 4090, RTX 3090, ho",
+      "latency_s": 3.6115350000036415,
+      "output_tokens_per_s": 83.06717226877146
+    },
+    {
+      "concurrency": 2,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36871.9368583,
+      "ended_at": 36876.6737329,
+      "ttft_s": 0.33126520000223536,
+      "ttft_source": "stream",
+      "prompt_tokens": 47,
+      "completion_tokens": 300,
+      "total_tokens": 347,
+      "chars": 905,
+      "response_preview": "Vi\u1ec7c m\u1ed9t GPU 32GB c\u00f3 \u0111\u1ee7 s\u1ee9c ph\u1ee5c v\u1ee5 m\u1ed9t nh\u00f3m AI nh\u1ecf hay kh\u00f4ng ph\u1ee5 thu\u1ed9c ho\u00e0n to\u00e0n v\u00e0o **lo\u1ea1i m\u00f4 h\u00ecnh** v\u00e0 **kh\u1ed1i l\u01b0\u1ee3ng c\u00f4ng vi\u1ec7c** c\u1ee7a team b\u1ea1n. D\u01b0\u1edbi \u0111\u00e2y l\u00e0 ph\u00e2n t\u00edch th\u1ef1c t\u1ebf:  ### 1. Khi n\u00e0o th\u00ec \u0110\u1ee6? (Kh\u1ea3 thi) GPU 32GB (nh\u01b0 RTX 4090, RTX 30",
+      "latency_s": 4.7368745999992825,
+      "output_tokens_per_s": 63.33289886965668
+    },
+    {
+      "concurrency": 2,
+      "user_id": 2,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36871.9380193,
+      "ended_at": 36875.9917253,
+      "ttft_s": 0.4446832000030554,
+      "ttft_source": "stream",
+      "prompt_tokens": 41,
+      "completion_tokens": 229,
+      "total_tokens": 270,
+      "chars": 1244,
+      "response_preview": "*   **Privacy and Security**: Local AI keeps data entirely on your device, eliminating the risk of third-party exposure or data leaks, whereas cloud AI requires sending sensitive information over the internet to external servers. *   **Perf",
+      "latency_s": 4.053705999998783,
+      "output_tokens_per_s": 56.491516651693225
+    },
+    {
+      "concurrency": 4,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36877.6763847,
+      "ended_at": 36885.2069822,
+      "ttft_s": 0.6654384000066784,
+      "ttft_source": "stream",
+      "prompt_tokens": 47,
+      "completion_tokens": 300,
+      "total_tokens": 347,
+      "chars": 963,
+      "response_preview": "**T\u00f3m t\u1eaft ng\u1eafn g\u1ecdn:** C\u00f3, nh\u01b0ng **ch\u1ec9 ph\u00f9 h\u1ee3p cho c\u00e1c t\u00e1c v\u1ee5 c\u1ee5 th\u1ec3** v\u00e0 c\u1ea7n c\u00f3 chi\u1ebfn l\u01b0\u1ee3c t\u1ed1i \u01b0u h\u00f3a.  **Chi ti\u1ebft th\u1ef1c t\u1ebf:**  1.  **Khi n\u00e0o 32GB \u0111\u1ee7 t\u1ed1t?**     *   **Fine-tuning (Hu\u1ea5n luy\u1ec7n tinh ch\u1ec9nh):** Ho\u00e0n to\u00e0n \u0111\u1ee7 cho c\u00e1c m\u00f4 h\u00ecnh ng\u00f4n n",
+      "latency_s": 7.530597500001022,
+      "output_tokens_per_s": 39.83747637554116
+    },
+    {
+      "concurrency": 4,
+      "user_id": 2,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36877.6776644,
+      "ended_at": 36883.8619684,
+      "ttft_s": 0.49532280000130413,
+      "ttft_source": "stream",
+      "prompt_tokens": 41,
+      "completion_tokens": 246,
+      "total_tokens": 287,
+      "chars": 1405,
+      "response_preview": "*   **Privacy and Security**: Local AI keeps sensitive data entirely on your device, eliminating the risk of data breaches or unauthorized access by third-party providers, whereas cloud AI requires transmitting data over the internet, intro",
+      "latency_s": 6.184304000002157,
+      "output_tokens_per_s": 39.77812216215668
+    },
+    {
+      "concurrency": 4,
+      "user_id": 3,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36877.6790158,
+      "ended_at": 36885.2085293,
+      "ttft_s": 0.6631491000007372,
+      "ttft_source": "stream",
+      "prompt_tokens": 43,
+      "completion_tokens": 268,
+      "total_tokens": 311,
+      "chars": 1161,
+      "response_preview": "Hey! \ud83d\udc4b Great question. It basically comes down to how the GPU handles memory and computation when multiple requests hit at once.  Here\u2019s the quick breakdown:  1.  **KV Cache Bottleneck:** LLMs store past conversation history (the Key-Value ",
+      "latency_s": 7.529513499997847,
+      "output_tokens_per_s": 35.59326907376906
+    },
+    {
+      "concurrency": 4,
+      "user_id": 4,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36877.6796658,
+      "ended_at": 36885.4559889,
+      "ttft_s": 0.663004699999874,
+      "ttft_source": "stream",
+      "prompt_tokens": 47,
+      "completion_tokens": 300,
+      "total_tokens": 347,
+      "chars": 973,
+      "response_preview": "**T\u00f3m t\u1eaft ng\u1eafn g\u1ecdn:** V\u1edbi 32GB VRAM, m\u1ed9t team AI nh\u1ecf (1-3 ng\u01b0\u1eddi) **c\u00f3 th\u1ec3 l\u00e0m vi\u1ec7c hi\u1ec7u qu\u1ea3** cho c\u00e1c t\u00e1c v\u1ee5 ph\u1ed5 bi\u1ebfn, nh\u01b0ng s\u1ebd g\u1eb7p gi\u1edbi h\u1ea1n n\u1ebfu mu\u1ed1n hu\u1ea5n luy\u1ec7n c\u00e1c m\u00f4 h\u00ecnh l\u1edbn (LLM) t\u1eeb \u0111\u1ea7u ho\u1eb7c x\u1eed l\u00fd d\u1eef li\u1ec7u c\u1ef1c l\u1edbn.  **Chi ti\u1ebft th\u1ef1c t\u1ebf:**",
+      "latency_s": 7.77632309999899,
+      "output_tokens_per_s": 38.57864393520878
+    },
+    {
+      "concurrency": 8,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36886.4591676,
+      "ended_at": 36897.5061459,
+      "ttft_s": 0.8652272999970592,
+      "ttft_source": "stream",
+      "prompt_tokens": 47,
+      "completion_tokens": 300,
+      "total_tokens": 347,
+      "chars": 880,
+      "response_preview": "Vi\u1ec7c m\u1ed9t GPU 32GB c\u00f3 \u0111\u1ee7 s\u1ee9c ph\u1ee5c v\u1ee5 m\u1ed9t nh\u00f3m AI nh\u1ecf hay kh\u00f4ng ph\u1ee5 thu\u1ed9c ho\u00e0n to\u00e0n v\u00e0o **lo\u1ea1i m\u00f4 h\u00ecnh** v\u00e0 **m\u1ee5c \u0111\u00edch c\u00f4ng vi\u1ec7c** c\u1ee7a nh\u00f3m b\u1ea1n. D\u01b0\u1edbi \u0111\u00e2y l\u00e0 ph\u00e2n t\u00edch th\u1ef1c t\u1ebf:  ### 1. Khi n\u00e0o th\u00ec \u0110\u1ee6? (Khuy\u00ean d\u00f9ng) GPU 32GB (nh\u01b0 RTX 4090, RTX ",
+      "latency_s": 11.046978300000774,
+      "output_tokens_per_s": 27.15674747002798
+    },
+    {
+      "concurrency": 8,
+      "user_id": 2,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36886.4605861,
+      "ended_at": 36895.5973826,
+      "ttft_s": 1.0822086000043782,
+      "ttft_source": "stream",
+      "prompt_tokens": 41,
+      "completion_tokens": 237,
+      "total_tokens": 278,
+      "chars": 1343,
+      "response_preview": "*   **Privacy and Security**: Local AI keeps sensitive data entirely on your device, eliminating the risk of data breaches or unauthorized access by third-party providers, whereas cloud AI requires transmitting data over the internet, intro",
+      "latency_s": 9.136796499995398,
+      "output_tokens_per_s": 25.939069563398874
+    },
+    {
+      "concurrency": 8,
+      "user_id": 3,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36886.4615754,
+      "ended_at": 36897.6322205,
+      "ttft_s": 1.0818352999995113,
+      "ttft_source": "stream",
+      "prompt_tokens": 43,
+      "completion_tokens": 300,
+      "total_tokens": 343,
+      "chars": 1315,
+      "response_preview": "Hey! \ud83d\udc4b  Great question. It basically comes down to how the GPU handles memory and computation when multiple people are asking for things at the same time.  Here\u2019s the simple breakdown:  1.  **Memory Bottleneck:** LLMs are huge. When you loa",
+      "latency_s": 11.170645100006368,
+      "output_tokens_per_s": 26.856103413385586
+    },
+    {
+      "concurrency": 8,
+      "user_id": 4,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36886.4623088,
+      "ended_at": 36897.41108,
+      "ttft_s": 1.081481299996085,
+      "ttft_source": "stream",
+      "prompt_tokens": 47,
+      "completion_tokens": 300,
+      "total_tokens": 347,
+      "chars": 890,
+      "response_preview": "Vi\u1ec7c m\u1ed9t GPU 32GB c\u00f3 \u0111\u1ee7 s\u1ee9c ph\u1ee5c v\u1ee5 m\u1ed9t nh\u00f3m AI nh\u1ecf hay kh\u00f4ng ph\u1ee5 thu\u1ed9c ho\u00e0n to\u00e0n v\u00e0o **lo\u1ea1i c\u00f4ng vi\u1ec7c** v\u00e0 **quy m\u00f4 m\u00f4 h\u00ecnh** m\u00e0 nh\u00f3m b\u1ea1n \u0111ang x\u1eed l\u00fd. D\u01b0\u1edbi \u0111\u00e2y l\u00e0 ph\u00e2n t\u00edch th\u1ef1c t\u1ebf:  ### 1. Khi n\u00e0o th\u00ec \u0110\u1ee6? GPU 32GB (nh\u01b0 RTX 4090, RTX 6000 A",
+      "latency_s": 10.948771199997282,
+      "output_tokens_per_s": 27.400335117065417
+    },
+    {
+      "concurrency": 8,
+      "user_id": 5,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36886.4631929,
+      "ended_at": 36895.5046998,
+      "ttft_s": 1.0872577999980422,
+      "ttft_source": "stream",
+      "prompt_tokens": 41,
+      "completion_tokens": 237,
+      "total_tokens": 278,
+      "chars": 1343,
+      "response_preview": "*   **Privacy and Security**: Local AI keeps sensitive data entirely on your device, eliminating the risk of data breaches or unauthorized access by third-party providers, whereas cloud AI requires transmitting data over the internet, intro",
+      "latency_s": 9.041506900000968,
+      "output_tokens_per_s": 26.212444741924006
+    },
+    {
+      "concurrency": 8,
+      "user_id": 6,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36886.4642802,
+      "ended_at": 36897.7637728,
+      "ttft_s": 1.0816455999956816,
+      "ttft_source": "stream",
+      "prompt_tokens": 43,
+      "completion_tokens": 290,
+      "total_tokens": 333,
+      "chars": 1235,
+      "response_preview": "Hey! \ud83d\udc4b Great question. It basically comes down to how the GPU handles memory and computation when multiple requests hit at once.  Here\u2019s the quick breakdown:  1.  **KV Cache Bottleneck:** LLMs store previous conversation context (the \"Key-V",
+      "latency_s": 11.299492599995574,
+      "output_tokens_per_s": 25.664869234934812
+    },
+    {
+      "concurrency": 8,
+      "user_id": 7,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36886.4646221,
+      "ended_at": 36897.0213734,
+      "ttft_s": 1.0836902999944868,
+      "ttft_source": "stream",
+      "prompt_tokens": 47,
+      "completion_tokens": 300,
+      "total_tokens": 347,
+      "chars": 888,
+      "response_preview": "Vi\u1ec7c m\u1ed9t GPU 32GB (nh\u01b0 NVIDIA RTX 4090 ho\u1eb7c RTX A6000) c\u00f3 \u0111\u1ee7 s\u1ee9c ph\u1ee5c v\u1ee5 m\u1ed9t nh\u00f3m AI nh\u1ecf hay kh\u00f4ng ph\u1ee5 thu\u1ed9c ho\u00e0n to\u00e0n v\u00e0o **lo\u1ea1i m\u00f4 h\u00ecnh** v\u00e0 **m\u1ee5c \u0111\u00edch c\u00f4ng vi\u1ec7c** c\u1ee7a nh\u00f3m \u0111\u00f3.  D\u01b0\u1edbi \u0111\u00e2y l\u00e0 ph\u00e2n t\u00edch th\u1ef1c t\u1ebf:  ### 1. Khi n\u00e0o th\u00ec 32GB l\u00e0 \u0110",
+      "latency_s": 10.556751299998723,
+      "output_tokens_per_s": 28.417833429497982
+    },
+    {
+      "concurrency": 8,
+      "user_id": 8,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36886.4655315,
+      "ended_at": 36895.8677192,
+      "ttft_s": 1.0819252000001143,
+      "ttft_source": "stream",
+      "prompt_tokens": 41,
+      "completion_tokens": 250,
+      "total_tokens": 291,
+      "chars": 1415,
+      "response_preview": "*   **Privacy and Security**: Local AI keeps sensitive data entirely on your device, eliminating the risk of data breaches or unauthorized access by third-party providers, whereas cloud AI requires transmitting data over the internet, intro",
+      "latency_s": 9.402187700005015,
+      "output_tokens_per_s": 26.589556385889495
+    }
+  ],
+  "warmup_requests": [
+    {
+      "concurrency": 0,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36862.3919826,
+      "ended_at": 36864.6885387,
+      "ttft_s": 0.838769100002537,
+      "ttft_source": "stream",
+      "prompt_tokens": 47,
+      "completion_tokens": 128,
+      "total_tokens": 175,
+      "chars": 384,
+      "response_preview": "Vi\u1ec7c m\u1ed9t GPU 32GB c\u00f3 \u0111\u1ee7 s\u1ee9c ph\u1ee5c v\u1ee5 m\u1ed9t nh\u00f3m AI nh\u1ecf hay kh\u00f4ng ph\u1ee5 thu\u1ed9c ho\u00e0n to\u00e0n v\u00e0o **lo\u1ea1i m\u00f4 h\u00ecnh** v\u00e0 **m\u1ee5c \u0111\u00edch s\u1eed d\u1ee5ng** c\u1ee7a nh\u00f3m. D\u01b0\u1edbi \u0111\u00e2y l\u00e0 ph\u00e2n t\u00edch th\u1ef1c t\u1ebf:  ### 1. Khi n\u00e0o th\u00ec \u0110\u1ee6? *   **Fine-tuning (Hu\u1ea5n luy\u1ec7n tinh ch\u1ec9nh) c\u00e1c m\u00f4",
+      "latency_s": 2.296556100001908,
+      "output_tokens_per_s": 55.73562953671964
+    },
+    {
+      "concurrency": 0,
+      "user_id": 2,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36864.6890416,
+      "ended_at": 36866.2893123,
+      "ttft_s": 0.21750089999841293,
+      "ttft_source": "stream",
+      "prompt_tokens": 41,
+      "completion_tokens": 128,
+      "total_tokens": 169,
+      "chars": 755,
+      "response_preview": "*   **Privacy and Security**: Local AI keeps sensitive data entirely on your device, eliminating the risk of data leakage to third-party servers, whereas cloud AI requires transmitting data over the internet, introducing potential privacy v",
+      "latency_s": 1.6002707000006922,
+      "output_tokens_per_s": 79.98646728953085
+    }
+  ]
+}

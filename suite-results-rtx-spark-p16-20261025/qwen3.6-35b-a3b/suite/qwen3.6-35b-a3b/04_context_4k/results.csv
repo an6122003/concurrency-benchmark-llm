@@ -1,0 +1,6 @@
+type,concurrency,user_id,ok,status,latency_s,ttft_s,ttft_source,completion_tokens,total_tokens,output_tps,error
+request,1,1,True,200,4.1464,1.8263,stream,160,5952,38.5874,
+request,2,1,True,200,6.8266,2.5162,stream,160,5952,23.4378,
+request,2,2,True,200,6.8950,3.8554,stream,160,5952,23.2051,
+summary,1,,True,,4.1519,1.8263,"{""stream"": 1}",160,5952,38.5370,
+summary,2,,True,,6.8965,3.1858,"{""stream"": 2}",320,11904,46.4005,

@@ -1,0 +1,130 @@
+﻿NEON SPARK: every prompt sent to Qwen3.8-27B (UD-Q4_K_M, DFlash2 draft, medium reasoning) on the RTX Spark laptop.
+Each follow-up was sent with the original prompt and the previous version's full code; no line of the game was edited by hand.
+
+=== Prompt 1 (one-shot) - 560 tokens in, 23367 tokens out, 11.7 minutes, 33.4 tok/s, 931 lines of HTML ===
+Build a complete, polished HTML5 arcade game called "NEON SPARK" that looks stunning on screen — it will be filmed for a social media video, so the visuals must wow people in the first three seconds.
+
+Hard requirements
+- One self-contained HTML file (HTML + CSS + JavaScript inline). No external libraries, images, fonts or audio files: draw everything with the Canvas 2D API and synthesize every sound with the Web Audio API.
+- Smooth 60 fps with requestAnimationFrame and delta time, full-window canvas, correct on high-DPI screens and window resize, playable with mouse, touch, or keyboard (arrow keys / WASD).
+
+Look and feel (80s synthwave, neon)
+- Deep violet-to-black night sky, twinkling stars, a huge retro sun with horizontal stripe cut-outs, two layers of parallax mountains, and a glowing perspective grid floor that scrolls toward the viewer.
+- Everything glows: additive "lighter" blending, shadowBlur halos, motion trails, a subtle CRT scanline + vignette overlay, and a brief chromatic flash on big explosions.
+- Palette: hot magenta, electric cyan, sunset orange, with acid-green (#76B900) energy accents.
+
+Gameplay
+- The player flies a sleek neon ship near the bottom of the screen with an engine-flame particle trail; it auto-fires laser bolts.
+- Enemy waves with at least three enemy types that move differently (sine weavers, divers, shooters), each with its own color and shape.
+- Every fifth wave a boss arrives with a health bar, multiple bullet patterns, and a big multi-stage death explosion.
+- Power-ups dropped by enemies: spread shot, shield bubble, and slow-motion time warp.
+- Game feel: particle explosions with sparks and expanding shockwave rings, screen shake, hit-stop on kills, floating score popups, combo multiplier that decays, smooth easing on all UI.
+
+Screens and UI
+- Animated title screen with a glowing "NEON SPARK" logo, the sun rising behind it, and a pulsing "CLICK OR TAP TO START".
+- HUD: score, combo, wave number, lives as small ships; P pauses; M mutes.
+- Game-over screen with final score and best score saved in localStorage, plus instant restart.
+
+Audio
+- Synthesized laser zaps, noise-burst explosions, power-up arpeggios, and a looping synthwave bassline with a simple drum beat that starts after the first click.
+
+Return only the complete code in one ```html code block, with no explanation before or after it.
+
+=== Prompt 2 (v2) - 14505 tokens in, 23862 tokens out, 12.1 minutes, 33.9 tok/s, 1079 lines of HTML ===
+I played it. It looks amazing, but there are problems:
+
+1. As soon as I click start, the game jumps straight to "WAVE 5 – BOSS WAVE". The normal waves with weavers, divers and shooters never appear, and after the boss it skips ahead to the next boss again.
+2. Because of that my score stays at 0 the whole game.
+3. The retro sun should have the classic horizontal stripe cut-outs in its lower half. Right now it is a solid disc.
+4. I can barely see the CRT scanlines and the vignette.
+
+Please fix all of these, then polish it so it feels like a finished arcade game: punchier explosions, a clearly visible combo multiplier, and a short animated intro on the title screen.
+
+Return the complete updated file in one ```html code block, with no explanation before or after it.
+
+=== Prompt 3 (v3) - 16702 tokens in, 46468 tokens out, 25.9 minutes, 30.4 tok/s, 1317 lines of HTML ===
+Much better: the waves and the score work now. Two things I still noticed:
+- The sun still looks like a solid disc. I think the stripes are hidden behind the mountains; make them clearly visible above the mountains.
+- A shooter can park in a corner and hover forever, so the wave never ends until I hunt it down. Enemies should leave or dive at me after a while.
+
+Now turn it into a complete game with a story and progression:
+
+1. Story: after clicking start, show a short typewriter-style intro (3 to 4 lines): the Static, a corrupting signal, is swallowing the Neon Grid, and the player is SPARK, the last light-runner. A click skips it.
+2. Campaign: three sectors, each with its own name, color palette (sky, sun and grid tint) and enemy mix: 1. Sunset Boulevard, 2. Chrome Canyon, 3. The Core. Each sector has 4 waves and then a boss. Show a sector title card between sectors.
+3. Bosses: a different boss for each sector, each with a name, its own look, its own attack patterns that change at 66% and 33% health, and a one-line taunt when it arrives. The third boss is the Static itself and should feel like a finale.
+4. Upgrades: after each boss, pause the action and let me pick 1 of 3 upgrade cards (for example faster fire, twin shot, +1 life, longer shield, power-up magnet), clickable or chosen with keys 1 to 3.
+5. Overdrive: a meter that fills as I score combos; when full, pressing Space unleashes a screen-clearing burst.
+6. Ending: after the final boss, a victory screen with a short epilogue and stats (score, max combo, accuracy, time), the best score saved, and buttons to play again or start Hard mode.
+
+Keep everything that works now. Return the complete updated file in one ```html code block, with no explanation before or after it.
+
+=== Prompt 4 (v4) - 23978 tokens in, 28607 tokens out, 13.4 minutes, 36.8 tok/s, 1659 lines of HTML ===
+This is a real game now: the story, the three sectors, the bosses, the upgrades and the ending all work, and the sun looks great. I played through the whole campaign. Now polish it so it feels like a premium arcade game:
+
+1. Boss HUD: during boss fights the top center is a mess. "SECTOR x / 3", "BOSS — NAME", a second copy of the boss name and the combo all overlap the health bar. Lay them out cleanly: a slim health bar with the boss name above it, and the sector and combo moved so nothing collides.
+2. Upgrade screen: the cards are plain boxes. Give each upgrade a drawn neon icon, animate the cards sliding in, make the hovered card lift and glow, and show the current level of each upgrade on its card.
+3. Intro and story: the typewriter text is small. Make the intro cinematic: larger centered text, a header like "INCOMING TRANSMISSION", a slight glitch flicker, and a clearly visible "click to begin". When each boss is destroyed, show a one-line defeat message from it before the explosion ends.
+4. Sector clear: after each boss, show a short "SECTOR CLEAR" tally before the upgrade cards (enemies destroyed, accuracy, a no-hit bonus) with points counting up.
+5. Enemy variety: every enemy dies in one shot. Add a tougher armored enemy in sectors 2 and 3 that takes 3 hits and flashes white when hit, and a splitter in sector 3 that breaks into two small fast enemies.
+6. Touch: on phones there is no way to fire Overdrive. Add an on-screen Overdrive button that appears when the meter is full (double-tap should also trigger it).
+7. Music: change the music per sector (a different bassline and tempo) and play a more intense track during boss fights.
+8. Victory stats: "MAX COMBO ×1 (4)" is confusing. Show it as "Max combo: 4 hits".
+
+Keep everything that already works. Return the complete updated file in one ```html code block, with no explanation before or after it.
+
+=== Prompt 5 (v5) - 29503 tokens in, 41384 tokens out, 21.8 minutes, 32.5 tok/s, 1765 lines of HTML ===
+Big step up: the intro transmission, the sector themes, the armored enemies, the SECTOR CLEAR tally, the upgrade cards with icons and the victory screen all look great. I played the whole campaign again and found these problems:
+
+1. The HUD is gone. During play the score, lives, combo, Overdrive meter and the boss health bar never appear. The browser console fills up with "ReferenceError: tauntT is not defined" at drawWaveMsg, every frame. Fix the error so the whole HUD shows again, and check that nothing else in the render path uses a variable that is never declared.
+2. Boss defeat lines: when a boss is destroyed it still says nothing. Show its one-line defeat message in large glowing text near the boss while it explodes.
+3. Boss deaths: the boss stays whole and still for over a second and then vanishes. Make it flash, shake and break apart into pieces during that time.
+4. Upgrade levels: on the very first upgrade screen RAPID FIRE already shows "LV 5 / 6" before I have ever picked it. Every upgrade should start at level 0 and go up by exactly one each time I choose it.
+5. Upgrade cards: on a 1920x1080 screen the cards and their text are small. Make the cards about 50% bigger with larger titles and descriptions, still three in a row.
+
+Keep everything else exactly as it works now. Return the complete updated file in one ```html code block, with no explanation before or after it.
+
+=== Prompt 6 (v6) - 30864 tokens in, 31285 tokens out, 14.5 minutes, 37.8 tok/s, 1844 lines of HTML ===
+This is great now: the HUD is back and clean, the boss break-apart explosions look fantastic, and the final boss is a real finale. I played the whole campaign again with no errors. Last round of polish, all visual:
+
+1. Boss defeat line: it is drawn above the boss, but the bosses fly near the top of the screen, so the line is cut off at the top edge. Draw it below the boss instead and always keep the whole line inside the screen.
+2. Death flash: during a boss death a flat pale grey disc covers the boss. Replace it with a soft glowing burst (a radial gradient in the boss's color that fades out at the edge).
+3. Boss arrival: the big boss name and its taunt are drawn in see-through red and orange right over the sun, so they are hard to read. Give them a dark outline or a dark translucent band behind them so they stay readable on every sector's sun.
+4. Upgrade cards: a card that says "LV 0 / 5" shows six bar segments with one already lit. Show exactly as many segments as the maximum level and light one per level taken, so level 0 has none lit.
+
+Change nothing else. Return the complete updated file in one ```html code block, with no explanation before or after it.
+
+=== Prompt 7 (v7) - 32052 tokens in, 32194 tokens out, 14.0 minutes, 40.0 tok/s, 1943 lines of HTML ===
+The visual fixes are perfect on my laptop. Then I opened the game on my phone (390x844, portrait). The gameplay, HUD, boss bar, sector cards, SECTOR CLEAR tally and the round OVERDRIVE button all work well there, but every long piece of text breaks:
+
+1. Upgrade screen: the three cards shrink to tiny boxes (about 78x53 pixels) and their titles and descriptions spill out over each other. On a narrow portrait screen, stack the three cards vertically, each one nearly full width, with the same icon, title, level bars and description at a readable size. Keep three in a row on wide screens.
+2. Intro transmission: the story lines run off the right edge of the screen. Wrap the text to the screen width, keeping the typewriter effect.
+3. Boss defeat line: its box and text run off both edges of the phone screen. Wrap it onto two lines when it does not fit.
+4. Victory screen: the epilogue line is cut off on both sides. Wrap it too.
+5. Movement: the ship is locked to one horizontal line near the bottom. Let it move up and down as well: it should follow the mouse or finger in both directions, and WASD / arrow keys should move it in all four directions, anywhere below the HUD and inside the screen. On touch, keep the ship a little above the finger so the finger does not hide it. Enemy aim, dives and collisions must use the ship's real position.
+
+In general, every line of text on every screen must fit inside the screen with a small margin, on a 390x844 phone and on a 1920x1080 monitor. Change nothing else. Return the complete updated file in one ```html code block, with no explanation before or after it.
+
+=== Prompt 8 (v8) - 33055 tokens in, 38901 tokens out, 17.1 minutes, 39.5 tok/s, 1958 lines of HTML ===
+Free movement feels great: the ship follows the mouse and my finger up and down, the arrow keys and WASD work, and it stops below the HUD. The phone victory screen and the two-line boss defeat caption fit perfectly now. Three layout problems are left:
+
+1. Intro on a monitor: the story text now starts at the far left edge of the screen instead of sitting centered under the "INCOMING TRANSMISSION" header. Put it in a centered column (at most about 900 pixels wide) under the header on wide screens.
+2. Intro on a phone: the first story line is drawn on top of the "INCOMING TRANSMISSION" header. Always start the story text below the header line.
+3. Upgrade cards on a phone: the stacked cards are the right size, but each card's description is drawn below the card's bottom edge, on top of the next card, and the "CLICK A CARD · OR PRESS 1 / 2 / 3" hint is drawn over the third card. Fit the icon, title, level bars and description inside each card (for example icon on the left and text on the right), put the hint below the last card, and on touch screens say "TAP A CARD" instead.
+
+Change nothing else. Return the complete updated file in one ```html code block, with no explanation before or after it.
+
+=== Prompt 9 (v9) - 33430 tokens in, 34152 tokens out, 17.1 minutes, 34.7 tok/s, 1968 lines of HTML ===
+The intro is centered on my monitor again, and on my phone it starts below the header. Three small things are left:
+
+1. Audio error: every time the music starts, the browser console shows "TypeError: Failed to set the 'buffer' property on 'AudioBufferSourceNode': Failed to convert value to 'AudioBuffer'" in playStep, and the first drum hit is missing. Fix it.
+2. Upgrade cards on a phone: each card's description is still drawn below the card's bottom edge, on top of the next card, and the last one runs into "TAP A CARD". In the stacked phone layout, put the icon on the left and the title, level bars and description on the right, all inside the card, so nothing spills out.
+3. Intro on a phone: the lines that have not been typed yet each show a cursor block, so a column of blocks runs down the left side. Show a single blinking cursor at the typing position only.
+
+Change nothing else. Return the complete updated file in one ```html code block, with no explanation before or after it.
+
+=== Prompt 10 (v10) - 33501 tokens in, 36996 tokens out, 17.8 minutes, 36.0 tok/s, 1987 lines of HTML ===
+Everything works now, with no console errors on my monitor or my phone. One last polish on the phone's upgrade cards: the content now stays inside each card, but it looks unfinished. The title, bars and description sit at the top of the card while the icon floats in the middle on the left, the "LV x / y" label from the desktop cards is missing, and each card is mostly empty space.
+
+On the phone, make each card only as tall as its content (about 120 pixels), vertically center the icon and the text block together, draw the icon a little larger, and show the "LV x / y" label between the title and the bars, like on the desktop cards. Keep the desktop cards exactly as they are.
+
+Change nothing else. Return the complete updated file in one ```html code block, with no explanation before or after it.

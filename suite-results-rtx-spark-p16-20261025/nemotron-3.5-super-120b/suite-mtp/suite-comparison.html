@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Suite Comparison · rtx-spark-p16-nemotron-3.5-super-120b-mtp</title>
+  <link rel="icon" href="assets/techieslab/avatar.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root { --bg:#0a0a14; --surface:#15132a; --surface2:#1c1936; --violet:#8070f8; --violet-l:#a090f8; --cyan:#58c8f8; --mint:#60d8c0; --white:#fff; --dim:rgba(255,255,255,.68); --faint:rgba(255,255,255,.42); --line:rgba(255,255,255,.1); --sans:"Inter",-apple-system,system-ui,sans-serif; --serif:"EB Garamond",Georgia,serif; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:var(--sans); color:var(--white); background:linear-gradient(rgba(10,10,20,.88),rgba(10,10,20,.96)),url("assets/techieslab/background.png") top center / min(100vw,1800px) auto no-repeat,var(--bg); }
+    main { max-width:1320px; margin:0 auto; padding:24px; }
+    .brandbar { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px; }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .brand img { width:42px; height:42px; border-radius:8px; border:1px solid var(--line); }
+    .brand-name { font-family:var(--serif); font-size:1.4rem; }
+    .brand-name span { color:var(--violet-l); }
+    h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.4rem,5vw,4.5rem); line-height:1; margin:0 0 12px; }
+    h1 em { color:var(--violet-l); }
+    p { color:var(--dim); }
+    .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; margin:20px 0; }
+    .stat,.panel { background:linear-gradient(160deg,rgba(21,19,42,.92),rgba(14,13,28,.92)); border:1px solid var(--line); border-radius:8px; }
+    .stat { padding:14px; }
+    .stat span { display:block; color:var(--faint); font-size:.76rem; margin-bottom:6px; }
+    .stat strong { font-size:1.15rem; }
+    .grid { display:grid; grid-template-columns:1.25fr .9fr; gap:16px; }
+    .panel { padding:16px; margin-top:16px; }
+    .chart { height:340px; }
+    table { width:100%; border-collapse:collapse; min-width:1120px; }
+    .table-wrap { overflow:auto; }
+    th,td { border-bottom:1px solid var(--line); padding:9px; text-align:right; font-size:.84rem; }
+    th { color:var(--faint); background:rgba(28,25,54,.92); }
+    td:first-child,th:first-child,td:nth-child(2),th:nth-child(2),td:nth-child(3),th:nth-child(3),td:nth-child(4),th:nth-child(4) { text-align:left; }
+    a { color:var(--violet-l); }
+    .note { border:1px solid rgba(160,144,248,.38); border-radius:8px; padding:14px; background:rgba(128,112,248,.10); }
+    @media(max-width:900px) { .grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <div class="brandbar"><div class="brand"><img src="assets/techieslab/avatar.png" alt=""><div class="brand-name">techies<span>.lab</span></div></div><div>Suite Comparison</div></div>
+  <h1>Detailed <em>comparison</em> table.</h1>
+  <p>rtx-spark-p16-nemotron-3.5-super-120b-mtp · 9 measured rows · 1 target(s) · 3 scenario(s)</p>
+  <section class="stats"><div class="stat"><span>Targets</span><strong>1</strong></div>
+<div class="stat"><span>Scenarios</span><strong>3</strong></div>
+<div class="stat"><span>Best throughput</span><strong>52.35 tok/s</strong></div>
+<div class="stat"><span>Comfortable users</span><strong>8 users</strong></div>
+<div class="stat"><span>Lowest TTFT</span><strong>0.54 s</strong></div>
+<div class="stat"><span>Lowest P95</span><strong>10.04 s</strong></div></section>
+  <section class="note">
+    This report is intended for hardware/model conclusions and sales solution architecture. Use the per-scenario reports for raw evidence, and use the suite comparison table for buyer-facing tradeoffs: responsiveness, team serving capacity, sustained throughput, context pressure, and software stack compatibility.
+  </section>
+  <section class="grid">
+    <div class="panel"><h2>Throughput / per-user speed</h2><div class="chart"><canvas id="throughput"></canvas></div></div>
+    <div class="panel"><h2>Latency / TTFT</h2><div class="chart"><canvas id="latency"></canvas></div></div>
+  </section>
+  <section class="panel">
+    <h2>Scenario comparison</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Target</th><th>Scenario</th><th>Model</th><th>Hardware</th><th>Runtime</th><th>Quant</th><th>Users</th><th>Success</th><th>Aggregate tok/s</th><th>Per-user tok/s</th><th>TTFT</th><th>P95 latency</th><th>Report</th></tr></thead>
+        <tbody><tr><td>nemotron-3.5-super-120b</td><td>02_team_concurrency</td><td>nemotron-3.5-super-120b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>NVFP4</td><td>1</td><td>1/1</td><td>26.63</td><td>26.70</td><td>0.57</td><td>11.24</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\02_team_concurrency\report.html">report</a></td></tr>
+<tr><td>nemotron-3.5-super-120b</td><td>02_team_concurrency</td><td>nemotron-3.5-super-120b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>NVFP4</td><td>2</td><td>2/2</td><td>28.61</td><td>18.26</td><td>1.19</td><td>13.99</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\02_team_concurrency\report.html">report</a></td></tr>
+<tr><td>nemotron-3.5-super-120b</td><td>02_team_concurrency</td><td>nemotron-3.5-super-120b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>NVFP4</td><td>4</td><td>4/4</td><td>40.70</td><td>12.71</td><td>2.00</td><td>20.04</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\02_team_concurrency\report.html">report</a></td></tr>
+<tr><td>nemotron-3.5-super-120b</td><td>02_team_concurrency</td><td>nemotron-3.5-super-120b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>NVFP4</td><td>8</td><td>8/8</td><td>52.35</td><td>8.49</td><td>3.37</td><td>28.93</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\02_team_concurrency\report.html">report</a></td></tr>
+<tr><td>nemotron-3.5-super-120b</td><td>03_peak_decode_long_output</td><td>nemotron-3.5-super-120b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>NVFP4</td><td>1</td><td>1/1</td><td>26.96</td><td>26.97</td><td>0.56</td><td>18.58</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\03_peak_decode_long_output\report.html">report</a></td></tr>
+<tr><td>nemotron-3.5-super-120b</td><td>03_peak_decode_long_output</td><td>nemotron-3.5-super-120b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>NVFP4</td><td>2</td><td>2/2</td><td>28.09</td><td>19.20</td><td>1.14</td><td>22.19</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\03_peak_decode_long_output\report.html">report</a></td></tr>
+<tr><td>nemotron-3.5-super-120b</td><td>03_peak_decode_long_output</td><td>nemotron-3.5-super-120b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>NVFP4</td><td>4</td><td>4/4</td><td>38.75</td><td>13.90</td><td>1.74</td><td>31.48</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\03_peak_decode_long_output\report.html">report</a></td></tr>
+<tr><td>nemotron-3.5-super-120b</td><td>06_coding_smoke</td><td>nemotron-3.5-super-120b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>NVFP4</td><td>1</td><td>1/1</td><td>29.86</td><td>29.89</td><td>0.54</td><td>10.04</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\06_coding_smoke\report.html">report</a></td></tr>
+<tr><td>nemotron-3.5-super-120b</td><td>06_coding_smoke</td><td>nemotron-3.5-super-120b</td><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td><td>NVFP4</td><td>2</td><td>2/2</td><td>34.61</td><td>19.15</td><td>1.12</td><td>20.44</td><td><a href="C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\nemotron-3.5-super-120b\suite-mtp\nemotron-3.5-super-120b\06_coding_smoke\report.html">report</a></td></tr></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<script>
+Chart.defaults.color = 'rgba(255,255,255,.72)';
+Chart.defaults.borderColor = 'rgba(255,255,255,.08)';
+const data = {"labels": ["nemotron-3.5-super-120b \u00b7 1u", "nemotron-3.5-super-120b \u00b7 2u", "nemotron-3.5-super-120b \u00b7 4u", "nemotron-3.5-super-120b \u00b7 8u"], "aggregate": [26.632293253497384, 28.61311620094838, 40.701300973180665, 52.349020366462376], "perUser": [26.700911950957714, 18.263512747983, 12.707328046025546, 8.489689253292841], "ttft": [0.566531299999042, 1.1851255500005209, 1.9961824000001798, 3.3693931249990783], "p95": [11.23557129999972, 13.994494319996738, 20.035671074995843, 28.9257293249997]};
+new Chart(document.getElementById('throughput'), {
+  type:'bar',
+  data:{labels:data.labels,datasets:[
+    {label:'Aggregate tok/s',data:data.aggregate,backgroundColor:'#8070f8'},
+    {label:'Per-user tok/s',data:data.perUser,backgroundColor:'#60d8c0'}
+  ]},
+  options:{maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{x:{ticks:{maxRotation:45,minRotation:0}},y:{beginAtZero:true}}}
+});
+new Chart(document.getElementById('latency'), {
+  type:'line',
+  data:{labels:data.labels,datasets:[
+    {label:'TTFT (s)',data:data.ttft,borderColor:'#58c8f8',backgroundColor:'#58c8f8',tension:.25},
+    {label:'P95 latency (s)',data:data.p95,borderColor:'#a090f8',backgroundColor:'#a090f8',tension:.25}
+  ]},
+  options:{maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}}
+});
+</script>
+</body>
+</html>

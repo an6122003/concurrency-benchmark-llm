@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Concurrent Benchmark</title>
+  <link rel="icon" href="assets/techieslab/avatar.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root { --bg:#0a0a14; --bg2:#0e0d1c; --surface:#15132a; --surface2:#1c1936; --violet:#8070f8; --violet-l:#a090f8; --cyan:#58c8f8; --mint:#60d8c0; --white:#fff; --dim:rgba(255,255,255,.68); --faint:rgba(255,255,255,.42); --line:rgba(255,255,255,.1); --sans:"Inter",-apple-system,system-ui,sans-serif; --serif:"EB Garamond",Georgia,serif; }
+    * { box-sizing: border-box; }
+    body { font-family: var(--sans); margin: 0; color: var(--white); background: linear-gradient(rgba(10,10,20,.88), rgba(10,10,20,.96)), url("assets/techieslab/background.png") top center / min(100vw, 1800px) auto no-repeat, var(--bg); }
+    main { max-width: 1280px; margin: 0 auto; padding: 24px; }
+    .brandbar { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px; }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .brand img { width:42px; height:42px; border-radius:8px; border:1px solid var(--line); }
+    .brand-name { font-family:var(--serif); font-size:1.4rem; }
+    .brand-name span { color:var(--violet-l); }
+    .title-row { display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    h1 { font-family:var(--serif); font-size:clamp(2.2rem,5vw,4.2rem); line-height:1; font-weight:400; margin:0; }
+    h1 em { color:var(--violet-l); }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; background: rgba(21,19,42,.86); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+    th, td { border-bottom: 1px solid var(--line); padding: 9px; text-align: right; }
+    th { background: rgba(28,25,54,.92); color:var(--faint); }
+    td:first-child, th:first-child { text-align: left; }
+    .meta-table th { width: 220px; text-align: left; }
+    .meta-table td { text-align: left; }
+    .meta { color: var(--dim); line-height: 1.5; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 18px; margin-top: 20px; }
+    .panel { background: linear-gradient(160deg,rgba(21,19,42,.92),rgba(14,13,28,.92)); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+    .panel h2 { font-size: 18px; margin: 0 0 12px; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 18px; }
+    .stat { background: rgba(21,19,42,.88); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    .stat span { display: block; color: var(--faint); font-size: 12px; margin-bottom: 6px; }
+    .stat strong { display: block; font-size: 15px; overflow-wrap: anywhere; }
+    .hardware-avatar { width:128px; height:128px; flex:0 0 auto; object-fit:cover; border-radius:12px; border:1px solid rgba(160,144,248,.45); background:rgba(21,19,42,.86); box-shadow:0 12px 34px rgba(128,112,248,.22); }
+    .chart { height: 360px; }
+    .wide { grid-column: 1 / -1; }
+    details { margin-top: 20px; background: rgba(21,19,42,.86); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+    summary { cursor: pointer; font-weight: bold; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+    @media (max-width: 620px) { body { margin: 12px; } .grid { grid-template-columns: 1fr; } .chart { height: 300px; } .title-row { align-items:flex-start; } .hardware-avatar { width:92px; height:92px; } }
+  </style>
+</head>
+<body>
+<main>
+  <div class="brandbar"><div class="brand"><img src="assets/techieslab/avatar.png" alt=""><div class="brand-name">techies<span>.lab</span></div></div><div class="meta">AI hardware benchmark</div></div>
+  <div class="title-row">
+    <h1>Concurrent <em>LLM</em> benchmark.</h1>
+    
+  </div>
+  <p class="meta">
+    Date: 2026-10-26T11:51:59<br>
+    Server: lmstudio at http://127.0.0.1:8099<br>
+    Model: gemma-4-26b-a4b<br>
+    Host: Windows 11 (ARM64)
+  </p>
+  <div class="stats"><div class="stat"><span>Model</span><strong>gemma-4-26b-a4b</strong></div>
+<div class="stat"><span>Runtime</span><strong>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</strong></div>
+<div class="stat"><span>GPU</span><strong>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</strong></div>
+<div class="stat"><span>Max tokens</span><strong>1024</strong></div>
+<div class="stat"><span>Context</span><strong>65536</strong></div>
+<div class="stat"><span>Concurrency</span><strong>1, 2, 4</strong></div></div>
+  <details>
+    <summary>Full system and benchmark details</summary>
+    <table class="meta-table">
+      <tbody><tr><th>Date</th><td>2026-10-26T11:51:59</td></tr>
+<tr><th>Host</th><td>Windows 11 (ARM64)</td></tr>
+<tr><th>OS</th><td>Windows-11-10.0.28000-SP0</td></tr>
+<tr><th>Python</th><td>3.13.17 (C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe)</td></tr>
+<tr><th>CPU</th><td>NVIDIA RTX Spark N1X (6144-core GPU, 20-core CPU) (20 logical cores)</td></tr>
+<tr><th>System RAM</th><td>30.5 GB</td></tr>
+<tr><th>Detected GPU</th><td>NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU); NVIDIA NPU; NVIDIA NPU; NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)</td></tr>
+<tr><th>GPU VRAM</th><td>NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU) total 98304 MiB used 37683 MiB free 60608 MiB; NVIDIA NPU; NVIDIA NPU total unknown; NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU) total 4.0 GB</td></tr>
+<tr><th>Manual GPU label</th><td>NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16</td></tr>
+<tr><th>Server mode</th><td>lmstudio</td></tr>
+<tr><th>Base URL</th><td>http://127.0.0.1:8099</td></tr>
+<tr><th>Runtime label</th><td>llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server</td></tr>
+<tr><th>Runtime label source</th><td>manual</td></tr>
+<tr><th>Model</th><td>gemma-4-26b-a4b</td></tr>
+<tr><th>Quantization</th><td>Q8_0</td></tr>
+<tr><th>Quantization source</th><td>manual</td></tr>
+<tr><th>Context size</th><td>65536</td></tr>
+<tr><th>Context size source</th><td>manual</td></tr>
+<tr><th>Max tokens/request</th><td>1024</td></tr>
+<tr><th>Temperature</th><td>0.2</td></tr>
+<tr><th>Timeout</th><td>900.0 s</td></tr>
+<tr><th>Concurrency</th><td>1, 2, 4</td></tr>
+<tr><th>Cooldown</th><td>1.0 s</td></tr>
+<tr><th>Warmup requests</th><td>1</td></tr>
+<tr><th>Warmup tokens/request</th><td>128</td></tr>
+<tr><th>Prompt count</th><td>3</td></tr>
+<tr><th>Prompts file</th><td>C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\prompts\03_peak_decode_long_output.txt</td></tr>
+<tr><th>Notes</th><td>server: --host 127.0.0.1 --port 8099 --alias gemma-4-26b-a4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off</td></tr></tbody>
+    </table>
+  </details>
+  <details>
+    <summary>Raw detected hardware/software metadata</summary>
+    <pre>{
+  &quot;os&quot;: {
+    &quot;system&quot;: &quot;Windows&quot;,
+    &quot;release&quot;: &quot;11&quot;,
+    &quot;version&quot;: &quot;10.0.28000&quot;,
+    &quot;platform&quot;: &quot;Windows-11-10.0.28000-SP0&quot;
+  },
+  &quot;cpu&quot;: {
+    &quot;processor&quot;: &quot;NVIDIA RTX Spark N1X (6144-core GPU, 20-core CPU)&quot;,
+    &quot;machine&quot;: &quot;ARM64&quot;,
+    &quot;physical_or_logical_cores&quot;: 20
+  },
+  &quot;memory&quot;: {
+    &quot;total_bytes&quot;: 32742236160,
+    &quot;total_human&quot;: &quot;30.5 GB&quot;
+  },
+  &quot;gpu&quot;: {
+    &quot;detected&quot;: [
+      {
+        &quot;vendor&quot;: &quot;NVIDIA&quot;,
+        &quot;name&quot;: &quot;NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)&quot;,
+        &quot;vram_total_mib&quot;: 98304,
+        &quot;vram_used_mib&quot;: 37683,
+        &quot;vram_free_mib&quot;: 60608,
+        &quot;vram_total_human&quot;: &quot;98304 MiB&quot;,
+        &quot;vram_used_human&quot;: &quot;37683 MiB&quot;,
+        &quot;vram_free_human&quot;: &quot;60608 MiB&quot;,
+        &quot;driver&quot;: &quot;617.69&quot;,
+        &quot;performance_state&quot;: &quot;P8&quot;,
+        &quot;temperature_c&quot;: 64,
+        &quot;power_draw_w&quot;: &quot;2.00&quot;
+      },
+      {
+        &quot;vendor&quot;: &quot;NVIDIA&quot;,
+        &quot;name&quot;: &quot;NVIDIA NPU&quot;,
+        &quot;vram_total_mib&quot;: null,
+        &quot;vram_used_mib&quot;: null,
+        &quot;vram_free_mib&quot;: null,
+        &quot;vram_total_human&quot;: &quot;&quot;,
+        &quot;vram_used_human&quot;: &quot;&quot;,
+        &quot;vram_free_human&quot;: &quot;&quot;,
+        &quot;driver&quot;: &quot;617.69&quot;,
+        &quot;performance_state&quot;: &quot;[N/A]&quot;,
+        &quot;temperature_c&quot;: 66,
+        &quot;power_draw_w&quot;: &quot;0.00&quot;
+      },
+      {
+        &quot;vendor&quot;: &quot;Windows&quot;,
+        &quot;name&quot;: &quot;NVIDIA NPU&quot;,
+        &quot;vram_total_bytes&quot;: null,
+        &quot;vram_total_human&quot;: &quot;unknown&quot;,
+        &quot;vram_source&quot;: &quot;Win32_VideoController.AdapterRAM&quot;,
+        &quot;reported_adapter_ram_bytes&quot;: null,
+        &quot;reported_adapter_ram_human&quot;: &quot;unknown&quot;,
+        &quot;driver&quot;: &quot;32.0.16.1769&quot;,
+        &quot;pnp_device_id&quot;: &quot;ACPI\\NVDA200A\\0&quot;,
+        &quot;source&quot;: &quot;Win32_VideoController&quot;
+      },
+      {
+        &quot;vendor&quot;: &quot;Windows&quot;,
+        &quot;name&quot;: &quot;NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)&quot;,
+        &quot;vram_total_bytes&quot;: 4293918720,
+        &quot;vram_total_human&quot;: &quot;4.0 GB&quot;,
+        &quot;vram_source&quot;: &quot;Win32_VideoController.AdapterRAM&quot;,
+        &quot;reported_adapter_ram_bytes&quot;: 4293918720,
+        &quot;reported_adapter_ram_human&quot;: &quot;4.0 GB&quot;,
+        &quot;driver&quot;: &quot;32.0.16.1769&quot;,
+        &quot;pnp_device_id&quot;: &quot;PCI\\VEN_10DE&amp;DEV_2E03&amp;SUBSYS_14841043&amp;REV_A1\\00000000002DB04800&quot;,
+        &quot;source&quot;: &quot;Win32_VideoController&quot;
+      }
+    ]
+  },
+  &quot;runtime&quot;: {
+    &quot;server_mode&quot;: &quot;lmstudio&quot;,
+    &quot;base_url&quot;: &quot;http://127.0.0.1:8099&quot;,
+    &quot;openai_models&quot;: {
+      &quot;models&quot;: [
+        {
+          &quot;name&quot;: &quot;gemma-4-26b-a4b&quot;,
+          &quot;model&quot;: &quot;gemma-4-26b-a4b&quot;,
+          &quot;modified_at&quot;: &quot;&quot;,
+          &quot;size&quot;: &quot;&quot;,
+          &quot;digest&quot;: &quot;&quot;,
+          &quot;type&quot;: &quot;model&quot;,
+          &quot;description&quot;: &quot;&quot;,
+          &quot;tags&quot;: [
+            &quot;&quot;
+          ],
+          &quot;capabilities&quot;: [
+            &quot;completion&quot;
+          ],
+          &quot;parameters&quot;: &quot;&quot;,
+          &quot;details&quot;: {
+            &quot;parent_model&quot;: &quot;&quot;,
+            &quot;format&quot;: &quot;gguf&quot;,
+            &quot;family&quot;: &quot;&quot;,
+            &quot;families&quot;: [
+              &quot;&quot;
+            ],
+            &quot;parameter_size&quot;: &quot;&quot;,
+            &quot;quantization_level&quot;: &quot;&quot;
+          }
+        }
+      ],
+      &quot;object&quot;: &quot;list&quot;,
+      &quot;data&quot;: [
+        {
+          &quot;id&quot;: &quot;gemma-4-26b-a4b&quot;,
+          &quot;aliases&quot;: [
+            &quot;gemma-4-26b-a4b&quot;
+          ],
+          &quot;tags&quot;: [],
+          &quot;object&quot;: &quot;model&quot;,
+          &quot;architecture&quot;: {
+            &quot;input_modalities&quot;: [
+              &quot;text&quot;
+            ],
+            &quot;output_modalities&quot;: [
+              &quot;text&quot;
+            ]
+          },
+          &quot;created&quot;: 1792990318,
+          &quot;owned_by&quot;: &quot;llamacpp&quot;,
+          &quot;meta&quot;: {
+            &quot;vocab_type&quot;: 2,
+            &quot;n_vocab&quot;: 262144,
+            &quot;n_ctx&quot;: 65536,
+            &quot;n_ctx_train&quot;: 262144,
+            &quot;n_embd&quot;: 2816,
+            &quot;n_params&quot;: 25233142046,
+            &quot;size&quot;: 26844036216,
+            &quot;ftype&quot;: &quot;Q8_0&quot;
+          }
+        }
+      ]
+    },
+    &quot;lmstudio_models&quot;: null,
+    &quot;lmstudio_selected_model&quot;: null,
+    &quot;local_scan&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;processes&quot;: [
+        {
+          &quot;command&quot;: &quot;14464 llama-server.exe \&quot;C:\\Program Files\\WindowsApps\\NousResearchInc.HermesAgent_2026.7082.1520.0_arm64__sznbd6dv1j3v4\\app\\resources\\agent-payload\\tools\\llamacpp-cuda-11671-win32-arm64\\llama-server.exe\&quot; --host 127.0.0.1 --port 18434 --api-key Q4KbVS0A3QaWetdv2RC96sqPJeYcdkJT --models-max 1 --models-autoload --metrics --slots --no-ui --jinja --load-mode dio --models-preset C:\\Users\\ProArt\\AppData\\Local\\hermes\\runtimes\\llamacpp\\presets.ini&quot;
+        },
+        {
+          &quot;command&quot;: &quot;17996 nvidia-smi.exe nvidia-smi -i 0 --query-gpu=timestamp,power.draw,temperature.gpu,clocks.gr,clocks.mem,memory.used,utilization.gpu,pstate --format=csv,noheader,nounits -lms 1000&quot;
+        },
+        {
+          &quot;command&quot;: &quot;19568 llama-server.exe C:\\Users\\ProArt\\Desktop\\Project\\bench-tools\\llamacpp-cuda-b11671\\llama-server.exe -m C:\\Users\\ProArt\\.cache\\huggingface\\hub\\models--ggml-org--gemma-4-26B-A4B-it-GGUF\\snapshots\\9cf8c8db0f83fb4582f15381f8fb1a7c1b0b9ca2\\gemma-4-26B-A4B-it-Q8_0.gguf --host 127.0.0.1 --port 8099 --alias gemma-4-26b-a4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off&quot;
+        },
+        {
+          &quot;command&quot;: &quot;7784 python.exe C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gemma-4-26b-a4b --concurrency 1,2,4 --max-tokens 1024 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 128 --warmup-pause 1 --prompts-file C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\gemma-4-26b-a4b\\suite\\prompts\\03_peak_decode_long_output.txt --out-dir C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\gemma-4-26b-a4b\\suite\\gemma-4-26b-a4b\\03_peak_decode_long_output --runtime \&quot;llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server\&quot; --gpu \&quot;NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16\&quot; --quantization Q8_0 --context-size 65536 --notes \&quot;server: --host 127.0.0.1 --port 8099 --alias gemma-4-26b-a4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off\&quot;&quot;
+        }
+      ],
+      &quot;model_files&quot;: [
+        &quot;C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\gemma-4-E2B-it-Q4_K_M.gguf&quot;,
+        &quot;C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\mmproj-gemma-4-E2B-it-BF16.gguf&quot;,
+        &quot;C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\mmproj-Qwen3.8-27B-BF16.gguf&quot;,
+        &quot;C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\Qwen3.8-27B-Q4_K_M.gguf&quot;
+      ],
+      &quot;detected_runtime&quot;: &quot;CUDA llama.cpp&quot;,
+      &quot;detected_quantization&quot;: &quot;Q8_0&quot;,
+      &quot;detected_context_size&quot;: 65536,
+      &quot;env&quot;: {}
+    }
+  },
+  &quot;benchmark_config&quot;: {
+    &quot;server&quot;: &quot;lmstudio&quot;,
+    &quot;base_url&quot;: &quot;http://127.0.0.1:8099&quot;,
+    &quot;model&quot;: &quot;gemma-4-26b-a4b&quot;,
+    &quot;runtime_label&quot;: &quot;llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server&quot;,
+    &quot;runtime_label_source&quot;: &quot;manual&quot;,
+    &quot;gpu_label&quot;: &quot;NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16&quot;,
+    &quot;model_quantization&quot;: &quot;Q8_0&quot;,
+    &quot;model_quantization_source&quot;: &quot;manual&quot;,
+    &quot;context_size&quot;: 65536,
+    &quot;context_size_source&quot;: &quot;manual&quot;,
+    &quot;max_tokens_per_request&quot;: 1024,
+    &quot;temperature&quot;: 0.2,
+    &quot;timeout_seconds&quot;: 900.0,
+    &quot;concurrency&quot;: [
+      1,
+      2,
+      4
+    ],
+    &quot;cooldown_seconds&quot;: 1.0,
+    &quot;warmup_requests&quot;: 1,
+    &quot;warmup_max_tokens&quot;: 128,
+    &quot;prompt_count&quot;: 3,
+    &quot;prompts_file&quot;: &quot;C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\gemma-4-26b-a4b\\suite\\prompts\\03_peak_decode_long_output.txt&quot;,
+    &quot;notes&quot;: &quot;server: --host 127.0.0.1 --port 8099 --alias gemma-4-26b-a4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off&quot;,
+    &quot;hardware_image&quot;: null
+  }
+}</pre>
+  </details>
+  <div class="grid">
+    <section class="panel wide"><h2>Throughput vs Concurrent Users</h2><div class="chart"><canvas id="throughputChart"></canvas></div></section>
+    <section class="panel"><h2>Per-user Speed Range</h2><div class="chart"><canvas id="perUserChart"></canvas></div></section>
+    <section class="panel"><h2>Latency and TTFT</h2><div class="chart"><canvas id="latencyChart"></canvas></div></section>
+    <section class="panel"><h2>Success Rate</h2><div class="chart"><canvas id="successChart"></canvas></div></section>
+    <section class="panel"><h2>Latency Distribution</h2><div class="chart"><canvas id="latencyDistributionChart"></canvas></div></section>
+  </div>
+  <table>
+    <thead><tr><th>Users</th><th>Success</th><th>Wall time (s)</th><th>Aggregate tok/s</th><th>Avg per-user tok/s</th><th>Min per-user tok/s</th><th>Max per-user tok/s</th><th>Avg latency (s)</th><th>P95 latency (s)</th><th>Avg TTFT (s)</th><th>TTFT source</th></tr></thead>
+    <tbody><tr><td>1</td><td>1/1</td><td>13.91</td><td>45.94</td><td>45.96</td><td>45.96</td><td>45.96</td><td>13.90</td><td>13.90</td><td>0.22</td><td>{&quot;stream&quot;: 1}</td></tr>
+<tr><td>2</td><td>2/2</td><td>15.00</td><td>54.07</td><td>38.12</td><td>34.49</td><td>41.74</td><td>10.18</td><td>14.52</td><td>0.29</td><td>{&quot;stream&quot;: 2}</td></tr>
+<tr><td>4</td><td>4/4</td><td>19.54</td><td>88.98</td><td>29.15</td><td>25.47</td><td>31.57</td><td>14.45</td><td>19.52</td><td>0.37</td><td>{&quot;stream&quot;: 4}</td></tr></tbody>
+  </table>
+</main>
+<script>
+Chart.defaults.color = 'rgba(255,255,255,.72)';
+Chart.defaults.borderColor = 'rgba(255,255,255,.08)';
+const data = {"labels": [1, 2, 4], "aggregate": [45.941, 54.067, 88.984], "perUser": [45.96, 38.116, 29.147], "minPerUser": [45.96, 34.494, 25.472], "maxPerUser": [45.96, 41.737, 31.573], "avgLatency": [13.903, 10.181, 14.451], "p95Latency": [13.903, 14.517, 19.52], "avgTtft": [0.219, 0.294, 0.368], "p95Ttft": [0.219, 0.354, 0.39], "successRate": [100.0, 100.0, 100.0]};
+const commonOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  interaction: { mode: 'index', intersect: false },
+  plugins: { legend: { position: 'bottom' } }
+};
+
+new Chart(document.getElementById('throughputChart'), {
+  type: 'line',
+  data: {
+    labels: data.labels,
+    datasets: [
+      { label: 'Aggregate output tok/s', data: data.aggregate, borderColor: '#1f77b4', backgroundColor: '#1f77b4', tension: 0.25 },
+      { label: 'Avg per-user tok/s', data: data.perUser, borderColor: '#2ca02c', backgroundColor: '#2ca02c', tension: 0.25 }
+    ]
+  },
+  options: {
+    ...commonOptions,
+    scales: {
+      x: { title: { display: true, text: 'Concurrent users' } },
+      y: { title: { display: true, text: 'Tokens/sec' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('perUserChart'), {
+  type: 'bar',
+  data: {
+    labels: data.labels,
+    datasets: [
+      { label: 'Min per-user tok/s', data: data.minPerUser, backgroundColor: '#9edae5' },
+      { label: 'Avg per-user tok/s', data: data.perUser, backgroundColor: '#2ca02c' },
+      { label: 'Max per-user tok/s', data: data.maxPerUser, backgroundColor: '#98df8a' }
+    ]
+  },
+  options: {
+    ...commonOptions,
+    scales: {
+      x: { title: { display: true, text: 'Concurrent users' } },
+      y: { title: { display: true, text: 'Tokens/sec' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('latencyChart'), {
+  type: 'line',
+  data: {
+    labels: data.labels,
+    datasets: [
+      { label: 'Avg latency', data: data.avgLatency, borderColor: '#d62728', backgroundColor: '#d62728', tension: 0.25 },
+      { label: 'P95 latency', data: data.p95Latency, borderColor: '#ff7f0e', backgroundColor: '#ff7f0e', tension: 0.25 },
+      { label: 'Avg TTFT', data: data.avgTtft, borderColor: '#9467bd', backgroundColor: '#9467bd', tension: 0.25 },
+      { label: 'P95 TTFT', data: data.p95Ttft, borderColor: '#8c564b', backgroundColor: '#8c564b', tension: 0.25 }
+    ]
+  },
+  options: {
+    ...commonOptions,
+    scales: {
+      x: { title: { display: true, text: 'Concurrent users' } },
+      y: { title: { display: true, text: 'Seconds' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('successChart'), {
+  type: 'bar',
+  data: {
+    labels: data.labels,
+    datasets: [{ label: 'Success rate %', data: data.successRate, backgroundColor: '#17becf' }]
+  },
+  options: {
+    ...commonOptions,
+    scales: {
+      x: { title: { display: true, text: 'Concurrent users' } },
+      y: { min: 0, max: 100, title: { display: true, text: 'Success %' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('latencyDistributionChart'), {
+  type: 'bar',
+  data: {
+    labels: data.labels,
+    datasets: [
+      { label: 'Avg latency', data: data.avgLatency, backgroundColor: '#ff9896' },
+      { label: 'P95 latency', data: data.p95Latency, backgroundColor: '#d62728' }
+    ]
+  },
+  options: {
+    ...commonOptions,
+    scales: {
+      x: { title: { display: true, text: 'Concurrent users' } },
+      y: { title: { display: true, text: 'Seconds' } }
+    }
+  }
+});
+</script>
+</body>
+</html>

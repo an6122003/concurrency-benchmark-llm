@@ -1,0 +1,334 @@
+{
+  "meta": {
+    "date": "2026-10-26T11:04:13",
+    "host": "Windows 11 (ARM64)",
+    "os": {
+      "system": "Windows",
+      "release": "11",
+      "version": "10.0.28000",
+      "platform": "Windows-11-10.0.28000-SP0"
+    },
+    "python": "3.13.17",
+    "python_executable": "C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe",
+    "cpu": {
+      "processor": "NVIDIA RTX Spark N1X (6144-core GPU, 20-core CPU)",
+      "machine": "ARM64",
+      "physical_or_logical_cores": 20
+    },
+    "memory": {
+      "total_bytes": 32742236160,
+      "total_human": "30.5 GB"
+    },
+    "gpu": {
+      "detected": [
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_mib": 98304,
+          "vram_used_mib": 27263,
+          "vram_free_mib": 71028,
+          "vram_total_human": "98304 MiB",
+          "vram_used_human": "27263 MiB",
+          "vram_free_human": "71028 MiB",
+          "driver": "617.69",
+          "performance_state": "P8",
+          "temperature_c": 66,
+          "power_draw_w": "2.05"
+        },
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA NPU",
+          "vram_total_mib": null,
+          "vram_used_mib": null,
+          "vram_free_mib": null,
+          "vram_total_human": "",
+          "vram_used_human": "",
+          "vram_free_human": "",
+          "driver": "617.69",
+          "performance_state": "[N/A]",
+          "temperature_c": 71,
+          "power_draw_w": "0.00"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA NPU",
+          "vram_total_bytes": null,
+          "vram_total_human": "unknown",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": null,
+          "reported_adapter_ram_human": "unknown",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "ACPI\\NVDA200A\\0",
+          "source": "Win32_VideoController"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_bytes": 4293918720,
+          "vram_total_human": "4.0 GB",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": 4293918720,
+          "reported_adapter_ram_human": "4.0 GB",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "PCI\\VEN_10DE&DEV_2E03&SUBSYS_14841043&REV_A1\\00000000002DB04800",
+          "source": "Win32_VideoController"
+        }
+      ]
+    },
+    "runtime": {
+      "server_mode": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "openai_models": {
+        "models": [
+          {
+            "name": "qwen3.8-27b",
+            "model": "qwen3.8-27b",
+            "modified_at": "",
+            "size": "",
+            "digest": "",
+            "type": "model",
+            "description": "",
+            "tags": [
+              ""
+            ],
+            "capabilities": [
+              "completion"
+            ],
+            "parameters": "",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "",
+              "families": [
+                ""
+              ],
+              "parameter_size": "",
+              "quantization_level": ""
+            }
+          }
+        ],
+        "object": "list",
+        "data": [
+          {
+            "id": "qwen3.8-27b",
+            "aliases": [
+              "qwen3.8-27b"
+            ],
+            "tags": [],
+            "object": "model",
+            "architecture": {
+              "input_modalities": [
+                "text"
+              ],
+              "output_modalities": [
+                "text"
+              ]
+            },
+            "created": 1792987452,
+            "owned_by": "llamacpp",
+            "meta": {
+              "vocab_type": 2,
+              "n_vocab": 248320,
+              "n_ctx": 65536,
+              "n_ctx_train": 262144,
+              "n_embd": 5120,
+              "n_params": 27320697856,
+              "size": 16453443584,
+              "ftype": "Q4_K - Medium"
+            }
+          }
+        ]
+      },
+      "lmstudio_models": null,
+      "lmstudio_selected_model": null,
+      "local_scan": {
+        "enabled": true,
+        "processes": [
+          {
+            "command": "6432 nvidia-smi.exe nvidia-smi -i 0 --query-gpu=timestamp,power.draw,temperature.gpu,clocks.gr,clocks.mem,memory.used,utilization.gpu,pstate --format=csv,noheader,nounits -lms 1000"
+          },
+          {
+            "command": "532 llama-server.exe C:\\Users\\ProArt\\Desktop\\Project\\bench-tools\\llamacpp-cuda-b11671\\llama-server.exe -m C:\\Users\\ProArt\\AppData\\Local\\hermes\\models\\Qwen3.8-27B-UD-Q4_K_M.gguf --host 127.0.0.1 --port 8099 --alias qwen3.8-27b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off"
+          },
+          {
+            "command": "14464 llama-server.exe \"C:\\Program Files\\WindowsApps\\NousResearchInc.HermesAgent_2026.7082.1520.0_arm64__sznbd6dv1j3v4\\app\\resources\\agent-payload\\tools\\llamacpp-cuda-11671-win32-arm64\\llama-server.exe\" --host 127.0.0.1 --port 18434 --api-key Q4KbVS0A3QaWetdv2RC96sqPJeYcdkJT --models-max 1 --models-autoload --metrics --slots --no-ui --jinja --load-mode dio --models-preset C:\\Users\\ProArt\\AppData\\Local\\hermes\\runtimes\\llamacpp\\presets.ini"
+          },
+          {
+            "command": "18132 python.exe C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model qwen3.8-27b --concurrency 1,2 --max-tokens 384 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 96 --warmup-pause 1 --prompts-file C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\qwen3.8-27b\\suite\\prompts\\07_vietnamese_smoke.txt --out-dir C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\qwen3.8-27b\\suite\\qwen3.8-27b\\07_vietnamese_smoke --runtime \"llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server\" --gpu \"NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16\" --quantization UD-Q4_K_M --context-size 65536 --notes \"server: --host 127.0.0.1 --port 8099 --alias qwen3.8-27b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off\""
+          }
+        ],
+        "model_files": [
+          "C:\\Users\\ProArt\\.ollama\\models\\manifests-v2\\ollama.com\\library\\qwen3-embedding\\4b",
+          "C:\\Users\\ProArt\\.ollama\\models\\manifests\\registry.ollama.ai\\library\\qwen3-embedding\\4b",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\gemma-4-E2B-it-Q4_K_M.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\mmproj-gemma-4-E2B-it-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\mmproj-Qwen3.8-27B-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\Qwen3.8-27B-Q4_K_M.gguf"
+        ],
+        "detected_runtime": "CUDA llama.cpp",
+        "detected_quantization": "Q4_K_M",
+        "detected_context_size": 65536,
+        "env": {}
+      }
+    },
+    "benchmark_config": {
+      "server": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "model": "qwen3.8-27b",
+      "runtime_label": "llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server",
+      "runtime_label_source": "manual",
+      "gpu_label": "NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16",
+      "model_quantization": "UD-Q4_K_M",
+      "model_quantization_source": "manual",
+      "context_size": 65536,
+      "context_size_source": "manual",
+      "max_tokens_per_request": 384,
+      "temperature": 0.2,
+      "timeout_seconds": 900.0,
+      "concurrency": [
+        1,
+        2
+      ],
+      "cooldown_seconds": 1.0,
+      "warmup_requests": 1,
+      "warmup_max_tokens": 96,
+      "prompt_count": 2,
+      "prompts_file": "C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\qwen3.8-27b\\suite\\prompts\\07_vietnamese_smoke.txt",
+      "notes": "server: --host 127.0.0.1 --port 8099 --alias qwen3.8-27b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off",
+      "hardware_image": null
+    },
+    "server": "lmstudio",
+    "base_url": "http://127.0.0.1:8099",
+    "model": "qwen3.8-27b",
+    "max_tokens": 384,
+    "temperature": 0.2,
+    "concurrency": [
+      1,
+      2
+    ]
+  },
+  "summaries": [
+    {
+      "concurrency": 1,
+      "requests": 1,
+      "success": 1,
+      "failures": 0,
+      "wall_time_s": 26.805347099994833,
+      "total_completion_tokens": 384,
+      "total_tokens": 433,
+      "aggregate_output_tps": 14.32550000444031,
+      "avg_latency_s": 26.801118999996106,
+      "p50_latency_s": 26.801118999996106,
+      "p95_latency_s": 26.801118999996106,
+      "avg_ttft_s": 0.32945769999787444,
+      "p50_ttft_s": 0.32945769999787444,
+      "p95_ttft_s": 0.32945769999787444,
+      "avg_per_request_tps": 14.327759971516704,
+      "min_per_request_tps": 14.327759971516704,
+      "max_per_request_tps": 14.327759971516704,
+      "ttft_sources": {
+        "stream": 1
+      },
+      "errors": []
+    },
+    {
+      "concurrency": 2,
+      "requests": 2,
+      "success": 2,
+      "failures": 0,
+      "wall_time_s": 29.06597640000109,
+      "total_completion_tokens": 768,
+      "total_tokens": 862,
+      "aggregate_output_tps": 26.422645825858826,
+      "avg_latency_s": 29.064604599996528,
+      "p50_latency_s": 29.064604599996528,
+      "p95_latency_s": 29.065072329995747,
+      "avg_ttft_s": 0.5842004500009352,
+      "p50_ttft_s": 0.5842004500009352,
+      "p95_ttft_s": 0.5844083050054906,
+      "avg_per_request_tps": 13.211946469170968,
+      "min_per_request_tps": 13.211710228263408,
+      "max_per_request_tps": 13.212182710078526,
+      "ttft_sources": {
+        "stream": 2
+      },
+      "errors": []
+    }
+  ],
+  "requests": [
+    {
+      "concurrency": 1,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 35495.5009627,
+      "ended_at": 35522.3020817,
+      "ttft_s": 0.32945769999787444,
+      "ttft_source": "stream",
+      "prompt_tokens": 49,
+      "completion_tokens": 384,
+      "total_tokens": 433,
+      "chars": 1231,
+      "response_preview": "Ch\u00e0o b\u1ea1n, khi ch\u1ea1y AI tr\u00ean m\u00e1y t\u00ednh c\u00e1 nh\u00e2n (local), ba ch\u1ec9 s\u1ed1 n\u00e0y ch\u00ednh l\u00e0 \"b\u1ea3ng \u0111\u1ed3ng h\u1ed3\" gi\u00fap b\u1ea1n bi\u1ebft m\u00e1y m\u00ecnh nhanh hay ch\u1eadm. H\u00e3y t\u01b0\u1edfng t\u01b0\u1ee3ng b\u1ea1n \u0111ang g\u1ecdi m\u1ed9t ng\u01b0\u1eddi b\u1ea1n (AI) \u0111\u1ec3 h\u1ecfi m\u1ed9t c\u00e2u h\u1ecfi:  ### 1. TTFT (Time To First Token) \u2013 \"Th\u1eddi",
+      "latency_s": 26.801118999996106,
+      "output_tokens_per_s": 14.327759971516704
+    },
+    {
+      "concurrency": 2,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 35523.3041517,
+      "ended_at": 35552.369276,
+      "ttft_s": 0.5844314000059967,
+      "ttft_source": "stream",
+      "prompt_tokens": 49,
+      "completion_tokens": 384,
+      "total_tokens": 433,
+      "chars": 1226,
+      "response_preview": "Ch\u00e0o b\u1ea1n, khi ch\u1ea1y AI tr\u00ean m\u00e1y t\u00ednh c\u00e1 nh\u00e2n (local), ba ch\u1ec9 s\u1ed1 n\u00e0y quy\u1ebft \u0111\u1ecbnh tr\u1ea3i nghi\u1ec7m c\u1ee7a b\u1ea1n l\u00e0 \"m\u01b0\u1ee3t\" hay \"ch\u1edd \u0111\u1ee3i\". H\u00e3y t\u01b0\u1edfng t\u01b0\u1ee3ng b\u1ea1n \u0111ang g\u1ecdi m\u1ed9t ng\u01b0\u1eddi b\u1ea1n th\u00f4ng minh \u0111\u1ec3 h\u1ecfi \u0111\u00e1p:  ### 1. TTFT (Time To First Token) \u2013 \"Th\u1eddi gian ch\u1edd",
+      "latency_s": 29.06512429999566,
+      "output_tokens_per_s": 13.211710228263408
+    },
+    {
+      "concurrency": 2,
+      "user_id": 2,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 35523.3049029,
+      "ended_at": 35552.3689878,
+      "ttft_s": 0.5839694999958738,
+      "ttft_source": "stream",
+      "prompt_tokens": 45,
+      "completion_tokens": 384,
+      "total_tokens": 429,
+      "chars": 1253,
+      "response_preview": "D\u01b0\u1edbi \u0111\u00e2y l\u00e0 t\u00f3m t\u1eaft ng\u1eafn g\u1ecdn v\u1ec1 \u01b0u v\u00e0 nh\u01b0\u1ee3c \u0111i\u1ec3m khi tri\u1ec3n khai m\u1ed9t m\u00e1y ch\u1ee7 AI c\u1ee5c b\u1ed9 (Local AI Server) cho \u0111\u1ed9i ng\u0169 5 ng\u01b0\u1eddi:  ### \u2705 \u01afu \u0111i\u1ec3m  1.  **B\u1ea3o m\u1eadt & Quy\u1ec1n ri\u00eang t\u01b0 cao**: D\u1eef li\u1ec7u kh\u00f4ng r\u1eddi kh\u1ecfi m\u1ea1ng n\u1ed9i b\u1ed9, ph\u00f9 h\u1ee3p v\u1edbi c\u00e1c ng\u00e0nh c\u00f3 ",
+      "latency_s": 29.064084899997397,
+      "output_tokens_per_s": 13.212182710078526
+    }
+  ],
+  "warmup_requests": [
+    {
+      "concurrency": 0,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 35487.5732482,
+      "ended_at": 35494.4966556,
+      "ttft_s": 0.35589740000432357,
+      "ttft_source": "stream",
+      "prompt_tokens": 49,
+      "completion_tokens": 96,
+      "total_tokens": 145,
+      "chars": 326,
+      "response_preview": "Ch\u00e0o b\u1ea1n, khi ch\u1ea1y AI c\u1ee5c b\u1ed9 (local), ba ch\u1ec9 s\u1ed1 n\u00e0y gi\u1ed1ng nh\u01b0 \"b\u1ea3ng \u0111\u1ed3ng h\u1ed3\" c\u1ee7a xe \u00f4 t\u00f4, gi\u00fap b\u1ea1n bi\u1ebft m\u00e1y t\u00ednh c\u1ee7a m\u00ecnh \u0111ang ch\u1ea1y nhanh hay ch\u1eadm. D\u01b0\u1edbi \u0111\u00e2y l\u00e0 gi\u1ea3i th\u00edch \u0111\u01a1n gi\u1ea3n nh\u1ea5t:  ### 1. TTFT (Time To First Token) \u2013 \"Th\u1eddi gian ch\u1edd ph",
+      "latency_s": 6.923407399997814,
+      "output_tokens_per_s": 13.866004765230242
+    }
+  ]
+}

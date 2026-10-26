@@ -1,0 +1,431 @@
+{
+  "meta": {
+    "date": "2026-10-26T12:06:31",
+    "host": "Windows 11 (ARM64)",
+    "os": {
+      "system": "Windows",
+      "release": "11",
+      "version": "10.0.28000",
+      "platform": "Windows-11-10.0.28000-SP0"
+    },
+    "python": "3.13.17",
+    "python_executable": "C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe",
+    "cpu": {
+      "processor": "NVIDIA RTX Spark N1X (6144-core GPU, 20-core CPU)",
+      "machine": "ARM64",
+      "physical_or_logical_cores": 20
+    },
+    "memory": {
+      "total_bytes": 32742236160,
+      "total_human": "30.5 GB"
+    },
+    "gpu": {
+      "detected": [
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_mib": 98304,
+          "vram_used_mib": 15268,
+          "vram_free_mib": 83023,
+          "vram_total_human": "98304 MiB",
+          "vram_used_human": "15268 MiB",
+          "vram_free_human": "83023 MiB",
+          "driver": "617.69",
+          "performance_state": "P4",
+          "temperature_c": 64,
+          "power_draw_w": "4.61"
+        },
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA NPU",
+          "vram_total_mib": null,
+          "vram_used_mib": null,
+          "vram_free_mib": null,
+          "vram_total_human": "",
+          "vram_used_human": "",
+          "vram_free_human": "",
+          "driver": "617.69",
+          "performance_state": "[N/A]",
+          "temperature_c": 67,
+          "power_draw_w": "0.00"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA NPU",
+          "vram_total_bytes": null,
+          "vram_total_human": "unknown",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": null,
+          "reported_adapter_ram_human": "unknown",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "ACPI\\NVDA200A\\0",
+          "source": "Win32_VideoController"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_bytes": 4293918720,
+          "vram_total_human": "4.0 GB",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": 4293918720,
+          "reported_adapter_ram_human": "4.0 GB",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "PCI\\VEN_10DE&DEV_2E03&SUBSYS_14841043&REV_A1\\00000000002DB04800",
+          "source": "Win32_VideoController"
+        }
+      ]
+    },
+    "runtime": {
+      "server_mode": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "openai_models": {
+        "models": [
+          {
+            "name": "qwen3-4b-2507",
+            "model": "qwen3-4b-2507",
+            "modified_at": "",
+            "size": "",
+            "digest": "",
+            "type": "model",
+            "description": "",
+            "tags": [
+              ""
+            ],
+            "capabilities": [
+              "completion"
+            ],
+            "parameters": "",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "",
+              "families": [
+                ""
+              ],
+              "parameter_size": "",
+              "quantization_level": ""
+            }
+          }
+        ],
+        "object": "list",
+        "data": [
+          {
+            "id": "qwen3-4b-2507",
+            "aliases": [
+              "qwen3-4b-2507"
+            ],
+            "tags": [],
+            "object": "model",
+            "architecture": {
+              "input_modalities": [
+                "text"
+              ],
+              "output_modalities": [
+                "text"
+              ]
+            },
+            "created": 1792991191,
+            "owned_by": "llamacpp",
+            "meta": {
+              "vocab_type": 2,
+              "n_vocab": 151936,
+              "n_ctx": 65536,
+              "n_ctx_train": 262144,
+              "n_embd": 2560,
+              "n_params": 4022468096,
+              "size": 2491323904,
+              "ftype": "Q4_K - Medium"
+            }
+          }
+        ]
+      },
+      "lmstudio_models": null,
+      "lmstudio_selected_model": null,
+      "local_scan": {
+        "enabled": true,
+        "processes": [
+          {
+            "command": "14464 llama-server.exe \"C:\\Program Files\\WindowsApps\\NousResearchInc.HermesAgent_2026.7082.1520.0_arm64__sznbd6dv1j3v4\\app\\resources\\agent-payload\\tools\\llamacpp-cuda-11671-win32-arm64\\llama-server.exe\" --host 127.0.0.1 --port 18434 --api-key Q4KbVS0A3QaWetdv2RC96sqPJeYcdkJT --models-max 1 --models-autoload --metrics --slots --no-ui --jinja --load-mode dio --models-preset C:\\Users\\ProArt\\AppData\\Local\\hermes\\runtimes\\llamacpp\\presets.ini"
+          },
+          {
+            "command": "21732 nvidia-smi.exe nvidia-smi -i 0 --query-gpu=timestamp,power.draw,temperature.gpu,clocks.gr,clocks.mem,memory.used,utilization.gpu,pstate --format=csv,noheader,nounits -lms 1000"
+          },
+          {
+            "command": "15364 llama-server.exe C:\\Users\\ProArt\\Desktop\\Project\\bench-tools\\llamacpp-cuda-b11671\\llama-server.exe -m C:\\Users\\ProArt\\models\\qwen3-4b-instruct-2507\\Qwen3-4B-Instruct-2507-Q4_K_M.gguf --host 127.0.0.1 --port 8099 --alias qwen3-4b-2507 -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics"
+          },
+          {
+            "command": "30648 python.exe C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model qwen3-4b-2507 --concurrency 1,2,4 --max-tokens 1024 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 128 --warmup-pause 1 --prompts-file C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\qwen3-4b-2507\\suite\\prompts\\03_peak_decode_long_output.txt --out-dir C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\qwen3-4b-2507\\suite\\qwen3-4b-2507\\03_peak_decode_long_output --runtime \"llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server\" --gpu \"NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16\" --quantization Q4_K_M --context-size 65536 --notes \"server: --host 127.0.0.1 --port 8099 --alias qwen3-4b-2507 -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics\""
+          }
+        ],
+        "model_files": [
+          "C:\\Users\\ProArt\\.ollama\\models\\manifests-v2\\ollama.com\\library\\qwen3-embedding\\4b",
+          "C:\\Users\\ProArt\\.ollama\\models\\manifests\\registry.ollama.ai\\library\\qwen3-embedding\\4b",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\gemma-4-E2B-it-Q4_K_M.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\mmproj-gemma-4-E2B-it-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\mmproj-Qwen3.8-27B-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\Qwen3.8-27B-Q4_K_M.gguf"
+        ],
+        "detected_runtime": "CUDA llama.cpp",
+        "detected_quantization": "Q4_K_M",
+        "detected_context_size": 65536,
+        "env": {}
+      }
+    },
+    "benchmark_config": {
+      "server": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "model": "qwen3-4b-2507",
+      "runtime_label": "llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server",
+      "runtime_label_source": "manual",
+      "gpu_label": "NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16",
+      "model_quantization": "Q4_K_M",
+      "model_quantization_source": "manual",
+      "context_size": 65536,
+      "context_size_source": "manual",
+      "max_tokens_per_request": 1024,
+      "temperature": 0.2,
+      "timeout_seconds": 900.0,
+      "concurrency": [
+        1,
+        2,
+        4
+      ],
+      "cooldown_seconds": 1.0,
+      "warmup_requests": 1,
+      "warmup_max_tokens": 128,
+      "prompt_count": 3,
+      "prompts_file": "C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\qwen3-4b-2507\\suite\\prompts\\03_peak_decode_long_output.txt",
+      "notes": "server: --host 127.0.0.1 --port 8099 --alias qwen3-4b-2507 -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics",
+      "hardware_image": null
+    },
+    "server": "lmstudio",
+    "base_url": "http://127.0.0.1:8099",
+    "model": "qwen3-4b-2507",
+    "max_tokens": 1024,
+    "temperature": 0.2,
+    "concurrency": [
+      1,
+      2,
+      4
+    ]
+  },
+  "summaries": [
+    {
+      "concurrency": 1,
+      "requests": 1,
+      "success": 1,
+      "failures": 0,
+      "wall_time_s": 4.347234300003038,
+      "total_completion_tokens": 299,
+      "total_tokens": 342,
+      "aggregate_output_tps": 68.77936162764244,
+      "avg_latency_s": 4.33010330000252,
+      "p50_latency_s": 4.33010330000252,
+      "p95_latency_s": 4.33010330000252,
+      "avg_ttft_s": 0.03889999999955762,
+      "p50_ttft_s": 0.03889999999955762,
+      "p95_ttft_s": 0.03889999999955762,
+      "avg_per_request_tps": 69.05147043485682,
+      "min_per_request_tps": 69.05147043485682,
+      "max_per_request_tps": 69.05147043485682,
+      "ttft_sources": {
+        "stream": 1
+      },
+      "errors": []
+    },
+    {
+      "concurrency": 2,
+      "requests": 2,
+      "success": 2,
+      "failures": 0,
+      "wall_time_s": 4.408078299995395,
+      "total_completion_tokens": 479,
+      "total_tokens": 559,
+      "aggregate_output_tps": 108.66413148797751,
+      "avg_latency_s": 3.527763699999923,
+      "p50_latency_s": 3.527763699999923,
+      "p95_latency_s": 4.318427019998853,
+      "avg_ttft_s": 0.05019370000445633,
+      "p50_ttft_s": 0.05019370000445633,
+      "p95_ttft_s": 0.06256951000577829,
+      "avg_per_request_tps": 67.90075149859992,
+      "min_per_request_tps": 67.85771711889883,
+      "max_per_request_tps": 67.943785878301,
+      "ttft_sources": {
+        "stream": 2
+      },
+      "errors": []
+    },
+    {
+      "concurrency": 4,
+      "requests": 4,
+      "success": 4,
+      "failures": 0,
+      "wall_time_s": 5.325022700002592,
+      "total_completion_tokens": 1052,
+      "total_tokens": 1214,
+      "aggregate_output_tps": 197.55784327444988,
+      "avg_latency_s": 4.1809735000006185,
+      "p50_latency_s": 4.277452499998617,
+      "p95_latency_s": 5.253253855004368,
+      "avg_ttft_s": 0.05712622499959252,
+      "p50_ttft_s": 0.06625384999642847,
+      "p95_ttft_s": 0.066357479999715,
+      "avg_per_request_tps": 62.747103508074794,
+      "min_per_request_tps": 61.86366976555232,
+      "max_per_request_tps": 63.673647126515974,
+      "ttft_sources": {
+        "stream": 4
+      },
+      "errors": []
+    }
+  ],
+  "requests": [
+    {
+      "concurrency": 1,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 39274.7156164,
+      "ended_at": 39279.0457197,
+      "ttft_s": 0.03889999999955762,
+      "ttft_source": "stream",
+      "prompt_tokens": 43,
+      "completion_tokens": 299,
+      "total_tokens": 342,
+      "chars": 979,
+      "response_preview": "M\u1ed9t GPU 32GB c\u00f3 th\u1ec3 ph\u1ee5c v\u1ee5 m\u1ed9t nh\u00f3m AI nh\u1ecf, nh\u01b0ng ch\u1ec9 trong c\u00e1c t\u00ecnh hu\u1ed1ng c\u1ee5 th\u1ec3 v\u00e0 gi\u1edbi h\u1ea1n.  Th\u1ef1c t\u1ebf:   - V\u1edbi 32GB, b\u1ea1n c\u00f3 th\u1ec3 ch\u1ea1y c\u00e1c m\u00f4 h\u00ecnh AI nh\u1ecf \u0111\u1ebfn trung b\u00ecnh (nh\u01b0 c\u00e1c m\u00f4 h\u00ecnh ng\u00f4n ng\u1eef nh\u1ecf nh\u01b0 Llama 3 8B, ho\u1eb7c c\u00e1c m\u00f4 h\u00ecnh ph\u00e2n lo",
+      "latency_s": 4.33010330000252,
+      "output_tokens_per_s": 69.05147043485682
+    },
+    {
+      "concurrency": 2,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 39280.0484211,
+      "ended_at": 39284.4546996,
+      "ttft_s": 0.06394460000592517,
+      "ttft_source": "stream",
+      "prompt_tokens": 43,
+      "completion_tokens": 299,
+      "total_tokens": 342,
+      "chars": 932,
+      "response_preview": "M\u1ed9t GPU 32GB c\u00f3 th\u1ec3 ph\u1ee5c v\u1ee5 m\u1ed9t nh\u00f3m AI nh\u1ecf, nh\u01b0ng ch\u1ec9 trong m\u1ed9t s\u1ed1 tr\u01b0\u1eddng h\u1ee3p c\u1ee5 th\u1ec3.  Th\u1ef1c t\u1ebf:   - V\u1edbi 32GB RAM, GPU n\u00e0y ph\u00f9 h\u1ee3p \u0111\u1ec3 ch\u1ea1y c\u00e1c m\u00f4 h\u00ecnh trung b\u00ecnh \u0111\u1ebfn l\u1edbn nh\u01b0 LLM nh\u1ecf (v\u00ed d\u1ee5: Llama 3 8B, Mistral 7B) ho\u1eb7c c\u00e1c m\u00f4 h\u00ecnh h\u1ecdc s\u00e2u \u0111",
+      "latency_s": 4.406278499998734,
+      "output_tokens_per_s": 67.85771711889883
+    },
+    {
+      "concurrency": 2,
+      "user_id": 2,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 39280.0495571,
+      "ended_at": 39282.698806,
+      "ttft_s": 0.0364428000029875,
+      "ttft_source": "stream",
+      "prompt_tokens": 37,
+      "completion_tokens": 180,
+      "total_tokens": 217,
+      "chars": 952,
+      "response_preview": "- **Latency vs. Accessibility**: Local AI offers low latency and instant response, ideal for real-time applications, while cloud AI provides scalable access to powerful models but introduces network delay.   - **Privacy vs. Data Security**:",
+      "latency_s": 2.649248900001112,
+      "output_tokens_per_s": 67.943785878301
+    },
+    {
+      "concurrency": 4,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 39285.4555727,
+      "ended_at": 39290.7795963,
+      "ttft_s": 0.02962820000539068,
+      "ttft_source": "stream",
+      "prompt_tokens": 43,
+      "completion_tokens": 339,
+      "total_tokens": 382,
+      "chars": 1100,
+      "response_preview": "M\u1ed9t GPU 32GB c\u00f3 th\u1ec3 ph\u1ee5c v\u1ee5 m\u1ed9t nh\u00f3m AI nh\u1ecf, nh\u01b0ng ch\u1ec9 trong c\u00e1c t\u00ecnh hu\u1ed1ng c\u1ee5 th\u1ec3 v\u00e0 gi\u1edbi h\u1ea1n.  **Th\u1ef1c t\u1ebf:** - V\u1edbi 32GB, b\u1ea1n c\u00f3 th\u1ec3 ch\u1ea1y c\u00e1c m\u00f4 h\u00ecnh AI nh\u1ecf \u0111\u1ebfn trung b\u00ecnh (nh\u01b0 c\u00e1c m\u00f4 h\u00ecnh ng\u00f4n ng\u1eef nh\u1ecf nh\u01b0 Llama 3 8B, ho\u1eb7c c\u00e1c m\u00f4 h\u00ecnh ph\u00e2n ",
+      "latency_s": 5.324023600005603,
+      "output_tokens_per_s": 63.673647126515974
+    },
+    {
+      "concurrency": 4,
+      "user_id": 2,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 39285.4559235,
+      "ended_at": 39288.3008889,
+      "ttft_s": 0.06629219999740599,
+      "ttft_source": "stream",
+      "prompt_tokens": 37,
+      "completion_tokens": 176,
+      "total_tokens": 213,
+      "chars": 946,
+      "response_preview": "- **Latency vs. Accessibility**: Local AI offers low latency and instant response, ideal for real-time applications, while cloud AI provides scalable access to powerful models but introduces network delay.   - **Privacy vs. Data Security**:",
+      "latency_s": 2.844965399999637,
+      "output_tokens_per_s": 61.86366976555232
+    },
+    {
+      "concurrency": 4,
+      "user_id": 3,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 39285.4561148,
+      "ended_at": 39289.1587945,
+      "ttft_s": 0.06636900000012247,
+      "ttft_source": "stream",
+      "prompt_tokens": 39,
+      "completion_tokens": 231,
+      "total_tokens": 270,
+      "chars": 1074,
+      "response_preview": "Hey [Teammate's Name]! Great question \u2014 you're absolutely right that local LLM speed can slow down with more concurrent users. Here's why:  Local LLMs run on your device (or a local server), and when multiple users access them at once, it\u2019s",
+      "latency_s": 3.7026796999998624,
+      "output_tokens_per_s": 62.38724888896239
+    },
+    {
+      "concurrency": 4,
+      "user_id": 4,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 39285.4563413,
+      "ended_at": 39290.3085666,
+      "ttft_s": 0.06621549999545095,
+      "ttft_source": "stream",
+      "prompt_tokens": 43,
+      "completion_tokens": 306,
+      "total_tokens": 349,
+      "chars": 1016,
+      "response_preview": "M\u1ed9t GPU 32GB c\u00f3 th\u1ec3 ph\u1ee5c v\u1ee5 m\u1ed9t nh\u00f3m AI nh\u1ecf, nh\u01b0ng ch\u1ec9 trong c\u00e1c t\u00ecnh hu\u1ed1ng c\u1ee5 th\u1ec3 v\u00e0 gi\u1edbi h\u1ea1n.  **Th\u1ef1c t\u1ebf:** - V\u1edbi 32GB VRAM, GPU n\u00e0y ph\u00f9 h\u1ee3p \u0111\u1ec3 ch\u1ea1y c\u00e1c m\u00f4 h\u00ecnh AI nh\u1ecf \u0111\u1ebfn trung b\u00ecnh (v\u00ed d\u1ee5: c\u00e1c m\u00f4 h\u00ecnh nh\u01b0 BERT nh\u1ecf, ho\u1eb7c c\u00e1c m\u00f4 h\u00ecnh ng\u00f4n",
+      "latency_s": 4.852225299997372,
+      "output_tokens_per_s": 63.063848251268496
+    }
+  ],
+  "warmup_requests": [
+    {
+      "concurrency": 0,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 39271.8185064,
+      "ended_at": 39273.6984021,
+      "ttft_s": 0.04809360000217566,
+      "ttft_source": "stream",
+      "prompt_tokens": 43,
+      "completion_tokens": 128,
+      "total_tokens": 171,
+      "chars": 414,
+      "response_preview": "M\u1ed9t GPU 32GB c\u00f3 th\u1ec3 ph\u1ee5c v\u1ee5 m\u1ed9t nh\u00f3m AI nh\u1ecf, nh\u01b0ng ch\u1ec9 trong c\u00e1c t\u00ecnh hu\u1ed1ng c\u1ee5 th\u1ec3 v\u00e0 gi\u1edbi h\u1ea1n.  Th\u1ef1c t\u1ebf:   - V\u1edbi 32GB RAM, GPU n\u00e0y ph\u00f9 h\u1ee3p cho c\u00e1c m\u00f4 h\u00ecnh nh\u1ecf \u0111\u1ebfn trung b\u00ecnh (nh\u01b0 c\u00e1c m\u00f4 h\u00ecnh ng\u00f4n ng\u1eef nh\u1ecf nh\u01b0 Llama 3 8B, ho\u1eb7c c\u00e1c m\u00f4 h\u00ecnh ch",
+      "latency_s": 1.8798957000035443,
+      "output_tokens_per_s": 68.08888386720533
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+Build a single-file interactive web app called "GALAXY FORGE": a real-time 3D galaxy simulator that looks breathtaking on screen. It will be filmed for a social media video.
+
+Hard requirements
+- One self-contained HTML file (HTML + CSS + JavaScript inline). No external libraries, images or fonts.
+- Render with raw WebGL (point sprites, additive blending, custom shaders) so that at least 60,000 star particles run at a smooth 60 fps. Handle window resize and high-DPI screens.
+
+The galaxy
+- A spiral galaxy built from particles orbiting a bright glowing core: differential rotation (inner stars orbit faster), adjustable 2 to 5 spiral arms, dust lanes, a thin disk with a puffy central bulge, star colors ranging from hot blue-white in the arms to warm gold and red in the core.
+- Soft glow on every star, colorful translucent nebula clouds along the arms, and a twinkling background starfield.
+
+Camera and interaction
+- Drag to orbit the camera in 3D, scroll or pinch to zoom, with smooth inertia. When the user is idle for a few seconds, a slow cinematic camera drifts around the galaxy.
+- Click anywhere to launch a dwarf galaxy that collides with the main one and tidally pulls stars into streams.
+- A "BIG BANG" button that explodes all stars outward and lets the galaxy re-form.
+
+Interface
+- A floating, collapsible glassmorphism control panel: star count, number of arms, rotation speed, arm spread, color presets (Milky Way, Andromeda, Nebula, Neon), and toggles for glow, nebulae and auto-camera.
+- A minimal title "GALAXY FORGE" with a live FPS and star counter.
+- Keyboard shortcuts: H hides the UI, Space pauses, R resets, S saves a PNG screenshot.
+
+Return only the complete code in one ```html code block, with no explanation before or after it.

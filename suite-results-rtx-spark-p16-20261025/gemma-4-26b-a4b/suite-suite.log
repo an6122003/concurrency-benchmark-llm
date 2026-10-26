@@ -1,0 +1,206 @@
+Benchmarking gemma-4-26b-a4b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1]
+
+Warmup: 2 request(s), not included in scores
+  warmup 1/2: ok latency_s=2.34 ttft_s=0.48 tok_s=41.00
+  warmup 2/2: ok latency_s=1.95 ttft_s=0.20 tok_s=49.18
+
+users= 1 success=1/1 aggregate_tok_s=47.99 avg_user_tok_s=48.54 avg_latency_s=1.98 avg_ttft_s=0.22
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\01_latency_single_user
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\01_latency_single_user\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\01_latency_single_user\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\01_latency_single_user\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\01_latency_single_user\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\01_latency_single_user\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\01_latency_single_user\compare.html
+Benchmarking gemma-4-26b-a4b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+Warmup: 2 request(s), not included in scores
+  warmup 1/2: ok latency_s=2.57 ttft_s=0.22 tok_s=49.79
+  warmup 2/2: ok latency_s=2.55 ttft_s=0.19 tok_s=50.15
+
+users= 1 success=1/1 aggregate_tok_s=49.68 avg_user_tok_s=49.76 avg_latency_s=6.03 avg_ttft_s=0.20
+users= 2 success=2/2 aggregate_tok_s=66.31 avg_user_tok_s=39.93 avg_latency_s=5.78 avg_ttft_s=0.33
+users= 3 success=3/3 aggregate_tok_s=84.82 avg_user_tok_s=32.18 avg_latency_s=7.90 avg_ttft_s=0.33
+users= 4 success=4/4 aggregate_tok_s=104.42 avg_user_tok_s=28.32 avg_latency_s=9.57 avg_ttft_s=0.39
+users= 5 success=5/5 aggregate_tok_s=111.47 avg_user_tok_s=25.83 avg_latency_s=9.49 avg_ttft_s=0.39
+users= 6 success=6/6 aggregate_tok_s=127.45 avg_user_tok_s=24.11 avg_latency_s=10.66 avg_ttft_s=0.40
+users= 7 success=7/7 aggregate_tok_s=137.37 avg_user_tok_s=21.95 avg_latency_s=12.03 avg_ttft_s=0.41
+users= 8 success=8/8 aggregate_tok_s=137.89 avg_user_tok_s=19.74 avg_latency_s=12.73 avg_ttft_s=0.45
+users= 9 success=9/9 aggregate_tok_s=161.04 avg_user_tok_s=20.63 avg_latency_s=12.62 avg_ttft_s=0.45
+users=10 success=10/10 aggregate_tok_s=168.33 avg_user_tok_s=19.37 avg_latency_s=13.64 avg_ttft_s=0.47
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\02_team_concurrency
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\02_team_concurrency\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\02_team_concurrency\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\02_team_concurrency\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\02_team_concurrency\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\02_team_concurrency\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\02_team_concurrency\compare.html
+Benchmarking gemma-4-26b-a4b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2, 4]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=2.91 ttft_s=0.21 tok_s=44.02
+
+users= 1 success=1/1 aggregate_tok_s=45.94 avg_user_tok_s=45.96 avg_latency_s=13.90 avg_ttft_s=0.22
+users= 2 success=2/2 aggregate_tok_s=54.07 avg_user_tok_s=38.12 avg_latency_s=10.18 avg_ttft_s=0.29
+users= 4 success=4/4 aggregate_tok_s=88.98 avg_user_tok_s=29.15 avg_latency_s=14.45 avg_ttft_s=0.37
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\03_peak_decode_long_output
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\03_peak_decode_long_output\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\03_peak_decode_long_output\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\03_peak_decode_long_output\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\03_peak_decode_long_output\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\03_peak_decode_long_output\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\03_peak_decode_long_output\compare.html
+Benchmarking gemma-4-26b-a4b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=3.83 ttft_s=2.04 tok_s=16.72
+
+users= 1 success=1/1 aggregate_tok_s=24.82 avg_user_tok_s=24.85 avg_latency_s=6.44 avg_ttft_s=2.06
+users= 2 success=2/2 aggregate_tok_s=29.65 avg_user_tok_s=14.91 avg_latency_s=10.73 avg_ttft_s=3.61
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\04_context_4k
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\04_context_4k\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\04_context_4k\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\04_context_4k\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\04_context_4k\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\04_context_4k\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\04_context_4k\compare.html
+Benchmarking gemma-4-26b-a4b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=8.37 ttft_s=5.60 tok_s=7.65
+
+users= 1 success=1/1 aggregate_tok_s=12.66 avg_user_tok_s=12.67 avg_latency_s=12.63 avg_ttft_s=5.70
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\05_context_8k
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\05_context_8k\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\05_context_8k\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\05_context_8k\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\05_context_8k\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\05_context_8k\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\05_context_8k\compare.html
+Benchmarking gemma-4-26b-a4b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=4.30 ttft_s=0.27 tok_s=22.32
+
+users= 1 success=1/1 aggregate_tok_s=22.92 avg_user_tok_s=22.93 avg_latency_s=16.75 avg_ttft_s=0.29
+users= 2 success=2/2 aggregate_tok_s=41.06 avg_user_tok_s=20.56 avg_latency_s=18.67 avg_ttft_s=0.38
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\06_coding_smoke
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\06_coding_smoke\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\06_coding_smoke\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\06_coding_smoke\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\06_coding_smoke\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\06_coding_smoke\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\06_coding_smoke\compare.html
+
+=== gemma-4-26b-a4b / 01_latency_single_user ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gemma-4-26b-a4b --concurrency 1 --max-tokens 96 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 2 --warmup-tokens 96 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\prompts\01_latency_single_user.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\01_latency_single_user --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization Q8_0 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gemma-4-26b-a4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off
+
+=== gemma-4-26b-a4b / 02_team_concurrency ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gemma-4-26b-a4b --concurrency 1-10 --max-tokens 300 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 2 --warmup-tokens 128 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\prompts\02_team_concurrency.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\02_team_concurrency --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization Q8_0 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gemma-4-26b-a4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off
+
+=== gemma-4-26b-a4b / 03_peak_decode_long_output ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gemma-4-26b-a4b --concurrency 1,2,4 --max-tokens 1024 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 128 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\prompts\03_peak_decode_long_output.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\03_peak_decode_long_output --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization Q8_0 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gemma-4-26b-a4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off
+
+=== gemma-4-26b-a4b / 04_context_4k ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gemma-4-26b-a4b --concurrency 1,2 --max-tokens 160 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 64 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\prompts\04_context_4k.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\04_context_4k --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization Q8_0 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gemma-4-26b-a4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off
+
+=== gemma-4-26b-a4b / 05_context_8k ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gemma-4-26b-a4b --concurrency 1 --max-tokens 160 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 64 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\prompts\05_context_8k.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\05_context_8k --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization Q8_0 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gemma-4-26b-a4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off
+
+=== gemma-4-26b-a4b / 06_coding_smoke ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gemma-4-26b-a4b --concurrency 1,2 --max-tokens 384 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 96 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\prompts\06_coding_smoke.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\06_coding_smoke --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization Q8_0 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gemma-4-26b-a4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off
+
+=== gemma-4-26b-a4b / 07_vietnamese_smoke ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gemma-4-26b-a4b --concurrency 1,2 --max-tokens 384 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 96 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\prompts\07_vietnamese_smoke.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\07_vietnamese_smoke --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization Q8_0 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gemma-4-26b-a4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning offBenchmarking gemma-4-26b-a4b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=4.35 ttft_s=0.30 tok_s=22.07
+
+users= 1 success=1/1 aggregate_tok_s=22.92 avg_user_tok_s=22.94 avg_latency_s=16.74 avg_ttft_s=0.30
+users= 2 success=2/2 aggregate_tok_s=41.68 avg_user_tok_s=20.88 avg_latency_s=18.39 avg_ttft_s=0.40
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\07_vietnamese_smoke
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\07_vietnamese_smoke\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\07_vietnamese_smoke\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\07_vietnamese_smoke\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\07_vietnamese_smoke\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\07_vietnamese_smoke\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\07_vietnamese_smoke\compare.html
+Benchmarking gemma-4-26b-a4b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 4]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=1.74 ttft_s=0.32 tok_s=19.50
+
+users= 1 success=1/1 aggregate_tok_s=19.39 avg_user_tok_s=19.47 avg_latency_s=1.75 avg_ttft_s=0.32
+users= 4 success=4/4 aggregate_tok_s=55.16 avg_user_tok_s=14.70 avg_latency_s=2.55 avg_ttft_s=0.63
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\08_extraction_classification
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\08_extraction_classification\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\08_extraction_classification\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\08_extraction_classification\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\08_extraction_classification\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\08_extraction_classification\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\08_extraction_classification\compare.html
+Benchmarking gemma-4-26b-a4b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=14.38 ttft_s=11.43 tok_s=4.45
+
+users= 1 success=1/1 aggregate_tok_s=8.41 avg_user_tok_s=8.41 avg_latency_s=19.02 avg_ttft_s=11.71
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\09_context_16k
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\09_context_16k\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\09_context_16k\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\09_context_16k\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\09_context_16k\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\09_context_16k\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\09_context_16k\compare.html
+Benchmarking gemma-4-26b-a4b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [12, 16, 24, 32]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=3.16 ttft_s=0.32 tok_s=20.26
+
+users=12 success=12/12 aggregate_tok_s=124.33 avg_user_tok_s=12.18 avg_latency_s=21.15 avg_ttft_s=0.92
+users=16 success=16/16 aggregate_tok_s=233.64 avg_user_tok_s=16.81 avg_latency_s=15.41 avg_ttft_s=0.65
+users=24 success=24/24 aggregate_tok_s=297.30 avg_user_tok_s=14.30 avg_latency_s=18.07 avg_ttft_s=0.77
+users=32 success=32/32 aggregate_tok_s=335.50 avg_user_tok_s=12.16 avg_latency_s=21.18 avg_ttft_s=0.94
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\10_team_stress
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\10_team_stress\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\10_team_stress\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\10_team_stress\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\10_team_stress\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\10_team_stress\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\10_team_stress\compare.html
+
+
+=== gemma-4-26b-a4b / 08_extraction_classification ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gemma-4-26b-a4b --concurrency 1,4 --max-tokens 256 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 64 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\prompts\08_extraction_classification.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\08_extraction_classification --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization Q8_0 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gemma-4-26b-a4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off
+
+=== gemma-4-26b-a4b / 09_context_16k ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gemma-4-26b-a4b --concurrency 1 --max-tokens 160 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 64 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\prompts\09_context_16k.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\09_context_16k --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization Q8_0 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gemma-4-26b-a4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off
+
+=== gemma-4-26b-a4b / 10_team_stress ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gemma-4-26b-a4b --concurrency 12,16,24,32 --max-tokens 300 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 64 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\prompts\10_team_stress.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\gemma-4-26b-a4b\10_team_stress --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization Q8_0 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gemma-4-26b-a4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off
+
+Wrote suite output: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\suite-manifest.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\suite-comparison.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\suite-report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gemma-4-26b-a4b\suite\suite-comparison.html

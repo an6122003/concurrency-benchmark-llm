@@ -1,0 +1,10 @@
+ggml_cuda_init: found 1 CUDA devices (Total VRAM: 113134 MiB):
+  Device 0: NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU), compute capability 12.1, VMM: yes, VRAM: 113134 MiB
+load_backend: loaded CUDA backend from C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\ggml-cuda.dll
+load_backend: loaded RPC backend from C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\ggml-rpc.dll
+load_backend: loaded CPU backend from C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\ggml-cpu.dll
+ggml_backend_cpu_buffer_type_alloc_buffer: failed to allocate buffer of size 28816666400
+ggml_gallocr_reserve_n_impl: failed to allocate CUDA_Host buffer of size 28816666400
+graph_reserve: failed to allocate compute buffers
+llama_init_from_model: failed to initialize the context: failed to allocate compute pp buffers
+llama_bench: error: failed to create context with model 'C:\Users\ProArt\models\qwen3.8-flash-next\Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf'

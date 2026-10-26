@@ -1,0 +1,3 @@
+Classify each item as bug, feature request, pricing concern, or praise: app crashes on upload; add CSV export; too expensive; love the UI.
+---
+Extract hardware model, runtime, quantization, and concurrency count from: RTX 4090, Ollama CUDA, Qwen 32B Q4_K_M, 6 users.

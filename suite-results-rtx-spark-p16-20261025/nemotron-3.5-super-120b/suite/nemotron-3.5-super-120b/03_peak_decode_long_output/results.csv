@@ -1,0 +1,11 @@
+type,concurrency,user_id,ok,status,latency_s,ttft_s,ttft_source,completion_tokens,total_tokens,output_tps,error
+request,1,1,True,200,28.5541,0.5363,stream,466,512,16.3199,
+request,2,1,True,200,31.6972,1.1362,stream,472,518,14.8909,
+request,2,2,True,200,9.3907,0.9144,stream,102,142,10.8618,
+request,4,1,True,200,37.5492,1.4760,stream,410,456,10.9190,
+request,4,2,True,200,12.4536,1.1701,stream,102,142,8.1904,
+request,4,3,True,200,12.8958,1.4740,stream,105,147,8.1422,
+request,4,4,True,200,44.2304,1.4737,stream,521,567,11.7792,
+summary,1,,True,,28.5599,0.5363,"{""stream"": 1}",466,512,16.3166,
+summary,2,,True,,31.6989,1.0253,"{""stream"": 2}",574,660,18.1079,
+summary,4,,True,,44.2342,1.3984,"{""stream"": 4}",1138,1312,25.7267,

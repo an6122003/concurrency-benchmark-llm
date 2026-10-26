@@ -1,0 +1,64 @@
+{
+ "exceptions": [
+  {
+   "exceptionId": 1,
+   "text": "Uncaught",
+   "lineNumber": 166,
+   "columnNumber": 44,
+   "scriptId": "3",
+   "url": "http://127.0.0.1:8095/neon-spark-iterated/v8/index.html",
+   "stackTrace": {
+    "callFrames": [
+     {
+      "functionName": "playStep",
+      "scriptId": "3",
+      "url": "http://127.0.0.1:8095/neon-spark-iterated/v8/index.html",
+      "lineNumber": 166,
+      "columnNumber": 44
+     },
+     {
+      "functionName": "scheduleMusic",
+      "scriptId": "3",
+      "url": "http://127.0.0.1:8095/neon-spark-iterated/v8/index.html",
+      "lineNumber": 180,
+      "columnNumber": 35
+     },
+     {
+      "functionName": "frame",
+      "scriptId": "3",
+      "url": "http://127.0.0.1:8095/neon-spark-iterated/v8/index.html",
+      "lineNumber": 1831,
+      "columnNumber": 2
+     }
+    ]
+   },
+   "exception": {
+    "type": "object",
+    "subtype": "error",
+    "className": "TypeError",
+    "description": "TypeError: Failed to set the 'buffer' property on 'AudioBufferSourceNode': Failed to convert value to 'AudioBuffer'.\n    at playStep (http://127.0.0.1:8095/neon-spark-iterated/v8/index.html:167:45)\n    at scheduleMusic (http://127.0.0.1:8095/neon-spark-iterated/v8/index.html:181:36)\n    at frame (http://127.0.0.1:8095/neon-spark-iterated/v8/index.html:1832:3)",
+    "objectId": "-9122757524391614537.2.1",
+    "preview": {
+     "type": "object",
+     "subtype": "error",
+     "description": "TypeError: Failed to set the 'buffer' property on 'AudioBufferSourceNode': Failed to convert value to 'AudioBuffer'.\n    at playStep (http://127.0.0.1:8095/neon-spark-iterated/v8/index.html:167:45)\n    at scheduleMusic (http://127.0.0.1:8095/neon-spark-iterated/v8/index.html:181:36)\n    at frame (http://127.0.0.1:8095/neon-spark-iterated/v8/index.html:1832:3)",
+     "overflow": false,
+     "properties": [
+      {
+       "name": "message",
+       "type": "string",
+       "value": "Failed to set the 'buffer' property on 'AudioBuffe\u2026eNode': Failed to convert value to 'AudioBuffer'."
+      },
+      {
+       "name": "stack",
+       "type": "string",
+       "value": "TypeError: Failed to convert value to 'AudioBuffer\u2026.1:8095/neon-spark-iterated/v8/index.html:1832:3)"
+      }
+     ]
+    }
+   },
+   "executionContextId": 2
+  }
+ ],
+ "console_errors": []
+}

@@ -1,0 +1,5 @@
+power_id,power,test,tps,sd,reps,time
+battery,Battery only (88%),pp512,2426,111,3,23:15
+battery,Battery only (88%),tg128,67.9,0.1,3,23:15
+charger,65 W charger (75%),pp512,2558,71,5,23:24
+charger,65 W charger (75%),tg128,67.5,0.4,5,23:24

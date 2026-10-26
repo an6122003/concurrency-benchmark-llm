@@ -1,0 +1,207 @@
+{
+  "date": "2026-10-26T11:19:37",
+  "host": "Windows 11 (ARM64)",
+  "os": {
+    "system": "Windows",
+    "release": "11",
+    "version": "10.0.28000",
+    "platform": "Windows-11-10.0.28000-SP0"
+  },
+  "python": "3.13.17",
+  "python_executable": "C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe",
+  "cpu": {
+    "processor": "NVIDIA RTX Spark N1X (6144-core GPU, 20-core CPU)",
+    "machine": "ARM64",
+    "physical_or_logical_cores": 20
+  },
+  "memory": {
+    "total_bytes": 32742236160,
+    "total_human": "30.5 GB"
+  },
+  "gpu": {
+    "detected": [
+      {
+        "vendor": "NVIDIA",
+        "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+        "vram_total_mib": 98304,
+        "vram_used_mib": 79647,
+        "vram_free_mib": 18644,
+        "vram_total_human": "98304 MiB",
+        "vram_used_human": "79647 MiB",
+        "vram_free_human": "18644 MiB",
+        "driver": "617.69",
+        "performance_state": "P8",
+        "temperature_c": 64,
+        "power_draw_w": "1.95"
+      },
+      {
+        "vendor": "NVIDIA",
+        "name": "NVIDIA NPU",
+        "vram_total_mib": null,
+        "vram_used_mib": null,
+        "vram_free_mib": null,
+        "vram_total_human": "",
+        "vram_used_human": "",
+        "vram_free_human": "",
+        "driver": "617.69",
+        "performance_state": "[N/A]",
+        "temperature_c": 70,
+        "power_draw_w": "0.00"
+      },
+      {
+        "vendor": "Windows",
+        "name": "NVIDIA NPU",
+        "vram_total_bytes": null,
+        "vram_total_human": "unknown",
+        "vram_source": "Win32_VideoController.AdapterRAM",
+        "reported_adapter_ram_bytes": null,
+        "reported_adapter_ram_human": "unknown",
+        "driver": "32.0.16.1769",
+        "pnp_device_id": "ACPI\\NVDA200A\\0",
+        "source": "Win32_VideoController"
+      },
+      {
+        "vendor": "Windows",
+        "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+        "vram_total_bytes": 4293918720,
+        "vram_total_human": "4.0 GB",
+        "vram_source": "Win32_VideoController.AdapterRAM",
+        "reported_adapter_ram_bytes": 4293918720,
+        "reported_adapter_ram_human": "4.0 GB",
+        "driver": "32.0.16.1769",
+        "pnp_device_id": "PCI\\VEN_10DE&DEV_2E03&SUBSYS_14841043&REV_A1\\00000000002DB04800",
+        "source": "Win32_VideoController"
+      }
+    ]
+  },
+  "runtime": {
+    "server_mode": "lmstudio",
+    "base_url": "http://127.0.0.1:8099",
+    "openai_models": {
+      "models": [
+        {
+          "name": "nemotron-3.5-super-120b",
+          "model": "nemotron-3.5-super-120b",
+          "modified_at": "",
+          "size": "",
+          "digest": "",
+          "type": "model",
+          "description": "",
+          "tags": [
+            ""
+          ],
+          "capabilities": [
+            "completion"
+          ],
+          "parameters": "",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "",
+            "families": [
+              ""
+            ],
+            "parameter_size": "",
+            "quantization_level": ""
+          }
+        }
+      ],
+      "object": "list",
+      "data": [
+        {
+          "id": "nemotron-3.5-super-120b",
+          "aliases": [
+            "nemotron-3.5-super-120b"
+          ],
+          "tags": [],
+          "object": "model",
+          "architecture": {
+            "input_modalities": [
+              "text"
+            ],
+            "output_modalities": [
+              "text"
+            ]
+          },
+          "created": 1792988376,
+          "owned_by": "llamacpp",
+          "meta": {
+            "vocab_type": 2,
+            "n_vocab": 131072,
+            "n_ctx": 65536,
+            "n_ctx_train": 1048576,
+            "n_embd": 4096,
+            "n_params": 120668789920,
+            "size": 76910850688,
+            "ftype": "NVFP4"
+          }
+        }
+      ]
+    },
+    "lmstudio_models": null,
+    "lmstudio_selected_model": null,
+    "local_scan": {
+      "enabled": true,
+      "processes": [
+        {
+          "command": "14464 llama-server.exe \"C:\\Program Files\\WindowsApps\\NousResearchInc.HermesAgent_2026.7082.1520.0_arm64__sznbd6dv1j3v4\\app\\resources\\agent-payload\\tools\\llamacpp-cuda-11671-win32-arm64\\llama-server.exe\" --host 127.0.0.1 --port 18434 --api-key Q4KbVS0A3QaWetdv2RC96sqPJeYcdkJT --models-max 1 --models-autoload --metrics --slots --no-ui --jinja --load-mode dio --models-preset C:\\Users\\ProArt\\AppData\\Local\\hermes\\runtimes\\llamacpp\\presets.ini"
+        },
+        {
+          "command": "30844 nvidia-smi.exe nvidia-smi -i 0 --query-gpu=timestamp,power.draw,temperature.gpu,clocks.gr,clocks.mem,memory.used,utilization.gpu,pstate --format=csv,noheader,nounits -lms 1000"
+        },
+        {
+          "command": "19856 llama-server.exe C:\\Users\\ProArt\\Desktop\\Project\\bench-tools\\llamacpp-cuda-b11671\\llama-server.exe -m C:\\Users\\ProArt\\models\\nemotron-3.5-super-120b\\NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4.gguf --host 127.0.0.1 --port 8099 --alias nemotron-3.5-super-120b -ngl 999 --fit off -fa on -c 65536 -np 16 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --load-mode dio"
+        },
+        {
+          "command": "15812 python.exe C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model nemotron-3.5-super-120b --concurrency 1,2 --max-tokens 160 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 64 --warmup-pause 1 --prompts-file C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\nemotron-3.5-super-120b\\suite\\prompts\\04_context_4k.txt --out-dir C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\nemotron-3.5-super-120b\\suite\\nemotron-3.5-super-120b\\04_context_4k --runtime \"llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server\" --gpu \"NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16\" --quantization NVFP4 --context-size 65536 --notes \"server: --host 127.0.0.1 --port 8099 --alias nemotron-3.5-super-120b -ngl 999 --fit off -fa on -c 65536 -np 16 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --load-mode dio\""
+        }
+      ],
+      "model_files": [
+        "C:\\Users\\ProArt\\.ollama\\models\\manifests-v2\\ollama.com\\library\\nemotron-3.5-lightning\\30b-a3b",
+        "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\gemma-4-E2B-it-Q4_K_M.gguf",
+        "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\mmproj-gemma-4-E2B-it-BF16.gguf",
+        "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\mmproj-Qwen3.8-27B-BF16.gguf",
+        "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\Qwen3.8-27B-Q4_K_M.gguf"
+      ],
+      "detected_runtime": "CUDA llama.cpp",
+      "detected_quantization": "Q4_K_M",
+      "detected_context_size": 65536,
+      "env": {}
+    }
+  },
+  "benchmark_config": {
+    "server": "lmstudio",
+    "base_url": "http://127.0.0.1:8099",
+    "model": "nemotron-3.5-super-120b",
+    "runtime_label": "llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server",
+    "runtime_label_source": "manual",
+    "gpu_label": "NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16",
+    "model_quantization": "NVFP4",
+    "model_quantization_source": "manual",
+    "context_size": 65536,
+    "context_size_source": "manual",
+    "max_tokens_per_request": 160,
+    "temperature": 0.2,
+    "timeout_seconds": 900.0,
+    "concurrency": [
+      1,
+      2
+    ],
+    "cooldown_seconds": 1.0,
+    "warmup_requests": 1,
+    "warmup_max_tokens": 64,
+    "prompt_count": 1,
+    "prompts_file": "C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\nemotron-3.5-super-120b\\suite\\prompts\\04_context_4k.txt",
+    "notes": "server: --host 127.0.0.1 --port 8099 --alias nemotron-3.5-super-120b -ngl 999 --fit off -fa on -c 65536 -np 16 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --load-mode dio",
+    "hardware_image": null
+  },
+  "server": "lmstudio",
+  "base_url": "http://127.0.0.1:8099",
+  "model": "nemotron-3.5-super-120b",
+  "max_tokens": 160,
+  "temperature": 0.2,
+  "concurrency": [
+    1,
+    2
+  ]
+}

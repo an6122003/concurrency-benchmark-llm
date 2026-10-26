@@ -1,0 +1,5 @@
+Everything works now, with no console errors on my monitor or my phone. One last polish on the phone's upgrade cards: the content now stays inside each card, but it looks unfinished. The title, bars and description sit at the top of the card while the icon floats in the middle on the left, the "LV x / y" label from the desktop cards is missing, and each card is mostly empty space.
+
+On the phone, make each card only as tall as its content (about 120 pixels), vertically center the icon and the text block together, draw the icon a little larger, and show the "LV x / y" label between the title and the bars, like on the desktop cards. Keep the desktop cards exactly as they are.
+
+Change nothing else. Return the complete updated file in one ```html code block, with no explanation before or after it.

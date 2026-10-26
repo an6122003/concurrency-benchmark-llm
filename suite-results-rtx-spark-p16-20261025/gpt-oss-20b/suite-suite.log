@@ -1,0 +1,206 @@
+Benchmarking gpt-oss-20b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1]
+
+Warmup: 2 request(s), not included in scores
+  warmup 1/2: ok latency_s=1.46 ttft_s=0.36 tok_s=65.65
+  warmup 2/2: ok latency_s=1.35 ttft_s=0.20 tok_s=70.94
+
+users= 1 success=1/1 aggregate_tok_s=72.99 avg_user_tok_s=74.22 avg_latency_s=1.29 avg_ttft_s=0.19
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\01_latency_single_user
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\01_latency_single_user\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\01_latency_single_user\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\01_latency_single_user\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\01_latency_single_user\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\01_latency_single_user\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\01_latency_single_user\compare.html
+Benchmarking gpt-oss-20b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+Warmup: 2 request(s), not included in scores
+  warmup 1/2: ok latency_s=1.71 ttft_s=0.22 tok_s=74.87
+  warmup 2/2: ok latency_s=1.78 ttft_s=0.22 tok_s=72.11
+
+users= 1 success=1/1 aggregate_tok_s=76.56 avg_user_tok_s=76.77 avg_latency_s=3.91 avg_ttft_s=0.21
+users= 2 success=2/2 aggregate_tok_s=100.10 avg_user_tok_s=58.35 avg_latency_s=4.08 avg_ttft_s=0.31
+users= 3 success=3/3 aggregate_tok_s=128.42 avg_user_tok_s=46.47 avg_latency_s=5.83 avg_ttft_s=0.33
+users= 4 success=4/4 aggregate_tok_s=146.03 avg_user_tok_s=38.17 avg_latency_s=7.44 avg_ttft_s=0.36
+users= 5 success=5/5 aggregate_tok_s=155.03 avg_user_tok_s=34.29 avg_latency_s=7.65 avg_ttft_s=0.35
+users= 6 success=6/6 aggregate_tok_s=167.36 avg_user_tok_s=31.54 avg_latency_s=8.12 avg_ttft_s=0.31
+users= 7 success=7/7 aggregate_tok_s=177.25 avg_user_tok_s=27.03 avg_latency_s=10.27 avg_ttft_s=0.40
+users= 8 success=8/8 aggregate_tok_s=180.53 avg_user_tok_s=24.65 avg_latency_s=10.89 avg_ttft_s=0.41
+users= 9 success=9/9 aggregate_tok_s=211.98 avg_user_tok_s=27.84 avg_latency_s=9.02 avg_ttft_s=0.44
+users=10 success=10/10 aggregate_tok_s=251.58 avg_user_tok_s=27.00 avg_latency_s=10.44 avg_ttft_s=0.45
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\02_team_concurrency
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\02_team_concurrency\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\02_team_concurrency\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\02_team_concurrency\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\02_team_concurrency\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\02_team_concurrency\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\02_team_concurrency\compare.html
+Benchmarking gpt-oss-20b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2, 4]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=1.83 ttft_s=0.23 tok_s=69.84
+
+users= 1 success=1/1 aggregate_tok_s=74.14 avg_user_tok_s=74.22 avg_latency_s=5.67 avg_ttft_s=0.21
+users= 2 success=2/2 aggregate_tok_s=94.64 avg_user_tok_s=57.11 avg_latency_s=4.67 avg_ttft_s=0.29
+users= 4 success=4/4 aggregate_tok_s=117.46 avg_user_tok_s=42.76 avg_latency_s=11.52 avg_ttft_s=0.38
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\03_peak_decode_long_output
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\03_peak_decode_long_output\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\03_peak_decode_long_output\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\03_peak_decode_long_output\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\03_peak_decode_long_output\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\03_peak_decode_long_output\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\03_peak_decode_long_output\compare.html
+Benchmarking gpt-oss-20b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=2.36 ttft_s=1.52 tok_s=27.08
+
+users= 1 success=1/1 aggregate_tok_s=43.81 avg_user_tok_s=43.88 avg_latency_s=3.65 avg_ttft_s=1.42
+users= 2 success=2/2 aggregate_tok_s=54.37 avg_user_tok_s=27.31 avg_latency_s=5.86 avg_ttft_s=2.84
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\04_context_4k
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\04_context_4k\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\04_context_4k\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\04_context_4k\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\04_context_4k\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\04_context_4k\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\04_context_4k\compare.html
+Benchmarking gpt-oss-20b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=4.03 ttft_s=3.06 tok_s=15.89
+
+users= 1 success=1/1 aggregate_tok_s=29.01 avg_user_tok_s=29.07 avg_latency_s=5.50 avg_ttft_s=3.04
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\05_context_8k
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\05_context_8k\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\05_context_8k\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\05_context_8k\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\05_context_8k\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\05_context_8k\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\05_context_8k\compare.html
+Benchmarking gpt-oss-20b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=1.64 ttft_s=0.25 tok_s=58.62
+
+users= 1 success=1/1 aggregate_tok_s=61.48 avg_user_tok_s=61.59 avg_latency_s=6.23 avg_ttft_s=0.25
+users= 2 success=2/2 aggregate_tok_s=93.86 avg_user_tok_s=47.00 avg_latency_s=8.17 avg_ttft_s=0.32
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\06_coding_smoke
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\06_coding_smoke\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\06_coding_smoke\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\06_coding_smoke\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\06_coding_smoke\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\06_coding_smoke\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\06_coding_smoke\compare.html
+Benchmarking gpt-oss-20b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=1.65 ttft_s=0.25 tok_s=58.26
+
+users= 1 success=1/1 aggregate_tok_s=62.94 avg_user_tok_s=63.03 avg_latency_s=6.09 avg_ttft_s=0.22
+users= 2 success=2/2 aggregate_tok_s=96.85 avg_user_tok_s=48.51 avg_latency_s=7.92 avg_ttft_s=0.34
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\07_vietnamese_smoke
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\07_vietnamese_smoke\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\07_vietnamese_smoke\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\07_vietnamese_smoke\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\07_vietnamese_smoke\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\07_vietnamese_smoke\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\07_vietnamese_smoke\compare.html
+
+=== gpt-oss-20b / 01_latency_single_user ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gpt-oss-20b --concurrency 1 --max-tokens 96 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 2 --warmup-tokens 96 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\prompts\01_latency_single_user.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\01_latency_single_user --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization MXFP4 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gpt-oss-20b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning-effort low
+
+=== gpt-oss-20b / 02_team_concurrency ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gpt-oss-20b --concurrency 1-10 --max-tokens 300 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 2 --warmup-tokens 128 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\prompts\02_team_concurrency.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\02_team_concurrency --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization MXFP4 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gpt-oss-20b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning-effort low
+
+=== gpt-oss-20b / 03_peak_decode_long_output ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gpt-oss-20b --concurrency 1,2,4 --max-tokens 1024 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 128 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\prompts\03_peak_decode_long_output.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\03_peak_decode_long_output --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization MXFP4 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gpt-oss-20b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning-effort low
+
+=== gpt-oss-20b / 04_context_4k ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gpt-oss-20b --concurrency 1,2 --max-tokens 160 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 64 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\prompts\04_context_4k.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\04_context_4k --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization MXFP4 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gpt-oss-20b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning-effort low
+
+=== gpt-oss-20b / 05_context_8k ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gpt-oss-20b --concurrency 1 --max-tokens 160 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 64 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\prompts\05_context_8k.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\05_context_8k --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization MXFP4 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gpt-oss-20b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning-effort low
+
+=== gpt-oss-20b / 06_coding_smoke ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gpt-oss-20b --concurrency 1,2 --max-tokens 384 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 96 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\prompts\06_coding_smoke.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\06_coding_smoke --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization MXFP4 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gpt-oss-20b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning-effort low
+
+=== gpt-oss-20b / 07_vietnamese_smoke ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gpt-oss-20b --concurrency 1,2 --max-tokens 384 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 96 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\prompts\07_vietnamese_smoke.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\07_vietnamese_smoke --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization MXFP4 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gpt-oss-20b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning-effort low
+
+=== gpt-oss-20b / 08_extraction_classification ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gpt-oss-20b --concurrency 1,4 --max-tokens 256 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 64 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\prompts\08_extraction_classification.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\08_extraction_classification --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization MXFP4 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gpt-oss-20b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning-effort lowBenchmarking gpt-oss-20b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 4]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=1.17 ttft_s=0.25 tok_s=54.73
+
+users= 1 success=1/1 aggregate_tok_s=57.40 avg_user_tok_s=57.67 avg_latency_s=1.56 avg_ttft_s=0.26
+users= 4 success=4/4 aggregate_tok_s=126.87 avg_user_tok_s=32.55 avg_latency_s=2.89 avg_ttft_s=0.50
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\08_extraction_classification
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\08_extraction_classification\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\08_extraction_classification\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\08_extraction_classification\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\08_extraction_classification\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\08_extraction_classification\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\08_extraction_classification\compare.html
+Benchmarking gpt-oss-20b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=8.16 ttft_s=7.07 tok_s=7.85
+
+users= 1 success=1/1 aggregate_tok_s=16.22 avg_user_tok_s=16.23 avg_latency_s=9.86 avg_ttft_s=7.06
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\09_context_16k
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\09_context_16k\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\09_context_16k\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\09_context_16k\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\09_context_16k\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\09_context_16k\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\09_context_16k\compare.html
+Benchmarking gpt-oss-20b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [12, 16, 24, 32]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=1.30 ttft_s=0.26 tok_s=49.13
+
+users=12 success=12/12 aggregate_tok_s=219.26 avg_user_tok_s=23.01 avg_latency_s=9.74 avg_ttft_s=0.83
+users=16 success=16/16 aggregate_tok_s=329.96 avg_user_tok_s=23.01 avg_latency_s=11.49 avg_ttft_s=0.98
+users=24 success=24/24 aggregate_tok_s=443.01 avg_user_tok_s=19.76 avg_latency_s=14.11 avg_ttft_s=0.81
+users=32 success=32/32 aggregate_tok_s=494.74 avg_user_tok_s=16.84 avg_latency_s=16.08 avg_ttft_s=1.88
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\10_team_stress
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\10_team_stress\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\10_team_stress\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\10_team_stress\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\10_team_stress\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\10_team_stress\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\10_team_stress\compare.html
+
+
+=== gpt-oss-20b / 09_context_16k ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gpt-oss-20b --concurrency 1 --max-tokens 160 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 64 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\prompts\09_context_16k.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\09_context_16k --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization MXFP4 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gpt-oss-20b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning-effort low
+
+=== gpt-oss-20b / 10_team_stress ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gpt-oss-20b --concurrency 12,16,24,32 --max-tokens 300 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 64 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\prompts\10_team_stress.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\gpt-oss-20b\10_team_stress --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization MXFP4 --context-size 65536 --notes server: --host 127.0.0.1 --port 8099 --alias gpt-oss-20b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning-effort low
+
+Wrote suite output: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\suite-manifest.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\suite-comparison.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\suite-report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\gpt-oss-20b\suite\suite-comparison.html

@@ -1,0 +1,333 @@
+{
+  "meta": {
+    "date": "2026-10-26T11:35:50",
+    "host": "Windows 11 (ARM64)",
+    "os": {
+      "system": "Windows",
+      "release": "11",
+      "version": "10.0.28000",
+      "platform": "Windows-11-10.0.28000-SP0"
+    },
+    "python": "3.13.17",
+    "python_executable": "C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe",
+    "cpu": {
+      "processor": "NVIDIA RTX Spark N1X (6144-core GPU, 20-core CPU)",
+      "machine": "ARM64",
+      "physical_or_logical_cores": 20
+    },
+    "memory": {
+      "total_bytes": 32742236160,
+      "total_human": "30.5 GB"
+    },
+    "gpu": {
+      "detected": [
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_mib": 98304,
+          "vram_used_mib": 88795,
+          "vram_free_mib": 9496,
+          "vram_total_human": "98304 MiB",
+          "vram_used_human": "88795 MiB",
+          "vram_free_human": "9496 MiB",
+          "driver": "617.69",
+          "performance_state": "P8",
+          "temperature_c": 65,
+          "power_draw_w": "1.95"
+        },
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA NPU",
+          "vram_total_mib": null,
+          "vram_used_mib": null,
+          "vram_free_mib": null,
+          "vram_total_human": "",
+          "vram_used_human": "",
+          "vram_free_human": "",
+          "driver": "617.69",
+          "performance_state": "[N/A]",
+          "temperature_c": 67,
+          "power_draw_w": "0.00"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA NPU",
+          "vram_total_bytes": null,
+          "vram_total_human": "unknown",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": null,
+          "reported_adapter_ram_human": "unknown",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "ACPI\\NVDA200A\\0",
+          "source": "Win32_VideoController"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_bytes": 4293918720,
+          "vram_total_human": "4.0 GB",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": 4293918720,
+          "reported_adapter_ram_human": "4.0 GB",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "PCI\\VEN_10DE&DEV_2E03&SUBSYS_14841043&REV_A1\\00000000002DB04800",
+          "source": "Win32_VideoController"
+        }
+      ]
+    },
+    "runtime": {
+      "server_mode": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "openai_models": {
+        "models": [
+          {
+            "name": "nemotron-3.5-super-120b",
+            "model": "nemotron-3.5-super-120b",
+            "modified_at": "",
+            "size": "",
+            "digest": "",
+            "type": "model",
+            "description": "",
+            "tags": [
+              ""
+            ],
+            "capabilities": [
+              "completion"
+            ],
+            "parameters": "",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "",
+              "families": [
+                ""
+              ],
+              "parameter_size": "",
+              "quantization_level": ""
+            }
+          }
+        ],
+        "object": "list",
+        "data": [
+          {
+            "id": "nemotron-3.5-super-120b",
+            "aliases": [
+              "nemotron-3.5-super-120b"
+            ],
+            "tags": [],
+            "object": "model",
+            "architecture": {
+              "input_modalities": [
+                "text"
+              ],
+              "output_modalities": [
+                "text"
+              ]
+            },
+            "created": 1792989349,
+            "owned_by": "llamacpp",
+            "meta": {
+              "vocab_type": 2,
+              "n_vocab": 131072,
+              "n_ctx": 65536,
+              "n_ctx_train": 1048576,
+              "n_embd": 4096,
+              "n_params": 120668789920,
+              "size": 76910850688,
+              "ftype": "NVFP4"
+            }
+          }
+        ]
+      },
+      "lmstudio_models": null,
+      "lmstudio_selected_model": null,
+      "local_scan": {
+        "enabled": true,
+        "processes": [
+          {
+            "command": "14464 llama-server.exe \"C:\\Program Files\\WindowsApps\\NousResearchInc.HermesAgent_2026.7082.1520.0_arm64__sznbd6dv1j3v4\\app\\resources\\agent-payload\\tools\\llamacpp-cuda-11671-win32-arm64\\llama-server.exe\" --host 127.0.0.1 --port 18434 --api-key Q4KbVS0A3QaWetdv2RC96sqPJeYcdkJT --models-max 1 --models-autoload --metrics --slots --no-ui --jinja --load-mode dio --models-preset C:\\Users\\ProArt\\AppData\\Local\\hermes\\runtimes\\llamacpp\\presets.ini"
+          },
+          {
+            "command": "15920 nvidia-smi.exe nvidia-smi -i 0 --query-gpu=timestamp,power.draw,temperature.gpu,clocks.gr,clocks.mem,memory.used,utilization.gpu,pstate --format=csv,noheader,nounits -lms 1000"
+          },
+          {
+            "command": "11848 llama-server.exe C:\\Users\\ProArt\\Desktop\\Project\\bench-tools\\llamacpp-cuda-b11671\\llama-server.exe -m C:\\Users\\ProArt\\models\\nemotron-3.5-super-120b\\NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4.gguf --host 127.0.0.1 --port 8099 --alias nemotron-3.5-super-120b -ngl 999 --fit off -fa on -c 65536 -np 16 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --load-mode dio --spec-type draft-mtp --spec-draft-n-max 2 -md C:\\Users\\ProArt\\models\\nemotron-3.5-super-120b\\mtp-NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Q8_0.gguf"
+          },
+          {
+            "command": "7616 python.exe C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model nemotron-3.5-super-120b --concurrency 1,2 --max-tokens 384 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 96 --warmup-pause 1 --prompts-file C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\nemotron-3.5-super-120b\\suite-mtp\\prompts\\06_coding_smoke.txt --out-dir C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\nemotron-3.5-super-120b\\suite-mtp\\nemotron-3.5-super-120b\\06_coding_smoke --runtime \"llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server\" --gpu \"NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16\" --quantization NVFP4 --context-size 65536 --notes \"MTP speculative decoding. server: --host 127.0.0.1 --port 8099 --alias nemotron-3.5-super-120b -ngl 999 --fit off -fa on -c 65536 -np 16 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --load-mode dio --spec-type draft-mtp --spec-draft-n-max 2 -md C:\\Users\\ProArt\\models\\nemotron-3.5-super-120b\\mtp-NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Q8_0.gguf\""
+          }
+        ],
+        "model_files": [
+          "C:\\Users\\ProArt\\.ollama\\models\\manifests-v2\\ollama.com\\library\\nemotron-3.5-lightning\\30b-a3b",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\gemma-4-E2B-it-Q4_K_M.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\mmproj-gemma-4-E2B-it-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\mmproj-Qwen3.8-27B-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\Qwen3.8-27B-Q4_K_M.gguf"
+        ],
+        "detected_runtime": "CUDA llama.cpp",
+        "detected_quantization": "Q8_0",
+        "detected_context_size": 65536,
+        "env": {}
+      }
+    },
+    "benchmark_config": {
+      "server": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "model": "nemotron-3.5-super-120b",
+      "runtime_label": "llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server",
+      "runtime_label_source": "manual",
+      "gpu_label": "NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16",
+      "model_quantization": "NVFP4",
+      "model_quantization_source": "manual",
+      "context_size": 65536,
+      "context_size_source": "manual",
+      "max_tokens_per_request": 384,
+      "temperature": 0.2,
+      "timeout_seconds": 900.0,
+      "concurrency": [
+        1,
+        2
+      ],
+      "cooldown_seconds": 1.0,
+      "warmup_requests": 1,
+      "warmup_max_tokens": 96,
+      "prompt_count": 2,
+      "prompts_file": "C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\nemotron-3.5-super-120b\\suite-mtp\\prompts\\06_coding_smoke.txt",
+      "notes": "MTP speculative decoding. server: --host 127.0.0.1 --port 8099 --alias nemotron-3.5-super-120b -ngl 999 --fit off -fa on -c 65536 -np 16 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --load-mode dio --spec-type draft-mtp --spec-draft-n-max 2 -md C:\\Users\\ProArt\\models\\nemotron-3.5-super-120b\\mtp-NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Q8_0.gguf",
+      "hardware_image": null
+    },
+    "server": "lmstudio",
+    "base_url": "http://127.0.0.1:8099",
+    "model": "nemotron-3.5-super-120b",
+    "max_tokens": 384,
+    "temperature": 0.2,
+    "concurrency": [
+      1,
+      2
+    ]
+  },
+  "summaries": [
+    {
+      "concurrency": 1,
+      "requests": 1,
+      "success": 1,
+      "failures": 0,
+      "wall_time_s": 10.048366299997724,
+      "total_completion_tokens": 300,
+      "total_tokens": 342,
+      "aggregate_output_tps": 29.855599511740326,
+      "avg_latency_s": 10.038427900006354,
+      "p50_latency_s": 10.038427900006354,
+      "p95_latency_s": 10.038427900006354,
+      "avg_ttft_s": 0.5436592000041855,
+      "p50_ttft_s": 0.5436592000041855,
+      "p95_ttft_s": 0.5436592000041855,
+      "avg_per_request_tps": 29.88515761514909,
+      "min_per_request_tps": 29.88515761514909,
+      "max_per_request_tps": 29.88515761514909,
+      "ttft_sources": {
+        "stream": 1
+      },
+      "errors": []
+    },
+    {
+      "concurrency": 2,
+      "requests": 2,
+      "success": 2,
+      "failures": 0,
+      "wall_time_s": 20.630391499995312,
+      "total_completion_tokens": 714,
+      "total_tokens": 803,
+      "aggregate_output_tps": 34.6091347806057,
+      "avg_latency_s": 18.698746000001847,
+      "p50_latency_s": 18.698746000001847,
+      "p95_latency_s": 20.43552559000018,
+      "avg_ttft_s": 1.1196027500009222,
+      "p50_ttft_s": 1.1196027500009222,
+      "p95_ttft_s": 1.2290893249974033,
+      "avg_per_request_tps": 19.14710124433114,
+      "min_per_request_tps": 18.615021912571247,
+      "max_per_request_tps": 19.679180576091028,
+      "ttft_sources": {
+        "stream": 2
+      },
+      "errors": []
+    }
+  ],
+  "requests": [
+    {
+      "concurrency": 1,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 37417.3537703,
+      "ended_at": 37427.3921982,
+      "ttft_s": 0.5436592000041855,
+      "ttft_source": "stream",
+      "prompt_tokens": 42,
+      "completion_tokens": 300,
+      "total_tokens": 342,
+      "chars": 967,
+      "response_preview": "```python from collections import defaultdict  def average_tps_by_hardware(rows):     \"\"\"     Groups benchmark rows by hardware model and returns average tokens per second.          Args:         rows: List of dicts with 'hardware_model' an",
+      "latency_s": 10.038427900006354,
+      "output_tokens_per_s": 29.88515761514909
+    },
+    {
+      "concurrency": 2,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 37428.3939777,
+      "ended_at": 37445.1629686,
+      "ttft_s": 1.2412544999970123,
+      "ttft_source": "stream",
+      "prompt_tokens": 42,
+      "completion_tokens": 330,
+      "total_tokens": 372,
+      "chars": 1039,
+      "response_preview": "```python from collections import defaultdict  def average_tps_by_hardware(rows):     \"\"\"     Groups benchmark rows by hardware model and returns average tokens per second.          Args:         rows: List of dicts with 'hardware_model' an",
+      "latency_s": 16.7689909000037,
+      "output_tokens_per_s": 19.679180576091028
+    },
+    {
+      "concurrency": 2,
+      "user_id": 2,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 37428.3947037,
+      "ended_at": 37449.0232048,
+      "ttft_s": 0.9979510000048322,
+      "ttft_source": "stream",
+      "prompt_tokens": 47,
+      "completion_tokens": 384,
+      "total_tokens": 431,
+      "chars": 1353,
+      "response_preview": "This is a solid MVP foundation, but it lacks scalability, data integrity, and operational visibility. Here are practical improvements:  ### 1. Split the Upload Endpoint Avoid a single \"dump\" endpoint. Use separate endpoints for different en",
+      "latency_s": 20.628501099999994,
+      "output_tokens_per_s": 18.615021912571247
+    }
+  ],
+  "warmup_requests": [
+    {
+      "concurrency": 0,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 37412.6687871,
+      "ended_at": 37416.3437966,
+      "ttft_s": 0.5844947999939905,
+      "ttft_source": "stream",
+      "prompt_tokens": 42,
+      "completion_tokens": 96,
+      "total_tokens": 138,
+      "chars": 428,
+      "response_preview": "```python from collections import defaultdict  def average_tps_by_hardware(rows):     \"\"\"     Groups benchmark rows by hardware model and returns average tokens per second.          Args:         rows: List of dicts with 'hardware_model' an",
+      "latency_s": 3.6750094999952125,
+      "output_tokens_per_s": 26.122381452381298
+    }
+  ]
+}

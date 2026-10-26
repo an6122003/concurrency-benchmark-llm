@@ -1,0 +1,7 @@
+Free movement feels great: the ship follows the mouse and my finger up and down, the arrow keys and WASD work, and it stops below the HUD. The phone victory screen and the two-line boss defeat caption fit perfectly now. Three layout problems are left:
+
+1. Intro on a monitor: the story text now starts at the far left edge of the screen instead of sitting centered under the "INCOMING TRANSMISSION" header. Put it in a centered column (at most about 900 pixels wide) under the header on wide screens.
+2. Intro on a phone: the first story line is drawn on top of the "INCOMING TRANSMISSION" header. Always start the story text below the header line.
+3. Upgrade cards on a phone: the stacked cards are the right size, but each card's description is drawn below the card's bottom edge, on top of the next card, and the "CLICK A CARD · OR PRESS 1 / 2 / 3" hint is drawn over the third card. Fit the icon, title, level bars and description inside each card (for example icon on the left and text on the right), put the hint below the last card, and on touch screens say "TAP A CARD" instead.
+
+Change nothing else. Return the complete updated file in one ```html code block, with no explanation before or after it.

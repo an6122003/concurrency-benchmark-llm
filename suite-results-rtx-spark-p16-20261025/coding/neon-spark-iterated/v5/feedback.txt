@@ -1,0 +1,9 @@
+Big step up: the intro transmission, the sector themes, the armored enemies, the SECTOR CLEAR tally, the upgrade cards with icons and the victory screen all look great. I played the whole campaign again and found these problems:
+
+1. The HUD is gone. During play the score, lives, combo, Overdrive meter and the boss health bar never appear. The browser console fills up with "ReferenceError: tauntT is not defined" at drawWaveMsg, every frame. Fix the error so the whole HUD shows again, and check that nothing else in the render path uses a variable that is never declared.
+2. Boss defeat lines: when a boss is destroyed it still says nothing. Show its one-line defeat message in large glowing text near the boss while it explodes.
+3. Boss deaths: the boss stays whole and still for over a second and then vanishes. Make it flash, shake and break apart into pieces during that time.
+4. Upgrade levels: on the very first upgrade screen RAPID FIRE already shows "LV 5 / 6" before I have ever picked it. Every upgrade should start at level 0 and go up by exactly one each time I choose it.
+5. Upgrade cards: on a 1920x1080 screen the cards and their text are small. Make the cards about 50% bigger with larger titles and descriptions, still three in a row.
+
+Keep everything else exactly as it works now. Return the complete updated file in one ```html code block, with no explanation before or after it.

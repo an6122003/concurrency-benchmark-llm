@@ -1,0 +1,332 @@
+{
+  "meta": {
+    "date": "2026-10-26T11:45:14",
+    "host": "Windows 11 (ARM64)",
+    "os": {
+      "system": "Windows",
+      "release": "11",
+      "version": "10.0.28000",
+      "platform": "Windows-11-10.0.28000-SP0"
+    },
+    "python": "3.13.17",
+    "python_executable": "C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe",
+    "cpu": {
+      "processor": "NVIDIA RTX Spark N1X (6144-core GPU, 20-core CPU)",
+      "machine": "ARM64",
+      "physical_or_logical_cores": 20
+    },
+    "memory": {
+      "total_bytes": 32742236160,
+      "total_human": "30.5 GB"
+    },
+    "gpu": {
+      "detected": [
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_mib": 98304,
+          "vram_used_mib": 16327,
+          "vram_free_mib": 81964,
+          "vram_total_human": "98304 MiB",
+          "vram_used_human": "16327 MiB",
+          "vram_free_human": "81964 MiB",
+          "driver": "617.69",
+          "performance_state": "P8",
+          "temperature_c": 63,
+          "power_draw_w": "1.90"
+        },
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA NPU",
+          "vram_total_mib": null,
+          "vram_used_mib": null,
+          "vram_free_mib": null,
+          "vram_total_human": "",
+          "vram_used_human": "",
+          "vram_free_human": "",
+          "driver": "617.69",
+          "performance_state": "[N/A]",
+          "temperature_c": 70,
+          "power_draw_w": "0.00"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA NPU",
+          "vram_total_bytes": null,
+          "vram_total_human": "unknown",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": null,
+          "reported_adapter_ram_human": "unknown",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "ACPI\\NVDA200A\\0",
+          "source": "Win32_VideoController"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_bytes": 4293918720,
+          "vram_total_human": "4.0 GB",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": 4293918720,
+          "reported_adapter_ram_human": "4.0 GB",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "PCI\\VEN_10DE&DEV_2E03&SUBSYS_14841043&REV_A1\\00000000002DB04800",
+          "source": "Win32_VideoController"
+        }
+      ]
+    },
+    "runtime": {
+      "server_mode": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "openai_models": {
+        "models": [
+          {
+            "name": "gpt-oss-20b",
+            "model": "gpt-oss-20b",
+            "modified_at": "",
+            "size": "",
+            "digest": "",
+            "type": "model",
+            "description": "",
+            "tags": [
+              ""
+            ],
+            "capabilities": [
+              "completion"
+            ],
+            "parameters": "",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "",
+              "families": [
+                ""
+              ],
+              "parameter_size": "",
+              "quantization_level": ""
+            }
+          }
+        ],
+        "object": "list",
+        "data": [
+          {
+            "id": "gpt-oss-20b",
+            "aliases": [
+              "gpt-oss-20b"
+            ],
+            "tags": [],
+            "object": "model",
+            "architecture": {
+              "input_modalities": [
+                "text"
+              ],
+              "output_modalities": [
+                "text"
+              ]
+            },
+            "created": 1792989914,
+            "owned_by": "llamacpp",
+            "meta": {
+              "vocab_type": 2,
+              "n_vocab": 201088,
+              "n_ctx": 65536,
+              "n_ctx_train": 131072,
+              "n_embd": 2880,
+              "n_params": 20914757184,
+              "size": 12096558336,
+              "ftype": "MXFP4 MoE"
+            }
+          }
+        ]
+      },
+      "lmstudio_models": null,
+      "lmstudio_selected_model": null,
+      "local_scan": {
+        "enabled": true,
+        "processes": [
+          {
+            "command": "14464 llama-server.exe \"C:\\Program Files\\WindowsApps\\NousResearchInc.HermesAgent_2026.7082.1520.0_arm64__sznbd6dv1j3v4\\app\\resources\\agent-payload\\tools\\llamacpp-cuda-11671-win32-arm64\\llama-server.exe\" --host 127.0.0.1 --port 18434 --api-key Q4KbVS0A3QaWetdv2RC96sqPJeYcdkJT --models-max 1 --models-autoload --metrics --slots --no-ui --jinja --load-mode dio --models-preset C:\\Users\\ProArt\\AppData\\Local\\hermes\\runtimes\\llamacpp\\presets.ini"
+          },
+          {
+            "command": "15328 nvidia-smi.exe nvidia-smi -i 0 --query-gpu=timestamp,power.draw,temperature.gpu,clocks.gr,clocks.mem,memory.used,utilization.gpu,pstate --format=csv,noheader,nounits -lms 1000"
+          },
+          {
+            "command": "9828 llama-server.exe C:\\Users\\ProArt\\Desktop\\Project\\bench-tools\\llamacpp-cuda-b11671\\llama-server.exe -m C:\\Users\\ProArt\\models\\gpt-oss-20b\\gpt-oss-20b-MXFP4.gguf --host 127.0.0.1 --port 8099 --alias gpt-oss-20b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning-effort low"
+          },
+          {
+            "command": "9516 python.exe C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gpt-oss-20b --concurrency 1,2 --max-tokens 160 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 64 --warmup-pause 1 --prompts-file C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\gpt-oss-20b\\suite\\prompts\\04_context_4k.txt --out-dir C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\gpt-oss-20b\\suite\\gpt-oss-20b\\04_context_4k --runtime \"llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server\" --gpu \"NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16\" --quantization MXFP4 --context-size 65536 --notes \"server: --host 127.0.0.1 --port 8099 --alias gpt-oss-20b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning-effort low\""
+          }
+        ],
+        "model_files": [
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\gemma-4-E2B-it-Q4_K_M.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\mmproj-gemma-4-E2B-it-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\mmproj-Qwen3.8-27B-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\Qwen3.8-27B-Q4_K_M.gguf"
+        ],
+        "detected_runtime": "CUDA llama.cpp",
+        "detected_quantization": "Q4_K_M",
+        "detected_context_size": 65536,
+        "env": {}
+      }
+    },
+    "benchmark_config": {
+      "server": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "model": "gpt-oss-20b",
+      "runtime_label": "llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server",
+      "runtime_label_source": "manual",
+      "gpu_label": "NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16",
+      "model_quantization": "MXFP4",
+      "model_quantization_source": "manual",
+      "context_size": 65536,
+      "context_size_source": "manual",
+      "max_tokens_per_request": 160,
+      "temperature": 0.2,
+      "timeout_seconds": 900.0,
+      "concurrency": [
+        1,
+        2
+      ],
+      "cooldown_seconds": 1.0,
+      "warmup_requests": 1,
+      "warmup_max_tokens": 64,
+      "prompt_count": 1,
+      "prompts_file": "C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\gpt-oss-20b\\suite\\prompts\\04_context_4k.txt",
+      "notes": "server: --host 127.0.0.1 --port 8099 --alias gpt-oss-20b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning-effort low",
+      "hardware_image": null
+    },
+    "server": "lmstudio",
+    "base_url": "http://127.0.0.1:8099",
+    "model": "gpt-oss-20b",
+    "max_tokens": 160,
+    "temperature": 0.2,
+    "concurrency": [
+      1,
+      2
+    ]
+  },
+  "summaries": [
+    {
+      "concurrency": 1,
+      "requests": 1,
+      "success": 1,
+      "failures": 0,
+      "wall_time_s": 3.652138699995703,
+      "total_completion_tokens": 160,
+      "total_tokens": 6007,
+      "aggregate_output_tps": 43.8099462104734,
+      "avg_latency_s": 3.645930999999109,
+      "p50_latency_s": 3.645930999999109,
+      "p95_latency_s": 3.645930999999109,
+      "avg_ttft_s": 1.4220087000066997,
+      "p50_ttft_s": 1.4220087000066997,
+      "p95_ttft_s": 1.4220087000066997,
+      "avg_per_request_tps": 43.884538681625926,
+      "min_per_request_tps": 43.884538681625926,
+      "max_per_request_tps": 43.884538681625926,
+      "ttft_sources": {
+        "stream": 1
+      },
+      "errors": []
+    },
+    {
+      "concurrency": 2,
+      "requests": 2,
+      "success": 2,
+      "failures": 0,
+      "wall_time_s": 5.885277100001986,
+      "total_completion_tokens": 320,
+      "total_tokens": 12014,
+      "aggregate_output_tps": 54.37297081557843,
+      "avg_latency_s": 5.857770949998667,
+      "p50_latency_s": 5.857770949998667,
+      "p95_latency_s": 5.881029694998506,
+      "avg_ttft_s": 2.838321150000411,
+      "p50_ttft_s": 2.838321150000411,
+      "p95_ttft_s": 2.8712214150018553,
+      "avg_per_request_tps": 27.31467576992447,
+      "min_per_request_tps": 27.19417011381799,
+      "max_per_request_tps": 27.435181426030947,
+      "ttft_sources": {
+        "stream": 2
+      },
+      "errors": []
+    }
+  ],
+  "requests": [
+    {
+      "concurrency": 1,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 38003.0810717,
+      "ended_at": 38006.7270027,
+      "ttft_s": 1.4220087000066997,
+      "ttft_source": "stream",
+      "prompt_tokens": 5847,
+      "completion_tokens": 160,
+      "total_tokens": 6007,
+      "chars": 580,
+      "response_preview": "Need concise summary, risks, action items.**Summary**  - **Use\u2011case focus**: Drafting, summarization, customer\u2011feedback classification, code review, Vietnamese content ideation, and document Q&A.   - **Benchmark goals**:     1. **Responsive",
+      "latency_s": 3.645930999999109,
+      "output_tokens_per_s": 43.884538681625926
+    },
+    {
+      "concurrency": 2,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 38007.7285666,
+      "ended_at": 38013.6121806,
+      "ttft_s": 2.874877000002016,
+      "ttft_source": "stream",
+      "prompt_tokens": 5847,
+      "completion_tokens": 160,
+      "total_tokens": 6007,
+      "chars": 533,
+      "response_preview": "Need concise summary, risks, action items.**Summary**  - **Use\u2011cases**: drafting, summarization, customer\u2011feedback classification, code review, Vietnamese content ideation, document Q&A.   - **Benchmark goals**:     1. **Responsiveness** \u2013 ",
+      "latency_s": 5.883613999998488,
+      "output_tokens_per_s": 27.19417011381799
+    },
+    {
+      "concurrency": 2,
+      "user_id": 2,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 38007.7301705,
+      "ended_at": 38013.5620984,
+      "ttft_s": 2.801765299998806,
+      "ttft_source": "stream",
+      "prompt_tokens": 5847,
+      "completion_tokens": 160,
+      "total_tokens": 6007,
+      "chars": 692,
+      "response_preview": "Need concise summary, risks, action items.**Summary**   The team relies on a local LLM for a wide range of tasks (drafting, summarization, feedback classification, code review, Vietnamese content ideation, document Q&A). The benchmark must ",
+      "latency_s": 5.8319278999988455,
+      "output_tokens_per_s": 27.435181426030947
+    }
+  ],
+  "warmup_requests": [
+    {
+      "concurrency": 0,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 37999.7110156,
+      "ended_at": 38002.0747709,
+      "ttft_s": 1.5158826999977464,
+      "ttft_source": "stream",
+      "prompt_tokens": 5847,
+      "completion_tokens": 64,
+      "total_tokens": 5911,
+      "chars": 228,
+      "response_preview": "Need concise summary, risks, action items.**Summary**  - **Use\u2011cases**: drafting, summarization, customer\u2011feedback classification, code review, Vietnamese content ideation, document Q&A.   - **Benchmark goals**:     1. **Respons",
+      "latency_s": 2.3637553000007756,
+      "output_tokens_per_s": 27.07556065552936
+    }
+  ]
+}

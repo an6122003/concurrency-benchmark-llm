@@ -1,0 +1,430 @@
+{
+  "meta": {
+    "date": "2026-10-26T11:18:39",
+    "host": "Windows 11 (ARM64)",
+    "os": {
+      "system": "Windows",
+      "release": "11",
+      "version": "10.0.28000",
+      "platform": "Windows-11-10.0.28000-SP0"
+    },
+    "python": "3.13.17",
+    "python_executable": "C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe",
+    "cpu": {
+      "processor": "NVIDIA RTX Spark N1X (6144-core GPU, 20-core CPU)",
+      "machine": "ARM64",
+      "physical_or_logical_cores": 20
+    },
+    "memory": {
+      "total_bytes": 32742236160,
+      "total_human": "30.5 GB"
+    },
+    "gpu": {
+      "detected": [
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_mib": 98304,
+          "vram_used_mib": 79563,
+          "vram_free_mib": 18728,
+          "vram_total_human": "98304 MiB",
+          "vram_used_human": "79563 MiB",
+          "vram_free_human": "18728 MiB",
+          "driver": "617.69",
+          "performance_state": "P8",
+          "temperature_c": 64,
+          "power_draw_w": "1.84"
+        },
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA NPU",
+          "vram_total_mib": null,
+          "vram_used_mib": null,
+          "vram_free_mib": null,
+          "vram_total_human": "",
+          "vram_used_human": "",
+          "vram_free_human": "",
+          "driver": "617.69",
+          "performance_state": "[N/A]",
+          "temperature_c": 70,
+          "power_draw_w": "0.00"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA NPU",
+          "vram_total_bytes": null,
+          "vram_total_human": "unknown",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": null,
+          "reported_adapter_ram_human": "unknown",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "ACPI\\NVDA200A\\0",
+          "source": "Win32_VideoController"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_bytes": 4293918720,
+          "vram_total_human": "4.0 GB",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": 4293918720,
+          "reported_adapter_ram_human": "4.0 GB",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "PCI\\VEN_10DE&DEV_2E03&SUBSYS_14841043&REV_A1\\00000000002DB04800",
+          "source": "Win32_VideoController"
+        }
+      ]
+    },
+    "runtime": {
+      "server_mode": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "openai_models": {
+        "models": [
+          {
+            "name": "nemotron-3.5-super-120b",
+            "model": "nemotron-3.5-super-120b",
+            "modified_at": "",
+            "size": "",
+            "digest": "",
+            "type": "model",
+            "description": "",
+            "tags": [
+              ""
+            ],
+            "capabilities": [
+              "completion"
+            ],
+            "parameters": "",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "",
+              "families": [
+                ""
+              ],
+              "parameter_size": "",
+              "quantization_level": ""
+            }
+          }
+        ],
+        "object": "list",
+        "data": [
+          {
+            "id": "nemotron-3.5-super-120b",
+            "aliases": [
+              "nemotron-3.5-super-120b"
+            ],
+            "tags": [],
+            "object": "model",
+            "architecture": {
+              "input_modalities": [
+                "text"
+              ],
+              "output_modalities": [
+                "text"
+              ]
+            },
+            "created": 1792988318,
+            "owned_by": "llamacpp",
+            "meta": {
+              "vocab_type": 2,
+              "n_vocab": 131072,
+              "n_ctx": 65536,
+              "n_ctx_train": 1048576,
+              "n_embd": 4096,
+              "n_params": 120668789920,
+              "size": 76910850688,
+              "ftype": "NVFP4"
+            }
+          }
+        ]
+      },
+      "lmstudio_models": null,
+      "lmstudio_selected_model": null,
+      "local_scan": {
+        "enabled": true,
+        "processes": [
+          {
+            "command": "14464 llama-server.exe \"C:\\Program Files\\WindowsApps\\NousResearchInc.HermesAgent_2026.7082.1520.0_arm64__sznbd6dv1j3v4\\app\\resources\\agent-payload\\tools\\llamacpp-cuda-11671-win32-arm64\\llama-server.exe\" --host 127.0.0.1 --port 18434 --api-key Q4KbVS0A3QaWetdv2RC96sqPJeYcdkJT --models-max 1 --models-autoload --metrics --slots --no-ui --jinja --load-mode dio --models-preset C:\\Users\\ProArt\\AppData\\Local\\hermes\\runtimes\\llamacpp\\presets.ini"
+          },
+          {
+            "command": "30844 nvidia-smi.exe nvidia-smi -i 0 --query-gpu=timestamp,power.draw,temperature.gpu,clocks.gr,clocks.mem,memory.used,utilization.gpu,pstate --format=csv,noheader,nounits -lms 1000"
+          },
+          {
+            "command": "19856 llama-server.exe C:\\Users\\ProArt\\Desktop\\Project\\bench-tools\\llamacpp-cuda-b11671\\llama-server.exe -m C:\\Users\\ProArt\\models\\nemotron-3.5-super-120b\\NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4.gguf --host 127.0.0.1 --port 8099 --alias nemotron-3.5-super-120b -ngl 999 --fit off -fa on -c 65536 -np 16 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --load-mode dio"
+          },
+          {
+            "command": "11948 python.exe C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model nemotron-3.5-super-120b --concurrency 1,2,4 --max-tokens 1024 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 128 --warmup-pause 1 --prompts-file C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\nemotron-3.5-super-120b\\suite\\prompts\\03_peak_decode_long_output.txt --out-dir C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\nemotron-3.5-super-120b\\suite\\nemotron-3.5-super-120b\\03_peak_decode_long_output --runtime \"llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server\" --gpu \"NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16\" --quantization NVFP4 --context-size 65536 --notes \"server: --host 127.0.0.1 --port 8099 --alias nemotron-3.5-super-120b -ngl 999 --fit off -fa on -c 65536 -np 16 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --load-mode dio\""
+          }
+        ],
+        "model_files": [
+          "C:\\Users\\ProArt\\.ollama\\models\\manifests-v2\\ollama.com\\library\\nemotron-3.5-lightning\\30b-a3b",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\gemma-4-E2B-it-Q4_K_M.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\mmproj-gemma-4-E2B-it-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\mmproj-Qwen3.8-27B-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\Qwen3.8-27B-Q4_K_M.gguf"
+        ],
+        "detected_runtime": "CUDA llama.cpp",
+        "detected_quantization": "Q4_K_M",
+        "detected_context_size": 65536,
+        "env": {}
+      }
+    },
+    "benchmark_config": {
+      "server": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "model": "nemotron-3.5-super-120b",
+      "runtime_label": "llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server",
+      "runtime_label_source": "manual",
+      "gpu_label": "NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16",
+      "model_quantization": "NVFP4",
+      "model_quantization_source": "manual",
+      "context_size": 65536,
+      "context_size_source": "manual",
+      "max_tokens_per_request": 1024,
+      "temperature": 0.2,
+      "timeout_seconds": 900.0,
+      "concurrency": [
+        1,
+        2,
+        4
+      ],
+      "cooldown_seconds": 1.0,
+      "warmup_requests": 1,
+      "warmup_max_tokens": 128,
+      "prompt_count": 3,
+      "prompts_file": "C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\nemotron-3.5-super-120b\\suite\\prompts\\03_peak_decode_long_output.txt",
+      "notes": "server: --host 127.0.0.1 --port 8099 --alias nemotron-3.5-super-120b -ngl 999 --fit off -fa on -c 65536 -np 16 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --load-mode dio",
+      "hardware_image": null
+    },
+    "server": "lmstudio",
+    "base_url": "http://127.0.0.1:8099",
+    "model": "nemotron-3.5-super-120b",
+    "max_tokens": 1024,
+    "temperature": 0.2,
+    "concurrency": [
+      1,
+      2,
+      4
+    ]
+  },
+  "summaries": [
+    {
+      "concurrency": 1,
+      "requests": 1,
+      "success": 1,
+      "failures": 0,
+      "wall_time_s": 28.559935999997833,
+      "total_completion_tokens": 466,
+      "total_tokens": 512,
+      "aggregate_output_tps": 16.316563174372497,
+      "avg_latency_s": 28.554070999998657,
+      "p50_latency_s": 28.554070999998657,
+      "p95_latency_s": 28.554070999998657,
+      "avg_ttft_s": 0.5362858999942546,
+      "p50_ttft_s": 0.5362858999942546,
+      "p95_ttft_s": 0.5362858999942546,
+      "avg_per_request_tps": 16.31991459291468,
+      "min_per_request_tps": 16.31991459291468,
+      "max_per_request_tps": 16.31991459291468,
+      "ttft_sources": {
+        "stream": 1
+      },
+      "errors": []
+    },
+    {
+      "concurrency": 2,
+      "requests": 2,
+      "success": 2,
+      "failures": 0,
+      "wall_time_s": 31.698949300000095,
+      "total_completion_tokens": 574,
+      "total_tokens": 660,
+      "aggregate_output_tps": 18.10785570738139,
+      "avg_latency_s": 20.54393110000092,
+      "p50_latency_s": 20.54393110000092,
+      "p95_latency_s": 30.58186671999938,
+      "avg_ttft_s": 1.0252878999999666,
+      "p50_ttft_s": 1.0252878999999666,
+      "p95_ttft_s": 1.125090429998454,
+      "avg_per_request_tps": 12.876377062002739,
+      "min_per_request_tps": 10.861845598158958,
+      "max_per_request_tps": 14.89090852584652,
+      "ttft_sources": {
+        "stream": 2
+      },
+      "errors": []
+    },
+    {
+      "concurrency": 4,
+      "requests": 4,
+      "success": 4,
+      "failures": 0,
+      "wall_time_s": 44.23424109999905,
+      "total_completion_tokens": 1138,
+      "total_tokens": 1312,
+      "aggregate_output_tps": 25.726676251263285,
+      "avg_latency_s": 26.78227552500175,
+      "p50_latency_s": 25.22251260000121,
+      "p95_latency_s": 43.22826492500389,
+      "avg_ttft_s": 1.398449950000213,
+      "p50_ttft_s": 1.4738510499992117,
+      "p95_ttft_s": 1.4756999299996096,
+      "avg_per_request_tps": 9.757696542029333,
+      "min_per_request_tps": 8.142186206772948,
+      "max_per_request_tps": 11.77921590272348,
+      "ttft_sources": {
+        "stream": 4
+      },
+      "errors": []
+    }
+  ],
+  "requests": [
+    {
+      "concurrency": 1,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36311.9257996,
+      "ended_at": 36340.4798706,
+      "ttft_s": 0.5362858999942546,
+      "ttft_source": "stream",
+      "prompt_tokens": 46,
+      "completion_tokens": 466,
+      "total_tokens": 512,
+      "chars": 1481,
+      "response_preview": "C\u00f3, m\u1ed9t GPU 32GB (nh\u01b0 RTX 3090/4090) l\u00e0 m\u1ed9t l\u1ef1a ch\u1ecdn r\u1ea5t t\u1ed1t cho m\u1ed9t nh\u00f3m AI nh\u1ecf. D\u01b0\u1edbi \u0111\u00e2y l\u00e0 ph\u00e2n t\u00edch th\u1ef1c t\u1ebf:  ### 1. L\u1ee3i \u00edch *   **Chi ph\u00ed h\u1ee3p l\u00fd:** R\u1ebb h\u01a1n nhi\u1ec1u so v\u1edbi c\u00e1c GPU doanh nghi\u1ec7p (A100, H100) nh\u01b0ng v\u1eabn c\u00f3 dung l\u01b0\u1ee3ng VRAM l\u1edbn.",
+      "latency_s": 28.554070999998657,
+      "output_tokens_per_s": 16.31991459291468
+    },
+    {
+      "concurrency": 2,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36341.481955,
+      "ended_at": 36373.1791479,
+      "ttft_s": 1.136179599998286,
+      "ttft_source": "stream",
+      "prompt_tokens": 46,
+      "completion_tokens": 472,
+      "total_tokens": 518,
+      "chars": 1483,
+      "response_preview": "C\u00f3, m\u1ed9t GPU 32GB (nh\u01b0 RTX 3090/4090) l\u00e0 m\u1ed9t l\u1ef1a ch\u1ecdn r\u1ea5t t\u1ed1t cho m\u1ed9t nh\u00f3m AI nh\u1ecf. D\u01b0\u1edbi \u0111\u00e2y l\u00e0 ph\u00e2n t\u00edch th\u1ef1c t\u1ebf:  ### 1. L\u1ee3i \u00edch th\u1ef1c t\u1ebf *   **Hu\u1ea5n luy\u1ec7n m\u00f4 h\u00ecnh nh\u1ecf v\u00e0 trung b\u00ecnh:** \u0110\u1ee7 \u0111\u1ec3 fine-tune c\u00e1c m\u00f4 h\u00ecnh LLM nh\u1ecf (v\u00ed d\u1ee5: 7B, 13B) b\u1eb1ng",
+      "latency_s": 31.69719289999921,
+      "output_tokens_per_s": 14.89090852584652
+    },
+    {
+      "concurrency": 2,
+      "user_id": 2,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36341.4827578,
+      "ended_at": 36350.8734271,
+      "ttft_s": 0.9143962000016472,
+      "ttft_source": "stream",
+      "prompt_tokens": 40,
+      "completion_tokens": 102,
+      "total_tokens": 142,
+      "chars": 468,
+      "response_preview": "* **Privacy:** Local AI keeps data on-device; cloud AI sends data to external servers. * **Cost:** Local AI has high upfront hardware costs; cloud AI uses pay-as-you-go pricing. * **Performance:** Local AI is limited by your hardware; cloud",
+      "latency_s": 9.390669300002628,
+      "output_tokens_per_s": 10.861845598158958
+    },
+    {
+      "concurrency": 4,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36374.1813165,
+      "ended_at": 36411.7305423,
+      "ttft_s": 1.4759995999993407,
+      "ttft_source": "stream",
+      "prompt_tokens": 46,
+      "completion_tokens": 410,
+      "total_tokens": 456,
+      "chars": 1245,
+      "response_preview": "C\u00f3, m\u1ed9t GPU 32GB (nh\u01b0 RTX 3090/4090 ho\u1eb7c A10) ho\u00e0n to\u00e0n c\u00f3 th\u1ec3 ph\u1ee5c v\u1ee5 m\u1ed9t nh\u00f3m AI nh\u1ecf, mi\u1ec5n l\u00e0 s\u1eed d\u1ee5ng \u0111\u00fang c\u00e1ch.  **1. Nh\u1eefng g\u00ec c\u00f3 th\u1ec3 l\u00e0m:** *   **Fine-tune m\u00f4 h\u00ecnh LLM:** S\u1eed d\u1ee5ng k\u1ef9 thu\u1eadt QLoRA/LoRA \u0111\u1ec3 tinh ch\u1ec9nh c\u00e1c m\u00f4 h\u00ecnh l\u1edbn (v\u00ed d\u1ee5:",
+      "latency_s": 37.549225800001295,
+      "output_tokens_per_s": 10.919000092938957
+    },
+    {
+      "concurrency": 4,
+      "user_id": 2,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36374.1821278,
+      "ended_at": 36386.6357564,
+      "ttft_s": 1.170098100003088,
+      "ttft_source": "stream",
+      "prompt_tokens": 40,
+      "completion_tokens": 102,
+      "total_tokens": 142,
+      "chars": 474,
+      "response_preview": "* **Privacy:** Local AI keeps data on-device; cloud AI sends data to external servers. * **Cost:** Local AI has high upfront hardware costs; cloud AI uses pay-as-you-go pricing. * **Performance:** Local AI is limited by local hardware; clou",
+      "latency_s": 12.45362860000023,
+      "output_tokens_per_s": 8.190383965681947
+    },
+    {
+      "concurrency": 4,
+      "user_id": 3,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36374.1829012,
+      "ended_at": 36387.0787006,
+      "ttft_s": 1.4740018000011332,
+      "ttft_source": "stream",
+      "prompt_tokens": 42,
+      "completion_tokens": 105,
+      "total_tokens": 147,
+      "chars": 496,
+      "response_preview": "Hey!   The short answer is that LLMs are memory-bandwidth bound. Every time a user generates a token, the model has to read all its weights from memory.   When multiple users hit it at once, the GPU has to juggle several different sequences",
+      "latency_s": 12.895799400001124,
+      "output_tokens_per_s": 8.142186206772948
+    },
+    {
+      "concurrency": 4,
+      "user_id": 4,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36374.1836758,
+      "ended_at": 36418.4141241,
+      "ttft_s": 1.4737002999972901,
+      "ttft_source": "stream",
+      "prompt_tokens": 46,
+      "completion_tokens": 521,
+      "total_tokens": 567,
+      "chars": 1632,
+      "response_preview": "C\u00f3, m\u1ed9t GPU 32GB ho\u00e0n to\u00e0n c\u00f3 th\u1ec3 ph\u1ee5c v\u1ee5 m\u1ed9t nh\u00f3m AI nh\u1ecf, nh\u01b0ng hi\u1ec7u qu\u1ea3 ph\u1ee5 thu\u1ed9c v\u00e0o c\u00f4ng vi\u1ec7c c\u1ee5 th\u1ec3 c\u1ee7a h\u1ecd.  D\u01b0\u1edbi \u0111\u00e2y l\u00e0 ph\u00e2n t\u00edch th\u1ef1c t\u1ebf:  ### 1. Khi n\u00e0o 32GB l\u00e0 \u0110\u1ee6 (Ph\u00f9 h\u1ee3p) *   **Fine-tuning m\u00f4 h\u00ecnh LLM nh\u1ecf:** V\u1edbi k\u1ef9 thu\u1eadt QLoRA/Lo",
+      "latency_s": 44.230448300004355,
+      "output_tokens_per_s": 11.77921590272348
+    }
+  ],
+  "warmup_requests": [
+    {
+      "concurrency": 0,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 36302.7727472,
+      "ended_at": 36310.9183893,
+      "ttft_s": 0.535241199999291,
+      "ttft_source": "stream",
+      "prompt_tokens": 46,
+      "completion_tokens": 128,
+      "total_tokens": 174,
+      "chars": 403,
+      "response_preview": "C\u00f3, m\u1ed9t GPU 32GB ho\u00e0n to\u00e0n c\u00f3 th\u1ec3 ph\u1ee5c v\u1ee5 m\u1ed9t nh\u00f3m AI nh\u1ecf, nh\u01b0ng hi\u1ec7u qu\u1ea3 ph\u1ee5 thu\u1ed9c v\u00e0o c\u00f4ng vi\u1ec7c c\u1ee5 th\u1ec3 c\u1ee7a nh\u00f3m.  D\u01b0\u1edbi \u0111\u00e2y l\u00e0 ph\u00e2n t\u00edch th\u1ef1c t\u1ebf:  ### 1. Nh\u1eefng vi\u1ec7c GPU 32GB l\u00e0m t\u1ed1t (Ph\u00f9 h\u1ee3p) *   **Fine-tuning m\u00f4 h\u00ecnh LLM nh\u1ecf:** C\u00f3 th\u1ec3 tin",
+      "latency_s": 8.145642100003897,
+      "output_tokens_per_s": 15.713923890657897
+    }
+  ]
+}

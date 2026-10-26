@@ -1,0 +1,3 @@
+﻿bench-quick.json is empty: with CUDA's default lazy kernel loading, llama-bench crashed at the first matmul
+("CUDA error: shared object initialization failed", exit 0xC0000409) because the 50 GB dedicated pool was full.
+bench-quick-eager.json is the same command with CUDA_MODULE_LOADING=EAGER: pp512 837.8 t/s, tg128 26.09 t/s (3 reps).

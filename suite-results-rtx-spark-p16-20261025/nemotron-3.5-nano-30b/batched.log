@@ -1,0 +1,16 @@
+0.00.420.050 W model has unused tensor blk.52.nextn.enorm.weight (size = 10752 bytes) -- ignoring
+0.00.420.059 W model has unused tensor blk.52.nextn.hnorm.weight (size = 10752 bytes) -- ignoring
+0.00.420.064 W model has unused tensor blk.52.nextn.eh_proj.weight (size = 8128512 bytes) -- ignoring
+0.00.420.069 W model has unused tensor blk.52.nextn.shared_head_norm.weight (size = 10752 bytes) -- ignoring
+0.00.420.073 W model has unused tensor blk.52.attn_norm.weight (size = 10752 bytes) -- ignoring
+0.00.420.085 W model has unused tensor blk.52.attn_q.weight (size = 7569408 bytes) -- ignoring
+0.00.420.089 W model has unused tensor blk.52.attn_k.weight (size = 473088 bytes) -- ignoring
+0.00.420.093 W model has unused tensor blk.52.attn_v.weight (size = 731136 bytes) -- ignoring
+0.00.420.107 W model has unused tensor blk.52.attn_output.weight (size = 6193152 bytes) -- ignoring
+0.00.420.116 W model has unused tensor blk.52.post_attention_norm.weight (size = 10752 bytes) -- ignoring
+0.00.420.121 W model has unused tensor blk.52.ffn_gate_inp.weight (size = 688128 bytes) -- ignoring
+0.00.420.125 W model has unused tensor blk.52.exp_probs_b.bias (size = 512 bytes) -- ignoring
+0.00.420.137 W model has unused tensor blk.52.ffn_down_exps.weight (size = 678494208 bytes) -- ignoring
+0.00.420.141 W model has unused tensor blk.52.ffn_up_exps.weight (size = 439025664 bytes) -- ignoring
+0.00.420.146 W model has unused tensor blk.52.ffn_down_shexp.weight (size = 10601472 bytes) -- ignoring
+0.00.420.150 W model has unused tensor blk.52.ffn_up_shexp.weight (size = 6859776 bytes) -- ignoring

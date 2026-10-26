@@ -1,0 +1,368 @@
+{
+  "meta": {
+    "date": "2026-10-26T12:14:54",
+    "host": "Windows 11 (ARM64)",
+    "os": {
+      "system": "Windows",
+      "release": "11",
+      "version": "10.0.28000",
+      "platform": "Windows-11-10.0.28000-SP0"
+    },
+    "python": "3.13.17",
+    "python_executable": "C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe",
+    "cpu": {
+      "processor": "NVIDIA RTX Spark N1X (6144-core GPU, 20-core CPU)",
+      "machine": "ARM64",
+      "physical_or_logical_cores": 20
+    },
+    "memory": {
+      "total_bytes": 32742236160,
+      "total_human": "30.5 GB"
+    },
+    "gpu": {
+      "detected": [
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_mib": 98304,
+          "vram_used_mib": 10741,
+          "vram_free_mib": 87550,
+          "vram_total_human": "98304 MiB",
+          "vram_used_human": "10741 MiB",
+          "vram_free_human": "87550 MiB",
+          "driver": "617.69",
+          "performance_state": "P4",
+          "temperature_c": 63,
+          "power_draw_w": "5.65"
+        },
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA NPU",
+          "vram_total_mib": null,
+          "vram_used_mib": null,
+          "vram_free_mib": null,
+          "vram_total_human": "",
+          "vram_used_human": "",
+          "vram_free_human": "",
+          "driver": "617.69",
+          "performance_state": "[N/A]",
+          "temperature_c": 66,
+          "power_draw_w": "0.00"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA NPU",
+          "vram_total_bytes": null,
+          "vram_total_human": "unknown",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": null,
+          "reported_adapter_ram_human": "unknown",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "ACPI\\NVDA200A\\0",
+          "source": "Win32_VideoController"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_bytes": 4293918720,
+          "vram_total_human": "4.0 GB",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": 4293918720,
+          "reported_adapter_ram_human": "4.0 GB",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "PCI\\VEN_10DE&DEV_2E03&SUBSYS_14841043&REV_A1\\00000000002DB04800",
+          "source": "Win32_VideoController"
+        }
+      ]
+    },
+    "runtime": {
+      "server_mode": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "openai_models": {
+        "models": [
+          {
+            "name": "gemma-4-e4b",
+            "model": "gemma-4-e4b",
+            "modified_at": "",
+            "size": "",
+            "digest": "",
+            "type": "model",
+            "description": "",
+            "tags": [
+              ""
+            ],
+            "capabilities": [
+              "completion"
+            ],
+            "parameters": "",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "",
+              "families": [
+                ""
+              ],
+              "parameter_size": "",
+              "quantization_level": ""
+            }
+          }
+        ],
+        "object": "list",
+        "data": [
+          {
+            "id": "gemma-4-e4b",
+            "aliases": [
+              "gemma-4-e4b"
+            ],
+            "tags": [],
+            "object": "model",
+            "architecture": {
+              "input_modalities": [
+                "text"
+              ],
+              "output_modalities": [
+                "text"
+              ]
+            },
+            "created": 1792991693,
+            "owned_by": "llamacpp",
+            "meta": {
+              "vocab_type": 2,
+              "n_vocab": 262144,
+              "n_ctx": 65536,
+              "n_ctx_train": 131072,
+              "n_embd": 2560,
+              "n_params": 7518069290,
+              "size": 8015415464,
+              "ftype": "Q8_0"
+            }
+          }
+        ]
+      },
+      "lmstudio_models": null,
+      "lmstudio_selected_model": null,
+      "local_scan": {
+        "enabled": true,
+        "processes": [
+          {
+            "command": "14464 llama-server.exe \"C:\\Program Files\\WindowsApps\\NousResearchInc.HermesAgent_2026.7082.1520.0_arm64__sznbd6dv1j3v4\\app\\resources\\agent-payload\\tools\\llamacpp-cuda-11671-win32-arm64\\llama-server.exe\" --host 127.0.0.1 --port 18434 --api-key Q4KbVS0A3QaWetdv2RC96sqPJeYcdkJT --models-max 1 --models-autoload --metrics --slots --no-ui --jinja --load-mode dio --models-preset C:\\Users\\ProArt\\AppData\\Local\\hermes\\runtimes\\llamacpp\\presets.ini"
+          },
+          {
+            "command": "31708 nvidia-smi.exe nvidia-smi -i 0 --query-gpu=timestamp,power.draw,temperature.gpu,clocks.gr,clocks.mem,memory.used,utilization.gpu,pstate --format=csv,noheader,nounits -lms 1000"
+          },
+          {
+            "command": "32248 llama-server.exe C:\\Users\\ProArt\\Desktop\\Project\\bench-tools\\llamacpp-cuda-b11671\\llama-server.exe -m C:\\Users\\ProArt\\.cache\\huggingface\\hub\\models--ggml-org--gemma-4-E4B-it-GGUF\\snapshots\\a69f018d7678a2b9f5e705f8903d6fb29b9b25dc\\gemma-4-E4B-it-Q8_0.gguf --host 127.0.0.1 --port 8099 --alias gemma-4-e4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off"
+          },
+          {
+            "command": "11852 python.exe C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model gemma-4-e4b --concurrency 1,4 --max-tokens 256 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 64 --warmup-pause 1 --prompts-file C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\gemma-4-e4b\\suite\\prompts\\08_extraction_classification.txt --out-dir C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\gemma-4-e4b\\suite\\gemma-4-e4b\\08_extraction_classification --runtime \"llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server\" --gpu \"NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16\" --quantization Q8_0 --context-size 65536 --notes \"server: --host 127.0.0.1 --port 8099 --alias gemma-4-e4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off\""
+          }
+        ],
+        "model_files": [
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\gemma-4-E2B-it-Q4_K_M.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\mmproj-gemma-4-E2B-it-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\mmproj-Qwen3.8-27B-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\Qwen3.8-27B-Q4_K_M.gguf"
+        ],
+        "detected_runtime": "CUDA llama.cpp",
+        "detected_quantization": "Q8_0",
+        "detected_context_size": 65536,
+        "env": {}
+      }
+    },
+    "benchmark_config": {
+      "server": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "model": "gemma-4-e4b",
+      "runtime_label": "llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server",
+      "runtime_label_source": "manual",
+      "gpu_label": "NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16",
+      "model_quantization": "Q8_0",
+      "model_quantization_source": "manual",
+      "context_size": 65536,
+      "context_size_source": "manual",
+      "max_tokens_per_request": 256,
+      "temperature": 0.2,
+      "timeout_seconds": 900.0,
+      "concurrency": [
+        1,
+        4
+      ],
+      "cooldown_seconds": 1.0,
+      "warmup_requests": 1,
+      "warmup_max_tokens": 64,
+      "prompt_count": 2,
+      "prompts_file": "C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\gemma-4-e4b\\suite\\prompts\\08_extraction_classification.txt",
+      "notes": "server: --host 127.0.0.1 --port 8099 --alias gemma-4-e4b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off",
+      "hardware_image": null
+    },
+    "server": "lmstudio",
+    "base_url": "http://127.0.0.1:8099",
+    "model": "gemma-4-e4b",
+    "max_tokens": 256,
+    "temperature": 0.2,
+    "concurrency": [
+      1,
+      4
+    ]
+  },
+  "summaries": [
+    {
+      "concurrency": 1,
+      "requests": 1,
+      "success": 1,
+      "failures": 0,
+      "wall_time_s": 1.281773599999724,
+      "total_completion_tokens": 34,
+      "total_tokens": 88,
+      "aggregate_output_tps": 26.525745264223982,
+      "avg_latency_s": 1.2748345999934827,
+      "p50_latency_s": 1.2748345999934827,
+      "p95_latency_s": 1.2748345999934827,
+      "avg_ttft_s": 0.17947039999853587,
+      "p50_ttft_s": 0.17947039999853587,
+      "p95_ttft_s": 0.17947039999853587,
+      "avg_per_request_tps": 26.670126462031874,
+      "min_per_request_tps": 26.670126462031874,
+      "max_per_request_tps": 26.670126462031874,
+      "ttft_sources": {
+        "stream": 1
+      },
+      "errors": []
+    },
+    {
+      "concurrency": 4,
+      "requests": 4,
+      "success": 4,
+      "failures": 0,
+      "wall_time_s": 1.7433565000028466,
+      "total_completion_tokens": 148,
+      "total_tokens": 382,
+      "aggregate_output_tps": 84.89370934731843,
+      "avg_latency_s": 1.6269637750010588,
+      "p50_latency_s": 1.638172000002669,
+      "p95_latency_s": 1.7417618699990272,
+      "avg_ttft_s": 0.3490529749997222,
+      "p50_ttft_s": 0.37679080000089016,
+      "p95_ttft_s": 0.3778094800003601,
+      "avg_per_request_tps": 22.727121095023875,
+      "min_per_request_tps": 22.147180914638515,
+      "max_per_request_tps": 22.97319160629747,
+      "ttft_sources": {
+        "stream": 4
+      },
+      "errors": []
+    }
+  ],
+  "requests": [
+    {
+      "concurrency": 1,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 39789.3623452,
+      "ended_at": 39790.6371798,
+      "ttft_s": 0.17947039999853587,
+      "ttft_source": "stream",
+      "prompt_tokens": 54,
+      "completion_tokens": 34,
+      "total_tokens": 88,
+      "chars": 133,
+      "response_preview": "* **app crashes on upload:** Bug * **add CSV export:** Feature Request * **too expensive:** Pricing Concern * **love the UI:** Praise",
+      "latency_s": 1.2748345999934827,
+      "output_tokens_per_s": 26.670126462031874
+    },
+    {
+      "concurrency": 4,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 39791.6391456,
+      "ended_at": 39793.1743297,
+      "ttft_s": 0.3776320000033593,
+      "ttft_source": "stream",
+      "prompt_tokens": 54,
+      "completion_tokens": 34,
+      "total_tokens": 88,
+      "chars": 133,
+      "response_preview": "* **app crashes on upload:** Bug * **add CSV export:** Feature Request * **too expensive:** Pricing Concern * **love the UI:** Praise",
+      "latency_s": 1.5351841000010609,
+      "output_tokens_per_s": 22.147180914638515
+    },
+    {
+      "concurrency": 4,
+      "user_id": 2,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 39791.639532,
+      "ended_at": 39793.3814001,
+      "ttft_s": 0.3778407999998308,
+      "ttft_source": "stream",
+      "prompt_tokens": 63,
+      "completion_tokens": 40,
+      "total_tokens": 103,
+      "chars": 113,
+      "response_preview": "* **Hardware Model:** RTX 4090 * **Runtime:** Ollama CUDA * **Quantization:** Q4\\_K\\_M * **Concurrency Count:** 6",
+      "latency_s": 1.7418680999981007,
+      "output_tokens_per_s": 22.963851281301732
+    },
+    {
+      "concurrency": 4,
+      "user_id": 3,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 39791.6398843,
+      "ended_at": 39793.1295273,
+      "ttft_s": 0.26478949999727774,
+      "ttft_source": "stream",
+      "prompt_tokens": 54,
+      "completion_tokens": 34,
+      "total_tokens": 88,
+      "chars": 133,
+      "response_preview": "* **app crashes on upload:** Bug * **add CSV export:** Feature Request * **too expensive:** Pricing Concern * **love the UI:** Praise",
+      "latency_s": 1.4896430000007967,
+      "output_tokens_per_s": 22.824260577857792
+    },
+    {
+      "concurrency": 4,
+      "user_id": 4,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 39791.6403094,
+      "ended_at": 39793.3814693,
+      "ttft_s": 0.37594959999842104,
+      "ttft_source": "stream",
+      "prompt_tokens": 63,
+      "completion_tokens": 40,
+      "total_tokens": 103,
+      "chars": 113,
+      "response_preview": "* **Hardware Model:** RTX 4090 * **Runtime:** Ollama CUDA * **Quantization:** Q4\\_K\\_M * **Concurrency Count:** 6",
+      "latency_s": 1.741159900004277,
+      "output_tokens_per_s": 22.97319160629747
+    }
+  ],
+  "warmup_requests": [
+    {
+      "concurrency": 0,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 39787.1765984,
+      "ended_at": 39788.3558315,
+      "ttft_s": 0.18254749999323394,
+      "ttft_source": "stream",
+      "prompt_tokens": 54,
+      "completion_tokens": 34,
+      "total_tokens": 88,
+      "chars": 133,
+      "response_preview": "* **app crashes on upload:** Bug * **add CSV export:** Feature Request * **too expensive:** Pricing Concern * **love the UI:** Praise",
+      "latency_s": 1.179233099996054,
+      "output_tokens_per_s": 28.832297872332255
+    }
+  ]
+}

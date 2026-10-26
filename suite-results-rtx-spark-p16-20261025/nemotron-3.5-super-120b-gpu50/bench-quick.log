@@ -1,0 +1,5 @@
+ggml_cuda_init: found 1 CUDA devices (Total VRAM: 112363 MiB):
+  Device 0: NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU), compute capability 12.1, VMM: yes, VRAM: 112363 MiB
+load_backend: loaded CUDA backend from C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\ggml-cuda.dll
+load_backend: loaded RPC backend from C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\ggml-rpc.dll
+load_backend: loaded CPU backend from C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\ggml-cpu.dll

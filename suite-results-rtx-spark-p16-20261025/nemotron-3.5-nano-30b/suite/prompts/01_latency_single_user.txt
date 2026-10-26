@@ -1,0 +1,5 @@
+In Vietnamese, explain whether a 32GB GPU can serve a small AI team. Keep it practical.
+---
+Summarize the tradeoff between local AI and cloud AI in five bullets.
+---
+Draft a friendly answer to a teammate asking why local LLM speed drops with concurrent users.

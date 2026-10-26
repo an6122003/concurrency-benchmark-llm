@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RTX Spark VRAM Proof</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  /* Vertical 1080x1920 card: porcelain ground, graphite type, champagne-gold rule, NVIDIA-green data. */
+  :root {
+    --bg: #f5f4f1; --panel: #ffffff; --ink: #24262b; --muted: #6b6d74; --line: #e3e0d8;
+    --gold-a: #b8925a; --gold-b: #e6cf9f; --nv: #76b900; --nv-ink: #4c7a00;
+    --display: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1080px; height: 1920px; background: var(--bg); color: var(--ink); font-family: var(--display); }
+  .card { position: relative; width: 1080px; height: 1920px; padding: 100px 96px 84px; display: flex; flex-direction: column; overflow: hidden; }
+  .glow { position: absolute; inset: auto -200px -320px auto; width: 900px; height: 900px; border-radius: 50%;
+          background: radial-gradient(circle, rgba(118,185,0,.22), rgba(118,185,0,0) 65%); }
+  .eyebrow { font-size: 26px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .rule { width: 180px; height: 6px; border-radius: 3px; margin: 28px 0 36px; background: linear-gradient(90deg, var(--gold-a), var(--gold-b)); }
+  h1 { font-size: 86px; line-height: 1.04; font-weight: 300; margin: 0; letter-spacing: -.02em; text-wrap: balance; }
+  h1 b { font-weight: 800; }
+  .answer { font-size: 220px; font-weight: 800; line-height: .9; margin: 40px 0 10px; color: var(--nv); letter-spacing: -.04em; }
+  .lede { font-size: 40px; line-height: 1.35; color: var(--ink); margin: 0 0 48px; max-width: 860px; }
+  .rows { display: grid; gap: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 28px; padding: 18px 44px; }
+  .row { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .row:last-child { border-bottom: 0; }
+  .k { font-size: 30px; color: var(--muted); }
+  .v { font-size: 38px; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+  .v small { display: block; font-family: var(--mono); font-size: 22px; font-weight: 400; color: var(--muted); margin-top: 6px; }
+  .v.nv { color: var(--nv-ink); }
+  .note { font-size: 28px; line-height: 1.45; color: var(--muted); margin: 32px 0 0; max-width: 880px; }
+  .foot { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; font-size: 26px; color: var(--muted); }
+  .foot strong { color: var(--ink); font-weight: 700; display: block; font-size: 32px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="glow"></div>
+  <div class="eyebrow">RTX Spark · ASUS ProArt P16 · 128 GB</div>
+  <div class="rule"></div>
+  <h1>Do you need the <b>96 GB</b> VRAM setting to run a <b>120B</b> model?</h1>
+  <div class="answer">No.</div>
+  <p class="lede">A 71.6 GB model ran entirely on the GPU with the NVIDIA App setting left at 50 GB.</p>
+  <div class="rows">
+    <div class="row"><span class="k">GPU memory setting</span><span class="v">50 GB<small>nvidia-smi: 51200 MiB</small></span></div>
+    <div class="row"><span class="k">CUDA can address</span><span class="v">109.7 GB<small>llama.cpp: 112363 MiB</small></span></div>
+    <div class="row"><span class="k">Model</span><span class="v">Nemotron 3.5 Super 120B<small>NVFP4 · 71.6 GB file</small></span></div>
+    <div class="row"><span class="k">Layers on the GPU</span><span class="v nv">89 / 89</span></div>
+    <div class="row"><span class="k">GPU memory in use</span><span class="v">74.8 GB<small>49.3 dedicated + 25.5 shared</small></span></div>
+    <div class="row"><span class="k">Generation speed</span><span class="v nv">14.1 tok/s</span></div>
+  </div>
+  <p class="note">Past 50 GB, Windows lends the GPU shared memory from the same 128 GB of LPDDR5X, so the whole model still loads.</p>
+  <div class="foot">
+    <div><strong>An À Ha</strong>@anndaynee · annguyen.work</div>
+    <div>llama.cpp b11671 · 25 Oct 2026</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{
+  "models": [
+    {
+      "name": "gpt-oss-20b",
+      "model": "gpt-oss-20b",
+      "modified_at": "",
+      "size": "",
+      "digest": "",
+      "type": "model",
+      "description": "",
+      "tags": [
+        ""
+      ],
+      "capabilities": [
+        "completion"
+      ],
+      "parameters": "",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "",
+        "families": [
+          ""
+        ],
+        "parameter_size": "",
+        "quantization_level": ""
+      }
+    }
+  ],
+  "object": "list",
+  "data": [
+    {
+      "id": "gpt-oss-20b",
+      "aliases": [
+        "gpt-oss-20b"
+      ],
+      "tags": [],
+      "object": "model",
+      "architecture": {
+        "input_modalities": [
+          "text"
+        ],
+        "output_modalities": [
+          "text"
+        ]
+      },
+      "created": 1792989752,
+      "owned_by": "llamacpp",
+      "meta": {
+        "vocab_type": 2,
+        "n_vocab": 201088,
+        "n_ctx": 65536,
+        "n_ctx_train": 131072,
+        "n_embd": 2880,
+        "n_params": 20914757184,
+        "size": 12096558336,
+        "ftype": "MXFP4 MoE"
+      }
+    }
+  ]
+}

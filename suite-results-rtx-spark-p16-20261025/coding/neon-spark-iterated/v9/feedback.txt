@@ -1,0 +1,7 @@
+The intro is centered on my monitor again, and on my phone it starts below the header. Three small things are left:
+
+1. Audio error: every time the music starts, the browser console shows "TypeError: Failed to set the 'buffer' property on 'AudioBufferSourceNode': Failed to convert value to 'AudioBuffer'" in playStep, and the first drum hit is missing. Fix it.
+2. Upgrade cards on a phone: each card's description is still drawn below the card's bottom edge, on top of the next card, and the last one runs into "TAP A CARD". In the stacked phone layout, put the icon on the left and the title, level bars and description on the right, all inside the card, so nothing spills out.
+3. Intro on a phone: the lines that have not been typed yet each show a cursor block, so a column of blocks runs down the left side. Show a single blinking cursor at the typing position only.
+
+Change nothing else. Return the complete updated file in one ```html code block, with no explanation before or after it.

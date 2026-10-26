@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Benchmark Comparison</title>
+  <link rel="icon" href="assets/techieslab/avatar.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root { --bg:#0a0a14; --surface:#15132a; --surface2:#1c1936; --violet:#8070f8; --violet-l:#a090f8; --cyan:#58c8f8; --mint:#60d8c0; --white:#fff; --dim:rgba(255,255,255,.68); --faint:rgba(255,255,255,.42); --line:rgba(255,255,255,.1); --sans:"Inter",-apple-system,system-ui,sans-serif; --serif:"EB Garamond",Georgia,serif; }
+    * { box-sizing: border-box; }
+    body { font-family: var(--sans); margin: 0; color: var(--white); background: linear-gradient(rgba(10,10,20,.88), rgba(10,10,20,.96)), url("assets/techieslab/background.png") top center / min(100vw, 1800px) auto no-repeat, var(--bg); }
+    main { max-width: 1280px; margin: 0 auto; padding: 24px; }
+    .brandbar { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px; }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .brand img { width:42px; height:42px; border-radius:8px; border:1px solid var(--line); }
+    .brand-name { font-family:var(--serif); font-size:1.4rem; }
+    .brand-name span { color:var(--violet-l); }
+    h1 { font-family:var(--serif); font-size:clamp(2.2rem,5vw,4.2rem); line-height:1; font-weight:400; margin:0 0 18px; }
+    h1 em { color:var(--violet-l); }
+    .toolbar { background: rgba(21,19,42,.86); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 18px; margin-top: 20px; }
+    .panel { background: linear-gradient(160deg,rgba(21,19,42,.92),rgba(14,13,28,.92)); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+    .panel h2 { font-size: 18px; margin: 0 0 12px; }
+    .chart { height: 360px; }
+    .wide { grid-column: 1 / -1; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; background: rgba(21,19,42,.86); border:1px solid var(--line); }
+    th, td { border-bottom: 1px solid var(--line); padding: 8px; text-align: right; }
+    th { background: rgba(28,25,54,.92); color:var(--faint); }
+    td:first-child, th:first-child { text-align: left; }
+    input { display: block; margin-top: 10px; }
+    button { border: 1px solid rgba(160,144,248,.42); background: rgba(255,255,255,.04); color:var(--white); border-radius: 6px; padding: 6px 10px; cursor: pointer; }
+    button:hover { background: rgba(128,112,248,.18); }
+    .hint { color: var(--dim); line-height: 1.5; }
+    .actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
+    .loaded { display: grid; gap: 8px; margin-top: 14px; }
+    .run-item { display: flex; justify-content: space-between; gap: 12px; align-items: center; border: 1px solid #e0e0e0; border-radius: 8px; padding: 8px 10px; }
+    .run-item span { overflow-wrap: anywhere; }
+    @media (max-width: 620px) { body { margin: 12px; } .grid { grid-template-columns: 1fr; } .chart { height: 300px; } }
+  </style>
+</head>
+<body>
+<main>
+  <div class="brandbar"><div class="brand"><img src="assets/techieslab/avatar.png" alt=""><div class="brand-name">techies<span>.lab</span></div></div><div class="hint">AI hardware benchmark</div></div>
+  <h1>Compare <em>benchmark</em> runs.</h1>
+  <section class="toolbar">
+    <strong>Add <code>results.json</code> files</strong>
+    <input id="files" type="file" accept=".json,application/json">
+    <div class="actions">
+      <button id="clearRuns" type="button">Clear all</button>
+      <span id="runCount" class="hint">No runs loaded.</span>
+    </div>
+    <div id="loadedRuns" class="loaded"></div>
+    <p class="hint">Add files one by one from different folders, or select several if your browser allows it. The files stay in your browser.</p>
+  </section>
+  <div class="grid">
+    <section class="panel wide"><h2>Aggregate Throughput</h2><div class="chart"><canvas id="aggregateChart"></canvas></div></section>
+    <section class="panel"><h2>Average Per-user Speed</h2><div class="chart"><canvas id="perUserChart"></canvas></div></section>
+    <section class="panel"><h2>Average Latency</h2><div class="chart"><canvas id="latencyChart"></canvas></div></section>
+    <section class="panel"><h2>Average TTFT</h2><div class="chart"><canvas id="ttftChart"></canvas></div></section>
+    <section class="panel"><h2>Success Rate</h2><div class="chart"><canvas id="successChart"></canvas></div></section>
+  </div>
+  <table id="summaryTable"></table>
+</main>
+<script>
+Chart.defaults.color = 'rgba(255,255,255,.72)';
+Chart.defaults.borderColor = 'rgba(255,255,255,.08)';
+const palette = ['#1f77b4', '#2ca02c', '#d62728', '#9467bd', '#ff7f0e', '#17becf', '#8c564b', '#e377c2'];
+const charts = {};
+const runs = [];
+const commonOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  interaction: { mode: 'index', intersect: false },
+  plugins: { legend: { position: 'bottom' } },
+  scales: {
+    x: { title: { display: true, text: 'Concurrent users' } },
+    y: { beginAtZero: true }
+  }
+};
+
+function runLabel(result, fallback) {
+  const meta = result.meta || {};
+  const config = meta.benchmark_config || {};
+  const model = config.model || meta.model || 'unknown-model';
+  const server = config.server || meta.server || 'server';
+  const runtime = config.runtime_label ? ` ${config.runtime_label}` : '';
+  const gpu = config.gpu_label ? ` ${config.gpu_label}` : '';
+  const date = meta.date ? ' ' + meta.date.replace('T', ' ').slice(0, 16) : '';
+  return `${model} (${server}${runtime}${gpu})${date}` || fallback;
+}
+
+function metric(summary, key) {
+  if (key === 'success_rate') {
+    return summary.requests ? (summary.success / summary.requests) * 100 : null;
+  }
+  return summary[key] ?? null;
+}
+
+function buildDatasets(runs, key) {
+  return runs.map((run, index) => ({
+    label: run.label,
+    data: run.summaries.map(s => ({ x: s.concurrency, y: metric(s, key) })),
+    borderColor: palette[index % palette.length],
+    backgroundColor: palette[index % palette.length],
+    tension: 0.25
+  }));
+}
+
+function renderChart(id, runs, key, yTitle) {
+  if (charts[id]) charts[id].destroy();
+  charts[id] = new Chart(document.getElementById(id), {
+    type: 'line',
+    data: { datasets: buildDatasets(runs, key) },
+    options: {
+      ...commonOptions,
+      parsing: false,
+      scales: {
+        x: { type: 'linear', title: { display: true, text: 'Concurrent users' }, ticks: { precision: 0 } },
+        y: { beginAtZero: true, title: { display: true, text: yTitle } }
+      }
+    }
+  });
+}
+
+function renderTable(runs) {
+  const table = document.getElementById('summaryTable');
+  if (!runs.length) {
+    table.innerHTML = '';
+    return;
+  }
+  const rows = [];
+  rows.push('<thead><tr><th>Run</th><th>Runtime</th><th>GPU</th><th>Max tokens</th><th>Context</th><th>Users</th><th>Success</th><th>Aggregate tok/s</th><th>Avg per-user tok/s</th><th>Avg latency</th><th>Avg TTFT</th></tr></thead><tbody>');
+  for (const run of runs) {
+    const config = run.meta.benchmark_config || {};
+    for (const s of run.summaries) {
+      rows.push(`<tr><td>${escapeHtml(run.label)}</td><td>${escapeHtml(config.runtime_label || config.server || '')}</td><td>${escapeHtml(config.gpu_label || '')}</td><td>${escapeHtml(config.max_tokens_per_request ?? '')}</td><td>${escapeHtml(config.context_size ?? '')}</td><td>${s.concurrency}</td><td>${s.success}/${s.requests}</td><td>${fmt(s.aggregate_output_tps)}</td><td>${fmt(s.avg_per_request_tps)}</td><td>${fmt(s.avg_latency_s)}</td><td>${fmt(s.avg_ttft_s)}</td></tr>`);
+    }
+  }
+  rows.push('</tbody>');
+  table.innerHTML = rows.join('');
+}
+
+function renderLoadedRuns() {
+  const list = document.getElementById('loadedRuns');
+  const count = document.getElementById('runCount');
+  count.textContent = runs.length ? `${runs.length} run${runs.length === 1 ? '' : 's'} loaded.` : 'No runs loaded.';
+  list.innerHTML = runs.map((run, index) => `
+    <div class="run-item">
+      <span><strong>${index + 1}.</strong> ${escapeHtml(run.label)} <small>${escapeHtml(run.fileName || '')}</small></span>
+      <button type="button" data-remove="${index}">Remove</button>
+    </div>
+  `).join('');
+}
+
+function renderAll() {
+  renderChart('aggregateChart', runs, 'aggregate_output_tps', 'Tokens/sec');
+  renderChart('perUserChart', runs, 'avg_per_request_tps', 'Tokens/sec');
+  renderChart('latencyChart', runs, 'avg_latency_s', 'Seconds');
+  renderChart('ttftChart', runs, 'avg_ttft_s', 'Seconds');
+  renderChart('successChart', runs, 'success_rate', 'Success %');
+  renderTable(runs);
+  renderLoadedRuns();
+}
+
+function fmt(value) {
+  return value === null || value === undefined ? '-' : Number(value).toFixed(2);
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+}
+
+async function readFile(file) {
+  const text = await file.text();
+  const result = JSON.parse(text);
+  return {
+    label: runLabel(result, file.name),
+    fileName: file.name,
+    meta: result.meta || {},
+    summaries: (result.summaries || []).slice().sort((a, b) => a.concurrency - b.concurrency)
+  };
+}
+
+document.getElementById('files').addEventListener('change', async event => {
+  const files = Array.from(event.target.files || []);
+  for (const file of files) {
+    try {
+      runs.push(await readFile(file));
+    } catch (err) {
+      alert(`Could not read ${file.name}: ${err}`);
+    }
+  }
+  event.target.value = '';
+  renderAll();
+});
+
+document.getElementById('loadedRuns').addEventListener('click', event => {
+  const button = event.target.closest('button[data-remove]');
+  if (!button) return;
+  runs.splice(Number(button.dataset.remove), 1);
+  renderAll();
+});
+
+document.getElementById('clearRuns').addEventListener('click', () => {
+  runs.splice(0, runs.length);
+  renderAll();
+});
+
+renderAll();
+</script>
+</body>
+</html>

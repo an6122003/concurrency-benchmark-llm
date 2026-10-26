@@ -1,0 +1,3 @@
+Write a Python function that groups benchmark rows by hardware model and returns average tokens per second.
+---
+Review this API design idea: one endpoint uploads benchmark JSON and one endpoint searches hardware results. Suggest improvements.

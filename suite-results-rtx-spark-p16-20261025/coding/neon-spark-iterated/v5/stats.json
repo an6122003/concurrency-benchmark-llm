@@ -1,0 +1,38 @@
+{
+  "model": "Qwen3.8-27B",
+  "quant": "UD-Q4_K_M",
+  "spec": "dflash2",
+  "effort": "medium",
+  "based_on": "v4",
+  "total_s": 1310.3,
+  "ttft_s": 38.3283,
+  "thinking_s": 490.5617,
+  "answer_s": 819.7,
+  "usage": {
+    "completion_tokens": 41384,
+    "prompt_tokens": 29503,
+    "total_tokens": 70887,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 29503,
+    "prompt_ms": 38259.444,
+    "prompt_per_token_ms": 1.296798427278582,
+    "prompt_per_second": 771.1298679614894,
+    "predicted_n": 41384,
+    "predicted_ms": 1271919.618,
+    "predicted_per_token_ms": 30.735316869245825,
+    "predicted_per_second": 32.535861083007525,
+    "draft_n": 37740,
+    "draft_n_accepted": 28803
+  },
+  "finish_reason": "stop",
+  "reasoning_chars": 34904,
+  "answer_chars": 74932,
+  "html_chars": 74921,
+  "html_lines": 1765,
+  "decode_tps": 32.54
+}

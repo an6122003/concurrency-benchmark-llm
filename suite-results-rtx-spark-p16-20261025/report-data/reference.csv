@@ -1,0 +1,21 @@
+machine,test,depth,tps
+DGX Spark,pp2048,0,4506
+DGX Spark,pp2048,4096,4158
+DGX Spark,pp2048,8192,3994
+DGX Spark,pp2048,16384,3450
+DGX Spark,pp2048,32768,2689
+DGX Spark,tg32,0,83.4
+DGX Spark,tg32,4096,79.2
+DGX Spark,tg32,8192,75.2
+DGX Spark,tg32,16384,70.4
+DGX Spark,tg32,32768,61.7
+RTX Spark laptop,pp2048,0,4861
+RTX Spark laptop,tg32,0,78.2
+RTX Spark laptop,pp2048,4096,4526
+RTX Spark laptop,tg32,4096,75.6
+RTX Spark laptop,pp2048,8192,4326
+RTX Spark laptop,tg32,8192,70.3
+RTX Spark laptop,pp2048,16384,3871
+RTX Spark laptop,tg32,16384,67.7
+RTX Spark laptop,pp2048,32768,3232
+RTX Spark laptop,tg32,32768,57.6

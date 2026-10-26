@@ -1,0 +1,56 @@
+﻿[
+    {
+        "model":  "qwen3.8-27b",
+        "run":  "A",
+        "placement":  "dedicated",
+        "pp512":  826,
+        "tg128":  13.87,
+        "dedicated_gb":  15.2,
+        "shared_gb":  0.8
+    },
+    {
+        "model":  "qwen3.6-35b-a3b",
+        "run":  "A",
+        "placement":  "dedicated",
+        "pp512":  2123,
+        "tg128":  58.48,
+        "dedicated_gb":  20.9,
+        "shared_gb":  0.6
+    },
+    {
+        "model":  "qwen3.8-27b",
+        "run":  "B-spill",
+        "placement":  "shared",
+        "pp512":  798,
+        "tg128":  12.39,
+        "dedicated_gb":  0.2,
+        "shared_gb":  15.8
+    },
+    {
+        "model":  "qwen3.6-35b-a3b",
+        "run":  "B-spill",
+        "placement":  "shared",
+        "pp512":  2246,
+        "tg128":  53.04,
+        "dedicated_gb":  0.3,
+        "shared_gb":  21.2
+    },
+    {
+        "model":  "qwen3.8-27b",
+        "run":  "A2",
+        "placement":  "dedicated",
+        "pp512":  841,
+        "tg128":  14.36,
+        "dedicated_gb":  15.2,
+        "shared_gb":  0.8
+    },
+    {
+        "model":  "qwen3.6-35b-a3b",
+        "run":  "A2",
+        "placement":  "dedicated",
+        "pp512":  2475,
+        "tg128":  66.62,
+        "dedicated_gb":  20.5,
+        "shared_gb":  0.6
+    }
+]

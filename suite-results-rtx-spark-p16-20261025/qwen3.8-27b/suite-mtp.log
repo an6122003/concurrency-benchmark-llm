@@ -1,0 +1,67 @@
+Benchmarking qwen3.8-27b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2, 4, 8]
+
+Warmup: 2 request(s), not included in scores
+  warmup 1/2: ok latency_s=5.10 ttft_s=0.69 tok_s=25.11
+  warmup 2/2: ok latency_s=4.86 ttft_s=0.40 tok_s=26.34
+
+users= 1 success=1/1 aggregate_tok_s=26.98 avg_user_tok_s=27.00 avg_latency_s=11.11 avg_ttft_s=0.37
+users= 2 success=2/2 aggregate_tok_s=42.10 avg_user_tok_s=22.16 avg_latency_s=12.29 avg_ttft_s=0.73
+users= 4 success=4/4 aggregate_tok_s=63.61 avg_user_tok_s=17.46 avg_latency_s=15.53 avg_ttft_s=1.18
+users= 8 success=8/8 aggregate_tok_s=93.14 avg_user_tok_s=12.95 avg_latency_s=20.27 avg_ttft_s=1.99
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\02_team_concurrency
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\02_team_concurrency\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\02_team_concurrency\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\02_team_concurrency\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\02_team_concurrency\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\02_team_concurrency\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\02_team_concurrency\compare.html
+Benchmarking qwen3.8-27b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2, 4]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=5.06 ttft_s=0.37 tok_s=25.29
+
+users= 1 success=1/1 aggregate_tok_s=26.36 avg_user_tok_s=26.36 avg_latency_s=26.63 avg_ttft_s=0.37
+users= 2 success=2/2 aggregate_tok_s=34.53 avg_user_tok_s=22.42 avg_latency_s=15.19 avg_ttft_s=0.69
+users= 4 success=4/4 aggregate_tok_s=50.34 avg_user_tok_s=19.62 avg_latency_s=22.50 avg_ttft_s=1.14
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\03_peak_decode_long_output
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\03_peak_decode_long_output\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\03_peak_decode_long_output\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\03_peak_decode_long_output\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\03_peak_decode_long_output\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\03_peak_decode_long_output\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\03_peak_decode_long_output\compare.html
+Benchmarking qwen3.8-27b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1, 2]
+
+Warmup: 1 request(s), not included in scores
+  warmup 1/1: ok latency_s=3.32 ttft_s=0.36 tok_s=28.92
+
+users= 1 success=1/1 aggregate_tok_s=32.47 avg_user_tok_s=32.51 avg_latency_s=7.57 avg_ttft_s=0.36
+users= 2 success=2/2 aggregate_tok_s=44.90 avg_user_tok_s=26.09 avg_latency_s=13.20 avg_ttft_s=0.70
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\06_coding_smoke
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\06_coding_smoke\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\06_coding_smoke\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\06_coding_smoke\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\06_coding_smoke\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\06_coding_smoke\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\06_coding_smoke\compare.html
+
+=== qwen3.8-27b / 02_team_concurrency ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model qwen3.8-27b --concurrency 1,2,4,8 --max-tokens 300 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 2 --warmup-tokens 128 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\prompts\02_team_concurrency.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\02_team_concurrency --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization UD-Q4_K_M --context-size 65536 --notes MTP speculative decoding. server: --host 127.0.0.1 --port 8099 --alias qwen3.8-27b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --spec-type draft-mtp --spec-draft-n-max 2
+
+=== qwen3.8-27b / 03_peak_decode_long_output ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model qwen3.8-27b --concurrency 1,2,4 --max-tokens 1024 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 128 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\prompts\03_peak_decode_long_output.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\03_peak_decode_long_output --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization UD-Q4_K_M --context-size 65536 --notes MTP speculative decoding. server: --host 127.0.0.1 --port 8099 --alias qwen3.8-27b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --spec-type draft-mtp --spec-draft-n-max 2
+
+=== qwen3.8-27b / 06_coding_smoke ===
+C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model qwen3.8-27b --concurrency 1,2 --max-tokens 384 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 96 --warmup-pause 1 --prompts-file C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\prompts\06_coding_smoke.txt --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\qwen3.8-27b\06_coding_smoke --runtime llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server --gpu NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16 --quantization UD-Q4_K_M --context-size 65536 --notes MTP speculative decoding. server: --host 127.0.0.1 --port 8099 --alias qwen3.8-27b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off --spec-type draft-mtp --spec-draft-n-max 2
+
+Wrote suite output: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\suite-manifest.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\suite-comparison.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\suite-report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.8-27b\suite-mtp\suite-comparison.html

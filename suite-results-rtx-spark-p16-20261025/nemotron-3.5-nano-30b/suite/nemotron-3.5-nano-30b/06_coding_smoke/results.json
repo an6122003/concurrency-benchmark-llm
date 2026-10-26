@@ -1,0 +1,334 @@
+{
+  "meta": {
+    "date": "2026-10-26T12:01:22",
+    "host": "Windows 11 (ARM64)",
+    "os": {
+      "system": "Windows",
+      "release": "11",
+      "version": "10.0.28000",
+      "platform": "Windows-11-10.0.28000-SP0"
+    },
+    "python": "3.13.17",
+    "python_executable": "C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe",
+    "cpu": {
+      "processor": "NVIDIA RTX Spark N1X (6144-core GPU, 20-core CPU)",
+      "machine": "ARM64",
+      "physical_or_logical_cores": 20
+    },
+    "memory": {
+      "total_bytes": 32742236160,
+      "total_human": "30.5 GB"
+    },
+    "gpu": {
+      "detected": [
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_mib": 98304,
+          "vram_used_mib": 28762,
+          "vram_free_mib": 69529,
+          "vram_total_human": "98304 MiB",
+          "vram_used_human": "28762 MiB",
+          "vram_free_human": "69529 MiB",
+          "driver": "617.69",
+          "performance_state": "P4",
+          "temperature_c": 63,
+          "power_draw_w": "4.22"
+        },
+        {
+          "vendor": "NVIDIA",
+          "name": "NVIDIA NPU",
+          "vram_total_mib": null,
+          "vram_used_mib": null,
+          "vram_free_mib": null,
+          "vram_total_human": "",
+          "vram_used_human": "",
+          "vram_free_human": "",
+          "driver": "617.69",
+          "performance_state": "[N/A]",
+          "temperature_c": 69,
+          "power_draw_w": "0.00"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA NPU",
+          "vram_total_bytes": null,
+          "vram_total_human": "unknown",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": null,
+          "reported_adapter_ram_human": "unknown",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "ACPI\\NVDA200A\\0",
+          "source": "Win32_VideoController"
+        },
+        {
+          "vendor": "Windows",
+          "name": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+          "vram_total_bytes": 4293918720,
+          "vram_total_human": "4.0 GB",
+          "vram_source": "Win32_VideoController.AdapterRAM",
+          "reported_adapter_ram_bytes": 4293918720,
+          "reported_adapter_ram_human": "4.0 GB",
+          "driver": "32.0.16.1769",
+          "pnp_device_id": "PCI\\VEN_10DE&DEV_2E03&SUBSYS_14841043&REV_A1\\00000000002DB04800",
+          "source": "Win32_VideoController"
+        }
+      ]
+    },
+    "runtime": {
+      "server_mode": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "openai_models": {
+        "models": [
+          {
+            "name": "nemotron-3.5-nano-30b",
+            "model": "nemotron-3.5-nano-30b",
+            "modified_at": "",
+            "size": "",
+            "digest": "",
+            "type": "model",
+            "description": "",
+            "tags": [
+              ""
+            ],
+            "capabilities": [
+              "completion"
+            ],
+            "parameters": "",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "",
+              "families": [
+                ""
+              ],
+              "parameter_size": "",
+              "quantization_level": ""
+            }
+          }
+        ],
+        "object": "list",
+        "data": [
+          {
+            "id": "nemotron-3.5-nano-30b",
+            "aliases": [
+              "nemotron-3.5-nano-30b"
+            ],
+            "tags": [],
+            "object": "model",
+            "architecture": {
+              "input_modalities": [
+                "text"
+              ],
+              "output_modalities": [
+                "text"
+              ]
+            },
+            "created": 1792990882,
+            "owned_by": "llamacpp",
+            "meta": {
+              "vocab_type": 2,
+              "n_vocab": 131072,
+              "n_ctx": 65536,
+              "n_ctx_train": 1048576,
+              "n_embd": 2688,
+              "n_params": 32913266240,
+              "size": 25422842624,
+              "ftype": "Q4_K - Medium"
+            }
+          }
+        ]
+      },
+      "lmstudio_models": null,
+      "lmstudio_selected_model": null,
+      "local_scan": {
+        "enabled": true,
+        "processes": [
+          {
+            "command": "14464 llama-server.exe \"C:\\Program Files\\WindowsApps\\NousResearchInc.HermesAgent_2026.7082.1520.0_arm64__sznbd6dv1j3v4\\app\\resources\\agent-payload\\tools\\llamacpp-cuda-11671-win32-arm64\\llama-server.exe\" --host 127.0.0.1 --port 18434 --api-key Q4KbVS0A3QaWetdv2RC96sqPJeYcdkJT --models-max 1 --models-autoload --metrics --slots --no-ui --jinja --load-mode dio --models-preset C:\\Users\\ProArt\\AppData\\Local\\hermes\\runtimes\\llamacpp\\presets.ini"
+          },
+          {
+            "command": "2876 nvidia-smi.exe nvidia-smi -i 0 --query-gpu=timestamp,power.draw,temperature.gpu,clocks.gr,clocks.mem,memory.used,utilization.gpu,pstate --format=csv,noheader,nounits -lms 1000"
+          },
+          {
+            "command": "5868 llama-server.exe C:\\Users\\ProArt\\Desktop\\Project\\bench-tools\\llamacpp-cuda-b11671\\llama-server.exe -m C:\\Users\\ProArt\\.ollama\\models\\blobs\\sha256-5c19f6282f4fc51cb114cb6c876d70ca2fc3b9cf0fbd0a018d9908f4fe1f63b3 --host 127.0.0.1 --port 8099 --alias nemotron-3.5-nano-30b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off"
+          },
+          {
+            "command": "17756 python.exe C:\\Users\\ProArt\\Desktop\\Project\\tools\\python\\cpython-3.13.17-windows-aarch64-none\\python.exe C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\ai_concurrent_benchmark.py --server lmstudio --base-url http://127.0.0.1:8099 --model nemotron-3.5-nano-30b --concurrency 1,2 --max-tokens 384 --temperature 0.2 --timeout 900 --cooldown 1 --warmup 1 --warmup-tokens 96 --warmup-pause 1 --prompts-file C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\nemotron-3.5-nano-30b\\suite\\prompts\\06_coding_smoke.txt --out-dir C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\nemotron-3.5-nano-30b\\suite\\nemotron-3.5-nano-30b\\06_coding_smoke --runtime \"llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server\" --gpu \"NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16\" --quantization Q4_K_M --context-size 65536 --notes \"server: --host 127.0.0.1 --port 8099 --alias nemotron-3.5-nano-30b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off\""
+          }
+        ],
+        "model_files": [
+          "C:\\Users\\ProArt\\.ollama\\models\\blobs\\sha256-6430bfec584beac9743e53bf7429e663e812e238bc31f320e0cea80ff76728ed",
+          "C:\\Users\\ProArt\\.ollama\\models\\manifests-v2\\ollama.com\\library\\nemotron-3.5-lightning\\30b-a3b",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\gemma-4-E2B-it-Q4_K_M.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\gemma-4-E2B-it-GGUF\\mmproj-gemma-4-E2B-it-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\mmproj-Qwen3.8-27B-BF16.gguf",
+          "C:\\Users\\ProArt\\.lmstudio\\models\\lmstudio-community\\Qwen3.8-27B-GGUF\\Qwen3.8-27B-Q4_K_M.gguf"
+        ],
+        "detected_runtime": "CUDA llama.cpp",
+        "detected_quantization": "Q4_K_M",
+        "detected_context_size": 65536,
+        "env": {}
+      }
+    },
+    "benchmark_config": {
+      "server": "lmstudio",
+      "base_url": "http://127.0.0.1:8099",
+      "model": "nemotron-3.5-nano-30b",
+      "runtime_label": "llama.cpp b11671 (CUDA 13, Windows on Arm) llama-server",
+      "runtime_label_source": "manual",
+      "gpu_label": "NVIDIA RTX Spark N1X (Blackwell, 6144 CUDA cores), 128 GB LPDDR5X unified, ASUS ProArt P16",
+      "model_quantization": "Q4_K_M",
+      "model_quantization_source": "manual",
+      "context_size": 65536,
+      "context_size_source": "manual",
+      "max_tokens_per_request": 384,
+      "temperature": 0.2,
+      "timeout_seconds": 900.0,
+      "concurrency": [
+        1,
+        2
+      ],
+      "cooldown_seconds": 1.0,
+      "warmup_requests": 1,
+      "warmup_max_tokens": 96,
+      "prompt_count": 2,
+      "prompts_file": "C:\\Users\\ProArt\\Desktop\\Project\\concurrency-benchmark-llm\\suite-results-rtx-spark-p16-20261025\\nemotron-3.5-nano-30b\\suite\\prompts\\06_coding_smoke.txt",
+      "notes": "server: --host 127.0.0.1 --port 8099 --alias nemotron-3.5-nano-30b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off",
+      "hardware_image": null
+    },
+    "server": "lmstudio",
+    "base_url": "http://127.0.0.1:8099",
+    "model": "nemotron-3.5-nano-30b",
+    "max_tokens": 384,
+    "temperature": 0.2,
+    "concurrency": [
+      1,
+      2
+    ]
+  },
+  "summaries": [
+    {
+      "concurrency": 1,
+      "requests": 1,
+      "success": 1,
+      "failures": 0,
+      "wall_time_s": 5.017361099999107,
+      "total_completion_tokens": 357,
+      "total_tokens": 399,
+      "aggregate_output_tps": 71.15294133405378,
+      "avg_latency_s": 5.011421299997892,
+      "p50_latency_s": 5.011421299997892,
+      "p95_latency_s": 5.011421299997892,
+      "avg_ttft_s": 0.20406709999952,
+      "p50_ttft_s": 0.20406709999952,
+      "p95_ttft_s": 0.20406709999952,
+      "avg_per_request_tps": 71.23727554100275,
+      "min_per_request_tps": 71.23727554100275,
+      "max_per_request_tps": 71.23727554100275,
+      "ttft_sources": {
+        "stream": 1
+      },
+      "errors": []
+    },
+    {
+      "concurrency": 2,
+      "requests": 2,
+      "success": 2,
+      "failures": 0,
+      "wall_time_s": 6.499198700003035,
+      "total_completion_tokens": 513,
+      "total_tokens": 602,
+      "aggregate_output_tps": 78.93280751668055,
+      "avg_latency_s": 4.746082249999745,
+      "p50_latency_s": 4.746082249999745,
+      "p95_latency_s": 6.322774654999375,
+      "avg_ttft_s": 0.3610850000004575,
+      "p50_ttft_s": 0.3610850000004575,
+      "p95_ttft_s": 0.3884030600016558,
+      "avg_per_request_tps": 51.089356938459126,
+      "min_per_request_tps": 43.083268469076906,
+      "max_per_request_tps": 59.095445407841346,
+      "ttft_sources": {
+        "stream": 2
+      },
+      "errors": []
+    }
+  ],
+  "requests": [
+    {
+      "concurrency": 1,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 38969.390547,
+      "ended_at": 38974.4019683,
+      "ttft_s": 0.20406709999952,
+      "ttft_source": "stream",
+      "prompt_tokens": 42,
+      "completion_tokens": 357,
+      "total_tokens": 399,
+      "chars": 1313,
+      "response_preview": "Here is a Python function that groups rows by hardware model and calculates the average tokens per second.  ```python from collections import defaultdict  def average_tokens_per_second(rows):     \"\"\"     Groups benchmark rows by hardware mo",
+      "latency_s": 5.011421299997892,
+      "output_tokens_per_s": 71.23727554100275
+    },
+    {
+      "concurrency": 2,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 38975.4030601,
+      "ended_at": 38978.3972619,
+      "ttft_s": 0.33073159999912605,
+      "ttft_source": "stream",
+      "prompt_tokens": 42,
+      "completion_tokens": 129,
+      "total_tokens": 171,
+      "chars": 538,
+      "response_preview": "```python from collections import defaultdict  def avg_tokens_per_second(rows):     \"\"\"Group rows by hardware model and return average tokens per second.          Args:         rows: list of dicts with keys 'model', 'tokens_per_second'     ",
+      "latency_s": 2.9942018000001553,
+      "output_tokens_per_s": 43.083268469076906
+    },
+    {
+      "concurrency": 2,
+      "user_id": 2,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 38975.4034659,
+      "ended_at": 38981.9014286,
+      "ttft_s": 0.391438400001789,
+      "ttft_source": "stream",
+      "prompt_tokens": 47,
+      "completion_tokens": 384,
+      "total_tokens": 431,
+      "chars": 1590,
+      "response_preview": "Here is a review of the design and suggestions for improvement.  ### The Review  The core idea is sound, but the current design suffers from a **lack of state management** and **ambiguous data ownership**.  1.  **Statelessness vs. State:** ",
+      "latency_s": 6.497962699999334,
+      "output_tokens_per_s": 59.095445407841346
+    }
+  ],
+  "warmup_requests": [
+    {
+      "concurrency": 0,
+      "user_id": 1,
+      "ok": true,
+      "status": 200,
+      "error": "",
+      "started_at": 38966.8851926,
+      "ended_at": 38968.3841377,
+      "ttft_s": 0.22285289999854285,
+      "ttft_source": "stream",
+      "prompt_tokens": 42,
+      "completion_tokens": 96,
+      "total_tokens": 138,
+      "chars": 481,
+      "response_preview": "Here is a Python function that groups benchmark rows by hardware model and calculates the average tokens per second.  ```python from collections import defaultdict  def average_tokens_per_second(rows):     \"\"\"     Groups benchmark rows by h",
+      "latency_s": 1.4989451000001281,
+      "output_tokens_per_s": 64.0450407423139
+    }
+  ]
+}

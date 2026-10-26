@@ -1,0 +1,17 @@
+Benchmarking qwen3.6-35b-a3b on lmstudio at http://127.0.0.1:8099
+Concurrency groups: [1]
+
+Warmup: 2 request(s), not included in scores
+  warmup 1/2: failed latency_s=2.07 ttft_s=- tok_s=-
+  warmup 2/2: failed latency_s=2.03 ttft_s=- tok_s=-
+
+users= 1 success=0/1 aggregate_tok_s=- avg_user_tok_s=- avg_latency_s=- avg_ttft_s=-
+  errors: URLError(ConnectionRefusedError(10061, 'No connection could be made because the target machine actively refused it', None, 10061, None))
+
+Wrote: C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.6-35b-a3b\suite\qwen3.6-35b-a3b\01_latency_single_user
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.6-35b-a3b\suite\qwen3.6-35b-a3b\01_latency_single_user\report.md
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.6-35b-a3b\suite\qwen3.6-35b-a3b\01_latency_single_user\results.csv
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.6-35b-a3b\suite\qwen3.6-35b-a3b\01_latency_single_user\results.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.6-35b-a3b\suite\qwen3.6-35b-a3b\01_latency_single_user\metadata.json
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.6-35b-a3b\suite\qwen3.6-35b-a3b\01_latency_single_user\report.html
+- C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.6-35b-a3b\suite\qwen3.6-35b-a3b\01_latency_single_user\compare.html

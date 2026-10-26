@@ -1,0 +1,27 @@
+Build a complete, polished HTML5 arcade game called "NEON SPARK" that looks stunning on screen — it will be filmed for a social media video, so the visuals must wow people in the first three seconds.
+
+Hard requirements
+- One self-contained HTML file (HTML + CSS + JavaScript inline). No external libraries, images, fonts or audio files: draw everything with the Canvas 2D API and synthesize every sound with the Web Audio API.
+- Smooth 60 fps with requestAnimationFrame and delta time, full-window canvas, correct on high-DPI screens and window resize, playable with mouse, touch, or keyboard (arrow keys / WASD).
+
+Look and feel (80s synthwave, neon)
+- Deep violet-to-black night sky, twinkling stars, a huge retro sun with horizontal stripe cut-outs, two layers of parallax mountains, and a glowing perspective grid floor that scrolls toward the viewer.
+- Everything glows: additive "lighter" blending, shadowBlur halos, motion trails, a subtle CRT scanline + vignette overlay, and a brief chromatic flash on big explosions.
+- Palette: hot magenta, electric cyan, sunset orange, with acid-green (#76B900) energy accents.
+
+Gameplay
+- The player flies a sleek neon ship near the bottom of the screen with an engine-flame particle trail; it auto-fires laser bolts.
+- Enemy waves with at least three enemy types that move differently (sine weavers, divers, shooters), each with its own color and shape.
+- Every fifth wave a boss arrives with a health bar, multiple bullet patterns, and a big multi-stage death explosion.
+- Power-ups dropped by enemies: spread shot, shield bubble, and slow-motion time warp.
+- Game feel: particle explosions with sparks and expanding shockwave rings, screen shake, hit-stop on kills, floating score popups, combo multiplier that decays, smooth easing on all UI.
+
+Screens and UI
+- Animated title screen with a glowing "NEON SPARK" logo, the sun rising behind it, and a pulsing "CLICK OR TAP TO START".
+- HUD: score, combo, wave number, lives as small ships; P pauses; M mutes.
+- Game-over screen with final score and best score saved in localStorage, plus instant restart.
+
+Audio
+- Synthesized laser zaps, noise-burst explosions, power-up arpeggios, and a looping synthwave bassline with a simple drum beat that starts after the first click.
+
+Return only the complete code in one ```html code block, with no explanation before or after it.

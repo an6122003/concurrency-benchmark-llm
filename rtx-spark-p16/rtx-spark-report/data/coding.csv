@@ -1,0 +1,3 @@
+run,app,model,spec,effort,total_min,thinking_min,writing_min,completion_tokens,prompt_tokens,decode_tps,html_lines,html_kb,finish
+galaxy-forge,Galaxy Forge (web app),Qwen3.8-27B,dflash2,medium,7.6,3.3,4.3,15214,428,33.3,600,23.3,stop
+neon-spark,NEON SPARK (arcade game),Qwen3.8-27B,dflash2,medium,11.7,5.8,5.9,23367,560,33.4,931,33.5,stop

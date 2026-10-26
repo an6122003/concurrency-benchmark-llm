@@ -1,0 +1,335 @@
+{
+ "integrated_lufs": -14.09,
+ "true_peak_dbtp": -1.7,
+ "true_peak_before_limit": 0.96,
+ "lra_lu": 2.786982032671668,
+ "effects": 39,
+ "per_10s": 10.3,
+ "score": {
+  "take": "music_b",
+  "segments": [
+   [
+    5.87,
+    29.74
+   ],
+   [
+    61.75,
+    75.88
+   ]
+  ]
+ },
+ "placed": [
+  {
+   "t": 2.13,
+   "kind": "impact",
+   "file": "impact_b.mp3",
+   "start": 2.13,
+   "bed_lufs": -16.64,
+   "gain_db": -4.84
+  },
+  {
+   "t": 4.14,
+   "kind": "tick",
+   "file": "tick_1.wav",
+   "start": 4.139,
+   "bed_lufs": -12.56,
+   "gain_db": 0.0
+  },
+  {
+   "t": 4.64,
+   "kind": "tick",
+   "file": "tick_2.wav",
+   "start": 4.639,
+   "bed_lufs": -12.72,
+   "gain_db": 0.0
+  },
+  {
+   "t": 5.14,
+   "kind": "tick",
+   "file": "tick_3.wav",
+   "start": 5.139,
+   "bed_lufs": -13.11,
+   "gain_db": 0.0
+  },
+  {
+   "t": 5.64,
+   "kind": "tick",
+   "file": "tick_1.wav",
+   "start": 5.639,
+   "bed_lufs": -12.86,
+   "gain_db": -0.41
+  },
+  {
+   "t": 6.12,
+   "kind": "whoosh",
+   "file": "whoosh_a.mp3",
+   "start": 5.763,
+   "bed_lufs": -12.13,
+   "gain_db": -1.61
+  },
+  {
+   "t": 6.59,
+   "kind": "typing",
+   "file": "typing_b.mp3",
+   "start": 6.59,
+   "bed_lufs": -13.31,
+   "gain_db": 5.77
+  },
+  {
+   "t": 7.45,
+   "kind": "click",
+   "file": "click_a.mp3",
+   "start": 7.435,
+   "bed_lufs": -14.11,
+   "gain_db": 6.13
+  },
+  {
+   "t": 7.897,
+   "kind": "tick",
+   "file": "tick_2.wav",
+   "start": 7.896,
+   "bed_lufs": -13.8,
+   "gain_db": -0.3
+  },
+  {
+   "t": 8.265,
+   "kind": "tick",
+   "file": "tick_3.wav",
+   "start": 8.264,
+   "bed_lufs": -13.14,
+   "gain_db": 0.0
+  },
+  {
+   "t": 8.633,
+   "kind": "tick",
+   "file": "tick_1.wav",
+   "start": 8.632,
+   "bed_lufs": -13.73,
+   "gain_db": -0.74
+  },
+  {
+   "t": 9.0,
+   "kind": "tick",
+   "file": "tick_2.wav",
+   "start": 8.999,
+   "bed_lufs": -13.77,
+   "gain_db": 0.0
+  },
+  {
+   "t": 10.0,
+   "kind": "whoosh",
+   "file": "whoosh_a.mp3",
+   "start": 9.643,
+   "bed_lufs": -13.89,
+   "gain_db": -1.61
+  },
+  {
+   "t": 11.87,
+   "kind": "chime",
+   "file": "chime_b.mp3",
+   "start": 11.87,
+   "bed_lufs": -12.01,
+   "gain_db": 20.57
+  },
+  {
+   "t": 12.05,
+   "kind": "pop",
+   "file": "pop_a.mp3",
+   "start": 12.052,
+   "bed_lufs": -13.04,
+   "gain_db": -1.49
+  },
+  {
+   "t": 13.0,
+   "kind": "tick",
+   "file": "tick_3.wav",
+   "start": 12.999,
+   "bed_lufs": -13.25,
+   "gain_db": 0.0
+  },
+  {
+   "t": 15.0,
+   "kind": "pop",
+   "file": "pop_b.mp3",
+   "start": 15.004,
+   "bed_lufs": -13.39,
+   "gain_db": -0.46
+  },
+  {
+   "t": 15.75,
+   "kind": "blip",
+   "file": "blip_b.mp3",
+   "start": 15.75,
+   "bed_lufs": -13.57,
+   "gain_db": -6.21
+  },
+  {
+   "t": 16.0,
+   "kind": "pop",
+   "file": "pop_a.mp3",
+   "start": 16.002,
+   "bed_lufs": -13.33,
+   "gain_db": -1.18
+  },
+  {
+   "t": 17.0,
+   "kind": "chime",
+   "file": "chime_b.mp3",
+   "start": 17.0,
+   "bed_lufs": -13.6,
+   "gain_db": 18.96
+  },
+  {
+   "t": 18.7,
+   "kind": "blip",
+   "file": "blip_a.mp3",
+   "start": 18.7,
+   "bed_lufs": -13.39,
+   "gain_db": -5.03
+  },
+  {
+   "t": 18.96,
+   "kind": "blip",
+   "file": "blip_b.mp3",
+   "start": 18.96,
+   "bed_lufs": -13.47,
+   "gain_db": -5.46
+  },
+  {
+   "t": 19.22,
+   "kind": "blip",
+   "file": "blip_a.mp3",
+   "start": 19.22,
+   "bed_lufs": -12.65,
+   "gain_db": -3.68
+  },
+  {
+   "t": 19.48,
+   "kind": "blip",
+   "file": "blip_b.mp3",
+   "start": 19.48,
+   "bed_lufs": -12.64,
+   "gain_db": -4.39
+  },
+  {
+   "t": 20.65,
+   "kind": "chime",
+   "file": "chime_b.mp3",
+   "start": 20.65,
+   "bed_lufs": -13.26,
+   "gain_db": 18.92
+  },
+  {
+   "t": 24.37,
+   "kind": "tick",
+   "file": "tick_1.wav",
+   "start": 24.369,
+   "bed_lufs": -12.38,
+   "gain_db": -0.05
+  },
+  {
+   "t": 24.87,
+   "kind": "tick",
+   "file": "tick_2.wav",
+   "start": 24.869,
+   "bed_lufs": -12.45,
+   "gain_db": -0.3
+  },
+  {
+   "t": 25.37,
+   "kind": "tick",
+   "file": "tick_3.wav",
+   "start": 25.369,
+   "bed_lufs": -14.29,
+   "gain_db": -0.33
+  },
+  {
+   "t": 25.87,
+   "kind": "impact",
+   "file": "impact_b.mp3",
+   "start": 25.87,
+   "bed_lufs": -14.03,
+   "gain_db": -2.23
+  },
+  {
+   "t": 26.37,
+   "kind": "tick",
+   "file": "tick_1.wav",
+   "start": 26.369,
+   "bed_lufs": -12.33,
+   "gain_db": -0.37
+  },
+  {
+   "t": 26.87,
+   "kind": "tick",
+   "file": "tick_2.wav",
+   "start": 26.869,
+   "bed_lufs": -11.42,
+   "gain_db": -0.08
+  },
+  {
+   "t": 27.37,
+   "kind": "tick",
+   "file": "tick_3.wav",
+   "start": 27.369,
+   "bed_lufs": -11.4,
+   "gain_db": 0.0
+  },
+  {
+   "t": 27.87,
+   "kind": "tick",
+   "file": "tick_1.wav",
+   "start": 27.869,
+   "bed_lufs": -11.52,
+   "gain_db": 0.0
+  },
+  {
+   "t": 28.367,
+   "kind": "tick",
+   "file": "tick_2.wav",
+   "start": 28.366,
+   "bed_lufs": -11.12,
+   "gain_db": 0.0
+  },
+  {
+   "t": 28.865,
+   "kind": "tick",
+   "file": "tick_3.wav",
+   "start": 28.864,
+   "bed_lufs": -11.04,
+   "gain_db": 0.0
+  },
+  {
+   "t": 29.363,
+   "kind": "tick",
+   "file": "tick_1.wav",
+   "start": 29.362,
+   "bed_lufs": -11.17,
+   "gain_db": 0.0
+  },
+  {
+   "t": 29.86,
+   "kind": "tick",
+   "file": "tick_2.wav",
+   "start": 29.859,
+   "bed_lufs": -11.29,
+   "gain_db": 0.0
+  },
+  {
+   "t": 30.965,
+   "kind": "pop",
+   "file": "pop_b.mp3",
+   "start": 30.969,
+   "bed_lufs": -11.42,
+   "gain_db": -0.63
+  },
+  {
+   "t": 35.87,
+   "kind": "note",
+   "file": "note_a.mp3",
+   "start": 35.85,
+   "bed_lufs": -23.66,
+   "gain_db": 1.69
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+Much better: the waves and the score work now. Two things I still noticed:
+- The sun still looks like a solid disc. I think the stripes are hidden behind the mountains; make them clearly visible above the mountains.
+- A shooter can park in a corner and hover forever, so the wave never ends until I hunt it down. Enemies should leave or dive at me after a while.
+
+Now turn it into a complete game with a story and progression:
+
+1. Story: after clicking start, show a short typewriter-style intro (3 to 4 lines): the Static, a corrupting signal, is swallowing the Neon Grid, and the player is SPARK, the last light-runner. A click skips it.
+2. Campaign: three sectors, each with its own name, color palette (sky, sun and grid tint) and enemy mix: 1. Sunset Boulevard, 2. Chrome Canyon, 3. The Core. Each sector has 4 waves and then a boss. Show a sector title card between sectors.
+3. Bosses: a different boss for each sector, each with a name, its own look, its own attack patterns that change at 66% and 33% health, and a one-line taunt when it arrives. The third boss is the Static itself and should feel like a finale.
+4. Upgrades: after each boss, pause the action and let me pick 1 of 3 upgrade cards (for example faster fire, twin shot, +1 life, longer shield, power-up magnet), clickable or chosen with keys 1 to 3.
+5. Overdrive: a meter that fills as I score combos; when full, pressing Space unleashes a screen-clearing burst.
+6. Ending: after the final boss, a victory screen with a short epilogue and stats (score, max combo, accuracy, time), the best score saved, and buttons to play again or start Hard mode.
+
+Keep everything that works now. Return the complete updated file in one ```html code block, with no explanation before or after it.

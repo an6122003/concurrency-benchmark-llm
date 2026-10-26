@@ -1,0 +1,5 @@
+[
+  {"eval": "document.querySelector('[data-speed=\"16\"]').click(); document.getElementById('skip').click(); 'go'"},
+  {"wait": 10}, {"shot": "replay-05-code-fixed"},
+  {"eval": "JSON.stringify({leaked: document.getElementById('code').textContent.includes('class=\"s\"'), scrollW: document.getElementById('scroll').scrollWidth, clientW: document.getElementById('scroll').clientWidth})"}
+]

@@ -1,0 +1,19 @@
+[
+  {"wait": 1.5}, {"shot": "01-title"},
+  {"wait": 1.0}, {"tap": [195, 500]}, {"wait": 1.5}, {"shot": "02-intro"},
+  {"wait": 2.5}, {"tap": [195, 500]}, {"wait": 0.7}, {"shot": "03-sector-card"},
+  {"wait": 3.0}, {"eval": "player.inv = 1e9; JSON.stringify({state, isTouch, W, H})"},
+  {"move": [[100, 700], [300, 690], [160, 720], [330, 700], [70, 700], [250, 710], [195, 700]], "every": 0.8},
+  {"eval": "player.inv = 0; 'ship visible'"}, {"shot": "04-wave"}, {"eval": "player.inv = 1e9; 'inv'"},
+  {"eval": "enemies.length = 0; spawnQueue.length = 0; waveInSector = 5; waveState = 'inter'; waveDelay = 0.05; 'jump to boss'"},
+  {"wait": 2.4}, {"eval": "player.inv = 0; 'ship visible'"}, {"shot": "05-boss-arrives"}, {"eval": "player.inv = 1e9; 'inv'"},
+  {"wait": 2.0}, {"eval": "player.overdrive = 1; 'overdrive full'"}, {"wait": 0.5}, {"shot": "06-overdrive-button"},
+  {"tap": [320, 754]}, {"wait": 0.3}, {"eval": "JSON.stringify({overdrive: player.overdrive, bossHp: boss && boss.hp})"}, {"shot": "07-overdrive-burst"},
+  {"wait": 1.0}, {"eval": "boss.hp = 0; boss.dying = 1; boss.dieT = 0; boss.dieBoom = 0; initBossShards(boss); 'boss dying'"},
+  {"wait": 0.7}, {"shot": "08-boss-death"},
+  {"wait": 2.2}, {"shot": "09-sector-clear"},
+  {"wait": 3.0}, {"eval": "JSON.stringify({state, cards: upgradeCardRects().map(r => [Math.round(r.x), Math.round(r.y), Math.round(r.w), Math.round(r.h)])})"},
+  {"wait": 0.5}, {"shot": "10-upgrade-cards"},
+  {"key": "Digit1"}, {"wait": 0.7}, {"shot": "11-s2-card"},
+  {"wait": 2.5}, {"eval": "victory(); 'victory'"}, {"wait": 2.0}, {"shot": "12-victory"}
+]

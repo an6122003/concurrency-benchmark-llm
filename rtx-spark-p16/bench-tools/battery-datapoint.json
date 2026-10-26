@@ -1,0 +1,9 @@
+{
+  "note": "Same llama-bench command (-ngl 999 -fa 1 -ub 2048 -p 512 -n 128) on Qwen3.6-35B-A3B UD-Q4_K_M, minutes apart on 2026-10-25.",
+  "rows": [
+    {"power": "Battery only (88%)", "test": "pp512", "tps": 2425.57, "sd": 111.47, "reps": 3, "time": "23:15"},
+    {"power": "Battery only (88%)", "test": "tg128", "tps": 67.88, "sd": 0.13, "reps": 3, "time": "23:15"},
+    {"power": "65 W charger (75%)", "test": "pp512", "tps": 2558.20, "sd": 71.40, "reps": 5, "time": "23:24"},
+    {"power": "65 W charger (75%)", "test": "tg128", "tps": 67.48, "sd": 0.42, "reps": 5, "time": "23:24"}
+  ]
+}

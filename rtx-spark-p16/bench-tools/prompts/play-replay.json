@@ -1,0 +1,9 @@
+[
+  {"eval": "document.querySelector('[data-speed=\"16\"]').click(); 'speed 16'"},
+  {"wait": 12}, {"shot": "replay-01-thinking"},
+  {"eval": "document.getElementById('skip').click(); 'skipped'"},
+  {"wait": 9}, {"shot": "replay-02-code"},
+  {"wait": 9}, {"shot": "replay-03-code"},
+  {"wait": 9}, {"shot": "replay-04-done"},
+  {"eval": "JSON.stringify({phase: document.getElementById('phase').textContent, tokens: document.getElementById('tokens').textContent, lines: document.getElementById('lines').textContent, appOpen: document.getElementById('app').classList.contains('show')})"}
+]

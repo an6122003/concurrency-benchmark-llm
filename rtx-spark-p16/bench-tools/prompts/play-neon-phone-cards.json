@@ -1,0 +1,8 @@
+[
+  {"wait": 1.5}, {"tap": [195, 500]}, {"wait": 1.0}, {"tap": [195, 500]}, {"wait": 0.6}, {"tap": [195, 500]},
+  {"wait": 2.5}, {"eval": "player.inv = 1e9; enemies.length = 0; spawnQueue.length = 0; waveInSector = 5; waveState = 'inter'; waveDelay = 0.05; 'jump to boss'"},
+  {"wait": 3.0}, {"eval": "boss.hp = 0; boss.dying = 1; boss.dieT = 0; boss.dieBoom = 0; initBossShards(boss); 'boss dying'"},
+  {"wait": 9.0}, {"eval": "JSON.stringify({state, cards: upgradeCardRects().map(r => [Math.round(r.x), Math.round(r.y), Math.round(r.w), Math.round(r.h)])})"},
+  {"wait": 0.8}, {"shot": "c1-upgrade-cards"},
+  {"tap": [195, 520]}, {"wait": 0.8}, {"eval": "JSON.stringify({state, counts: player.upg && player.upg.counts})"}, {"shot": "c2-after-tap"}
+]

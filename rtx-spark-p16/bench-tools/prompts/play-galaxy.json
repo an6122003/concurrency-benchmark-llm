@@ -1,0 +1,13 @@
+[
+  {"wait": 3}, {"shot": "01-load"},
+  {"wait": 7}, {"shot": "02-autocam-10s"},
+  {"drag": [[960, 470], [960, 400], [980, 330]], "every": 0.5}, {"wait": 1.5}, {"shot": "03-orbit-tilt"},
+  {"wheel": [960, 540, -240], "times": 8}, {"wait": 1.5}, {"shot": "04-zoom-in"},
+  {"click": [1835, 323]}, {"wait": 2}, {"shot": "05-neon"},
+  {"click": [1835, 289]}, {"wait": 2}, {"shot": "06-andromeda"},
+  {"click": [700, 300]}, {"wait": 2.5}, {"shot": "07-dwarf-launched"},
+  {"wait": 5}, {"shot": "08-collision"},
+  {"click": [1782, 405]}, {"wait": 0.8}, {"shot": "09-big-bang"},
+  {"wait": 4}, {"shot": "10-reforming"},
+  {"wait": 8}, {"shot": "11-reformed"}
+]

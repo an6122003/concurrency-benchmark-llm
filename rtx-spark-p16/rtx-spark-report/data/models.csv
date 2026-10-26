@@ -1,0 +1,10 @@
+model,label,short,tiny,family,kind,params_b,active_b,quant,size_gb,released,source
+qwen3.8-27b,Qwen3.8-27B,Qwen3.8-27B,Qwen3.8-27B,Qwen3.8,dense (hybrid DeltaNet + attention),27,27,UD-Q4_K_M,15.3,2026-08,unsloth/Qwen3.8-27B-GGUF (Hermes Agent copy)
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,Qwen3.6-35B-A3B,Qwen3.6-35B,Qwen3.6,MoE (hybrid DeltaNet + attention),35,3,UD-Q4_K_M,21.1,2026,unsloth/Qwen3.6-35B-A3B-GGUF (Hermes Agent copy)
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,Nemotron 3.5 Super 120B-A12B,Nemotron Super,Nemotron 3.5,"MoE (hybrid Mamba-2 + attention, LatentMoE)",120,12,NVFP4,71.6,2026-10-14,ggml-org/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-GGUF
+qwen3.8-flash-next,Qwen3.8-Flash-Next 125B-A6B,Qwen3.8-Flash-Next 125B-A6B,Flash-Next,Qwen3.8,MoE (Qwen4-preview: DeltaNet + sparse attention + n-gram embeddings),125,6,UD-IQ4_XS,87.2,2026-08-26,unsloth/Qwen3.8-Flash-Next-GGUF
+gemma-4-26b-a4b,Gemma 4 26B-A4B,Gemma 4 26B-A4B,Gemma 4 26B,Gemma 4,MoE (sliding-window attention),26,4,Q8_0,25.0,2026,ggml-org/gemma-4-26B-A4B-it-GGUF
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,Nemotron 3.5 Nano 30B-A3B,Nemotron Nano,Nemotron 3.5,MoE (hybrid Mamba-2 + attention),32.9,3,Q4_K_M,23.7,2026,Ollama nemotron-3.5-lightning:30b-a3b blob
+gpt-oss-20b,gpt-oss-20b (reference),gpt-oss-20b,gpt-oss-20b,gpt-oss,MoE (reference model),21,3.6,MXFP4,11.3,2025-08,ggml-org/gpt-oss-20b-GGUF
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),Qwen3-4B-Instruct-2507,Qwen3-4B,Qwen3,dense,4,4,Q4_K_M,2.3,2025-07,unsloth/Qwen3-4B-Instruct-2507-GGUF
+gemma-4-e4b,Gemma 4 E4B,Gemma 4 E4B,Gemma 4 E4B,Gemma 4,dense (per-layer embeddings),7.5,4,Q8_0,7.5,2026,ggml-org/gemma-4-E4B-it-GGUF

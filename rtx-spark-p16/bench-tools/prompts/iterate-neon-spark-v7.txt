@@ -1,0 +1,9 @@
+The visual fixes are perfect on my laptop. Then I opened the game on my phone (390x844, portrait). The gameplay, HUD, boss bar, sector cards, SECTOR CLEAR tally and the round OVERDRIVE button all work well there, but every long piece of text breaks:
+
+1. Upgrade screen: the three cards shrink to tiny boxes (about 78x53 pixels) and their titles and descriptions spill out over each other. On a narrow portrait screen, stack the three cards vertically, each one nearly full width, with the same icon, title, level bars and description at a readable size. Keep three in a row on wide screens.
+2. Intro transmission: the story lines run off the right edge of the screen. Wrap the text to the screen width, keeping the typewriter effect.
+3. Boss defeat line: its box and text run off both edges of the phone screen. Wrap it onto two lines when it does not fit.
+4. Victory screen: the epilogue line is cut off on both sides. Wrap it too.
+5. Movement: the ship is locked to one horizontal line near the bottom. Let it move up and down as well: it should follow the mouse or finger in both directions, and WASD / arrow keys should move it in all four directions, anywhere below the HUD and inside the screen. On touch, keep the ship a little above the finger so the finger does not hide it. Enemy aim, dives and collisions must use the ship's real position.
+
+In general, every line of text on every screen must fit inside the screen with a small margin, on a 390x844 phone and on a 1920x1080 monitor. Change nothing else. Return the complete updated file in one ```html code block, with no explanation before or after it.

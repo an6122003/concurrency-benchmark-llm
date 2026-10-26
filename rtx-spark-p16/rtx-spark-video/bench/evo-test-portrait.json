@@ -1,0 +1,128 @@
+[
+ {
+  "name": "t-v1",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark/index.html",
+  "size": [
+   540,
+   960
+  ],
+  "dpr": 2,
+  "steps": [
+   {
+    "wait": 2.0
+   },
+   {
+    "eval": "hitPlayer = function () {}; 'no hits'"
+   },
+   {
+    "click": [
+     270,
+     480
+    ]
+   },
+   {
+    "wait": 2.5
+   },
+   {
+    "rec": 2,
+    "path": [
+     [
+      270,
+      800
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "name": "t-v4",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark-iterated/v4/index.html",
+  "size": [
+   540,
+   960
+  ],
+  "dpr": 2,
+  "steps": [
+   {
+    "wait": 2.0
+   },
+   {
+    "eval": "hitPlayer = function () {}; 'no hits'"
+   },
+   {
+    "click": [
+     270,
+     480
+    ]
+   },
+   {
+    "wait": 0.5
+   },
+   {
+    "click": [
+     270,
+     480
+    ]
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "click": [
+     270,
+     480
+    ]
+   },
+   {
+    "wait": 0.4
+   },
+   {
+    "eval": "enterSector(1); 's2'"
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "click": [
+     270,
+     480
+    ]
+   },
+   {
+    "wait": 4.0
+   },
+   {
+    "rec": 2,
+    "path": [
+     [
+      270,
+      800
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "name": "t-bg",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark-final/index.html",
+  "size": [
+   540,
+   960
+  ],
+  "dpr": 2,
+  "steps": [
+   {
+    "wait": 2.0
+   },
+   {
+    "eval": "state = 'film'; 'background only'"
+   },
+   {
+    "wait": 1.0
+   },
+   {
+    "rec": 2
+   }
+  ]
+ }
+]

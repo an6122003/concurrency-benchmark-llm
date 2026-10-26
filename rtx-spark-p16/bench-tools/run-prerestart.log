@@ -1,0 +1,38 @@
+﻿[00:06:15] A/B at 50 GB: Nemotron 3.5 Super
+[00:06:16] === nemotron-3.5-super-120b / quick (AC=True, battery=57%) ===
+[00:06:16] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-bench.exe -m C:\Users\ProArt\models\nemotron-3.5-super-120b\NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4.gguf -ngl 999 -fa 1 -ub 2048 -o json -p 512 -n 128 -r 5 -lm dio
+[00:08:12] quick llama-bench done rc=0
+[00:08:12] === nemotron-3.5-super-120b / quick finished in 117 s (ok) ===
+[00:08:12] llama-bench: small models
+[00:08:13] === gpt-oss-20b / bench (AC=True, battery=56%) ===
+[00:08:13] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-bench.exe -m C:\Users\ProArt\models\gpt-oss-20b\gpt-oss-20b-MXFP4.gguf -ngl 999 -fa 1 -ub 2048 -o json --progress -p 512 -n 128 -r 5
+[00:08:32] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-bench.exe -m C:\Users\ProArt\models\gpt-oss-20b\gpt-oss-20b-MXFP4.gguf -ngl 999 -fa 1 -ub 2048 -o json --progress -p 2048 -n 32 -d 0,4096,8192,16384,32768 -r 3
+[00:09:11] llama-bench done rc=0,0
+[00:09:11] === gpt-oss-20b / bench finished in 58 s (ok) ===
+[00:09:11] === gemma-4-26b-a4b / bench (AC=True, battery=55%) ===
+[00:09:11] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-bench.exe -m C:\Users\ProArt\.cache\huggingface\hub\models--ggml-org--gemma-4-26B-A4B-it-GGUF\snapshots\9cf8c8db0f83fb4582f15381f8fb1a7c1b0b9ca2\gemma-4-26B-A4B-it-Q8_0.gguf -ngl 999 -fa 1 -ub 2048 -o json --progress -p 512 -n 128 -r 5
+[00:09:45] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-bench.exe -m C:\Users\ProArt\.cache\huggingface\hub\models--ggml-org--gemma-4-26B-A4B-it-GGUF\snapshots\9cf8c8db0f83fb4582f15381f8fb1a7c1b0b9ca2\gemma-4-26B-A4B-it-Q8_0.gguf -ngl 999 -fa 1 -ub 2048 -o json --progress -p 2048 -n 32 -d 0,4096,8192,16384,32768 -r 3
+[00:10:48] llama-bench done rc=0,0
+[00:10:48] === gemma-4-26b-a4b / bench finished in 98 s (ok) ===
+[00:10:48] === nemotron-3.5-nano-30b / bench (AC=True, battery=54%) ===
+[00:10:48] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-bench.exe -m C:\Users\ProArt\.ollama\models\blobs\sha256-5c19f6282f4fc51cb114cb6c876d70ca2fc3b9cf0fbd0a018d9908f4fe1f63b3 -ngl 999 -fa 1 -ub 2048 -o json --progress -p 512 -n 128 -r 5
+[00:11:18] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-bench.exe -m C:\Users\ProArt\.ollama\models\blobs\sha256-5c19f6282f4fc51cb114cb6c876d70ca2fc3b9cf0fbd0a018d9908f4fe1f63b3 -ngl 999 -fa 1 -ub 2048 -o json --progress -p 2048 -n 32 -d 0,4096,8192,16384,32768 -r 3
+[00:12:06] llama-bench done rc=0,0
+[00:12:06] === nemotron-3.5-nano-30b / bench finished in 78 s (ok) ===
+[00:12:06] === qwen3-4b-2507 / bench (AC=True, battery=53%) ===
+[00:12:06] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-bench.exe -m C:\Users\ProArt\models\qwen3-4b-instruct-2507\Qwen3-4B-Instruct-2507-Q4_K_M.gguf -ngl 999 -fa 1 -ub 2048 -o json --progress -p 512 -n 128 -r 5
+[00:12:17] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-bench.exe -m C:\Users\ProArt\models\qwen3-4b-instruct-2507\Qwen3-4B-Instruct-2507-Q4_K_M.gguf -ngl 999 -fa 1 -ub 2048 -o json --progress -p 2048 -n 32 -d 0,4096,8192,16384,32768 -r 3
+[00:13:14] llama-bench done rc=0,0
+[00:13:14] === qwen3-4b-2507 / bench finished in 67 s (ok) ===
+[00:13:14] === gemma-4-e4b / bench (AC=True, battery=51%) ===
+[00:13:14] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-bench.exe -m C:\Users\ProArt\.cache\huggingface\hub\models--ggml-org--gemma-4-E4B-it-GGUF\snapshots\a69f018d7678a2b9f5e705f8903d6fb29b9b25dc\gemma-4-E4B-it-Q8_0.gguf -ngl 999 -fa 1 -ub 2048 -o json --progress -p 512 -n 128 -r 5
+[00:13:37] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-bench.exe -m C:\Users\ProArt\.cache\huggingface\hub\models--ggml-org--gemma-4-E4B-it-GGUF\snapshots\a69f018d7678a2b9f5e705f8903d6fb29b9b25dc\gemma-4-E4B-it-Q8_0.gguf -ngl 999 -fa 1 -ub 2048 -o json --progress -p 2048 -n 32 -d 0,4096,8192,16384,32768 -r 3
+[00:14:28] llama-bench done rc=0,0
+[00:14:28] === gemma-4-e4b / bench finished in 74 s (ok) ===
+[00:14:28] waiting for the Qwen3.8-Flash-Next download
+[00:23:08] A/B at 50 GB: Qwen3.8-Flash-Next
+[00:23:09] === qwen3.8-flash-next / quick (AC=True, battery=54%) ===
+[00:23:09] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-bench.exe -m C:\Users\ProArt\models\qwen3.8-flash-next\Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf -ngl 999 -fa 1 -ub 2048 -o json -p 512 -n 128 -r 5 -lm dio
+[00:24:46] quick llama-bench done rc=3221226505
+[00:24:46] === qwen3.8-flash-next / quick finished in 97 s (ok) ===
+[00:24:46] pre-restart runs finished: safe to restart

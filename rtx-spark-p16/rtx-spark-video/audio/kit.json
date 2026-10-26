@@ -1,0 +1,10 @@
+{
+ "kit": 1,
+ "name": "rtx-spark",
+ "sr": 48000,
+ "note": "Only the tick comes from earshot's forge: both ElevenLabs tick takes scored weak in earshot match (one heard as a record scratch, the other as an error buzz). Every other effect is an ElevenLabs take (audio/eleven).",
+ "roles": {
+  "tick": {"sound": "pro_hover_tick/ping", "takes": 3, "align": "onset", "bed_db": 3.0, "offset_ms": 0, "min_gap_ms": 66, "width": 0.1, "level_db": 0.0,
+   "note": "the launch kit's airy tick (60 ms, ~8.8 kHz), set wide: felt in a run, low over the bed"}
+ }
+}

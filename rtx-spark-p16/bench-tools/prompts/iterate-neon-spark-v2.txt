@@ -1,0 +1,10 @@
+I played it. It looks amazing, but there are problems:
+
+1. As soon as I click start, the game jumps straight to "WAVE 5 – BOSS WAVE". The normal waves with weavers, divers and shooters never appear, and after the boss it skips ahead to the next boss again.
+2. Because of that my score stays at 0 the whole game.
+3. The retro sun should have the classic horizontal stripe cut-outs in its lower half. Right now it is a solid disc.
+4. I can barely see the CRT scanlines and the vignette.
+
+Please fix all of these, then polish it so it feels like a finished arcade game: punchier explosions, a clearly visible combo multiplier, and a short animated intro on the title screen.
+
+Return the complete updated file in one ```html code block, with no explanation before or after it.

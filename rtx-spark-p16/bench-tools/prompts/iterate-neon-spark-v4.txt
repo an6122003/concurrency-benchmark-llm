@@ -1,0 +1,12 @@
+This is a real game now: the story, the three sectors, the bosses, the upgrades and the ending all work, and the sun looks great. I played through the whole campaign. Now polish it so it feels like a premium arcade game:
+
+1. Boss HUD: during boss fights the top center is a mess. "SECTOR x / 3", "BOSS — NAME", a second copy of the boss name and the combo all overlap the health bar. Lay them out cleanly: a slim health bar with the boss name above it, and the sector and combo moved so nothing collides.
+2. Upgrade screen: the cards are plain boxes. Give each upgrade a drawn neon icon, animate the cards sliding in, make the hovered card lift and glow, and show the current level of each upgrade on its card.
+3. Intro and story: the typewriter text is small. Make the intro cinematic: larger centered text, a header like "INCOMING TRANSMISSION", a slight glitch flicker, and a clearly visible "click to begin". When each boss is destroyed, show a one-line defeat message from it before the explosion ends.
+4. Sector clear: after each boss, show a short "SECTOR CLEAR" tally before the upgrade cards (enemies destroyed, accuracy, a no-hit bonus) with points counting up.
+5. Enemy variety: every enemy dies in one shot. Add a tougher armored enemy in sectors 2 and 3 that takes 3 hits and flashes white when hit, and a splitter in sector 3 that breaks into two small fast enemies.
+6. Touch: on phones there is no way to fire Overdrive. Add an on-screen Overdrive button that appears when the meter is full (double-tap should also trigger it).
+7. Music: change the music per sector (a different bassline and tempo) and play a more intense track during boss fights.
+8. Victory stats: "MAX COMBO ×1 (4)" is confusing. Show it as "Max combo: 4 hits".
+
+Keep everything that already works. Return the complete updated file in one ```html code block, with no explanation before or after it.

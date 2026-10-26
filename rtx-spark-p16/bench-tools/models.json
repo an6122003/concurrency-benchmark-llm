@@ -1,0 +1,79 @@
+{
+  "qwen3.8-27b": {
+    "label": "Qwen3.8-27B",
+    "path": "C:\\Users\\ProArt\\AppData\\Local\\hermes\\models\\Qwen3.8-27B-UD-Q4_K_M.gguf",
+    "family": "Qwen3.8", "params_b": 27, "active_b": 27, "kind": "dense (hybrid DeltaNet + attention)",
+    "quant": "UD-Q4_K_M", "released": "2026-08", "source": "unsloth/Qwen3.8-27B-GGUF (Hermes Agent copy)",
+    "reasoning_args": ["--reasoning", "off"],
+    "mtp": {"spec": ["--spec-type", "draft-mtp", "--spec-draft-n-max", "2"]},
+    "np": 32, "ctx": 65536
+  },
+  "qwen3.6-35b-a3b": {
+    "label": "Qwen3.6-35B-A3B",
+    "path": "C:\\Users\\ProArt\\AppData\\Local\\hermes\\models\\Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+    "family": "Qwen3.6", "params_b": 35, "active_b": 3, "kind": "MoE (hybrid DeltaNet + attention)",
+    "quant": "UD-Q4_K_M", "released": "2026", "source": "unsloth/Qwen3.6-35B-A3B-GGUF (Hermes Agent copy)",
+    "reasoning_args": ["--reasoning", "off"],
+    "mtp": {"spec": ["--spec-type", "draft-mtp", "--spec-draft-n-max", "2"]},
+    "np": 32, "ctx": 65536
+  },
+  "nemotron-3.5-super-120b": {
+    "label": "Nemotron 3.5 Super 120B-A12B",
+    "path": "C:\\Users\\ProArt\\models\\nemotron-3.5-super-120b\\NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4.gguf",
+    "family": "Nemotron 3.5", "params_b": 120, "active_b": 12, "kind": "MoE (hybrid Mamba-2 + attention, LatentMoE)",
+    "quant": "NVFP4", "released": "2026-10-14", "source": "ggml-org/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-GGUF",
+    "reasoning_args": ["--reasoning", "off"],
+    "mtp": {"spec": ["--spec-type", "draft-mtp", "--spec-draft-n-max", "2", "-md", "C:\\Users\\ProArt\\models\\nemotron-3.5-super-120b\\mtp-NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-Q8_0.gguf"]},
+    "np": 16, "ctx": 65536, "load_mode": "dio"
+  },
+  "qwen3.8-flash-next": {
+    "label": "Qwen3.8-Flash-Next 125B-A6B",
+    "path": "C:\\Users\\ProArt\\models\\qwen3.8-flash-next\\Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf",
+    "family": "Qwen3.8", "params_b": 125, "active_b": 6, "kind": "MoE (Qwen4-preview: DeltaNet + sparse attention + n-gram embeddings)",
+    "quant": "UD-IQ4_XS", "released": "2026-08-26", "source": "unsloth/Qwen3.8-Flash-Next-GGUF",
+    "reasoning_args": ["--reasoning", "off"],
+    "mtp": {"spec": ["--spec-type", "draft-mtp", "--spec-draft-n-max", "2", "-md", "C:\\Users\\ProArt\\models\\qwen3.8-flash-next\\mtp-Qwen3.8-Flash-Next-shared-Q8_0.gguf"]},
+    "np": 16, "ctx": 65536, "load_mode": "dio"
+  },
+  "gemma-4-26b-a4b": {
+    "label": "Gemma 4 26B-A4B",
+    "path": "C:\\Users\\ProArt\\.cache\\huggingface\\hub\\models--ggml-org--gemma-4-26B-A4B-it-GGUF\\snapshots\\9cf8c8db0f83fb4582f15381f8fb1a7c1b0b9ca2\\gemma-4-26B-A4B-it-Q8_0.gguf",
+    "family": "Gemma 4", "params_b": 26, "active_b": 4, "kind": "MoE (sliding-window attention)",
+    "quant": "Q8_0", "released": "2026", "source": "ggml-org/gemma-4-26B-A4B-it-GGUF",
+    "reasoning_args": ["--reasoning", "off"],
+    "np": 32, "ctx": 65536
+  },
+  "nemotron-3.5-nano-30b": {
+    "label": "Nemotron 3.5 Nano 30B-A3B",
+    "path": "C:\\Users\\ProArt\\.ollama\\models\\blobs\\sha256-5c19f6282f4fc51cb114cb6c876d70ca2fc3b9cf0fbd0a018d9908f4fe1f63b3",
+    "family": "Nemotron 3.5", "params_b": 32.9, "active_b": 3, "kind": "MoE (hybrid Mamba-2 + attention)",
+    "quant": "Q4_K_M", "released": "2026", "source": "Ollama nemotron-3.5-lightning:30b-a3b blob",
+    "reasoning_args": ["--reasoning", "off"],
+    "mtp": {"spec": ["--spec-type", "draft-mtp", "--spec-draft-n-max", "2"]},
+    "np": 32, "ctx": 65536
+  },
+  "gpt-oss-20b": {
+    "label": "gpt-oss-20b (reference)",
+    "path": "C:\\Users\\ProArt\\models\\gpt-oss-20b\\gpt-oss-20b-MXFP4.gguf",
+    "family": "gpt-oss", "params_b": 21, "active_b": 3.6, "kind": "MoE (reference model)",
+    "quant": "MXFP4", "released": "2025-08", "source": "ggml-org/gpt-oss-20b-GGUF",
+    "reasoning_args": ["--reasoning-effort", "low"],
+    "np": 32, "ctx": 65536
+  },
+  "qwen3-4b-2507": {
+    "label": "Qwen3-4B-Instruct-2507 (community ref)",
+    "path": "C:\\Users\\ProArt\\models\\qwen3-4b-instruct-2507\\Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+    "family": "Qwen3", "params_b": 4, "active_b": 4, "kind": "dense",
+    "quant": "Q4_K_M", "released": "2025-07", "source": "unsloth/Qwen3-4B-Instruct-2507-GGUF",
+    "reasoning_args": [],
+    "np": 32, "ctx": 65536
+  },
+  "gemma-4-e4b": {
+    "label": "Gemma 4 E4B",
+    "path": "C:\\Users\\ProArt\\.cache\\huggingface\\hub\\models--ggml-org--gemma-4-E4B-it-GGUF\\snapshots\\a69f018d7678a2b9f5e705f8903d6fb29b9b25dc\\gemma-4-E4B-it-Q8_0.gguf",
+    "family": "Gemma 4", "params_b": 7.5, "active_b": 4, "kind": "dense (per-layer embeddings)",
+    "quant": "Q8_0", "released": "2026", "source": "ggml-org/gemma-4-E4B-it-GGUF",
+    "reasoning_args": ["--reasoning", "off"],
+    "np": 32, "ctx": 65536
+  }
+}

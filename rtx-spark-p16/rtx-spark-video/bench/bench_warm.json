@@ -1,0 +1,507 @@
+{
+ "lab2_plain": [
+  {
+   "text": "Wait",
+   "_t": 0.186
+  },
+  {
+   "text": " at",
+   "_t": 0.224
+  },
+  {
+   "text": " least",
+   "_t": 0.224
+  },
+  {
+   "text": " 5",
+   "_t": 0.25
+  },
+  {
+   "text": " minutes",
+   "_t": 0.25
+  },
+  {
+   "text": " after",
+   "_t": 0.25
+  },
+  {
+   "text": " opening",
+   "_t": 0.277
+  },
+  {
+   "text": " the",
+   "_t": 0.278
+  },
+  {
+   "text": " DC",
+   "_t": 0.278
+  },
+  {
+   "text": " disconnect",
+   "_t": 0.307
+  },
+  {
+   "text": " to",
+   "_t": 0.307
+  },
+  {
+   "text": " allow",
+   "_t": 0.307
+  },
+  {
+   "text": " capacitors",
+   "_t": 0.334
+  },
+  {
+   "text": " to",
+   "_t": 0.361
+  },
+  {
+   "text": " discharge",
+   "_t": 0.361
+  },
+  {
+   "text": " before",
+   "_t": 0.361
+  },
+  {
+   "text": " removing",
+   "_t": 0.388
+  },
+  {
+   "text": " a",
+   "_t": 0.388
+  },
+  {
+   "text": " module",
+   "_t": 0.388
+  },
+  {
+   "text": " cover",
+   "_t": 0.416
+  },
+  {
+   "text": ".",
+   "_t": 0.416
+  },
+  {
+   "done": true,
+   "seconds": 0.4,
+   "model": "nemotron-3.5-lightning:30b-a3b",
+   "_t": 0.416
+  },
+  {
+   "event": "_stream",
+   "deltas": 0,
+   "first_delta_s": null,
+   "total_s": 0.417
+  }
+ ],
+ "lab2_rag": [
+  {
+   "event": "step",
+   "id": "search",
+   "_t": 0.013
+  },
+  {
+   "event": "retrieved",
+   "count": 5,
+   "sources": [
+    {
+     "doc": "ags-doc-022-frequently-asked-questions.md",
+     "title": "ags-doc-022-frequently-asked-questions",
+     "score": 0.779,
+     "passage": "5. Safety\n\nHow long must I wait after opening the DC disconnect before removing a module cover?\n12 minutes, per urgent safety bulletin SB-2025-01 (effective 2025-03-17). The older 5-minute interval from SB-2024-03 is withdrawn and must not be used. After waiting, verify the terminals measure below 50 V DC.\n\nDoes the 12-minute wait apply to the AX-400 as well as the AX-600?\nYes. SB-2025-01 publishes a single interval that applies to both cabinets.\n\n6. Warranty and returns\n\nHow long is the AX-600 warranty?\n10 years or 8,000 cycles at 80% DoD, whichever comes first, capped at 12 years from shipment.\n\nWhat RMA priority applies when the whole site is down?\nCritical, acknowledged within 4 business hours.\n\nWhich products are eligible for advance replacement?\nThe Comet C2 site controller only.",
+     "lines": ""
+    },
+    {
+     "doc": "ags-doc-009-safety-bulletin-sb-2024-03-dc-disconnect-sequence.md",
+     "title": "ags-doc-009-safety-bulletin-sb-2024-03-dc-disconnect-sequence",
+     "score": 0.772,
+     "passage": "3. Required action\n\nUntil further notice, after opening the cabinet DC disconnect:\n\n1. Apply a lockout/tagout device to the disconnect handle.\n2. Wait a minimum of 5 minutes before removing any module access cover or touching any DC terminal.\n3. Verify absence of voltage using a meter rated CAT III 1,500 V DC. Treat any reading of 50 V DC or greater as energized.\n4. Only then proceed with the task.\n\n4. Rationale for the interval\n\nThe 5-minute interval was derived from bench testing at 25 °C ambient. It was believed to provide a margin of approximately 2x over the measured discharge time constant of the AX-400 cabinet.\n\n5. Reporting\n\nReport any instance where the DC link measured 50 V DC or greater after the stated interval to AGS immediately. Support is available at support@auroragrid.example or +1-800-555-0142.\n\nReminder: SB-2024-03 has been superseded. The 5-minute interval must not be used for work performed on or after 2025-03-17.",
+     "lines": ""
+    },
+    {
+     "doc": "ags-doc-010-safety-bulletin-sb-2025-01-urgent-dc-disconnect.md",
+     "title": "ags-doc-010-safety-bulletin-sb-2025-01-urgent-dc-disconnect",
+     "score": 0.687,
+     "passage": "3. Affected products\n\nAll AX-400 (AGS-AX400-372) and AX-600 (AGS-AX600-558) battery cabinets, all manufacture dates, all firmware versions. There are no exceptions for cabinets with the revised contactor firmware; the firmware shortens but does not eliminate the discharge time.\n\n4. Required action\n\nAfter opening the cabinet DC disconnect, and before removing any module access cover or touching any DC terminal:\n\n1. Apply a lockout/tagout device to the disconnect handle and verify the handle cannot be moved.\n2. Wait a minimum of 12 minutes. This interval is mandatory and replaces the 5-minute interval in SB-2024-03.\n3. Verify absence of voltage at the DC terminals using a meter rated CAT III 1,500 V DC. Confirm the reading is below 50 V DC before proceeding.\n4. If the reading is 50 V DC or greater, wait an additional 5 minutes and re-measure. Repeat until the reading is below 50 V DC.\n5. Only then remove the module access cover.\n\nThe 12-minute interval applies to both cabinets. The AX-600 requires the full 12 minutes even though its measured discharge at -20 °C was slightly longer; AGS has elected to publish a single conservative interval so that a technician working on a mixed site cannot apply the wrong value.",
+     "lines": ""
+    },
+    {
+     "doc": "ags-doc-027-arc-flash-and-dc-hazard-analysis.md",
+     "title": "ags-doc-027-arc-flash-and-dc-hazard-analysis",
+     "score": 0.665,
+     "passage": "5. Residual energy\n\nBoth cabinets retain charge on the internal DC link after the disconnect is opened. The residual-energy hazard is governed by urgent safety bulletin SB-2025-01, which requires a 12-minute wait and a below-50 V DC verification before any cover is removed. The 5-minute interval formerly published in SB-2024-03 is withdrawn.\n\n6. Arc-flash boundary\n\nThe arc-flash boundary at 1.2 cal/cm² is 1,400 mm for the AX-400 and 2,300 mm for the AX-600 with covers removed. Barricade the boundary and post the label before any cover is opened.\n\n7. Training and records\n\nAll personnel performing work on AGS equipment must hold current NFPA 70E qualified-person status for DC systems above 1,000 V where the AX-600 is installed. Retain training records and arc-flash labels for the life of the site.",
+     "lines": ""
+    },
+    {
+     "doc": "ags-doc-009-safety-bulletin-sb-2024-03-dc-disconnect-sequence.md",
+     "title": "ags-doc-009-safety-bulletin-sb-2024-03-dc-disconnect-sequence",
+     "score": 0.658,
+     "passage": "SAFETY BULLETIN SB-2024-03 — DC Disconnect Sequence for AX-Series Cabinets\n\nDocument ID: AGS-DOC-009\nBulletin number: SB-2024-03\nSeverity: Important\nEffective date: 2024-05-10\nStatus: SUPERSEDED — see SB-2025-01 (AGS-DOC-010), effective 2025-03-17\n\n> This bulletin is retained for historical reference only. It is no longer the governing instruction. Do not apply the wait interval stated below to any work performed on or after 2025-03-17.\n\n1. Affected products\n\nAll AX-400 (AGS-AX400-372) and AX-600 (AGS-AX600-558) battery cabinets manufactured before 2025-01-01, and all cabinets regardless of manufacture date that have not had the revised contactor firmware applied.\n\n2. Background\n\nField investigations into two near-miss events found that residual charge on the DC link of an AX-series cabinet can persist after the main DC disconnect is opened. In both events, technicians opened a module access cover while a portion of the DC link remained energized above the 50 V threshold used in AGS work instructions.\n\nThe residual charge is held by the cabinet's internal DC-link capacitance and by module-level capacitance within each battery module. The discharge path is passive and its time constant varies with module temperature.",
+     "lines": ""
+    }
+   ],
+   "source": "local-index",
+   "seconds": 0.1,
+   "_t": 0.071
+  },
+  {
+   "event": "step",
+   "id": "generate",
+   "_t": 0.071
+  },
+  {
+   "event": "answer",
+   "answer": "The current requirement is a 12-minute wait after opening the DC disconnect, followed by verifying the terminals measure below 50 V DC. This applies to both the AX-400 and AX-600 battery cabinets. The older 5-minute interval from SB-2024-03 is withdrawn and must not be used for work performed on or after 2025-03-17. (AX-600 Battery Cabinet Datasheet)",
+   "sources": [
+    {
+     "doc": "ags-doc-022-frequently-asked-questions.md",
+     "title": "ags-doc-022-frequently-asked-questions",
+     "score": 0.779,
+     "passage": "5. Safety\n\nHow long must I wait after opening the DC disconnect before removing a module cover?\n12 minutes, per urgent safety bulletin SB-2025-01 (effective 2025-03-17). The older 5-minute interval from SB-2024-03 is withdrawn and must not be used. After waiting, verify the terminals measure below 50 V DC.\n\nDoes the 12-minute wait apply to the AX-400 as well as the AX-600?\nYes. SB-2025-01 publishes a single interval that applies to both cabinets.\n\n6. Warranty and returns\n\nHow long is the AX-600 warranty?\n10 years or 8,000 cycles at 80% DoD, whichever comes first, capped at 12 years from shipment.\n\nWhat RMA priority applies when the whole site is down?\nCritical, acknowledged within 4 business hours.\n\nWhich products are eligible for advance replacement?\nThe Comet C2 site controller only.",
+     "lines": ""
+    },
+    {
+     "doc": "ags-doc-009-safety-bulletin-sb-2024-03-dc-disconnect-sequence.md",
+     "title": "ags-doc-009-safety-bulletin-sb-2024-03-dc-disconnect-sequence",
+     "score": 0.772,
+     "passage": "3. Required action\n\nUntil further notice, after opening the cabinet DC disconnect:\n\n1. Apply a lockout/tagout device to the disconnect handle.\n2. Wait a minimum of 5 minutes before removing any module access cover or touching any DC terminal.\n3. Verify absence of voltage using a meter rated CAT III 1,500 V DC. Treat any reading of 50 V DC or greater as energized.\n4. Only then proceed with the task.\n\n4. Rationale for the interval\n\nThe 5-minute interval was derived from bench testing at 25 °C ambient. It was believed to provide a margin of approximately 2x over the measured discharge time constant of the AX-400 cabinet.\n\n5. Reporting\n\nReport any instance where the DC link measured 50 V DC or greater after the stated interval to AGS immediately. Support is available at support@auroragrid.example or +1-800-555-0142.\n\nReminder: SB-2024-03 has been superseded. The 5-minute interval must not be used for work performed on or after 2025-03-17.",
+     "lines": ""
+    },
+    {
+     "doc": "ags-doc-010-safety-bulletin-sb-2025-01-urgent-dc-disconnect.md",
+     "title": "ags-doc-010-safety-bulletin-sb-2025-01-urgent-dc-disconnect",
+     "score": 0.687,
+     "passage": "3. Affected products\n\nAll AX-400 (AGS-AX400-372) and AX-600 (AGS-AX600-558) battery cabinets, all manufacture dates, all firmware versions. There are no exceptions for cabinets with the revised contactor firmware; the firmware shortens but does not eliminate the discharge time.\n\n4. Required action\n\nAfter opening the cabinet DC disconnect, and before removing any module access cover or touching any DC terminal:\n\n1. Apply a lockout/tagout device to the disconnect handle and verify the handle cannot be moved.\n2. Wait a minimum of 12 minutes. This interval is mandatory and replaces the 5-minute interval in SB-2024-03.\n3. Verify absence of voltage at the DC terminals using a meter rated CAT III 1,500 V DC. Confirm the reading is below 50 V DC before proceeding.\n4. If the reading is 50 V DC or greater, wait an additional 5 minutes and re-measure. Repeat until the reading is below 50 V DC.\n5. Only then remove the module access cover.\n\nThe 12-minute interval applies to both cabinets. The AX-600 requires the full 12 minutes even though its measured discharge at -20 °C was slightly longer; AGS has elected to publish a single conservative interval so that a technician working on a mixed site cannot apply the wrong value.",
+     "lines": ""
+    },
+    {
+     "doc": "ags-doc-027-arc-flash-and-dc-hazard-analysis.md",
+     "title": "ags-doc-027-arc-flash-and-dc-hazard-analysis",
+     "score": 0.665,
+     "passage": "5. Residual energy\n\nBoth cabinets retain charge on the internal DC link after the disconnect is opened. The residual-energy hazard is governed by urgent safety bulletin SB-2025-01, which requires a 12-minute wait and a below-50 V DC verification before any cover is removed. The 5-minute interval formerly published in SB-2024-03 is withdrawn.\n\n6. Arc-flash boundary\n\nThe arc-flash boundary at 1.2 cal/cm² is 1,400 mm for the AX-400 and 2,300 mm for the AX-600 with covers removed. Barricade the boundary and post the label before any cover is opened.\n\n7. Training and records\n\nAll personnel performing work on AGS equipment must hold current NFPA 70E qualified-person status for DC systems above 1,000 V where the AX-600 is installed. Retain training records and arc-flash labels for the life of the site.",
+     "lines": ""
+    },
+    {
+     "doc": "ags-doc-009-safety-bulletin-sb-2024-03-dc-disconnect-sequence.md",
+     "title": "ags-doc-009-safety-bulletin-sb-2024-03-dc-disconnect-sequence",
+     "score": 0.658,
+     "passage": "SAFETY BULLETIN SB-2024-03 — DC Disconnect Sequence for AX-Series Cabinets\n\nDocument ID: AGS-DOC-009\nBulletin number: SB-2024-03\nSeverity: Important\nEffective date: 2024-05-10\nStatus: SUPERSEDED — see SB-2025-01 (AGS-DOC-010), effective 2025-03-17\n\n> This bulletin is retained for historical reference only. It is no longer the governing instruction. Do not apply the wait interval stated below to any work performed on or after 2025-03-17.\n\n1. Affected products\n\nAll AX-400 (AGS-AX400-372) and AX-600 (AGS-AX600-558) battery cabinets manufactured before 2025-01-01, and all cabinets regardless of manufacture date that have not had the revised contactor firmware applied.\n\n2. Background\n\nField investigations into two near-miss events found that residual charge on the DC link of an AX-series cabinet can persist after the main DC disconnect is opened. In both events, technicians opened a module access cover while a portion of the DC link remained energized above the 50 V threshold used in AGS work instructions.\n\nThe residual charge is held by the cabinet's internal DC-link capacitance and by module-level capacitance within each battery module. The discharge path is passive and its time constant varies with module temperature.",
+     "lines": ""
+    }
+   ],
+   "source": "local-index",
+   "error": "",
+   "seconds": 1.3,
+   "retrieval_seconds": 0.1,
+   "generation_seconds": 1.2,
+   "_t": 1.273
+  },
+  {
+   "event": "_stream",
+   "deltas": 97,
+   "first_delta_s": 0.179,
+   "total_s": 1.273
+  }
+ ],
+ "lab3": [
+  {
+   "event": "start",
+   "run": "202451-92b1",
+   "route": "direct",
+   "note": "no gateway token (is the NemoClaw sandbox onboarded?)",
+   "agent": "nemotron-3.5-lightning:30b-a3b",
+   "model": "nemotron-3.5-lightning:30b-a3b",
+   "data": "aurora_sales_2024_2025.xlsx",
+   "t": 0.0,
+   "_t": 0.016
+  },
+  {
+   "event": "llm",
+   "step": 1,
+   "t": 0.0,
+   "_t": 0.016
+  },
+  {
+   "event": "llm_done",
+   "step": 1,
+   "seconds": 0.3,
+   "tool_calls": 1,
+   "usage": null,
+   "t": 0.29,
+   "_t": 0.31
+  },
+  {
+   "event": "tool_call",
+   "id": "call_9o7wgmbh",
+   "name": "get_dataset_info",
+   "args": {},
+   "t": 0.29,
+   "_t": 0.31
+  },
+  {
+   "event": "tool_result",
+   "id": "call_9o7wgmbh",
+   "name": "get_dataset_info",
+   "ok": true,
+   "seconds": 0.0,
+   "ui": {
+    "summary": "aurora_sales_2024_2025.xlsx · 1,149 rows · 12 columns · 2024-01 → 2025-12",
+    "columns": [
+     "Ngày",
+     "Năm",
+     "Quý",
+     "Tháng",
+     "Khu vực",
+     "Sản phẩm",
+     "Nhóm sản phẩm",
+     "Kênh bán",
+     "Số lượng",
+     "Doanh thu (triệu VND)",
+     "Giá vốn (triệu VND)",
+     "Lợi nhuận gộp (triệu VND)"
+    ]
+   },
+   "t": 0.3,
+   "_t": 0.314
+  },
+  {
+   "event": "llm",
+   "step": 2,
+   "t": 0.3,
+   "_t": 0.314
+  },
+  {
+   "event": "llm_done",
+   "step": 2,
+   "seconds": 0.9,
+   "tool_calls": 1,
+   "usage": null,
+   "t": 1.17,
+   "_t": 1.188
+  },
+  {
+   "event": "tool_call",
+   "id": "call_dtr9fpwp",
+   "name": "analyze_sales",
+   "args": {
+    "group_by": "Khu vực",
+    "metric": "Doanh thu (triệu VND)"
+   },
+   "t": 1.17,
+   "_t": 1.188
+  },
+  {
+   "event": "tool_result",
+   "id": "call_dtr9fpwp",
+   "name": "analyze_sales",
+   "ok": true,
+   "seconds": 0.01,
+   "ui": {
+    "table": {
+     "columns": [
+      "Khu vực",
+      "2024",
+      "2025",
+      "growth",
+      "change",
+      "share 2025"
+     ],
+     "rows": [
+      [
+       "TP. Hồ Chí Minh",
+       "474.5 bn VND",
+       "551.3 bn VND",
+       "+16.2%",
+       "+76.8 bn VND",
+       "40.9%"
+      ],
+      [
+       "Hà Nội",
+       "365.5 bn VND",
+       "340.8 bn VND",
+       "-6.8%",
+       "-24.7 bn VND",
+       "25.3%"
+      ],
+      [
+       "Hải Phòng",
+       "153.6 bn VND",
+       "186.1 bn VND",
+       "+21.2%",
+       "+32.5 bn VND",
+       "13.8%"
+      ],
+      [
+       "Đà Nẵng",
+       "112.2 bn VND",
+       "184.5 bn VND",
+       "+64.5%",
+       "+72.3 bn VND",
+       "13.7%"
+      ],
+      [
+       "Cần Thơ",
+       "68.2 bn VND",
+       "85.1 bn VND",
+       "+24.8%",
+       "+16.9 bn VND",
+       "6.3%"
+      ]
+     ]
+    },
+    "highlights": [
+     "Largest 2025: TP. Hồ Chí Minh (551.3 bn VND, 40.9% of total revenue)",
+     "Smallest 2025: Cần Thơ (85.1 bn VND)",
+     "Fastest growth: Đà Nẵng (+64.5% vs 2024)",
+     "Largest decline: Hà Nội (-6.8% vs 2024)",
+     "Largest increase in value: TP. Hồ Chí Minh (+76.8 bn VND vs 2024)",
+     "Largest decrease in value: Hà Nội (-24.7 bn VND vs 2024)",
+     "Total 2025: 1,347.7 bn VND (+14.8% vs 2024: 1,173.9 bn VND)"
+    ],
+    "summary": "Khu vực × Doanh thu (triệu VND)"
+   },
+   "t": 1.18,
+   "_t": 1.193
+  },
+  {
+   "event": "llm",
+   "step": 3,
+   "t": 1.18,
+   "_t": 1.193
+  },
+  {
+   "event": "llm_done",
+   "step": 3,
+   "seconds": 1.2,
+   "tool_calls": 1,
+   "usage": null,
+   "t": 2.4,
+   "_t": 2.412
+  },
+  {
+   "event": "tool_call",
+   "id": "call_u22zzs7a",
+   "name": "create_chart",
+   "args": {
+    "group_by": "Khu vực",
+    "metric": "Doanh thu (triệu VND)",
+    "chart_type": "bar",
+    "title": "Revenue by Region 2024 vs 2025"
+   },
+   "t": 2.4,
+   "_t": 2.412
+  },
+  {
+   "event": "tool_result",
+   "id": "call_u22zzs7a",
+   "name": "create_chart",
+   "ok": true,
+   "seconds": 0.08,
+   "ui": {
+    "image": "chart-C2.png",
+    "title": "Revenue by Region 2024 vs 2025"
+   },
+   "image_url": "/api/lab3/file/202451-92b1/chart-C2.png",
+   "t": 2.48,
+   "_t": 2.496
+  },
+  {
+   "event": "llm",
+   "step": 4,
+   "t": 2.48,
+   "_t": 2.496
+  },
+  {
+   "event": "llm_done",
+   "step": 4,
+   "seconds": 2.4,
+   "tool_calls": 1,
+   "usage": null,
+   "t": 4.92,
+   "_t": 4.933
+  },
+  {
+   "event": "tool_call",
+   "id": "call_yfrh1bu5",
+   "name": "export_excel_report",
+   "args": {
+    "title": "Region Revenue Growth Analysis",
+    "group_by": "Khu vực",
+    "metric": "Doanh thu (triệu VND)",
+    "insights": [
+     "Fastest growing region: Đà Nẵng with +64.5% growth from 2024 to 2025",
+     "Largest revenue region in 2025: TP. Hồ Chí Minh at 551.3 bn VND (40.9% share)",
+     "Revenue declined in Hà Nội: -6.8% in 2025 vs 2024",
+     "Cần Thơ grew +24.8% in value, second fastest after Đà Nẵng",
+     "Total company revenue rose +14.8% to 1,347.7 bn VND in 2025"
+    ]
+   },
+   "t": 4.92,
+   "_t": 4.935
+  },
+  {
+   "event": "tool_result",
+   "id": "call_yfrh1bu5",
+   "name": "export_excel_report",
+   "ok": true,
+   "seconds": 0.14,
+   "ui": {
+    "file": "region-revenue-growth-analysis-R3.xlsx",
+    "sheets": [
+     "Summary",
+     "Analysis",
+     "Chart",
+     "Data"
+    ],
+    "title": "Region Revenue Growth Analysis"
+   },
+   "file_url": "/api/lab3/file/202451-92b1/region-revenue-growth-analysis-R3.xlsx",
+   "t": 5.06,
+   "_t": 5.074
+  },
+  {
+   "event": "llm",
+   "step": 5,
+   "t": 5.06,
+   "_t": 5.074
+  },
+  {
+   "event": "llm_done",
+   "step": 5,
+   "seconds": 2.2,
+   "tool_calls": 0,
+   "usage": null,
+   "t": 7.26,
+   "_t": 7.272
+  },
+  {
+   "event": "answer",
+   "text": "**Fastest-growing region: Đà Nẵng with +64.5% growth from 2024 to 2025.**\n\n- **Largest 2025 revenue:** TP. Hồ Chí Minh at 551.3 bn VND (40.9% of total).\n- **Revenue declined in Hà Nội:** –6.8% in 2025 vs 2024.\n- **Cần Thơ grew +24.8%** in value, the second‑fastest after Đà Nẵng.\n- **Total company revenue** rose +14.8% to 1,347.7 bn VND in 2025.\n\nThe bar chart compares 2024 vs 2025 revenue by region, and the Excel report (Region Revenue Growth Analysis) contains the full table and these insights.",
+   "seconds": 7.3,
+   "route": "direct",
+   "files": [
+    {
+     "kind": "chart",
+     "name": "chart-C2.png",
+     "url": "/api/lab3/file/202451-92b1/chart-C2.png"
+    },
+    {
+     "kind": "report",
+     "name": "region-revenue-growth-analysis-R3.xlsx",
+     "url": "/api/lab3/file/202451-92b1/region-revenue-growth-analysis-R3.xlsx"
+    }
+   ],
+   "t": 7.26,
+   "_t": 7.275
+  },
+  {
+   "event": "_stream",
+   "deltas": 183,
+   "first_delta_s": 0.31,
+   "total_s": 7.277
+  }
+ ]
+}

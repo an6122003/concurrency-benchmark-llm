@@ -1,0 +1,49 @@
+model,label,parallel,decode_tps,per_stream_tps,prefill_tps
+qwen3.8-27b,Qwen3.8-27B,1,16.1,16.1,926
+qwen3.8-27b,Qwen3.8-27B,2,29.8,14.9,964
+qwen3.8-27b,Qwen3.8-27B,4,51.6,12.9,916
+qwen3.8-27b,Qwen3.8-27B,8,75.7,9.5,912
+qwen3.8-27b,Qwen3.8-27B,16,109.9,6.9,901
+qwen3.8-27b,Qwen3.8-27B,32,138.6,4.3,879
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,1,71.5,71.5,1438
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,2,117.8,58.9,3218
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,4,169.9,42.5,3550
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,8,227.9,28.5,3598
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,16,289.6,18.1,3544
+qwen3.6-35b-a3b,Qwen3.6-35B-A3B,32,349.8,10.9,3429
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,1,16.6,16.6,521
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,2,25.0,12.5,881
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,4,37.7,9.4,956
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,8,50.4,6.3,959
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,16,73.2,4.6,952
+nemotron-3.5-super-120b,Nemotron 3.5 Super 120B-A12B,32,91.8,2.9,948
+gemma-4-26b-a4b,Gemma 4 26B-A4B,1,52.0,52.0,1474
+gemma-4-26b-a4b,Gemma 4 26B-A4B,2,81.9,41.0,3569
+gemma-4-26b-a4b,Gemma 4 26B-A4B,4,127.1,31.8,3753
+gemma-4-26b-a4b,Gemma 4 26B-A4B,8,167.5,20.9,3640
+gemma-4-26b-a4b,Gemma 4 26B-A4B,16,310.0,19.4,3428
+gemma-4-26b-a4b,Gemma 4 26B-A4B,32,438.9,13.7,3006
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,1,79.0,79.0,1040
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,2,107.6,53.8,2912
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,4,144.8,36.2,3303
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,8,165.2,20.7,3310
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,16,237.2,14.8,3284
+nemotron-3.5-nano-30b,Nemotron 3.5 Nano 30B-A3B,32,292.9,9.2,3221
+gpt-oss-20b,gpt-oss-20b (reference),1,84.2,84.2,3174
+gpt-oss-20b,gpt-oss-20b (reference),2,131.7,65.9,5271
+gpt-oss-20b,gpt-oss-20b (reference),4,197.4,49.3,5590
+gpt-oss-20b,gpt-oss-20b (reference),8,265.2,33.1,5442
+gpt-oss-20b,gpt-oss-20b (reference),16,550.8,34.4,5307
+gpt-oss-20b,gpt-oss-20b (reference),32,870.5,27.2,4965
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),1,84.4,84.4,4699
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),2,131.3,65.7,5167
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),4,288.9,72.2,4660
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),8,453.8,56.7,4987
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),16,733.2,45.8,4589
+qwen3-4b-2507,Qwen3-4B-Instruct-2507 (community ref),32,1061.2,33.2,3976
+gemma-4-e4b,Gemma 4 E4B,1,41.9,41.9,2862
+gemma-4-e4b,Gemma 4 E4B,2,80.6,40.3,3993
+gemma-4-e4b,Gemma 4 E4B,4,152.7,38.2,4251
+gemma-4-e4b,Gemma 4 E4B,8,267.5,33.4,4168
+gemma-4-e4b,Gemma 4 E4B,16,441.5,27.6,3926
+gemma-4-e4b,Gemma 4 E4B,32,710.8,22.2,3511

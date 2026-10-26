@@ -1,0 +1,13 @@
+[
+  {"wait": 1.0}, {"click": [960, 640]}, {"wait": 0.8}, {"click": [960, 640]}, {"wait": 0.6}, {"click": [960, 640]},
+  {"wait": 1.5}, {"eval": "player.inv = 1e9; enemies.length = 0; spawnQueue.length = 0; waveInSector = 5; waveState = 'inter'; waveDelay = 0.05; JSON.stringify({state})"},
+  {"wait": 2.5}, {"eval": "JSON.stringify({state, boss: boss && boss.name, taunt, tauntT})"},
+  {"eval": "player.inv = 0; 'ship visible'"}, {"shot": "a-boss-taunt"}, {"eval": "player.inv = 1e9; 'inv'"},
+  {"wait": 3.0},
+  {"eval": "boss.hp = 0; boss.dying = 1; boss.dieT = 0; boss.dieBoom = 0; initBossShards(boss); JSON.stringify({dying: boss.dying, defeat: boss.defeat})"},
+  {"wait": 0.3}, {"shot": "b-death-0.3s"},
+  {"wait": 0.4}, {"shot": "c-death-0.7s"},
+  {"wait": 0.4}, {"shot": "d-death-1.1s"},
+  {"wait": 0.25}, {"shot": "e-death-1.35s"},
+  {"wait": 0.6}, {"eval": "JSON.stringify({state, boss: !!boss})"}, {"shot": "f-after"}
+]

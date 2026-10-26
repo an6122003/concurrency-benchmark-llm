@@ -1,0 +1,18 @@
+﻿RTX Spark VRAM demo - 2026-10-25 23:50
+[23:50:16] GPU: NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU), 51200 MiB, 617.69   <- the GPU memory setting (dedicated VRAM)
+[23:50:16] CUDA can address: CUDA0: NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU) (112363 MiB, 112163 MiB free)   <- dedicated + shared system memory
+[23:50:16] Model file: NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4.gguf = 71.6 GB
+[23:50:17] Before load: 2.0 GB dedicated + 0.4 GB shared = 2.4 GB on the GPU
+[23:50:17] Loading every layer onto the GPU (-ngl 999) ...
+[23:51:00] Loaded in 42 s
+[23:51:00] llama.cpp: load_tensors: offloaded 89/89 layers to GPU
+[23:51:00] llama.cpp: load_tensors:        CUDA0 model buffer size = 72323.94 MiB
+[23:51:00] llama.cpp: llama_kv_cache:      CUDA0 KV buffer size =    64.00 MiB
+[23:51:00] llama.cpp: llama_memory_recurrent:      CUDA0 RS buffer size =   164.69 MiB
+[23:51:00] llama.cpp: sched_reserve:      CUDA0 compute buffer size =   199.51 MiB
+[23:51:01] After load:  49.3 GB dedicated + 25.4 GB shared = 74.7 GB on the GPU
+[23:51:01] Prompt: In three short sentences, explain why unified memory lets a laptop run a 120-billion-parameter AI model locally.
+[23:51:08] Answer: Unified memory allows the CPU and GPU to share a single pool of high-speed RAM, eliminating the need to copy data between separate memory banks. This massive, low-latency bandwidth lets the GPU access all 120 billion parameters quickly enough for real-time inference. By fitting the entire model in one shared memory space, the laptop avoids slow disk swapping and can run the model locally.
+[23:51:08] Speed: prompt 38 tok/s, generation 14.1 tok/s (81 tokens), all on the GPU
+[23:51:09] During run: 49.3 GB dedicated + 25.5 GB shared = 74.8 GB on the GPU
+[23:51:09] Done. Evidence saved to C:\Users\ProArt\Desktop\Project\bench-tools\demo-vram-evidence.txt

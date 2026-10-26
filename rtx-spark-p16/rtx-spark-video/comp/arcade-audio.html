@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NEON SPARK arcade cut: the score</title>
+</head>
+<body>
+<!-- Renders the arcade cut's score offline with NEON SPARK's own synth (game-audio.js, lifted from the final game
+     by bench/render_arcade_audio.py): every section on its track, every effect at its time (arcade-score.js).
+     The game plays its synth dry and mono; the film gives it a room: a stereo plate under its snare, arp and effects,
+     a ping-pong echo on its arp, a dotted eighth at each section's tempo, and width: the music above 350 Hz through an
+     all-pass, added to the left and taken from the right, so left plus right is still exactly the game's mono music.
+     The voices themselves are the game's. -->
+<script>let currentSector = 0, SFX_T = 0;   // the game's sector, read by its currentTrack(); the effects' start</script>
+<script src="game-audio.js"></script>
+<script src="arcade-score.js"></script>
+<script>
+const FX = {
+  decay: 1.6,          // the plate's -60 dB time (s)
+  plate: 0.5,          // its return
+  snare: 0.38,         // sends into it: the snare and the arp (taken before the game's music bus, 0.42) ...
+  arp: 0.25,
+  sfx: 0.12,           // ... and the effects (after theirs)
+  echo: 0.45,          // the arp's ping-pong return, into the music bus
+  feedback: 0.42,
+  width: 0.58,         // the decorrelated music's level in each ear (+ left, - right)
+};
+async function renderScore() {
+  const SR = 48000, dur = SCORE.end + 0.6;
+  AC = new OfflineAudioContext(2, Math.ceil(SR * dur), SR);
+  // the game's own bus (initAudio): master 0.7, music 0.42, effects 0.85
+  master = AC.createGain(); master.gain.value = 0.7; master.connect(AC.destination);
+  musicG = AC.createGain(); musicG.gain.value = 0.42; musicG.connect(master);
+  sfxG = AC.createGain(); sfxG.gain.value = 0.85; sfxG.connect(master);
+  nb = null;   // the game's noise buffer, made afresh for this context
+  const wIn = AC.createBiquadFilter();   // the width: the music bus summed to mono, above 350 Hz ...
+  Object.assign(wIn, {type: 'highpass', channelCount: 1, channelCountMode: 'explicit', channelInterpretation: 'speakers'});
+  wIn.frequency.value = 350;
+  const wAp = AC.createConvolver(); wAp.normalize = false; wAp.buffer = allpassIR(0.25);   // ... phases scattered ...
+  for (const [sign, pan] of [[1, -1], [-1, 1]]) {   // ... into the left, and inverted into the right
+    const g = AC.createGain(), p = AC.createStereoPanner();
+    g.gain.value = sign * FX.width; p.pan.value = pan;
+    wAp.connect(g); g.connect(p); p.connect(master);
+  }
+  musicG.connect(wIn); wIn.connect(wAp);
+  // the plate: its input high-passed so the kick and the booms' lows stay dry and centred
+  const plateIn = AC.createBiquadFilter(); plateIn.type = 'highpass'; plateIn.frequency.value = 280;
+  const plate = AC.createConvolver(); plate.buffer = plateIR(2.2, 0.015);
+  const plateOut = AC.createGain(); plateOut.gain.value = FX.plate;
+  plateIn.connect(plate); plate.connect(plateOut); plateOut.connect(master);
+  const bus = (level, to) => { const g = AC.createGain(); g.gain.value = level; g.connect(to); return g; };
+  const snareSend = bus(FX.snare, plateIn), arpSend = bus(FX.arp, plateIn);
+  sfxG.connect(bus(FX.sfx, plateIn));
+  let echo = null;   // the section now playing's echo
+  window.HOOK = (voice, node) => {
+    if (voice === 'snare') node.connect(snareSend);
+    if (voice === 'arp') { node.connect(arpSend); node.connect(echo); }
+  };
+  for (const s of SCORE.sections) {
+    musicMode = s.track === 'boss' ? 'boss' : 'sector';
+    currentSector = s.track === 'boss' ? 2 : s.track;
+    const rest = SCORE.rests.find((r) => r.id === s.id);
+    echo = pingPong(s.spb, rest ? rest.t0 : s.t0 + s.steps * s.spb);
+    for (let k = 0; k < s.steps; k++) if (!rest || k < rest.from || k >= rest.to) playStep(k % 16, s.t0 + k * s.spb);
+  }
+  for (const [t, fn, arg] of SCORE.sfx) { SFX_T = t; window[fn](arg); }
+  const buf = await AC.startRendering();
+  return wav(buf);
+}
+function pingPong(spb, tEnd) {   // left, then right, a dotted eighth apart; cut where its section's music stops
+  const inp = AC.createGain(), tone = AC.createBiquadFilter();
+  tone.type = 'bandpass'; tone.frequency.value = 1500; tone.Q.value = 0.5;
+  const dl = AC.createDelay(1), dr = AC.createDelay(1), fl = AC.createGain(), fr = AC.createGain();
+  dl.delayTime.value = dr.delayTime.value = 1.5 * spb;
+  fl.gain.value = fr.gain.value = FX.feedback;
+  const pl = AC.createStereoPanner(), pr = AC.createStereoPanner();
+  pl.pan.value = -0.85; pr.pan.value = 0.85;
+  const out = AC.createGain();
+  out.gain.setValueAtTime(FX.echo, 0); out.gain.setValueAtTime(FX.echo, tEnd); out.gain.linearRampToValueAtTime(0, tEnd + 0.04);
+  inp.connect(tone); tone.connect(dl);
+  dl.connect(pl); dl.connect(fl); fl.connect(dr);
+  dr.connect(pr); dr.connect(fr); fr.connect(dl);
+  pl.connect(out); pr.connect(out); out.connect(musicG);
+  return inp;
+}
+function allpassIR(sec) {   // Schroeder all-passes in series: every frequency at unity gain, its phase scattered
+  const n = Math.round(sec * AC.sampleRate), ir = AC.createBuffer(1, n, AC.sampleRate);
+  let x = new Float32Array(n);
+  x[0] = 1;
+  for (const [D, g] of [[142, 0.62], [107, 0.62], [379, 0.62], [277, 0.62]]) {
+    const y = new Float32Array(n);
+    for (let i = 0; i < n; i++) y[i] = -g * x[i] + (i >= D ? x[i - D] + g * y[i - D] : 0);
+    x = y;
+  }
+  ir.copyToChannel(x, 0);
+  return ir;
+}
+function plateIR(sec, pre) {   // decaying noise, different in each ear, darker as it fades (seeded: the same every render)
+  const n = Math.round(sec * AC.sampleRate), p = Math.round(pre * AC.sampleRate), ir = AC.createBuffer(2, n, AC.sampleRate);
+  let seed = 7;
+  const rnd = () => ((seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296) * 2 - 1;
+  for (let c = 0; c < 2; c++) {
+    const d = ir.getChannelData(c);
+    let lp = 0;
+    for (let i = p; i < n; i++) {
+      const x = (i - p) / (n - p), k = 0.75 - 0.6 * x;   // a one-pole low-pass that closes as the tail decays
+      lp += k * (rnd() - lp);
+      d[i] = lp * Math.exp(-6.9 * (i - p) / AC.sampleRate / FX.decay);
+    }
+  }
+  return ir;
+}
+function wav(buf) {   // 16-bit PCM, interleaved, as base64
+  const ch = buf.numberOfChannels, n = buf.length, data = new DataView(new ArrayBuffer(44 + n * ch * 2));
+  const str = (o, s) => { for (let i = 0; i < s.length; i++) data.setUint8(o + i, s.charCodeAt(i)); };
+  str(0, 'RIFF'); data.setUint32(4, 36 + n * ch * 2, true); str(8, 'WAVE'); str(12, 'fmt ');
+  data.setUint32(16, 16, true); data.setUint16(20, 1, true); data.setUint16(22, ch, true);
+  data.setUint32(24, buf.sampleRate, true); data.setUint32(28, buf.sampleRate * ch * 2, true);
+  data.setUint16(32, ch * 2, true); data.setUint16(34, 16, true); str(36, 'data'); data.setUint32(40, n * ch * 2, true);
+  const chans = Array.from({length: ch}, (_, c) => buf.getChannelData(c));
+  let o = 44;
+  for (let i = 0; i < n; i++) for (let c = 0; c < ch; c++) {
+    const v = Math.max(-1, Math.min(1, chans[c][i]));
+    data.setInt16(o, v < 0 ? v * 32768 : v * 32767, true); o += 2;
+  }
+  const bytes = new Uint8Array(data.buffer);
+  let s = '';
+  for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  return btoa(s);
+}
+</script>
+</body>
+</html>

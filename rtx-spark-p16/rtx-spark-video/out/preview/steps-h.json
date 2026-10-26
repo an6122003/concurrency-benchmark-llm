@@ -1,0 +1,41 @@
+﻿[
+    {
+        "wait":  0.2,
+        "js":  "(async () =\u003e { for (let i = 0; i \u003c 100 \u0026\u0026 !(window.FILM \u0026\u0026 document.fonts.status === \"loaded\"); i++) await new Promise(r =\u003e setTimeout(r, 100)); return !!window.FILM; })()"
+    },
+    {
+        "wait":  0.1,
+        "out":  "C:\\Users\\ProArt\\Desktop\\Project\\rtx-spark-video\\out\\preview\\h-005.0.jpg",
+        "js":  "for (let i = 0; i \u003c= 150; i++) FILM.frame(i); new Promise(r =\u003e requestAnimationFrame(() =\u003e requestAnimationFrame(() =\u003e r(150))))"
+    },
+    {
+        "wait":  0.1,
+        "out":  "C:\\Users\\ProArt\\Desktop\\Project\\rtx-spark-video\\out\\preview\\h-012.0.jpg",
+        "js":  "for (let i = 151; i \u003c= 360; i++) FILM.frame(i); new Promise(r =\u003e requestAnimationFrame(() =\u003e requestAnimationFrame(() =\u003e r(360))))"
+    },
+    {
+        "wait":  0.1,
+        "out":  "C:\\Users\\ProArt\\Desktop\\Project\\rtx-spark-video\\out\\preview\\h-019.0.jpg",
+        "js":  "for (let i = 361; i \u003c= 570; i++) FILM.frame(i); new Promise(r =\u003e requestAnimationFrame(() =\u003e requestAnimationFrame(() =\u003e r(570))))"
+    },
+    {
+        "wait":  0.1,
+        "out":  "C:\\Users\\ProArt\\Desktop\\Project\\rtx-spark-video\\out\\preview\\h-024.0.jpg",
+        "js":  "for (let i = 571; i \u003c= 720; i++) FILM.frame(i); new Promise(r =\u003e requestAnimationFrame(() =\u003e requestAnimationFrame(() =\u003e r(720))))"
+    },
+    {
+        "wait":  0.1,
+        "out":  "C:\\Users\\ProArt\\Desktop\\Project\\rtx-spark-video\\out\\preview\\h-051.0.jpg",
+        "js":  "for (let i = 721; i \u003c= 1530; i++) FILM.frame(i); new Promise(r =\u003e requestAnimationFrame(() =\u003e requestAnimationFrame(() =\u003e r(1530))))"
+    },
+    {
+        "wait":  0.1,
+        "out":  "C:\\Users\\ProArt\\Desktop\\Project\\rtx-spark-video\\out\\preview\\h-058.5.jpg",
+        "js":  "for (let i = 1531; i \u003c= 1755; i++) FILM.frame(i); new Promise(r =\u003e requestAnimationFrame(() =\u003e requestAnimationFrame(() =\u003e r(1755))))"
+    },
+    {
+        "wait":  0.1,
+        "out":  "C:\\Users\\ProArt\\Desktop\\Project\\rtx-spark-video\\out\\preview\\h-070.0.jpg",
+        "js":  "for (let i = 1756; i \u003c= 2100; i++) FILM.frame(i); new Promise(r =\u003e requestAnimationFrame(() =\u003e requestAnimationFrame(() =\u003e r(2100))))"
+    }
+]

@@ -1,0 +1,130 @@
+﻿[01:30:33] 1/7 A/B at 96 GB: the same quick llama-bench as at 50 GB, plus the on-camera proof
+[01:30:34] nemotron-3.5-super-120b / quick: already done, skipping
+[01:30:34] qwen3.8-flash-next: model file missing, skipping (C:\Users\ProArt\models\qwen3.8-flash-next\Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf.deferred)
+[01:30:34] 2/7 llama-bench sweep for the big models
+[01:30:34] nemotron-3.5-super-120b / bench: already done, skipping
+[01:30:34] qwen3.8-flash-next: model file missing, skipping (C:\Users\ProArt\models\qwen3.8-flash-next\Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf.deferred)
+[01:30:34] 3/7 speculative decoding showdown + one-shot coding tests
+[01:30:35] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-server.exe -m C:\Users\ProArt\AppData\Local\hermes\models\Qwen3.8-27B-UD-Q4_K_M.gguf --host 127.0.0.1 --port 8099 --alias qwen3.8-27b -ngl 999 --fit off -fa on -c 16384 -np 1 --no-cache-prompt --jinja --no-webui --reasoning off
+[01:30:44] server ready in 10 s
+[01:31:39] none rep0 p0: {'rep': 0, 'prompt': 0, 'wall_s': 54.93, 'gen_n': 768, 'gen_tps': 14.07, 'prompt_tps': 95.5, 'draft_n': None, 'draft_accepted': None}
+[01:32:33] none rep0 p1: {'rep': 0, 'prompt': 1, 'wall_s': 53.89, 'gen_n': 768, 'gen_tps': 14.34, 'prompt_tps': 153.5, 'draft_n': None, 'draft_accepted': None}
+[01:33:05] none rep0 p2: {'rep': 0, 'prompt': 2, 'wall_s': 31.67, 'gen_n': 458, 'gen_tps': 14.6, 'prompt_tps': 160.1, 'draft_n': None, 'draft_accepted': None}
+[01:33:59] none rep1 p0: {'rep': 1, 'prompt': 0, 'wall_s': 54.31, 'gen_n': 768, 'gen_tps': 14.21, 'prompt_tps': 146.7, 'draft_n': None, 'draft_accepted': None}
+[01:34:52] none rep1 p1: {'rep': 1, 'prompt': 1, 'wall_s': 52.89, 'gen_n': 768, 'gen_tps': 14.6, 'prompt_tps': 166.7, 'draft_n': None, 'draft_accepted': None}
+[01:35:30] none rep1 p2: {'rep': 1, 'prompt': 2, 'wall_s': 37.7, 'gen_n': 520, 'gen_tps': 13.9, 'prompt_tps': 166.9, 'draft_n': None, 'draft_accepted': None}
+[01:35:35] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-server.exe -m C:\Users\ProArt\AppData\Local\hermes\models\Qwen3.8-27B-UD-Q4_K_M.gguf --host 127.0.0.1 --port 8099 --alias qwen3.8-27b -ngl 999 --fit off -fa on -c 16384 -np 1 --no-cache-prompt --jinja --no-webui --reasoning off --spec-type draft-mtp --spec-draft-n-max 2
+[01:35:40] server ready in 5 s
+[01:36:07] mtp-n2 rep0 p0: {'rep': 0, 'prompt': 0, 'wall_s': 27.37, 'gen_n': 768, 'gen_tps': 28.35, 'prompt_tps': 118.9, 'draft_n': 570, 'draft_accepted': 481}
+[01:36:34] mtp-n2 rep0 p1: {'rep': 0, 'prompt': 1, 'wall_s': 27.11, 'gen_n': 768, 'gen_tps': 28.64, 'prompt_tps': 151.4, 'draft_n': 562, 'draft_accepted': 486}
+[01:36:55] mtp-n2 rep0 p2: {'rep': 0, 'prompt': 2, 'wall_s': 20.45, 'gen_n': 429, 'gen_tps': 21.29, 'prompt_tps': 144.0, 'draft_n': 408, 'draft_accepted': 225}
+[01:37:22] mtp-n2 rep1 p0: {'rep': 1, 'prompt': 0, 'wall_s': 27.46, 'gen_n': 768, 'gen_tps': 28.25, 'prompt_tps': 141.3, 'draft_n': 549, 'draft_accepted': 492}
+[01:37:51] mtp-n2 rep1 p1: {'rep': 1, 'prompt': 1, 'wall_s': 29.1, 'gen_n': 768, 'gen_tps': 26.67, 'prompt_tps': 150.4, 'draft_n': 572, 'draft_accepted': 480}
+[01:38:11] mtp-n2 rep1 p2: {'rep': 1, 'prompt': 2, 'wall_s': 19.26, 'gen_n': 421, 'gen_tps': 22.22, 'prompt_tps': 139.8, 'draft_n': 398, 'draft_accepted': 221}
+[01:38:16] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-server.exe -m C:\Users\ProArt\AppData\Local\hermes\models\Qwen3.8-27B-UD-Q4_K_M.gguf --host 127.0.0.1 --port 8099 --alias qwen3.8-27b -ngl 999 --fit off -fa on -c 16384 -np 1 --no-cache-prompt --jinja --no-webui --reasoning off --spec-type draft-mtp --spec-draft-n-max 3
+[01:38:20] server ready in 5 s
+[01:38:43] mtp-n3 rep0 p0: {'rep': 0, 'prompt': 0, 'wall_s': 22.3, 'gen_n': 768, 'gen_tps': 34.86, 'prompt_tps': 118.0, 'draft_n': 643, 'draft_accepted': 552}
+[01:39:07] mtp-n3 rep0 p1: {'rep': 0, 'prompt': 1, 'wall_s': 24.13, 'gen_n': 768, 'gen_tps': 32.21, 'prompt_tps': 158.3, 'draft_n': 688, 'draft_accepted': 537}
+[01:39:27] mtp-n3 rep0 p2: {'rep': 0, 'prompt': 2, 'wall_s': 20.11, 'gen_n': 440, 'gen_tps': 22.21, 'prompt_tps': 149.7, 'draft_n': 579, 'draft_accepted': 246}
+[01:39:51] mtp-n3 rep1 p0: {'rep': 1, 'prompt': 0, 'wall_s': 23.79, 'gen_n': 768, 'gen_tps': 32.7, 'prompt_tps': 136.9, 'draft_n': 676, 'draft_accepted': 541}
+[01:40:14] mtp-n3 rep1 p1: {'rep': 1, 'prompt': 1, 'wall_s': 23.35, 'gen_n': 768, 'gen_tps': 33.33, 'prompt_tps': 157.0, 'draft_n': 666, 'draft_accepted': 544}
+[01:40:35] mtp-n3 rep1 p2: {'rep': 1, 'prompt': 2, 'wall_s': 20.45, 'gen_n': 451, 'gen_tps': 22.39, 'prompt_tps': 148.6, 'draft_n': 585, 'draft_accepted': 255}
+[01:40:40] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-server.exe -m C:\Users\ProArt\AppData\Local\hermes\models\Qwen3.8-27B-UD-Q4_K_M.gguf --host 127.0.0.1 --port 8099 --alias qwen3.8-27b -ngl 999 --fit off -fa on -c 16384 -np 1 --no-cache-prompt --jinja --no-webui --reasoning off --spec-type draft-dflash -md C:\Users\ProArt\.cache\huggingface\hub\models--incoai--Qwen3.8-27B-DFlash2-GGUF\snapshots\144eb06583b4fb0b6e54bc814b16a206a240f4d2\Qwen3.8-27B-DFlash2-Q4_K_M.gguf
+[01:40:46] server ready in 6 s
+[01:41:06] dflash2 rep0 p0: {'rep': 0, 'prompt': 0, 'wall_s': 20.38, 'gen_n': 768, 'gen_tps': 38.23, 'prompt_tps': 118.7, 'draft_n': 655, 'draft_accepted': 548}
+[01:41:27] dflash2 rep0 p1: {'rep': 0, 'prompt': 1, 'wall_s': 21.12, 'gen_n': 768, 'gen_tps': 37.0, 'prompt_tps': 138.7, 'draft_n': 672, 'draft_accepted': 542}
+[01:41:46] dflash2 rep0 p2: {'rep': 0, 'prompt': 2, 'wall_s': 19.09, 'gen_n': 458, 'gen_tps': 24.46, 'prompt_tps': 152.6, 'draft_n': 612, 'draft_accepted': 253}
+[01:42:07] dflash2 rep1 p0: {'rep': 1, 'prompt': 0, 'wall_s': 21.07, 'gen_n': 768, 'gen_tps': 37.22, 'prompt_tps': 131.0, 'draft_n': 666, 'draft_accepted': 544}
+[01:42:29] dflash2 rep1 p1: {'rep': 1, 'prompt': 1, 'wall_s': 21.62, 'gen_n': 768, 'gen_tps': 36.27, 'prompt_tps': 151.9, 'draft_n': 682, 'draft_accepted': 539}
+[01:42:46] dflash2 rep1 p2: {'rep': 1, 'prompt': 2, 'wall_s': 17.44, 'gen_n': 430, 'gen_tps': 25.11, 'prompt_tps': 131.8, 'draft_n': 558, 'draft_accepted': 244}
+[01:42:52] none: 14.29 tok/s (by prompt [14.14, 14.47, 14.25], acceptance None)
+[01:42:52] mtp-n2: 25.9 tok/s (by prompt [28.3, 27.66, 21.75], acceptance 0.758)
+[01:42:52] mtp-n3: 29.62 tok/s (by prompt [33.78, 32.77, 22.3], acceptance 0.686)
+[01:42:52] dflash2: 33.05 tok/s (by prompt [37.72, 36.64, 24.79], acceptance 0.684)
+BEST=dflash2
+[01:42:52] fastest speculative config: dflash2
+[01:42:53] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-server.exe -m C:\Users\ProArt\AppData\Local\hermes\models\Qwen3.8-27B-UD-Q4_K_M.gguf --host 127.0.0.1 --port 8099 --alias qwen3.8-27b -ngl 999 --fit off -fa on -c 65536 -np 1 -b 2048 -ub 2048 --jinja --no-webui --metrics --reasoning on --reasoning-effort medium --spec-type draft-dflash -md C:\Users\ProArt\.cache\huggingface\hub\models--incoai--Qwen3.8-27B-DFlash2-GGUF\snapshots\144eb06583b4fb0b6e54bc814b16a206a240f4d2\Qwen3.8-27B-DFlash2-Q4_K_M.gguf
+[01:42:58] server ready in 6 s
+{
+  "model": "Qwen3.8-27B",
+  "quant": "UD-Q4_K_M",
+  "spec": "dflash2",
+  "effort": "medium",
+  "total_s": 701.2,
+  "ttft_s": 1.0112,
+  "thinking_s": 346.3969,
+  "answer_s": 354.8,
+  "usage": {
+    "completion_tokens": 23367,
+    "prompt_tokens": 560,
+    "total_tokens": 23927,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 560,
+    "prompt_ms": 949.716,
+    "prompt_per_token_ms": 1.6959214285714286,
+    "prompt_per_second": 589.6499585139136,
+    "predicted_n": 23367,
+    "predicted_ms": 700162.647,
+    "predicted_per_token_ms": 29.96501955833262,
+    "predicted_per_second": 33.37224586332438,
+    "draft_n": 23658,
+    "draft_n_accepted": 15480
+  },
+  "finish_reason": "stop",
+  "reasoning_chars": 29302,
+  "answer_chars": 34318,
+  "html_chars": 34307,
+  "html_lines": 931,
+  "decode_tps": 33.37
+}
+[01:54:46] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-server.exe -m C:\Users\ProArt\AppData\Local\hermes\models\Qwen3.8-27B-UD-Q4_K_M.gguf --host 127.0.0.1 --port 8099 --alias qwen3.8-27b -ngl 999 --fit off -fa on -c 65536 -np 1 -b 2048 -ub 2048 --jinja --no-webui --metrics --reasoning on --reasoning-effort medium --spec-type draft-dflash -md C:\Users\ProArt\.cache\huggingface\hub\models--incoai--Qwen3.8-27B-DFlash2-GGUF\snapshots\144eb06583b4fb0b6e54bc814b16a206a240f4d2\Qwen3.8-27B-DFlash2-Q4_K_M.gguf
+[01:54:50] server ready in 5 s
+{
+  "model": "Qwen3.8-27B",
+  "quant": "UD-Q4_K_M",
+  "spec": "dflash2",
+  "effort": "medium",
+  "total_s": 457.4,
+  "ttft_s": 0.7712,
+  "thinking_s": 200.046,
+  "answer_s": 257.3,
+  "usage": {
+    "completion_tokens": 15214,
+    "prompt_tokens": 428,
+    "total_tokens": 15642,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 428,
+    "prompt_ms": 753.736,
+    "prompt_per_token_ms": 1.7610654205607477,
+    "prompt_per_second": 567.8380759310952,
+    "predicted_n": 15214,
+    "predicted_ms": 456620.392,
+    "predicted_per_token_ms": 30.015144415960034,
+    "predicted_per_second": 33.316514694770795,
+    "draft_n": 15660,
+    "draft_n_accepted": 9993
+  },
+  "finish_reason": "stop",
+  "reasoning_chars": 16281,
+  "answer_chars": 23912,
+  "html_chars": 23901,
+  "html_lines": 600,
+  "decode_tps": 33.32
+}
+[02:02:33] 4/7 concurrency suite: main models
+[02:02:33] on hold (HOLD file present) ...
+[02:10:03] hold released
+[02:10:03] === qwen3.6-35b-a3b / suite (AC=True, battery=42%) ===
+[02:10:03] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-server.exe -m C:\Users\ProArt\AppData\Local\hermes\models\Qwen3.6-35B-A3B-UD-Q4_K_M.gguf --host 127.0.0.1 --port 8099 --alias qwen3.6-35b-a3b -ngl 999 --fit off -fa on -c 65536 -np 32 --kv-unified -b 2048 -ub 2048 --no-cache-prompt --cache-ram 0 --jinja --no-webui --metrics --reasoning off
+[02:10:16] server ready in 13 s
+[02:10:16] $ C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\benchmark_suite.py --config C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.6-35b-a3b\suite-config-suite.json --out-dir C:\Users\ProArt\Desktop\Project\concurrency-benchmark-llm\suite-results-rtx-spark-p16-20261025\qwen3.6-35b-a3b\suite --python C:\Users\ProArt\Desktop\Project\tools\python\cpython-3.13.17-windows-aarch64-none\python.exe

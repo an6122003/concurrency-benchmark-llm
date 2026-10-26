@@ -1,0 +1,40 @@
+[03:13:28] $ C:\Users\ProArt\Desktop\Project\bench-tools\llamacpp-cuda-b11671\llama-server.exe -m C:\Users\ProArt\AppData\Local\hermes\models\Qwen3.8-27B-UD-Q4_K_M.gguf --host 127.0.0.1 --port 8099 --alias qwen3.8-27b -ngl 999 --fit off -fa on -c 98304 -np 1 -b 2048 -ub 2048 --jinja --no-webui --metrics --reasoning on --reasoning-effort medium --spec-type draft-dflash -md C:\Users\ProArt\.cache\huggingface\hub\models--incoai--Qwen3.8-27B-DFlash2-GGUF\snapshots\144eb06583b4fb0b6e54bc814b16a206a240f4d2\Qwen3.8-27B-DFlash2-Q4_K_M.gguf
+[03:13:34] server ready in 7 s
+{
+  "model": "Qwen3.8-27B",
+  "quant": "UD-Q4_K_M",
+  "spec": "dflash2",
+  "effort": "medium",
+  "based_on": "v2",
+  "total_s": 1551.4,
+  "ttft_s": 21.3172,
+  "thinking_s": 921.6309,
+  "answer_s": 629.8,
+  "usage": {
+    "completion_tokens": 46468,
+    "prompt_tokens": 16702,
+    "total_tokens": 63170,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 16702,
+    "prompt_ms": 21287.418,
+    "prompt_per_token_ms": 1.2745430487366782,
+    "prompt_per_second": 784.5949189328644,
+    "predicted_n": 46468,
+    "predicted_ms": 1530071.84,
+    "predicted_per_token_ms": 32.928139109475545,
+    "predicted_per_second": 30.36916227410603,
+    "draft_n": 47214,
+    "draft_n_accepted": 30729
+  },
+  "finish_reason": "stop",
+  "reasoning_chars": 73860,
+  "answer_chars": 57357,
+  "html_chars": 57346,
+  "html_lines": 1317,
+  "decode_tps": 30.37
+}

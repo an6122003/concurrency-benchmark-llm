@@ -1,0 +1,879 @@
+[
+ {
+  "name": "p01",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark/index.html",
+  "steps": [
+   {
+    "wait": 2.0
+   },
+   {
+    "eval": "hitPlayer = function () {}; 'no hits'"
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 2.5
+   },
+   {
+    "rec": 135,
+    "path": [
+     [
+      640,
+      610
+     ],
+     [
+      360,
+      600
+     ],
+     [
+      920,
+      615
+     ],
+     [
+      520,
+      600
+     ],
+     [
+      800,
+      610
+     ],
+     [
+      640,
+      605
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "name": "p02",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark-iterated/v2/index.html",
+  "steps": [
+   {
+    "wait": 2.5
+   },
+   {
+    "eval": "hitPlayer = function () {}; 'no hits'"
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 5.0
+   },
+   {
+    "rec": 36,
+    "path": [
+     [
+      640,
+      610
+     ],
+     [
+      430,
+      600
+     ],
+     [
+      860,
+      615
+     ],
+     [
+      560,
+      600
+     ],
+     [
+      740,
+      610
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "name": "p03",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark-iterated/v3/index.html",
+  "steps": [
+   {
+    "wait": 2.0
+   },
+   {
+    "eval": "hitPlayer = function () {}; 'no hits'"
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.5
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.4
+   },
+   {
+    "wait": 1.0
+   },
+   {
+    "eval": "enemies.length = 0; spawnQueue.length = 0; waveInSector = 5; waveState = 'inter'; waveDelay = 0.05; 'to the boss'"
+   },
+   {
+    "wait": 3.4
+   },
+   {
+    "rec": 36,
+    "path": [
+     [
+      640,
+      610
+     ],
+     [
+      430,
+      600
+     ],
+     [
+      860,
+      615
+     ],
+     [
+      560,
+      600
+     ],
+     [
+      740,
+      610
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "name": "p04",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark-iterated/v4/index.html",
+  "steps": [
+   {
+    "wait": 2.0
+   },
+   {
+    "eval": "hitPlayer = function () {}; 'no hits'"
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.5
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.4
+   },
+   {
+    "eval": "enterSector(1); 'sector 2'"
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 4.5
+   },
+   {
+    "rec": 36,
+    "path": [
+     [
+      640,
+      610
+     ],
+     [
+      430,
+      600
+     ],
+     [
+      860,
+      615
+     ],
+     [
+      560,
+      600
+     ],
+     [
+      740,
+      610
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "name": "p05",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark-iterated/v5/index.html",
+  "steps": [
+   {
+    "wait": 2.0
+   },
+   {
+    "eval": "hitPlayer = function () {}; 'no hits'"
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.5
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.4
+   },
+   {
+    "wait": 1.0
+   },
+   {
+    "eval": "enemies.length = 0; spawnQueue.length = 0; waveInSector = 5; waveState = 'inter'; waveDelay = 0.05; 'to the boss'"
+   },
+   {
+    "wait": 3.6
+   },
+   {
+    "rec": 20,
+    "path": [
+     [
+      640,
+      610
+     ],
+     [
+      430,
+      600
+     ],
+     [
+      860,
+      615
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "name": "p06",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark-iterated/v6/index.html",
+  "steps": [
+   {
+    "wait": 2.0
+   },
+   {
+    "eval": "hitPlayer = function () {}; 'no hits'"
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.5
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.4
+   },
+   {
+    "wait": 1.0
+   },
+   {
+    "eval": "enemies.length = 0; spawnQueue.length = 0; waveInSector = 5; waveState = 'inter'; waveDelay = 0.05; 'to the boss'"
+   },
+   {
+    "wait": 3.6
+   },
+   {
+    "eval": "boss.hp = 0; boss.dying = 1; boss.dieT = 0; boss.dieBoom = 0; initBossShards(boss); 'boss down'"
+   },
+   {
+    "wait": 0.45
+   },
+   {
+    "rec": 20
+   }
+  ]
+ },
+ {
+  "name": "p07",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark-iterated/v7/index.html",
+  "steps": [
+   {
+    "wait": 2.0
+   },
+   {
+    "eval": "hitPlayer = function () {}; 'no hits'"
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.5
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.4
+   },
+   {
+    "wait": 3.0
+   },
+   {
+    "move": [
+     640,
+     620
+    ]
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "rec": 20,
+    "path": [
+     [
+      640,
+      620
+     ],
+     [
+      600,
+      380
+     ],
+     [
+      700,
+      230
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "name": "p08",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark-iterated/v8/index.html",
+  "size": [
+   390,
+   844
+  ],
+  "dpr": 2,
+  "steps": [
+   {
+    "wait": 2.0
+   },
+   {
+    "eval": "hitPlayer = function () {}; 'no hits'"
+   },
+   {
+    "tap": [
+     195,
+     500
+    ]
+   },
+   {
+    "wait": 0.5
+   },
+   {
+    "tap": [
+     195,
+     500
+    ]
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "tap": [
+     195,
+     500
+    ]
+   },
+   {
+    "wait": 0.4
+   },
+   {
+    "wait": 3.2
+   },
+   {
+    "rec": 20,
+    "path": [
+     [
+      195,
+      700
+     ],
+     [
+      120,
+      640
+     ],
+     [
+      270,
+      600
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "name": "p09",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark-iterated/v9/index.html",
+  "size": [
+   390,
+   844
+  ],
+  "dpr": 2,
+  "steps": [
+   {
+    "wait": 2.0
+   },
+   {
+    "eval": "hitPlayer = function () {}; 'no hits'"
+   },
+   {
+    "tap": [
+     195,
+     500
+    ]
+   },
+   {
+    "wait": 0.5
+   },
+   {
+    "tap": [
+     195,
+     500
+    ]
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "tap": [
+     195,
+     500
+    ]
+   },
+   {
+    "wait": 0.4
+   },
+   {
+    "wait": 1.0
+   },
+   {
+    "eval": "enemies.length = 0; spawnQueue.length = 0; waveInSector = 5; waveState = 'inter'; waveDelay = 0.05; 'to the boss'"
+   },
+   {
+    "wait": 3.0
+   },
+   {
+    "eval": "boss.hp = 0; boss.dying = 1; boss.dieT = 0; boss.dieBoom = 0; initBossShards(boss); 'boss down'"
+   },
+   {
+    "wait": 9.5
+   },
+   {
+    "rec": 20
+   }
+  ]
+ },
+ {
+  "name": "p10",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark-final/index.html",
+  "size": [
+   390,
+   844
+  ],
+  "dpr": 2,
+  "steps": [
+   {
+    "wait": 2.0
+   },
+   {
+    "eval": "hitPlayer = function () {}; 'no hits'"
+   },
+   {
+    "tap": [
+     195,
+     500
+    ]
+   },
+   {
+    "wait": 0.5
+   },
+   {
+    "tap": [
+     195,
+     500
+    ]
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "tap": [
+     195,
+     500
+    ]
+   },
+   {
+    "wait": 0.4
+   },
+   {
+    "wait": 1.0
+   },
+   {
+    "eval": "enemies.length = 0; spawnQueue.length = 0; waveInSector = 5; waveState = 'inter'; waveDelay = 0.05; 'to the boss'"
+   },
+   {
+    "wait": 3.0
+   },
+   {
+    "eval": "boss.hp = 0; boss.dying = 1; boss.dieT = 0; boss.dieBoom = 0; initBossShards(boss); 'boss down'"
+   },
+   {
+    "wait": 9.5
+   },
+   {
+    "rec": 20
+   }
+  ]
+ },
+ {
+  "name": "f1",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark-final/index.html",
+  "steps": [
+   {
+    "wait": 2.0
+   },
+   {
+    "eval": "hitPlayer = function () {}; 'no hits'"
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.5
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.4
+   },
+   {
+    "eval": "enterSector(1); 'sector 2'"
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 3.8
+   },
+   {
+    "move": [
+     640,
+     630
+    ]
+   },
+   {
+    "wait": 0.2
+   },
+   {
+    "rec": 48,
+    "path": [
+     [
+      640,
+      630
+     ],
+     [
+      420,
+      470
+     ],
+     [
+      600,
+      260
+     ],
+     [
+      860,
+      330
+     ],
+     [
+      760,
+      560
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "name": "f2",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark-final/index.html",
+  "steps": [
+   {
+    "wait": 2.0
+   },
+   {
+    "eval": "hitPlayer = function () {}; 'no hits'"
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.5
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.4
+   },
+   {
+    "wait": 4.2
+   },
+   {
+    "eval": "player.overdrive = 1; 'overdrive full'"
+   },
+   {
+    "wait": 0.2
+   },
+   {
+    "rec": 12,
+    "path": [
+     [
+      640,
+      600
+     ],
+     [
+      600,
+      590
+     ]
+    ]
+   },
+   {
+    "key": "Space"
+   },
+   {
+    "rec": 36,
+    "path": [
+     [
+      600,
+      590
+     ],
+     [
+      700,
+      560
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "name": "f3",
+  "url": "file:///C:/Users/ProArt/Desktop/Project/concurrency-benchmark-llm/suite-results-rtx-spark-p16-20261025/coding/neon-spark-final/index.html",
+  "steps": [
+   {
+    "wait": 2.0
+   },
+   {
+    "eval": "hitPlayer = function () {}; 'no hits'"
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.5
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 0.4
+   },
+   {
+    "eval": "enterSector(2); 'sector 3'"
+   },
+   {
+    "wait": 0.3
+   },
+   {
+    "click": [
+     640,
+     430
+    ]
+   },
+   {
+    "wait": 1.2
+   },
+   {
+    "eval": "enemies.length = 0; spawnQueue.length = 0; waveInSector = 5; waveState = 'inter'; waveDelay = 0.05; 'to the boss'"
+   },
+   {
+    "wait": 2.0
+   },
+   {
+    "rec": 48,
+    "path": [
+     [
+      640,
+      610
+     ],
+     [
+      520,
+      590
+     ],
+     [
+      760,
+      600
+     ]
+    ]
+   },
+   {
+    "eval": "boss.hp = 0; boss.dying = 1; boss.dieT = 0; boss.dieBoom = 0; initBossShards(boss); 'boss down'"
+   },
+   {
+    "wait": 0.15
+   },
+   {
+    "rec": 48
+   }
+  ]
+ }
+]

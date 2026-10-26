@@ -1,0 +1,143 @@
+{
+ "integrated_lufs": -14.15,
+ "true_peak_dbtp": -1.7,
+ "true_peak_before_limit": 1.05,
+ "lra_lu": 2.2581858717297933,
+ "effects": 15,
+ "per_10s": 8.3,
+ "score": {
+  "take": "music_b",
+  "segments": [
+   [
+    5.87,
+    15.87
+   ],
+   [
+    63.75,
+    71.75
+   ]
+  ]
+ },
+ "placed": [
+  {
+   "t": 2.13,
+   "kind": "impact",
+   "file": "impact_b.mp3",
+   "start": 2.13,
+   "bed_lufs": -16.64,
+   "gain_db": -4.84
+  },
+  {
+   "t": 4.12,
+   "kind": "whoosh",
+   "file": "whoosh_a.mp3",
+   "start": 3.763,
+   "bed_lufs": -11.86,
+   "gain_db": -1.61
+  },
+  {
+   "t": 5.12,
+   "kind": "whoosh",
+   "file": "whoosh_a.mp3",
+   "start": 4.763,
+   "bed_lufs": -12.12,
+   "gain_db": -1.61
+  },
+  {
+   "t": 6.12,
+   "kind": "whoosh",
+   "file": "whoosh_a.mp3",
+   "start": 5.763,
+   "bed_lufs": -12.13,
+   "gain_db": -1.61
+  },
+  {
+   "t": 7.06,
+   "kind": "tick",
+   "file": "tick_1.wav",
+   "start": 7.059,
+   "bed_lufs": -14.05,
+   "gain_db": -0.74
+  },
+  {
+   "t": 7.53,
+   "kind": "tick",
+   "file": "tick_2.wav",
+   "start": 7.529,
+   "bed_lufs": -13.87,
+   "gain_db": 0.0
+  },
+  {
+   "t": 8.0,
+   "kind": "tick",
+   "file": "tick_3.wav",
+   "start": 7.999,
+   "bed_lufs": -13.8,
+   "gain_db": 0.0
+  },
+  {
+   "t": 8.5,
+   "kind": "tick",
+   "file": "tick_1.wav",
+   "start": 8.499,
+   "bed_lufs": -13.77,
+   "gain_db": -0.05
+  },
+  {
+   "t": 9.0,
+   "kind": "tick",
+   "file": "tick_2.wav",
+   "start": 8.999,
+   "bed_lufs": -13.77,
+   "gain_db": -0.3
+  },
+  {
+   "t": 9.5,
+   "kind": "tick",
+   "file": "tick_3.wav",
+   "start": 9.499,
+   "bed_lufs": -13.85,
+   "gain_db": -0.33
+  },
+  {
+   "t": 10.0,
+   "kind": "impact",
+   "file": "impact_b.mp3",
+   "start": 10.0,
+   "bed_lufs": -13.89,
+   "gain_db": -2.09
+  },
+  {
+   "t": 11.5,
+   "kind": "whoosh",
+   "file": "whoosh_a.mp3",
+   "start": 11.143,
+   "bed_lufs": -11.4,
+   "gain_db": -2.02
+  },
+  {
+   "t": 13.0,
+   "kind": "whoosh",
+   "file": "whoosh_a.mp3",
+   "start": 12.643,
+   "bed_lufs": -11.46,
+   "gain_db": -1.91
+  },
+  {
+   "t": 14.5,
+   "kind": "whoosh",
+   "file": "whoosh_a.mp3",
+   "start": 14.143,
+   "bed_lufs": -11.78,
+   "gain_db": -1.61
+  },
+  {
+   "t": 16.0,
+   "kind": "chime",
+   "file": "chime_b.mp3",
+   "start": 16.0,
+   "bed_lufs": -11.75,
+   "gain_db": 20.81
+  }
+ ]
+}

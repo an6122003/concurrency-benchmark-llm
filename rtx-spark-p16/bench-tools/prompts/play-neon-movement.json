@@ -1,0 +1,18 @@
+[
+  {"wait": 1.0}, {"click": [960, 640]}, {"wait": 0.8}, {"click": [960, 640]}, {"wait": 0.6}, {"click": [960, 640]},
+  {"wait": 2.5}, {"eval": "player.inv = 1e9; JSON.stringify({state, x: Math.round(player.x), y: Math.round(player.y), H})"},
+  {"move": [[960, 800], [960, 650], [960, 450]], "every": 0.6}, {"wait": 0.6},
+  {"eval": "JSON.stringify({mouse: 'to 960,450', x: Math.round(player.x), y: Math.round(player.y)})"},
+  {"eval": "player.inv = 0; 'ship visible'"}, {"shot": "m1-ship-high"}, {"eval": "player.inv = 1e9; 'inv'"},
+  {"move": [[700, 700], [500, 1000]], "every": 0.6}, {"wait": 0.6},
+  {"eval": "JSON.stringify({mouse: 'to 500,1000', x: Math.round(player.x), y: Math.round(player.y)})"},
+  {"move": [[960, 300], [960, 120]], "every": 0.6}, {"wait": 0.6},
+  {"eval": "JSON.stringify({mouse: 'to 960,120 (HUD)', x: Math.round(player.x), y: Math.round(player.y)})"},
+  {"eval": "player.inv = 0; 'ship visible'"}, {"shot": "m2-ship-top-limit"}, {"eval": "player.inv = 1e9; 'inv'"},
+  {"move": [[960, 900]], "every": 0.6}, {"wait": 0.6},
+  {"eval": "JSON.stringify({mouse: 'to 960,900', x: Math.round(player.x), y: Math.round(player.y)})"},
+  {"hold": "KeyW", "for": 0.7}, {"eval": "JSON.stringify({key: 'W 0.7s', x: Math.round(player.x), y: Math.round(player.y)})"},
+  {"hold": "ArrowLeft", "for": 0.6}, {"eval": "JSON.stringify({key: 'Left 0.6s', x: Math.round(player.x), y: Math.round(player.y)})"},
+  {"hold": "KeyS", "for": 0.4}, {"eval": "JSON.stringify({key: 'S 0.4s', x: Math.round(player.x), y: Math.round(player.y)})"},
+  {"hold": "ArrowRight", "for": 0.5}, {"eval": "JSON.stringify({key: 'Right 0.5s', x: Math.round(player.x), y: Math.round(player.y)})"}
+]

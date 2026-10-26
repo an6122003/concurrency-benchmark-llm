@@ -1,0 +1,5 @@
+[
+  {"wait": 4}, {"shot": "01-first-frame"},
+  {"eval": "JSON.stringify([...document.querySelectorAll('button, input, select, label, h1, [class*=panel], [id*=panel]')].slice(0, 40).map(e => ({tag: e.tagName, id: e.id, cls: e.className, text: (e.textContent || '').trim().slice(0, 30), type: e.type, r: (b => [Math.round(b.x), Math.round(b.y), Math.round(b.width), Math.round(b.height)])(e.getBoundingClientRect())})))"},
+  {"eval": "JSON.stringify({canvas: [...document.querySelectorAll('canvas')].map(c => [c.width, c.height]), gl: !!document.querySelector('canvas').getContext('webgl2') || 'webgl1?'})"}
+]

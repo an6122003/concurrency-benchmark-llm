@@ -1,0 +1,8 @@
+This is great now: the HUD is back and clean, the boss break-apart explosions look fantastic, and the final boss is a real finale. I played the whole campaign again with no errors. Last round of polish, all visual:
+
+1. Boss defeat line: it is drawn above the boss, but the bosses fly near the top of the screen, so the line is cut off at the top edge. Draw it below the boss instead and always keep the whole line inside the screen.
+2. Death flash: during a boss death a flat pale grey disc covers the boss. Replace it with a soft glowing burst (a radial gradient in the boss's color that fades out at the edge).
+3. Boss arrival: the big boss name and its taunt are drawn in see-through red and orange right over the sun, so they are hard to read. Give them a dark outline or a dark translucent band behind them so they stay readable on every sector's sun.
+4. Upgrade cards: a card that says "LV 0 / 5" shows six bar segments with one already lit. Show exactly as many segments as the maximum level and light one per level taken, so level 0 has none lit.
+
+Change nothing else. Return the complete updated file in one ```html code block, with no explanation before or after it.

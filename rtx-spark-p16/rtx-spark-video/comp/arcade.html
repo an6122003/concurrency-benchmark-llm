@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NEON SPARK, the arcade cut</title>
+<link rel="stylesheet" href="arcade.css">
+</head>
+<body>
+<!-- the glitch's colour split: the frame's red channel, and its green and blue, shifted apart -->
+<svg class="defs" width="0" height="0" aria-hidden="true">
+  <filter id="onlyRed" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"/></filter>
+  <filter id="onlyGreenBlue" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/></filter>
+</svg>
+<main id="world"></main>
+<div id="crt"></div>
+<script src="vt.js"></script>
+<script src="gsap.min.js"></script>
+<script src="arcade-score.js"></script>
+<script src="arcade-data.js"></script>
+<script src="clips/clips.js"></script>
+<script src="arcade.js"></script>
+</body>
+</html>

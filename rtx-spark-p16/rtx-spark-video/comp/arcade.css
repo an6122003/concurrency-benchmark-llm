@@ -1,0 +1,103 @@
+/* NEON SPARK, the arcade cut: the game's own world. Full-screen gameplay, the game's type (its canvas draws in
+   `monospace`, Consolas here) and its neon: cyan #00e5ff, magenta #ff2d95, orange #ff8a00, green #76B900, yellow
+   #ffe14d. Its banners, HUD, intro and victory screen are redrawn at the footage's scale (2x the game's 540 px
+   canvas). The HUD sits on the grid floor, under the sky where the fights are; text stays in TikTok's safe area
+   (x 150-930, y 250-1480). */
+:root { --cy: #00e5ff; --mg: #ff2d95; --or: #ff8a00; --ye: #ffe14d; --gr: #76b900; --wh: #e8fbff; --ink: #02000a;
+  --acc: var(--mg); --mono: Consolas, 'Segoe UI Symbol', monospace; }
+.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+body { color: var(--wh); font-family: var(--mono); font-weight: 700; -webkit-font-smoothing: antialiased; }
+
+/* the game, full screen, and its glitch copies */
+#world { position: fixed; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+#cam { position: absolute; inset: 0; }
+#shot, #split img, #slices img { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; display: block; }
+#split { position: absolute; inset: 0; background: #000; opacity: 0; isolation: isolate; }
+#split img { mix-blend-mode: screen; }
+#split .r { filter: url(#onlyRed); }
+#split .gb { filter: url(#onlyGreenBlue); }
+#slices { position: absolute; inset: 0; opacity: 0; }
+#slices div { position: absolute; left: 0; width: 1080px; overflow: hidden; display: none; }
+#bars { position: absolute; inset: 0; mix-blend-mode: screen; }
+#bars i { position: absolute; left: 0; width: 1080px; height: 8px; opacity: 0; }
+#tint { position: absolute; inset: 0; opacity: 0; mix-blend-mode: screen;
+  background: linear-gradient(180deg, rgba(255, 45, 149, .6), rgba(0, 229, 255, .5)); }
+#dim { position: absolute; inset: 0; background: var(--ink); opacity: 0; }
+#floor { position: absolute; left: 0; right: 0; top: 1080px; height: 520px; opacity: 0;
+  background: linear-gradient(180deg, rgba(2, 0, 10, 0) 0%, rgba(2, 0, 10, .8) 17%, rgba(2, 0, 10, .86) 79%, rgba(2, 0, 10, 0) 100%); }
+#floor.solid { background: linear-gradient(180deg, rgba(2, 0, 10, 0) 0%, rgba(2, 0, 10, .95) 15%, rgba(2, 0, 10, .95) 80%, rgba(2, 0, 10, 0) 100%); }
+#white { position: absolute; inset: 0; background: #fff; opacity: 0; }
+
+/* the CRT the whole cut plays on */
+#crt { position: fixed; left: 0; top: 0; width: 1080px; height: 1920px; z-index: 20; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .16) 0 2px, rgba(0, 0, 0, 0) 2px 4px),
+              radial-gradient(ellipse 88% 78% at 50% 50%, rgba(0, 0, 0, 0) 62%, rgba(0, 0, 0, .5) 100%); }
+
+/* the title and the transmission */
+#intro { position: absolute; inset: 0; }
+#intro .logo { position: absolute; left: 0; right: 0; top: 300px; text-align: center; font-size: 118px; line-height: 1;
+  color: #fff; -webkit-text-stroke: 3px rgba(0, 229, 255, .85);
+  text-shadow: 0 0 24px #ff2d95, 0 0 64px #ff2d95, 0 0 30px rgba(0, 229, 255, .6); }
+#intro .tag { position: absolute; left: 0; right: 0; top: 448px; text-align: center; font-size: 30px; font-weight: 400;
+  color: var(--gr); white-space: pre; text-shadow: 0 0 20px var(--gr); }
+#intro .hdr { position: absolute; left: 0; right: 0; top: 598px; text-align: center; font-size: 36px; color: var(--cy);
+  text-shadow: 0 0 16px var(--cy), 0 0 40px var(--cy); white-space: pre; }
+#intro .rule { position: absolute; left: 216px; width: 648px; top: 664px; height: 2px; background: rgba(0, 229, 255, .5); }
+#intro .lines { position: absolute; left: 254px; top: 712px; }
+#intro .line { display: block; height: 104px; font-size: 80px; line-height: 104px; color: #cfe8ff; white-space: pre;
+  text-shadow: 0 0 16px var(--cy); }
+#intro .cur { display: inline-block; width: 37px; height: 76px; margin-left: 8px; vertical-align: -10px; background: var(--cy);
+  box-shadow: 0 0 12px var(--cy); }
+#intro .go { position: absolute; left: 0; right: 0; top: 1404px; text-align: center; font-size: 44px; color: var(--mg);
+  text-shadow: 0 0 36px var(--mg); opacity: 0; }
+
+/* a wave banner, as the game draws one */
+#banner { position: absolute; left: 0; right: 0; top: 548px; text-align: center; opacity: 0; --acc: var(--or); }
+#banner span { display: inline-block; padding: 16px 34px; font-size: 78px; line-height: 104px; color: var(--acc);
+  background: rgba(2, 0, 10, .55); border: 2px solid color-mix(in srgb, var(--acc) 55%, transparent);
+  box-shadow: 0 0 20px var(--acc); text-shadow: 0 0 6px #000, 0 0 18px var(--acc), 0 0 52px var(--acc); }
+
+/* the HUD on the grid floor */
+#hud { position: absolute; left: 150px; width: 780px; top: 1180px; opacity: 0; }
+#hud .cap { height: 84px; text-align: center; }
+#hud .cap span { display: inline-block; padding: 8px 28px; font-size: 46px; line-height: 64px; color: var(--acc); white-space: nowrap;
+  background: rgba(2, 0, 10, .62); border: 2px solid color-mix(in srgb, var(--acc) 60%, transparent);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--acc) 70%, transparent); text-shadow: 0 0 10px var(--acc), 0 0 30px var(--acc); }
+#hud .row { position: relative; height: 104px; margin-top: 12px; }
+#hud .pno { position: absolute; left: 0; bottom: 0; }
+#hud .pno .lab { display: block; font-size: 26px; letter-spacing: .3em; color: var(--acc); text-shadow: 0 0 12px var(--acc); }
+#hud .pno .num { display: inline-block; font-size: 92px; line-height: 74px; color: var(--cy); transform-origin: 0 70%;
+  text-shadow: 0 0 10px var(--cy), 0 0 30px var(--cy); }
+#hud .pno .of { font-size: 38px; color: rgba(255, 255, 255, .5); margin-left: 6px; }
+#hud .build { position: absolute; right: 0; bottom: 6px; width: 540px; }
+#hud .who { font-size: 28px; font-weight: 400; color: rgba(255, 255, 255, .62); white-space: nowrap; text-align: right; }
+#hud .who b { color: #9fe8ff; font-weight: 700; text-shadow: 0 0 10px var(--cy); }
+#hud .bar { display: grid; grid-template-columns: repeat(10, 1fr); gap: 8px; margin-top: 14px; }
+#hud .bar i { display: block; height: 24px; background: rgba(118, 185, 0, .12); border: 2px solid rgba(118, 185, 0, .55); }
+#hud .bar i.on { background: var(--gr); box-shadow: 0 0 16px var(--gr); }
+#hud .bar i.new { background: #fff; border-color: #fff; box-shadow: 0 0 18px #fff, 0 0 36px var(--gr); }
+#hud .stats { display: grid; grid-template-columns: 1.1fr 1fr 1fr .8fr; margin-top: 12px; }
+#hud .stat { position: relative; }
+#hud .stat .k { font-size: 24px; letter-spacing: .12em; color: var(--acc); text-shadow: 0 0 10px var(--acc); }
+#hud .stat .v { margin-top: 6px; font-size: 44px; line-height: 1; color: var(--wh); white-space: nowrap; }
+#hud .stat .v small { font-size: 26px; color: rgba(255, 255, 255, .5); }
+#hud .stat.tok .v { color: var(--cy); text-shadow: 0 0 12px var(--cy); }
+#hud .pop { position: absolute; left: 0; top: -22px; font-size: 40px; color: var(--ye); text-shadow: 0 0 6px #000, 0 0 20px var(--ye);
+  opacity: 0; white-space: nowrap; }
+
+/* the victory screen: what the build took */
+#end { position: absolute; inset: 0; opacity: 0; }
+#end .title { position: absolute; left: 0; right: 0; top: 388px; text-align: center; font-size: 96px; line-height: 1; color: #fff; }
+#end .title span { display: inline-block; }
+#end .sub { position: absolute; left: 0; right: 0; top: 514px; text-align: center; font-size: 34px; font-weight: 400; color: var(--gr);
+  text-shadow: 0 0 20px var(--gr); }
+#end .table { position: absolute; left: 0; right: 0; top: 600px; }
+#end .row { position: relative; height: 64px; opacity: 0; }
+#end .row .k { position: absolute; right: 588px; top: 16px; font-size: 32px; font-weight: 400; color: rgba(255, 255, 255, .6); white-space: nowrap; }
+#end .row .v { position: absolute; left: 548px; top: 10px; font-size: 40px; color: var(--cy); text-shadow: 0 0 16px var(--cy); white-space: nowrap; }
+#end .row .v small { font-size: 26px; font-weight: 400; color: rgba(159, 232, 255, .7); text-shadow: none; }
+#end .row.hand .v { color: var(--gr); text-shadow: 0 0 18px var(--gr); }
+#end .btn { position: absolute; left: 270px; width: 540px; top: 1320px; height: 104px; text-align: center; font-size: 36px; line-height: 100px;
+  color: var(--gr); background: rgba(0, 20, 30, .8); border: 4px solid var(--gr); box-shadow: 0 0 28px var(--gr); opacity: 0; }
